@@ -1,0 +1,17 @@
+language: python
+python:
+  - 3.6
+env:
+  global:
+    # Doctr deploy key for mechmotum/mechmotum.github.io
+    - secure:
+install:
+  - pip install pelican doctr
+  - git clone --depth=1 --single-branch --branch mechmotum https://github.com/mechmotum/pelican-alchemy.git
+  - git clone --depth=1 https://github.com/getpelican/pelican-plugins.git
+before_script:
+  - pip freeze
+script:
+  - set -e
+  - pelican -D -v -s publishconf.py
+  - doctr deploy --built-docs output/ .
