@@ -8,6 +8,8 @@ go along, may or may not align with the suggested week below, and are subject
 to the schedules of the various sponsors. **Check the schedule periodically for
 changes.**
 
+.. class:: table table-striped table-bordered
+
 == ==========  ====================================  =========================  ===============
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============

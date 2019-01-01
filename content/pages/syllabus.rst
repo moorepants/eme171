@@ -1,5 +1,4 @@
 :title: Syllabus
-:url:
 :save_as: index.html
 :sortorder: 0
 
@@ -65,6 +64,8 @@ exception).**
 Office Hours
 ============
 
+.. class:: table table-striped table-bordered
+
 +----------------------+----------------------+
 | Jason's Office Hours | Ehsan's Office Hours |
 +======================+======================+
@@ -115,6 +116,8 @@ Grades will be available in the canvas.ucdavis.edu_ grade book periodically
 throughout the course along with class statistics. Check the website on a
 regular basis to gauge your performance. Keep in mind that **15% is deducted
 per business day late** on all assignments.
+
+.. class:: table table-striped table-bordered
 
 ==================== =====
 Projects/Homework    25%
