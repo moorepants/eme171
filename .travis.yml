@@ -14,4 +14,9 @@ before_script:
 script:
   - set -e
   - pelican -D -v -s publishconf.py
-  - doctr deploy --built-docs output/ .
+  - if [[ -z "$TRAVIS_TAG" ]]; then
+      DEPLOY_DIR=".";
+    else
+      DEPLOY_DIR="$TRAVIS_TAG";
+    fi
+  - doctr deploy --build-tags --built-docs output/ $DEPLOY_DIR
