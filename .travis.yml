@@ -3,8 +3,8 @@ python:
   - 3.6
 env:
   global:
-    # Doctr deploy key for mechmotum/mechmotum.github.io
-    - secure:
+    # Doctr deploy key for moorepants/eme171
+    - secure: "USHCUJ4nhZdFHxxM90eWiWjUj+qFBJ5rl6I/aT0TPv9izsnQqiWJ8xgwu8Wxr06PuNYi1VbWWcxYe3/YHbKoCNOnrJ1V+sW6HcA1YXMpBJtMNp46EcPTKC95beK13aFnYHdL8cFp8EFuPKizJ/lXAvAaqgFfqiNo10St2GB+IqzbHmka7kQTzvPBK12pGJYrLUIwgPCq5jgRCN42heJrKFAYp6tKino2nNMLy9pYuOp4DZtou7ADQSJ8CzEcyEizWvr65TYmFPZGwuwIAz3seT/menZXCuMgJshZK8864z/3JBxIsClxgF5N1gIKlyz/8/sh7+VnQNXCNO9VjNcOcmxGn9KmQ5mdvJOh9rAcTCCkIJuOL2TBl20qohyXiP19a4yYrehL0ke7jIBJmKHFAhmuhtNagrHTSMZRfWW+74b4QDgOMj7Cd6OkTcJvg1E87NoVTdiUXYEMN1CPuXUP1sLGKanak5a9lxADYOFPnaVpPwfnE6wNQiE33uOA4vryu5RxR1Rv1v6ugG6eTdzSO+CFJPeRgXE3bcN7YYov5lvVOhDVGHluI9r3FRbs7plRThY5YuOEOeii4T8W4t2gDirytLQAVO/xYaiOpB7pTwfjPAFeSufHSh1xCPoIbhvvAZ+4S9MWOWMXDsu789+GeCqIvaqEZaT5eUDUMe58U/o="
 install:
   - pip install pelican doctr
   - git clone --depth=1 --single-branch --branch mechmotum https://github.com/mechmotum/pelican-alchemy.git
