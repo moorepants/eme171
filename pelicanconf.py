@@ -49,7 +49,7 @@ else:
 ## THEME
 
 # Alchemy theme settings
-SITESUBTITLE = 'E pur si muove'
+SITESUBTITLE = ''
 SITEIMAGE = ''
 DESCRIPTION = ''
 

@@ -1,4 +1,5 @@
 :title: Syllabus
+:url:
 :save_as: index.html
 :sortorder: 0
 
@@ -10,17 +11,6 @@ Course Description
 | Analysis, Simulation and Design of Mechatronic Systems - EME 171
 | 2019 Winter, Lecture: TR 12:10-1:30 PM in Olson 205
 | CRN: 32758
-
-Modeling of dynamic engineering systems in various enery domains. Analysis and
-design of dynamic systems. Response of linear systems. Digital computer
-simulation and physical experiments.
-
-Learning Objectives
--------------------
-
-After completing the course students will be able to:
-
-- create simple mathematical models of a variety of vehicles
 
 Catalog Description
 -------------------
@@ -94,6 +84,9 @@ Feel free to discuss homework assignments and work on them together, but each
 student must turn in a *unique* solution. Keep in mind that actually doing all
 of the homework yourself is critical for learning and passing the course.
 
+No help from other people is allowed when completing the midterm and final
+exam.
+
 Textbook
 ========
 
@@ -127,18 +120,17 @@ Final                50%
 
 .. _canvas.ucdavis.edu: http://canvas.ucdavis.edu
 
-Projects/Homework
+Projects
+   Projects will be done in groups of three students; students are individually
+   responsible for competence in simulation/analysis tools. Project reports
+   will be collected and graded during the quarter.
+Homework
    Weekly homework will be assigned which will be due before class the
    following week. Unique solutions are required from each student.
-   Projects will be done in group sof thre students; students are individually
-   responible for competence in simulation/analysis tools. Project reports will
-   be collected and graded during the quarter. Homework will be submitted with
-   the final examination.
 Midterm
-   You will have to complete a take-home midterm exam. You may not work with
-   others on this exam.
+   You will have to complete a one and half hour in-class midterm exam.
 Final
-   You will have to complete a two-hour in-class exam.
+   You will have to complete a two-hour in-class final exam.
 
 Canvas
 ======
@@ -154,6 +146,8 @@ Announcements
    to read these either through your email program or on the Canvas website.
 Assignments
    Any electronic assignments will be distributed and collected here.
+Discussions
+   Ask all class related questions here unless they are of a personal nature.
 Grades
    Your grades and basic stats on your relative performance will be available
    as the course goes along.
