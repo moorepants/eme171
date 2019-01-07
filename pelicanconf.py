@@ -17,6 +17,7 @@ DEFAULT_LANG = 'en'
 # This sets the default pages to be top level items.
 PAGE_URL = '{slug}.html'
 PAGE_SAVE_AS = '{slug}.html'
+PAGE_ORDER_BY = 'sortorder'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
