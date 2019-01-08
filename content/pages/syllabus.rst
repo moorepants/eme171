@@ -108,25 +108,31 @@ Assignments & Grades
 Grades will be available in the canvas.ucdavis.edu_ grade book periodically
 throughout the course along with class statistics. Check the website on a
 regular basis to gauge your performance. Keep in mind that **15% is deducted
-per business day late** on all assignments.
+per business day late** on projects. Homeworks must be turned in on time to
+count.
 
 .. class:: table table-striped table-bordered
 
 ==================== =====
-Projects/Homework    25%
+Homework             15%
+Projects             25%
 Midterm              25%
-Final                50%
+Final                35%
 ==================== =====
 
 .. _canvas.ucdavis.edu: http://canvas.ucdavis.edu
 
-Projects
-   Projects will be done in groups of three students; students are individually
-   responsible for competence in simulation/analysis tools. Project reports
-   will be collected and graded during the quarter.
 Homework
    Weekly homework will be assigned which will be due before class the
-   following week. Unique solutions are required from each student.
+   following week. Unique solutions are required from each student but you can
+   work with anyone on the homework. You can miss up to two homework
+   submissions out of the total and still get the full 15% credit. Graded on
+   pass/fail for showing complete work on all problems. Solutions will be
+   shared after the due date.
+Projects
+   Projects will be done in pairs of two students; students are individually
+   responsible for competence in simulation/analysis tools. Project reports
+   will be collected and graded during the quarter.
 Midterm
    You will have to complete a one and half hour in-class midterm exam.
 Final
