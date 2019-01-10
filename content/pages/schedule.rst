@@ -16,7 +16,7 @@ schedule periodically for changes.**
 01 T-Jan-08    Introduction                          - Read 1.1-1.6             - 1: 6, 7, 8
                                                      - `Notes 01`_
                                                      - `Script 01`_
-02 R-Jan-10    Introduction
+02 R-Jan-10    Introduction                          - `Notes 02`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 03 T-Jan-15    Multiport Systems                     - Read 2.1-2.4, 3.1        - 2: 1, 2, 4, 5, 12
                                                                                 - Lab 1
@@ -54,4 +54,5 @@ NA F-Mar-22    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
 
 .. _Notes 01: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l01.pdf
+.. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l02.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
