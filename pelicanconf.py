@@ -18,6 +18,7 @@ DEFAULT_LANG = 'en'
 PAGE_URL = '{slug}.html'
 PAGE_SAVE_AS = '{slug}.html'
 PAGE_ORDER_BY = 'sortorder'
+STATIC_PATHS = ['scripts']
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -53,6 +54,7 @@ else:
 SITESUBTITLE = ''
 SITEIMAGE = ''
 DESCRIPTION = ''
+PYGMENTS_STYLE = 'monokai'
 
 ## PLUGINS
 
