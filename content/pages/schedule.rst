@@ -14,6 +14,7 @@ schedule periodically for changes.**
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============
 01 T Jan 08    Introduction                          - Read 1.1-1.6             - 1: 6, 7, 8
+                                                     - `Script 01`_
 02 R Jan 10    Introduction
 -- ----------  ------------------------------------  -------------------------  ---------------
 03 T Jan 15    Multiport Systems                     - Read 2.1-2.4, 3.1        - 2: 1, 2, 4, 5, 12
@@ -50,3 +51,5 @@ schedule periodically for changes.**
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA F Mar 22    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
+
+.. _Script 01: {filename}/pages/ebike-simulation.rst
