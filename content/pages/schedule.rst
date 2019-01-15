@@ -20,6 +20,7 @@ schedule periodically for changes.**
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-14                                                                     HW #1: 1.6, 1.7, 1.8
 03 T-Jan-15    Multiport Systems                     - Read 2.1-2.4, 3.1
+                                                     - `Notes 03`_
 04 R-Jan-17    Multiport Systems
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-21                                                                     HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
@@ -61,4 +62,5 @@ NA F-Mar-22    Final Exam: 3:30 PM
 
 .. _Notes 01: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l01.pdf
 .. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l02.pdf
+.. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l03.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
