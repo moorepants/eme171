@@ -5,7 +5,6 @@
 ./feeds/all.atom.xml
 ./index.html
 ./resources.html
-./schedule.html
 ./scripts/simulate_ebike.m
 ./tags.html
 ./theme/css/bootstrap.min.css
