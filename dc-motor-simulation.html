@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  DC Motor Simulation | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/dc-motor-simulation.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/pygments/monokai.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
+  
+  <meta name="description" content="This Matlab/Octave file demonstrates a simulation of a simple DC motor model simulation. simulate_dc_motor.m Download simulate_dc_motor.m %% This file demonstrates how to do basic simulation of first order differential %% equations of a simple DC motor model. % This file contains three functions. The first function in the file will …">
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  DC Motor Simulation
+</h1>
+      <hr>
+
+  <article class="article">
+    <div class="content">
+      <p>This Matlab/Octave file demonstrates a simulation of a simple DC motor model
+simulation.</p>
+<div class="section" id="simulate-dc-motor-m">
+<h2>simulate_dc_motor.m</h2>
+<p><a class="reference external" href="https://moorepants.github.io/eme171/scripts/simulate_dc_motor.m">Download simulate_dc_motor.m</a></p>
+<div class="highlight"><pre class="code matlab highlight literal-block">
+<span class="c">%% This file demonstrates how to do basic simulation of first order differential</span>
+<span class="c">%% equations of a simple DC motor model.</span>
+<span class="c">% This file contains three functions. The first function in the file will be the</span>
+<span class="c">% primary function that calls the other two functions defined below.</span>
+<span class="k">function</span><span class="w"> </span><span class="nf">simulate_dc_motor</span><span class="p">()</span><span class="w">
+    </span><span class="c">% The system has four state variables and here the initial condition for</span>
+    <span class="c">% each state variable is set.</span>
+    <span class="c">% x = [q, i, theta, omega]</span>
+    <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+    <span class="c">%</span>
+    <span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+
+    <span class="c">% Call a function that integrates the system's equations.</span>
+    <span class="c">% The &#64; is required to pass in functions to other functions.</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="n">euler_integrate</span><span class="p">(&#64;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
+
+    <span class="c">% Plot the results.</span>
+    <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+    <span class="n">legend</span><span class="p">(</span><span class="s">'q [C]'</span><span class="p">,</span> <span class="s">'i [A]'</span><span class="p">,</span> <span class="s">'\theta [rad]'</span><span class="p">,</span> <span class="s">'\omega [rad/s]'</span><span class="p">);</span>
+
+    <span class="c">% We wrote our own integration function here, but Octave/Matlab include many</span>
+    <span class="c">% better integration routines that can handle certain ODEs more carefully,</span>
+    <span class="c">% ensuring accurate results. For example ode45() works just like</span>
+    <span class="c">% euler_integrate() but uses the Runga-Kutta 4-5 integration algorithm. This</span>
+    <span class="c">% is a good algorithm for most non-stiff system equations and will work with</span>
+    <span class="c">% most of the models in this class. You use it like so:</span>
+    <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(&#64;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
+
+    <span class="c">% You should get similar results as the custom integration function:</span>
+    <span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+    <span class="n">legend</span><span class="p">(</span><span class="s">'q [C]'</span><span class="p">,</span> <span class="s">'i [A]'</span><span class="p">,</span> <span class="s">'\theta [rad]'</span><span class="p">,</span> <span class="s">'\omega [rad/s]'</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">
+function</span><span class="w"> </span>x <span class="p">=</span><span class="w"> </span><span class="nf">euler_integrate</span><span class="p">(</span>f, t, x0<span class="p">)</span><span class="w">
+    </span><span class="c">% Create an &quot;empty&quot; matrix to hold the results n x 4.</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="nb">nan</span> <span class="o">*</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="nb">length</span><span class="p">(</span><span class="n">x0</span><span class="p">));</span>
+
+    <span class="c">% Set the initial conditions to the first element.</span>
+    <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">x0</span><span class="p">;</span>
+
+    # <span class="n">Use</span> <span class="n">a</span> <span class="k">for</span> <span class="n">loop</span> <span class="n">to</span> <span class="n">sequentially</span> <span class="n">calculate</span> <span class="n">each</span> <span class="n">new</span> <span class="n">x</span><span class="p">.</span>
+    <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">deltat</span> <span class="p">=</span> <span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:)</span> <span class="o">+</span> <span class="n">deltat</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:));</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">
+function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span>t, x<span class="p">)</span><span class="w">
+    </span><span class="c">% Extract the state variables so we can use the variable names we want.</span>
+    <span class="n">q</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nb">i</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">theta</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">omega</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+    <span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% motor inductance [H]</span>
+    <span class="n">Rw</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>  <span class="c">% motor winding resistance [Ohm]</span>
+    <span class="n">ktau</span> <span class="p">=</span> <span class="mf">1.5</span><span class="p">;</span>  <span class="c">% motor torque constant [N*m/A]</span>
+    <span class="n">b</span> <span class="p">=</span> <span class="mf">1.8</span><span class="p">;</span>  <span class="c">% Rotor viscous friction [N*m*s]</span>
+    <span class="n">J</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>  <span class="c">% Rotor inertia [kg*m^2]</span>
+
+    <span class="c">% Initialize the empty vector for the derivative of the states.</span>
+    <span class="n">xdot</span> <span class="p">=</span> <span class="nb">nan</span> <span class="o">*</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+
+    <span class="c">% The voltage is the source effort in this system. So we can specify what we</span>
+    <span class="c">% want it to be.</span>
+    <span class="c">% Example 1, constant voltage:</span>
+    <span class="n">V</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="c">% Uncomment the following two examples to try them out.</span>
+    <span class="c">% Example 2, sinusoidal voltage (function of time):</span>
+    <span class="c">%V = 0.5*sin(pi*t);</span>
+    <span class="c">% Example 3, voltage switches on at 1 second (also function of time):</span>
+<span class="c">%    if t &lt; 1</span>
+<span class="c">%        V = 0;</span>
+<span class="c">%    else</span>
+<span class="c">%        V = 0.5;</span>
+<span class="c">%    end</span>
+
+    <span class="c">% Fill the derivative entries based on the system's equations.</span>
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="nb">i</span><span class="p">;</span>
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Rw</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">ktau</span><span class="o">*</span><span class="n">omega</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span><span class="p">;</span>
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">omega</span><span class="p">;</span>
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">omega</span> <span class="o">+</span> <span class="n">ktau</span><span class="o">*</span><span class="nb">i</span><span class="p">)</span> <span class="o">/</span> <span class="n">J</span><span class="p">;</span>
+<span class="k">end</span>
+</pre>
+</div></div>
+
+    </div>
+  </article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
