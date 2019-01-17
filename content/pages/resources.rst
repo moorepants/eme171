@@ -5,6 +5,7 @@ Scripts
 =======
 
 - `Electric Bicycle Simulation <{filename}/pages/ebike-simulation.rst>`_
+- `DC Motor Simulation <{filename}/pages/dc-motor-simulation.rst>`_
 
 Supplementary Materials
 =======================
