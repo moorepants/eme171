@@ -9,7 +9,7 @@ simulate_dc_motor.m
 
 `Download simulate_dc_motor.m`_
 
-.. _Download simulate_ebike.m: {filename}/scripts/simulate_dc_motor.m
+.. _Download simulate_dc_motor.m: {filename}/scripts/simulate_dc_motor.m
 
 .. raw:: html
 
