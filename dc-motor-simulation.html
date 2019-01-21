@@ -62,42 +62,68 @@ simulation.</p>
     <span class="c">% each state variable is set.</span>
     <span class="c">% x = [q, i, theta, omega]</span>
     <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
-    <span class="c">%</span>
+
+    <span class="c">% Create a vector of time values that we desire to know x(t) at. The</span>
+    <span class="c">% larger the number of values, the more accurate the result is, but the</span>
+    <span class="c">% slower the integration runs.</span>
     <span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
 
-    <span class="c">% Call a function that integrates the system's equations.</span>
-    <span class="c">% The &#64; is required to pass in functions to other functions.</span>
-    <span class="n">x</span> <span class="p">=</span> <span class="n">euler_integrate</span><span class="p">(&#64;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
+    <span class="c">% Call a function that integrates the system's equations and returns</span>
+    <span class="c">% x(t).</span>
+    <span class="c">% The &#64; is required to pass in functions to other functions, i.e. a</span>
+    <span class="c">% function name is not a standard variable name.</span>
+    <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="p">=</span> <span class="n">euler_integrate</span><span class="p">(&#64;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
 
-    <span class="c">% Plot the results.</span>
+    <span class="c">% Plot the results. Always label x and y axis and provide units! Note</span>
+    <span class="c">% that Octave/Matlab can render mathematical symbols using LaTeX</span>
+    <span class="c">% notation.</span>
     <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
     <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
     <span class="n">legend</span><span class="p">(</span><span class="s">'q [C]'</span><span class="p">,</span> <span class="s">'i [A]'</span><span class="p">,</span> <span class="s">'\theta [rad]'</span><span class="p">,</span> <span class="s">'\omega [rad/s]'</span><span class="p">);</span>
 
-    <span class="c">% We wrote our own integration function here, but Octave/Matlab include many</span>
-    <span class="c">% better integration routines that can handle certain ODEs more carefully,</span>
-    <span class="c">% ensuring accurate results. For example ode45() works just like</span>
-    <span class="c">% euler_integrate() but uses the Runga-Kutta 4-5 integration algorithm. This</span>
-    <span class="c">% is a good algorithm for most non-stiff system equations and will work with</span>
-    <span class="c">% most of the models in this class. You use it like so:</span>
+    <span class="c">% We wrote our own integration function here, but Octave/Matlab includes</span>
+    <span class="c">% many better integration routines that can handle certain ODEs more</span>
+    <span class="c">% carefully, ensuring accurate results. For example ode45() works just</span>
+    <span class="c">% like euler_integrate() but uses the Runga-Kutta 4-5 integration</span>
+    <span class="c">% algorithm. This is a good algorithm for most non-stiff system</span>
+    <span class="c">% equations and will work with most of the models in this class. You use</span>
+    <span class="c">% it like so:</span>
     <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(&#64;</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
 
-    <span class="c">% You should get similar results as the custom integration function:</span>
+    <span class="c">% You should almost exactly the same results as the custom integration</span>
+    <span class="c">% function:</span>
     <span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
     <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
     <span class="n">legend</span><span class="p">(</span><span class="s">'q [C]'</span><span class="p">,</span> <span class="s">'i [A]'</span><span class="p">,</span> <span class="s">'\theta [rad]'</span><span class="p">,</span> <span class="s">'\omega [rad/s]'</span><span class="p">);</span>
 <span class="k">end</span>
 <span class="k">
-function</span><span class="w"> </span>x <span class="p">=</span><span class="w"> </span><span class="nf">euler_integrate</span><span class="p">(</span>f, t, x0<span class="p">)</span><span class="w">
-    </span><span class="c">% Create an &quot;empty&quot; matrix to hold the results n x 4.</span>
+function</span><span class="w"> </span>[t, x] <span class="p">=</span><span class="w"> </span><span class="nf">euler_integrate</span><span class="p">(</span>f, t, x0<span class="p">)</span><span class="w">
+    </span><span class="c">% EULER_INTEGRATE - Integrates a set of first order ordinary</span>
+    <span class="c">% differential equations using Euler's integration method.</span>
+    <span class="c">%</span>
+    <span class="c">% Syntax: [t, x] = euler_integrat(f, t, x0)</span>
+    <span class="c">%</span>
+    <span class="c">% Inputs:</span>
+    <span class="c">%   f - An anonymous function that evaluates the right hand side of the</span>
+    <span class="c">%       first order ordinary differential equations, i.e. dx/dt. The</span>
+    <span class="c">%       function must follow the syntax dxdt = f(t, x) and return a size</span>
+    <span class="c">%       1xm vector where t is size 1x1 and x is size 1xm.</span>
+    <span class="c">%   t - Vector of monotonically increasing time values. [size 1xn]</span>
+    <span class="c">%   x0 - Vector a initial conditions for the states. [size 1xm]</span>
+    <span class="c">% Outputs:</span>
+    <span class="c">%   t - Vector of monotonically increasing time values (same as the</span>
+    <span class="c">%       input t). [size 1xn]</span>
+    <span class="c">%   x - Matrix of state values as a function of time. [size nxm]</span>
+
+    <span class="c">% Create an &quot;empty&quot; matrix to hold the results n x m.</span>
     <span class="n">x</span> <span class="p">=</span> <span class="nb">nan</span> <span class="o">*</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="nb">length</span><span class="p">(</span><span class="n">x0</span><span class="p">));</span>
 
     <span class="c">% Set the initial conditions to the first element.</span>
     <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">x0</span><span class="p">;</span>
 
-    # <span class="n">Use</span> <span class="n">a</span> <span class="k">for</span> <span class="n">loop</span> <span class="n">to</span> <span class="n">sequentially</span> <span class="n">calculate</span> <span class="n">each</span> <span class="n">new</span> <span class="n">x</span><span class="p">.</span>
+    <span class="c">% Use a for loop to sequentially calculate each new x.</span>
     <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
         <span class="n">deltat</span> <span class="p">=</span> <span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
         <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:)</span> <span class="o">+</span> <span class="n">deltat</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:));</span>
@@ -105,19 +131,21 @@ function</span><span class="w"> </span>x <span class="p">=</span><span class="w"
 <span class="k">end</span>
 <span class="k">
 function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span>t, x<span class="p">)</span><span class="w">
+
     </span><span class="c">% Extract the state variables so we can use the variable names we want.</span>
     <span class="n">q</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="nb">i</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
     <span class="n">theta</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
     <span class="n">omega</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
+    <span class="c">% Declare the constants. Make sure units are compatible!</span>
     <span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% motor inductance [H]</span>
     <span class="n">Rw</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>  <span class="c">% motor winding resistance [Ohm]</span>
     <span class="n">ktau</span> <span class="p">=</span> <span class="mf">1.5</span><span class="p">;</span>  <span class="c">% motor torque constant [N*m/A]</span>
     <span class="n">b</span> <span class="p">=</span> <span class="mf">1.8</span><span class="p">;</span>  <span class="c">% Rotor viscous friction [N*m*s]</span>
     <span class="n">J</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>  <span class="c">% Rotor inertia [kg*m^2]</span>
 
-    <span class="c">% Initialize the empty vector for the derivative of the states.</span>
+    <span class="c">% Initialize the empty vector for the derivative of the states. [1xm]</span>
     <span class="n">xdot</span> <span class="p">=</span> <span class="nb">nan</span> <span class="o">*</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 
     <span class="c">% The voltage is the source effort in this system. So we can specify what we</span>
