@@ -60,7 +60,7 @@ Office Hours
 | Jason's Office Hours | Ehsan's Office Hours |
 +======================+======================+
 | Bainer 2095          | Bainer 2021A         |
-| TBA                  | T 4-5, W 3-4, R 3-4  |
+| F 3-4                | T 4-5, W 3-4, R 3-4  |
 +----------------------+----------------------+
 
 If it is impossible to make office hours, schedule an appointment with Jason by
