@@ -24,7 +24,8 @@ NA M-Jan-14                                                                     
 04 R-Jan-17    Multiport Systems                     - `Notes 04`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-21                                                                     HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
-05 T-Jan-22    Numerical Simulation
+05 T-Jan-22    Numerical Simulation                  - `Notes 05`_
+                                                     - `Script 05`_
 06 R-Jan-24    Basic Components                      - Read 3.2-3.6
 NA F-Jan-25                                                                     Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
@@ -64,4 +65,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l02.pdf
 .. _Notes 03: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l03.pdf
 .. _Notes 04: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l04.pdf
+.. _Notes 05: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l05.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
+.. _Script 05: {filename}/pages/dc-motor-simulation.rst
