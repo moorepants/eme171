@@ -1,16 +1,20 @@
-%% This file demonstrates how to do basic simulation of first order differential
-%% equations of a simple DC motor model.
-% This file contains three functions. The first function in the file will be the
-% primary function that calls the other two functions defined below.
+%% This file demonstrates how to do basic simulation of the first order
+%% differential % equations of a simple DC motor model.
+
+% This file contains three functions. The first function in the file will be
+% the primary function that calls the other two functions defined below.
+
 function simulate_dc_motor()
     % The system has four state variables and here the initial condition for
-    % each state variable is set.
+    % each state variable is set. Feel free to try out different initial
+    % conditions.
     % x = [q, i, theta, omega]
     x0 = [0, 0, 0, 0];
 
     % Create a vector of time values that we desire to know x(t) at. The
     % larger the number of values, the more accurate the result is, but the
-    % slower the integration runs.
+    % slower the integration runs. Try changing the time step (deltat) to
+    % see the affects on the results.
     t = linspace(0, 10, 1000);
 
     % Call a function that integrates the system's equations and returns
@@ -24,6 +28,7 @@ function simulate_dc_motor()
     % notation.
     figure(1);
     plot(t, x);
+    title('Simulation with Euler''s Method');
     xlabel('Time [s]');
     legend('q [C]', 'i [A]', '\theta [rad]', '\omega [rad/s]');
 
@@ -36,10 +41,11 @@ function simulate_dc_motor()
     % it like so:
     [t, x] = ode45(@f, t, x0);
 
-    % You should almost exactly the same results as the custom integration
-    % function:
+    % You should get almost exactly the same results as the custom
+    % integration function:
     figure(2);
     plot(t, x);
+    title('Simulation with Octave/Matlab''s Runga-Kutta 4-5 Method');
     xlabel('Time [s]');
     legend('q [C]', 'i [A]', '\theta [rad]', '\omega [rad/s]');
 end
@@ -48,7 +54,7 @@ function [t, x] = euler_integrate(f, t, x0)
     % EULER_INTEGRATE - Integrates a set of first order ordinary
     % differential equations using Euler's integration method.
     %
-    % Syntax: [t, x] = euler_integrat(f, t, x0)
+    % Syntax: [t, x] = euler_integrate(f, t, x0)
     %
     % Inputs:
     %   f - An anonymous function that evaluates the right hand side of the
@@ -73,9 +79,19 @@ function [t, x] = euler_integrate(f, t, x0)
         deltat = t(i) - t(i-1);
         x(i, :) = x(i - 1, :) + deltat * f(t(i - 1), x(i - 1, :));
     end
+
 end
 
 function xdot = f(t, x)
+    % F - Returns the time derivative of the states.
+    %
+    % Syntax: xdot = f(t, x)
+    %
+    % Inputs:
+    %   t - A scalar value of time, size 1x1.
+    %   x - State vector at time t, size 1xm were m is the number of states.
+    % Outputs:
+    %   xdot - Time derivative of the states at time t, size 1xm.
 
     % Extract the state variables so we can use the variable names we want.
     q = x(1);
@@ -112,4 +128,5 @@ function xdot = f(t, x)
     xdot(2) = (-Rw*i - ktau*omega + V) / L;
     xdot(3) = omega;
     xdot(4) = (-b*omega + ktau*i) / J;
+
 end
