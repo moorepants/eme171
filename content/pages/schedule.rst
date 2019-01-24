@@ -27,6 +27,7 @@ NA M-Jan-21                                                                     
 05 T-Jan-22    Numerical Simulation                  - `Notes 05`_
                                                      - `Script 05`_
 06 R-Jan-24    Basic Components                      - Read 3.2-3.6
+                                                     - `Notes 06`_
 NA F-Jan-25                                                                     Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-28                                                                     HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
@@ -66,5 +67,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 03: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l03.pdf
 .. _Notes 04: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l04.pdf
 .. _Notes 05: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l05.pdf
+.. _Notes 06: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l06.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
