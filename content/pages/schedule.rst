@@ -26,21 +26,24 @@ NA M-Jan-14                                                                     
 NA M-Jan-21                                                                     HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
 05 T-Jan-22    Numerical Simulation                  - `Notes 05`_
                                                      - `Script 05`_
-06 R-Jan-24    Basic Components                      - Read 3.2-3.6
+06 R-Jan-24    - Causality of Basic Components       - Read 3.2-3.6
+               - System Models: Electrical
                                                      - `Notes 06`_
 NA F-Jan-25                                                                     Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-28                                                                     HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
-07 T-Jan-29    System Models                         - Read 4.1-4.2
-08 R-Jan-31    System Models
+07 T-Jan-29    System Models: Electrical             - Read 4.1-4.2
+08 R-Jan-31    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-04                                                                     HW #4: 4.1, 4.2, 4.3, 4.4, 4.5
 09 T-Feb-05    System Models                         - Read 4.3-4.4
+NA W-Feb-06                                                                     Lab 2
 10 R-Feb-07    System Models
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-11                                                                     HW #5: 4.7, 4.12, 4.21, 4.27, 4.32
 11 T-Feb-12    Midterm
 12 R-Feb-14    State Space Equations                 - Read 5.1-5.3
+NA F-Feb-15                                                                     Lab 3
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-18                                                                     HW #6: 5.1, 5.4, 5.8, 5.11
 13 T-Feb-19    State Space Equations                 - Read 5.4-5.6
@@ -49,6 +52,7 @@ NA M-Feb-18                                                                     
 NA M-Feb-25                                                                     HW #7:  5.3, 5.16, 5.18, 5.19
 15 T-Feb-26    Linear Systems                        - Read 6.1-6.3
 16 R-Feb-28    Linear Systems
+NA F-Mar-01                                                                     Lab 4
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-04                                                                     HW #8 6.2, 6.3, 6.4, 6.6
 17 T-Mar-05    Linear Systems                        - Read 6.4-6.7
@@ -57,6 +61,7 @@ NA M-Mar-04                                                                     
 NA M-Mar-11                                                                     HW #9: 6.8, 6.12, 6.19
 19 T-Mar-12    Transducers                           - Read 8.1-8.4
 20 R-Mar-14    Transducers
+NA F-Mar-15                                                                     Lab 5
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-18                                                                     HW #10: 8.1, 8.9, 8.11, 8.14, 8.16
 NA F-Mar-22    Final Exam: 3:30 PM
