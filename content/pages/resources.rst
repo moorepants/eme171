@@ -21,8 +21,20 @@ Component Examples
 Resistors
 ---------
 
+.. figure:: todo.png
+
+   `Dashpot <https://en.wikipedia.org/wiki/Dashpot>`_
+
+.. figure:: todo.png
+
+   `Diode <https://en.wikipedia.org/wiki/Diode>`_
+
 Capacitors
 ----------
+
+.. figure::
+
+   `Spring <https://en.wikipedia.org/wiki/Spring_(device)>`_
 
 Inertias
 --------
@@ -57,3 +69,6 @@ Gyrators
 
    `Centrifugal Pump <https://en.wikipedia.org/wiki/Centrifugal_pump>`_
 
+.. figure::
+
+   `Hall Effect Sensor <https://en.wikipedia.org/wiki/Hall_effect_sensor>`_
