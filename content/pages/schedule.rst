@@ -38,6 +38,7 @@ NA M-Jan-28                                                                     
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-04                                                                     HW #4: 4.1, 4.2, 4.3, 4.4, 4.5
 09 T-Feb-05    System Models                         - Read 4.2
+                                                     - `Notes 09`_
 NA W-Feb-06                                                                     Lab 2
 10 R-Feb-07    System Models
 -- ----------  ------------------------------------  -------------------------  ---------------
@@ -76,5 +77,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 06: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l06.pdf
 .. _Notes 07: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l07.pdf
 .. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l08.pdf
+.. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l09.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
