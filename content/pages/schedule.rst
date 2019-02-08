@@ -40,7 +40,7 @@ NA M-Feb-04                                                                     
 09 T-Feb-05    System Models                         - Read 4.2
                                                      - `Notes 09`_
 NA W-Feb-06                                                                     Lab 2
-10 R-Feb-07    System Models
+10 R-Feb-07    System Models                         - `Notes 10`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-11                                                                     HW #5: 4.16, 4.22, 4.23, 4.24
 11 T-Feb-12    Midterm
@@ -52,13 +52,13 @@ NA M-Feb-18                                                                     
 14 R-Feb-21    State Space Equations                 - Read 5.4-5.6
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-25                                                                     HW #7: 5.1, 5.4, 5.8, 5.11
-15 T-Feb-26    Linear Systems                        - Read 6.1-6.3
+15 T-Feb-26    State Space Equations
 16 R-Feb-28    Linear Systems
 NA F-Mar-01                                                                     Lab 4
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-04                                                                     HW #8: 5.3, 5.16, 5.18, 5.19
-17 T-Mar-05    Linear Systems                        - Read 6.4-6.7
-18 R-Mar-07    Linear Systems
+17 T-Mar-05    Linear Systems                        - Read 6.1-6.3
+18 R-Mar-07    Linear Systems                        - Read 6.4-6.7
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-11                                                                     HW #9: 6.2, 6.3, 6.4, 6.6
 19 T-Mar-12    Transducers                           - Read 8.1-8.4
@@ -78,5 +78,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 07: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l07.pdf
 .. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l08.pdf
 .. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l09.pdf
+.. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l10.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
