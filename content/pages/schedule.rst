@@ -78,6 +78,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 07: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l07.pdf
 .. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l08.pdf
 .. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l09.pdf
-.. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l10.pdf
+.. _Notes 10: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l10.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
