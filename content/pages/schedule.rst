@@ -48,16 +48,14 @@ NA M-Feb-11                                                                     
                                                      - `Notes 12`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-18                                                                     HW #6: Half-car model
-13 T-Feb-19    State Space Equations                 - Read 5.1-5.3
-                                                     - `Notes 13`_
+13 T-Feb-19    System Models: Hydraulic              - `Notes 13`_
 NA W-Feb-20                                                                     Lab 3
-14 R-Feb-21    State Space Equations                 - Read 5.4-5.6
+14 R-Feb-21    State Space Equations                 - Read 5.1-5.3
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Feb-25                                                                     HW #7: 4.7, 4.12, 4.21, 4.27, 4.30
-15 T-Feb-26    State Space Equations
-16 R-Feb-28    Linear Systems
+15 T-Feb-26    State Space Equations                 - Read 5.4-5.6             HW #7: 4.8, 4.11, 4.21, 4.30, 5.1
+16 R-Feb-28    State Space Equations
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-04                                                                     HW #8: 5.1, 5.4, 5.8, 5.11
+NA M-Mar-04                                                                     HW #8: 5.4, 5.8, 5.11
 17 T-Mar-05    Linear Systems                        - Read 6.1-6.3
 NA W-Mar-06                                                                     Lab 4
 18 R-Mar-07    Linear Systems                        - Read 6.4-6.7
