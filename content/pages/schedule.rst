@@ -45,26 +45,28 @@ NA W-Feb-06                                                                     
 NA M-Feb-11                                                                     HW #5: 4.16, 4.22, 4.23, 4.24
 11 T-Feb-12    Midterm
 12 R-Feb-14    System Models: Hydraulic              - Read 4.3-4.4
+                                                     - `Notes 12`_
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Feb-18                                                                     HW #6: 4.7, 4.12, 4.21, 4.27, 4.30
+NA M-Feb-18                                                                     HW #6: Half-car model
 13 T-Feb-19    State Space Equations                 - Read 5.1-5.3
+                                                     - `Notes 13`_
 NA W-Feb-20                                                                     Lab 3
 14 R-Feb-21    State Space Equations                 - Read 5.4-5.6
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Feb-25                                                                     HW #7: 5.1, 5.4, 5.8, 5.11
+NA M-Feb-25                                                                     HW #7: 4.7, 4.12, 4.21, 4.27, 4.30
 15 T-Feb-26    State Space Equations
 16 R-Feb-28    Linear Systems
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-04                                                                     HW #8: 5.3, 5.16, 5.18, 5.19
+NA M-Mar-04                                                                     HW #8: 5.1, 5.4, 5.8, 5.11
 17 T-Mar-05    Linear Systems                        - Read 6.1-6.3
 NA W-Mar-06                                                                     Lab 4
 18 R-Mar-07    Linear Systems                        - Read 6.4-6.7
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-11                                                                     HW #9: 6.2, 6.3, 6.4, 6.6
+NA M-Mar-11                                                                     HW #9: 5.3, 5.16, 5.18, 5.19
 19 T-Mar-12    Transducers                           - Read 8.1-8.4
 20 R-Mar-14    Transducers
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-18                                                                     HW #10: 6.8, 6.12, 6.19
+NA M-Mar-18                                                                     HW #10: 6.2, 6.3, 6.4, 6.6, 6.8, 6.12, 6.19
 NA W-Mar-19                                                                     Lab 5
 NA F-Mar-22    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
@@ -79,5 +81,7 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l08.pdf
 .. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l09.pdf
 .. _Notes 10: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l10.pdf
+.. _Notes 12: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l12.pdf
+.. _Notes 13: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l13.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
