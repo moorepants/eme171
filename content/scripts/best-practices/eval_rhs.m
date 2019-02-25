@@ -11,7 +11,7 @@ function xdot = eval_rhs(t, x, r, p)
      %   p - Constant parameter vector, size ox1 were p is the number of parameters.
      % Outputs:
      %   xdot - Time derivative of the states at time t, size mx1.
-     
+
      % unpack the states into useful variable names
      theta = x(1);
      omega = x(2);
@@ -31,4 +31,4 @@ function xdot = eval_rhs(t, x, r, p)
      % pack the state derivatives into an mx1 vector
      xdot = [thetadot; omegadot];
 
-   end
+end
