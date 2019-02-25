@@ -51,6 +51,7 @@ NA M-Feb-18                                                                     
 13 T-Feb-19    System Models: Hydraulic              - `Notes 13`_
 NA W-Feb-20                                                                     Lab 3
 14 R-Feb-21    State Space Equations                 - Read 5.1-5.3
+                                                     - `Notes 14`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 15 T-Feb-26    State Space Equations                 - Read 5.4-5.6             HW #7: 4.8, 4.11, 4.21, 4.30, 5.1
 16 R-Feb-28    State Space Equations
@@ -81,5 +82,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 10: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l10.pdf
 .. _Notes 12: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l12.pdf
 .. _Notes 13: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l13.pdf
+.. _Notes 14: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l14.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
