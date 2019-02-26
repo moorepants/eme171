@@ -206,8 +206,9 @@ Outputs Other Than The States
 
 The first type of outputs you may be interested in are functions of the states,
 time, inputs, and constant parameters. It is useful to create a function that
-can calculate these. It is best to do this post integration for computational
-efficiency purposes (i.e. you can leverage vectorization and broadcasting).
+can calculate these. It is typically best to do this post integration for
+computational efficiency purposes (e.g. you can leverage vectorization and
+broadcasting, as shown below).
 
 .. math::
 
@@ -219,8 +220,8 @@ computes:
 
 .. math::
 
-   x_p = l \cos(\theta} \\
-   y_p = l \sin(\theta} \\
+   x_p = l \cos(\theta) \\
+   y_p = l \sin(\theta) \\
    E_k = ml^2\omega/2 \\
    E_p = mghy_p
 
@@ -239,3 +240,11 @@ of the outputs, as shown below:
 
 .. code-include:: ../scripts/best-practices/eval_output_vectorized.m
    :lexer: matlab
+
+Outputs
+=======
+
+
+.. math::
+
+   \mathbf{z} = \mathbf{h}(t, \dot{\mathbf{x}}, \mathbf{x}, \mathbf{r}, \mathbf{p})
