@@ -232,3 +232,10 @@ outputs.
 
 .. code-include:: ../scripts/best-practices/integrate_with_output.m
    :lexer: matlab
+
+It is also worth noting that Octave/Matlab code can generally be written to avoid
+loops. Slight adjustments to the output function will allow batch calculations
+of the outputs, as shown below:
+
+.. code-include:: ../scripts/best-practices/eval_output_vectorized.m
+   :lexer: matlab
