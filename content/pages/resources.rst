@@ -6,6 +6,7 @@ Scripts
 
 - `Electric Bicycle Simulation <{filename}/pages/ebike-simulation.rst>`_
 - `DC Motor Simulation <{filename}/pages/dc-motor-simulation.rst>`_
+- `ODE Integration Best Practices <{filename}/pages/ode-integration-best-practices.rst>`_
 
 Supplementary Materials
 =======================

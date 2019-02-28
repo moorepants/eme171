@@ -60,6 +60,9 @@ simple pendulum are:
 - The input vector is :math:`\mathbf{r} = [\tau]^T`, a torque acting between
   the pendulum and it's static attachment (inertial space).
 
+The derivation of this model can be found on the `relevant wikipedia page
+<https://en.wikipedia.org/wiki/Pendulum_(mathematics)>`_.
+
 The first step is to translate these differential equations into a function
 that evaluates :math:`\mathbf{f}` at any given time instant. Below a function
 named ``eval_rhs()`` is defined in an m-file named |eval_rhs|_ that
@@ -306,7 +309,7 @@ loops, if that is desirable.
 Outputs Involving State Derivatives
 ===================================
 
-Additional outputs you may desire can depend on the value of the time
+Additional outputs you may desire can also depend on the value of the time
 derivative of the states, i.e. :math:`\mathbf{\dot{x}}`, and the output
 function then takes this form:
 
@@ -314,15 +317,22 @@ function then takes this form:
 
    \mathbf{z} = \mathbf{h}(t, \dot{\mathbf{x}}, \mathbf{x}, \mathbf{r}, \mathbf{p})
 
-For example, the following function calculates the radial and tangential
-acceleration of the pendulum bob.
+For example, the following function, |eval_output_with_state_derviatives|_,
+calculates the radial and tangential acceleration of the pendulum bob. The
+tangential acceleration depends on :math:`\dot{omega}`.
+
+.. |eval_output_with_state_derivatives| replace:: ``eval_output_with_state_derivatives.m``
+.. _eval_output_with_state_derivatives: ../scripts/best-practices/eval_output_with_state_derivatives.m
 
 .. code-include:: ../scripts/best-practices/eval_output_with_state_derivatives.m
    :lexer: matlab
 
 The state derivatives are calculated internally when ``ode45()`` is called and
 are not stored during integration. These can be recalculated after integration
-for use in you primary script.
+for use in you primary script, e.g. as in |integrate_with_derivative_output|_.
+
+.. |integrate_with_derivative_output| replace:: ``integrate_with_derivative_output.m``
+.. _integrate_with_derivative_output: ../scripts/best-practices/integrate_with_derivative_output.m
 
 .. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
    :lexer: matlab
