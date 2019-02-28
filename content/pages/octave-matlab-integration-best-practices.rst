@@ -146,7 +146,8 @@ script's scope:
    >> my_func(a)
    ans = 2
 
-Note that  you have to declare the variables before declaring the anonymous function, the following code fails to compute:
+Note that you have to declare the variables before declaring the anonymous
+function, the following code fails to compute:
 
 .. code-block:: matlabsession
 
@@ -181,42 +182,61 @@ https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F
 Time Varying Inputs
 ===================
 
-In the above example, a constant input for the torque was used. This is quite
-limiting. What if you want the input to be a function of time, the state, and
-the parameters (all valid choices)?
+In the above example, a constant input for the torque was used. This is
+sometimes desired but in general is quite limiting. What if you want the input
+to be a function of time, the state, or the parameters (which are all valid
+choices)?
 
 .. math::
 
-   \mathbf{r} = \mathbf{g}(t, \mathbf{x}, \mathbf{p})
+   \mathbf{r} = \mathbf{w}(t, \mathbf{x}, \mathbf{p})
 
-Similarity to the function that evaluates the differential equations, create an
+Similarly to the function that evaluates the differential equations, create an
 Octave/Matlab function that returns the input vector given the current time,
-state, and constant parameter values.
-Save this as ``eval_input.m``.
+state, and constant parameter values. Save this as |eval_input|_.
+
+.. |eval_input| replace:: ``eval_input.m``
+.. _eval_input: ../scripts/best-practices/eval_input.m
 
 .. code-include:: ../scripts/best-practices/eval_input.m
    :lexer: matlab
 
-Now a slight adjustment to the right hand side function so it accepts the input
-function instead of the values.
+For this function to be useful a slight adjustment to ``eval_rhs.m`` needs to
+be made so that it accepts the input function instead of the values directly.
+Save this as |eval_rhs_with_input|_.
 
-.. code-include:: ../scripts/best-practices/eval_rhs_w_input.m
+.. |eval_rhs_with_input| replace:: ``eval_rhs_with_input.m``
+.. _eval_rhs_with_input: ../scripts/best-practices/eval_rhs_with_input.m
+
+.. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
    :lexer: matlab
 
-The integration code now looks like:
+Now you can pass in the input function as an anoymous function in similar
+fashion as shown earlier for ``eval_rhs()``. Save as
+|integrate_with_input_function|_.
+
+.. |integrate_with_input_function| replace:: ``integrate_with_input_function.m``
+.. _integrate_with_input_function: ../scripts/best-practices/integrate_with_input_function.m
 
 .. code-include:: ../scripts/best-practices/integrate_with_input_function.m
    :lexer: matlab
 
 This design sets you up to easily swap out input functions. You can create an
 input function for each desired input type. For example, here is a step
-funciton.
+function, |eval_step_input|_.
+
+.. |eval_step_input| replace:: ``eval_step_input.m``
+.. _eval_step_input: ../scripts/best-practices/eval_step_input.m
 
 .. code-include:: ../scripts/best-practices/eval_step_input.m
    :lexer: matlab
 
-Now integrating with the new input only takes changing the name of the
-anonymous funciton.
+Now integrating with the new input only requires changing the name of the
+anonymous funciton in the main script, named here as
+|integrate_with_step_function|_.
+
+.. |integrate_with_step_function| replace:: ``integrate_with_step_function.m``
+.. _integrate_with_step_function: ../scripts/best-practices/integrate_with_step_function.m
 
 .. code-include:: ../scripts/best-practices/integrate_with_step_function.m
    :lexer: matlab
