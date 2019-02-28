@@ -1,4 +1,5 @@
 :title: ODE Integration Best Practices With Octave/Matlab
+:status: hidden
 
 This document describes some recommended best practices for integrating
 ordinary differential equations using Octave or Matlab. Following these
