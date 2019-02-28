@@ -318,7 +318,7 @@ function then takes this form:
 
    \mathbf{z} = \mathbf{h}(t, \dot{\mathbf{x}}, \mathbf{x}, \mathbf{r}, \mathbf{p})
 
-For example, the following function, |eval_output_with_state_derviatives|_,
+For example, the following function, |eval_output_with_state_derivatives|_,
 calculates the radial and tangential acceleration of the pendulum bob. The
 tangential acceleration depends on :math:`\dot{omega}`.
 
