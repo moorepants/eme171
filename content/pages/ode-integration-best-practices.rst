@@ -1,0 +1,339 @@
+:title: ODE Integration Best Practices With Octave/Matlab
+:status: hidden
+
+This document describes some recommended best practices for integrating
+ordinary differential equations using Octave or Matlab. Following these
+guidelines will result in well organized, modular, readable code and provide
+some advantages in computational efficiency (the later is not the optimized and
+more terse code can certainly be written to maximize computation speed).
+
+Evaluating the ODEs
+===================
+
+There are several equations that are of potential interest. The primary
+equations are the ordinary differential equations. These always have to be
+considered, other equations described below are optional. You should already
+have these in explicit first order form before moving forward here.
+
+.. math::
+
+   \dot{\mathbf{x}}(t) = \mathbf{f}(t, \mathbf{x}(t), \mathbf{r}(t), \mathbf{p})
+
+- :math:`\mathbf{f}` is the function defining the right hand side of the
+  explicit first order ordinary differential equations. It defines the time
+  derivatives of the states at any given time, i.e. how the states change with
+  time.
+- :math:`\mathbf{x}(t)` is the state vector which is implicitly a function of
+  time, size mx1.
+- :math:`\mathbf{r}(t)` is the input vector which is implicitly a function of
+  time, size ox1.
+- :math:`\mathbf{p}` is the constant parameter vector (not a function of time),
+  size :math:`p\times1`.
+
+Note that it is typical to drop the :math:`(t)` that expresses the implicit
+function of time that the variables have.
+
+:math:`\mathbf{x}` is determined by integrating :math:`\mathbf{f}` with respect
+to time:
+
+.. math::
+
+   \mathbf{x} = \int_{t_0}^{t_f} \mathbf{f}(t, \mathbf{x}, \mathbf{r}, \mathbf{p}) dt
+
+Here we will numerically integrate :math:`\mathbf{f}`, with the first step
+being to write a Octave/Matlab function that evaluates :math:`\mathbf{f}`.
+
+Defining the State Derivative Function
+--------------------------------------
+
+For example, the two explicit first order ordinary differential equations of a
+simple pendulum are:
+
+.. math::
+
+   \dot{\theta} & = \omega \\
+   \dot{\omega} & = \frac{-mgl\sin(\theta) + \tau}{ml^2}
+
+- The state vector is :math:`\mathbf{x} = [\theta \quad \omega]^T`, where
+  :math:`\theta` is the pendulum angle and :math:`\omega` is the angular rate.
+- The parameter vector is :math:`\mathbf{p} = [m \quad l \quad g]^T`. The
+  variables, respectively, are mass, length, and acceleration due to gravity.
+- The input vector is :math:`\mathbf{r} = [\tau]^T`, a torque acting between
+  the pendulum and it's static attachment (inertial space).
+
+The derivation of this model can be found on the `relevant wikipedia page
+<https://en.wikipedia.org/wiki/Pendulum_(mathematics)>`_.
+
+The first step is to translate these differential equations into a function
+that evaluates :math:`\mathbf{f}` at any given time instant. Below a function
+named ``eval_rhs()`` is defined in an m-file named |eval_rhs|_ that
+evaluates :math:`\mathbf{f}`, i.e. the right hand side of the differential
+equations. Note that the inputs and outputs of this function are carefully
+documented and calling ``help eval_rhs`` would print this documentation.
+
+.. code-include:: ../scripts/best-practices/eval_rhs.m
+   :lexer: matlab
+
+.. |eval_rhs| replace:: ``eval_rhs.m``
+.. _eval_rhs: ../scripts/best-practices/eval_rhs.m
+
+Integrating the Equations
+-------------------------
+
+Once the function is defined, you can integrate the differential equations with
+one of the available Octave/Matlab integrators or one of your own design:
+
+.. code-include:: ../scripts/best-practices/integrate.m
+   :lexer: matlab
+
+You may be wondering what the ``@`` symbol specifically means. This designates
+an *anonymous function* and is required by ``ode45()``. The following section
+explains what an anonymous function is along with why and how it can be used.
+
+Anonymous Functions
+-------------------
+
+An anonymous function was used in the above script. The ``@`` symbol indicates
+this type of function. An anonymous function has three important features that
+a normal function (written in a unique m-file) doesn't have:
+
+1. The function can be written in a single line (in fact, if your anonymous
+   function is longer that a single line, 79 characters or so, you should move
+   functionality into a normal function m-file).
+2. The function can be stored in a variable that can be passed to other
+   functions. For example, ``ode45()`` requires that the right hand side
+   function be passed in as a variable.
+3. Variables declared in the same scope as and before the anonymous function
+   will be available in the anonymous function. This allows you to avoid the
+   use of global variables or other bad practices at making the values
+   available across a set of functions and scripts.
+
+Anonymous functions are declared like with the following syntax:
+
+.. code-block:: text
+
+   var_name = @(arg1, arg2, arg3, ...) expression involving the args;
+
+You can use anonymous functions to declare simple functions that fit on one line:
+
+.. code-block:: matlabsession
+
+   >> my_func = @(x, y) x + y;
+   >> my_func(1, 2)
+   ans = 3
+
+use and alternative name for an existing function:
+
+.. code-block:: matlabsession
+
+   >> my_mean = @mean;
+   my_mean = @mean
+   >> my_mean([1, 2, 3])
+   ans =  2
+
+use anonymous functions to customize the input to existing functions:
+
+.. code-block:: matlabsession
+
+   >> my_func = @(x, y, z) mean([x, y, z]);
+   >> my_func(1, 2, 3)
+   ans = 2
+
+and use anonymous functions to access values stored in variables in the
+script's scope:
+
+.. code-block:: matlabsession
+
+   >> b = 2;
+   >> c = 3;
+   >> my_func = @(x) mean([x, b, c]);
+   >> my_func(a)
+   ans = 2
+
+Note that you have to declare the variables before declaring the anonymous
+function, the following code fails to compute:
+
+.. code-block:: matlabsession
+
+   >> clear all;
+   >> a = 1;
+   >> my_func = @(x) mean([x, b, c]);
+   >> my_func(a)
+   error: 'b' undefined near line 1 column 30
+   error: called from
+       @<anonymous> at line 1 column 22
+   >> b = 2;
+   >> c = 3;
+   >> my_func(a)
+   error: 'b' undefined near line 1 column 30
+   error: called from
+       @<anonymous> at line 1 column 22
+
+Why not global variables?
+-------------------------
+
+It is possible to use global variables to simultaneously make the constant
+parameters available to both your primary script file and the file that defines
+your state derivative function. This works, but it is best to avoid global
+variables except for special needs. Each function provides a unique scope where
+all variables defined in the function are contained in the function. Using
+global variables increases the likelihood of programming errors when programs
+become more complex. A google search on "why global variables are bad" will
+provide you with background. Here is a Matlab specific note on them:
+
+https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F
+
+Time Varying Inputs
+===================
+
+In the above example, a constant input for the torque was used. This is
+sometimes desired but in general is quite limiting. What if you want the input
+to be a function of time, the state, or the parameters (which are all valid
+choices)?
+
+.. math::
+
+   \mathbf{r} = \mathbf{w}(t, \mathbf{x}, \mathbf{p})
+
+Similarly to the function that evaluates the differential equations, create an
+Octave/Matlab function that returns the input vector given the current time,
+state, and constant parameter values. Save this as |eval_input|_.
+
+.. |eval_input| replace:: ``eval_input.m``
+.. _eval_input: ../scripts/best-practices/eval_input.m
+
+.. code-include:: ../scripts/best-practices/eval_input.m
+   :lexer: matlab
+
+For this function to be useful a slight adjustment to ``eval_rhs.m`` needs to
+be made so that it accepts the input function instead of the values directly.
+Save this as |eval_rhs_with_input|_.
+
+.. |eval_rhs_with_input| replace:: ``eval_rhs_with_input.m``
+.. _eval_rhs_with_input: ../scripts/best-practices/eval_rhs_with_input.m
+
+.. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
+   :lexer: matlab
+
+Now you can pass in the input function as an anoymous function in similar
+fashion as shown earlier for ``eval_rhs()``. Save as
+|integrate_with_input_function|_.
+
+.. |integrate_with_input_function| replace:: ``integrate_with_input_function.m``
+.. _integrate_with_input_function: ../scripts/best-practices/integrate_with_input_function.m
+
+.. code-include:: ../scripts/best-practices/integrate_with_input_function.m
+   :lexer: matlab
+
+This design sets you up to easily swap out input functions. You can create an
+input function for each desired input type. For example, here is a step
+function, |eval_step_input|_.
+
+.. |eval_step_input| replace:: ``eval_step_input.m``
+.. _eval_step_input: ../scripts/best-practices/eval_step_input.m
+
+.. code-include:: ../scripts/best-practices/eval_step_input.m
+   :lexer: matlab
+
+Now integrating with the new input only requires changing the name of the
+anonymous funciton in the main script, named here as
+|integrate_with_step_function|_.
+
+.. |integrate_with_step_function| replace:: ``integrate_with_step_function.m``
+.. _integrate_with_step_function: ../scripts/best-practices/integrate_with_step_function.m
+
+.. code-include:: ../scripts/best-practices/integrate_with_step_function.m
+   :lexer: matlab
+
+Outputs Other Than The States
+=============================
+
+The first type of outputs you may be interested in are functions of the states,
+time, inputs, and constant parameters. It is useful to create a function that
+can calculate these. It is typically best to do this after integration for both
+an organizational standpoint and computational efficiency purposes (e.g. you an
+leverage vectorization and broadcasting, as shown below).
+
+.. math::
+
+   \mathbf{y} = \mathbf{g}(t, \mathbf{x}, \mathbf{r}, \mathbf{p})
+
+Example outputs for the pendulum might be the Cartesian coordinates of the
+pendulum bob and the energy, kinetic and potential. The equations below
+describe these computations:
+
+.. math::
+
+   x_p = l \cos(\theta) \\
+   y_p = l \sin(\theta) \\
+   E_k = ml^2\omega/2 \\
+   E_p = mghy_p
+
+Create a new function file, |eval_output|_, that encodes these mathematical
+operations.
+
+.. |eval_output| replace:: ``eval_output.m``
+.. _eval_output: ../scripts/best-practices/eval_output.m
+
+.. code-include:: ../scripts/best-practices/eval_output.m
+   :lexer: matlab
+
+Now this function can be used after integrating the ODEs to compute any desired
+outputs. The following file, |integrate_with_output|_, shows how this is done.
+
+.. |integrate_with_output| replace:: ``integrate_with_output.m``
+.. _integrate_with_output: ../scripts/best-practices/integrate_with_output.m
+
+.. code-include:: ../scripts/best-practices/integrate_with_output.m
+   :lexer: matlab
+
+It is also worth noting that Octave/Matlab code can generally be written to
+avoid loops, like in the above example. Slight adjustments to the output
+function will allow batch calculations of the outputs, as shown below in
+|eval_output_vectorized|_:
+
+.. |eval_output_vectorized| replace:: ``eval_output_vectorized.m``
+.. _eval_output_vectorized: ../scripts/best-practices/eval_output_vectorized.m
+
+.. code-include:: ../scripts/best-practices/eval_output_vectorized.m
+   :lexer: matlab
+
+Now, instead of the for loop, you can type:
+
+.. code-block:: matlab
+
+   ys = eval_output_vectorized(ts, xs, nan, p);
+
+These batch, or "vectorized", calculations can be significantly faster than the
+loops, if that is desirable.
+
+Outputs Involving State Derivatives
+===================================
+
+Additional outputs you may desire can also depend on the value of the time
+derivative of the states, i.e. :math:`\mathbf{\dot{x}}`, and the output
+function then takes this form:
+
+.. math::
+
+   \mathbf{z} = \mathbf{h}(t, \dot{\mathbf{x}}, \mathbf{x}, \mathbf{r}, \mathbf{p})
+
+For example, the following function, |eval_output_with_state_derivatives|_,
+calculates the radial and tangential acceleration of the pendulum bob. The
+tangential acceleration depends on :math:`\dot{omega}`.
+
+.. |eval_output_with_state_derivatives| replace:: ``eval_output_with_state_derivatives.m``
+.. _eval_output_with_state_derivatives: ../scripts/best-practices/eval_output_with_state_derivatives.m
+
+.. code-include:: ../scripts/best-practices/eval_output_with_state_derivatives.m
+   :lexer: matlab
+
+The state derivatives are calculated internally when ``ode45()`` is called and
+are not stored during integration. These can be recalculated after integration
+for use in you primary script, e.g. as in |integrate_with_derivative_output|_.
+
+.. |integrate_with_derivative_output| replace:: ``integrate_with_derivative_output.m``
+.. _integrate_with_derivative_output: ../scripts/best-practices/integrate_with_derivative_output.m
+
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :lexer: matlab

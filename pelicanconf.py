@@ -54,8 +54,8 @@ else:
 SITESUBTITLE = ''
 SITEIMAGE = ''
 DESCRIPTION = ''
-PYGMENTS_STYLE = 'monokai'
+PYGMENTS_STYLE = 'emacs'
 
 ## PLUGINS
 
-PLUGINS = ['render_math']
+PLUGINS = ['render_math', 'code_include']
