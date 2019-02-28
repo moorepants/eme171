@@ -246,17 +246,17 @@ Outputs Other Than The States
 
 The first type of outputs you may be interested in are functions of the states,
 time, inputs, and constant parameters. It is useful to create a function that
-can calculate these. It is typically best to do this post integration for
-computational efficiency purposes (e.g. you can leverage vectorization and
-broadcasting, as shown below).
+can calculate these. It is typically best to do this after integration for both
+an organizational standpoint and computational efficiency purposes (e.g. you an
+leverage vectorization and broadcasting, as shown below).
 
 .. math::
 
-   \mathbf{y} = \mathbf{h}(t, \mathbf{x}, \mathbf{r}, \mathbf{p})
+   \mathbf{y} = \mathbf{g}(t, \mathbf{x}, \mathbf{r}, \mathbf{p})
 
-Example outputs for the penudlum might be the Cartesian coordinates of the
-pendulum bob and the energy, kinetic and potential. The function below
-computes:
+Example outputs for the pendulum might be the Cartesian coordinates of the
+pendulum bob and the energy, kinetic and potential. The equations below
+describe these computations:
 
 .. math::
 
@@ -265,21 +265,43 @@ computes:
    E_k = ml^2\omega/2 \\
    E_p = mghy_p
 
+Create a new function file, |eval_output|_, that encodes these mathematical
+operations.
+
+.. |eval_output| replace:: ``eval_output.m``
+.. _eval_output: ../scripts/best-practices/eval_output.m
+
 .. code-include:: ../scripts/best-practices/eval_output.m
    :lexer: matlab
 
-Now this function can be used after the integration to compute any desired
-outputs.
+Now this function can be used after integrating the ODEs to compute any desired
+outputs. The following file, |integrate_with_output|_, shows how this is done.
+
+.. |integrate_with_output| replace:: ``integrate_with_output.m``
+.. _integrate_with_output: ../scripts/best-practices/integrate_with_output.m
 
 .. code-include:: ../scripts/best-practices/integrate_with_output.m
    :lexer: matlab
 
-It is also worth noting that Octave/Matlab code can generally be written to avoid
-loops. Slight adjustments to the output function will allow batch calculations
-of the outputs, as shown below:
+It is also worth noting that Octave/Matlab code can generally be written to
+avoid loops, like in the above example. Slight adjustments to the output
+function will allow batch calculations of the outputs, as shown below in
+|eval_output_vectorized|_:
+
+.. |eval_output_vectorized| replace:: ``eval_output_vectorized.m``
+.. _eval_output_vectorized: ../scripts/best-practices/eval_output_vectorized.m
 
 .. code-include:: ../scripts/best-practices/eval_output_vectorized.m
    :lexer: matlab
+
+Now, instead of the for loop, you can type:
+
+.. code-block:: matlab
+
+   ys = eval_output_vectorized(ts, xs, nan, p);
+
+These batch, or "vectorized", calculations can be significantly faster than the
+loops, if that is desirable.
 
 Outputs Involving State Derivatives
 ===================================
