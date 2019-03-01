@@ -1,0 +1,25 @@
+From b46f30e692fe76a7c3765ecc15bc3ee4f445e929 Mon Sep 17 00:00:00 2001
+From: "Jason K. Moore" <moorepants@gmail.com>
+Date: Thu, 28 Feb 2019 20:44:49 -0800
+Subject: [PATCH] Ensure render_math adds mathjax to hidden pages.
+
+---
+ render_math/math.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/render_math/math.py b/render_math/math.py
+index 15c4a94..7205608 100644
+--- a/render_math/math.py
++++ b/render_math/math.py
+@@ -347,6 +347,8 @@ def process_rst_and_summaries(content_generators):
+         elif isinstance(generator, generators.PagesGenerator):
+             for page in generator.pages:
+                 rst_add_mathjax(page)
++            for page in generator.hidden_pages:
++                rst_add_mathjax(page)
+ 
+ def register():
+     """Plugin registration"""
+-- 
+2.17.1
+
