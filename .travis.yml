@@ -11,6 +11,7 @@ install:
   - git clone --depth=1 https://github.com/getpelican/pelican-plugins.git
   - cd pelican-plugins
   - git apply --stat ../hidden-math.patch
+  - cat render_math/math.py
   - cd -
 before_script:
   - pip freeze
