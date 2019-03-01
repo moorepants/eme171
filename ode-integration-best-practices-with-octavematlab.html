@@ -107,7 +107,7 @@ the pendulum and it's static attachment (inertial space).</li>
 <p>The derivation of this model can be found on the <a class="reference external" href="https://en.wikipedia.org/wiki/Pendulum_(mathematics)">relevant wikipedia page</a>.</p>
 <p>The first step is to translate these differential equations into a function
 that evaluates <span class="math">\(\mathbf{f}\)</span> at any given time instant. Below a function
-named <tt class="docutils literal">eval_rhs()</tt> is defined in an m-file named <a class="reference external" href="../scripts/best-practices/eval_rhs.m"><tt class="docutils literal">eval_rhs.m</tt></a> that
+named <tt class="docutils literal">eval_rhs()</tt> is defined in an m-file named <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_rhs.m"><tt class="docutils literal">eval_rhs.m</tt></a> that
 evaluates <span class="math">\(\mathbf{f}\)</span>, i.e. the right hand side of the differential
 equations. Note that the inputs and outputs of this function are carefully
 documented and calling <tt class="docutils literal">help eval_rhs</tt> would print this documentation.</p>
@@ -299,7 +299,7 @@ choices)?</p>
 </div>
 <p>Similarly to the function that evaluates the differential equations, create an
 Octave/Matlab function that returns the input vector given the current time,
-state, and constant parameter values. Save this as <a class="reference external" href="../scripts/best-practices/eval_input.m"><tt class="docutils literal">eval_input.m</tt></a>.</p>
+state, and constant parameter values. Save this as <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_input.m"><tt class="docutils literal">eval_input.m</tt></a>.</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>r <span class="p">=</span><span class="w"> </span><span class="nf">eval_input</span><span class="p">(</span>t, x, p<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="c">% EVAL_INPUT - Returns the input vector at any given time.</span>
     <span class="c">%</span>
@@ -331,7 +331,7 @@ state, and constant parameter values. Save this as <a class="reference external"
 </pre></div>
 <p>For this function to be useful a slight adjustment to <tt class="docutils literal">eval_rhs.m</tt> needs to
 be made so that it accepts the input function instead of the values directly.
-Save this as <a class="reference external" href="../scripts/best-practices/eval_rhs_with_input.m"><tt class="docutils literal">eval_rhs_with_input.m</tt></a>.</p>
+Save this as <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_rhs_with_input.m"><tt class="docutils literal">eval_rhs_with_input.m</tt></a>.</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_rhs_with_input</span><span class="p">(</span>t, x, w, p<span class="p">)</span><span class="w"></span>
 <span class="w">     </span><span class="c">% EVAL_RHS_WITH_INPUT - Returns the time derivative of the states, i.e.</span>
      <span class="c">% evaluates the right hand side of the explicit ordinary differential</span>
@@ -376,7 +376,7 @@ Save this as <a class="reference external" href="../scripts/best-practices/eval_
 </pre></div>
 <p>Now you can pass in the input function as an anoymous function in similar
 fashion as shown earlier for <tt class="docutils literal">eval_rhs()</tt>. Save as
-<a class="reference external" href="../scripts/best-practices/integrate_with_input_function.m"><tt class="docutils literal">integrate_with_input_function.m</tt></a>.</p>
+<a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/integrate_with_input_function.m"><tt class="docutils literal">integrate_with_input_function.m</tt></a>.</p>
 <div class="highlight"><pre><span></span><span class="c">% this setup of initial conditions, time values, and parameters is the same</span>
 <span class="c">% as before</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>  <span class="c">% [rad]</span>
@@ -403,7 +403,7 @@ fashion as shown earlier for <tt class="docutils literal">eval_rhs()</tt>. Save 
 </pre></div>
 <p>This design sets you up to easily swap out input functions. You can create an
 input function for each desired input type. For example, here is a step
-function, <a class="reference external" href="../scripts/best-practices/eval_step_input.m"><tt class="docutils literal">eval_step_input.m</tt></a>.</p>
+function, <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_step_input.m"><tt class="docutils literal">eval_step_input.m</tt></a>.</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>r <span class="p">=</span><span class="w"> </span><span class="nf">eval_step_input</span><span class="p">(</span>t, x, p<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="c">% EVAL_STEP_INPUT - Returns the input vector at any given time.</span>
     <span class="c">%</span>
@@ -428,7 +428,7 @@ function, <a class="reference external" href="../scripts/best-practices/eval_ste
 </pre></div>
 <p>Now integrating with the new input only requires changing the name of the
 anonymous funciton in the main script, named here as
-<a class="reference external" href="../scripts/best-practices/integrate_with_step_function.m"><tt class="docutils literal">integrate_with_step_function.m</tt></a>.</p>
+<a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/integrate_with_step_function.m"><tt class="docutils literal">integrate_with_step_function.m</tt></a>.</p>
 <div class="highlight"><pre><span></span><span class="c">% intial condition, time values, and parameter setup is the same</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>  <span class="c">% [rad]</span>
       <span class="mi">0</span><span class="p">];</span>        <span class="c">% [rad/s]</span>
@@ -476,7 +476,7 @@ E_k = ml^2\omega/2 \\
 E_p = mghy_p
 \end{align*}
 </div>
-<p>Create a new function file, <a class="reference external" href="../scripts/best-practices/eval_output.m"><tt class="docutils literal">eval_output.m</tt></a>, that encodes these mathematical
+<p>Create a new function file, <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_output.m"><tt class="docutils literal">eval_output.m</tt></a>, that encodes these mathematical
 operations.</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>y <span class="p">=</span><span class="w"> </span><span class="nf">eval_output</span><span class="p">(</span>t, x, r, p<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="c">% EVAL_OUTPUT - Returns the output vector at the specified time.</span>
@@ -511,7 +511,7 @@ operations.</p>
 <span class="k">end</span>
 </pre></div>
 <p>Now this function can be used after integrating the ODEs to compute any desired
-outputs. The following file, <a class="reference external" href="../scripts/best-practices/integrate_with_output.m"><tt class="docutils literal">integrate_with_output.m</tt></a>, shows how this is done.</p>
+outputs. The following file, <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/integrate_with_output.m"><tt class="docutils literal">integrate_with_output.m</tt></a>, shows how this is done.</p>
 <div class="highlight"><pre><span></span><span class="c">% same integration code as above</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
@@ -529,7 +529,7 @@ outputs. The following file, <a class="reference external" href="../scripts/best
 <p>It is also worth noting that Octave/Matlab code can generally be written to
 avoid loops, like in the above example. Slight adjustments to the output
 function will allow batch calculations of the outputs, as shown below in
-<a class="reference external" href="../scripts/best-practices/eval_output_vectorized.m"><tt class="docutils literal">eval_output_vectorized.m</tt></a>:</p>
+<a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_output_vectorized.m"><tt class="docutils literal">eval_output_vectorized.m</tt></a>:</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>ys <span class="p">=</span><span class="w"> </span><span class="nf">eval_output_vectorized</span><span class="p">(</span>ts, xs, rs, p<span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="c">% EVAL_OUTPUT_VECTORIZED - Returns the output vector at the specified times.</span>
     <span class="c">%</span>
@@ -594,7 +594,7 @@ function then takes this form:</p>
 \mathbf{z} = \mathbf{h}(t, \dot{\mathbf{x}}, \mathbf{x}, \mathbf{r}, \mathbf{p})
 \end{equation*}
 </div>
-<p>For example, the following function, <a class="reference external" href="../scripts/best-practices/eval_output_with_state_derivatives.m"><tt class="docutils literal">eval_output_with_state_derivatives.m</tt></a>,
+<p>For example, the following function, <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_output_with_state_derivatives.m"><tt class="docutils literal">eval_output_with_state_derivatives.m</tt></a>,
 calculates the radial and tangential acceleration of the pendulum bob. The
 tangential acceleration depends on <span class="math">\(\dot{omega}\)</span>.</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>z <span class="p">=</span><span class="w"> </span><span class="nf">eval_output_with_state_derivatives</span><span class="p">(</span>t, xdot, x, r, p<span class="p">)</span><span class="w"></span>
@@ -633,7 +633,7 @@ tangential acceleration depends on <span class="math">\(\dot{omega}\)</span>.</p
 </pre></div>
 <p>The state derivatives are calculated internally when <tt class="docutils literal">ode45()</tt> is called and
 are not stored during integration. These can be recalculated after integration
-for use in you primary script, e.g. as in <a class="reference external" href="../scripts/best-practices/integrate_with_derivative_output.m"><tt class="docutils literal">integrate_with_derivative_output.m</tt></a>.</p>
+for use in you primary script, e.g. as in <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/integrate_with_derivative_output.m"><tt class="docutils literal">integrate_with_derivative_output.m</tt></a>.</p>
 <div class="highlight"><pre><span></span><span class="c">% integrate the ODEs as defined above</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
