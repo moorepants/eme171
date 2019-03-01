@@ -4,8 +4,11 @@
 This document describes some recommended best practices for integrating
 ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
-some advantages in computational efficiency (the later is not the optimized and
-more terse code can certainly be written to maximize computation speed).
+some advantages in computational efficiency [1]_.
+
+.. [1] Efficiency is not the primary purpose of this document. More terse
+       optimized code can certainly be written to maximize computation speed if
+       needed.
 
 Evaluating the ODEs
 ===================
