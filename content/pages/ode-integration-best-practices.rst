@@ -71,11 +71,11 @@ evaluates :math:`\mathbf{f}`, i.e. the right hand side of the differential
 equations. Note that the inputs and outputs of this function are carefully
 documented and calling ``help eval_rhs`` would print this documentation.
 
-.. code-include:: ../scripts/best-practices/eval_rhs.m
+.. code-include:: {filename}/scripts/best-practices/eval_rhs.m
    :lexer: matlab
 
 .. |eval_rhs| replace:: ``eval_rhs.m``
-.. _eval_rhs: ../scripts/best-practices/eval_rhs.m
+.. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
 
 Integrating the Equations
 -------------------------
@@ -83,7 +83,7 @@ Integrating the Equations
 Once the function is defined, you can integrate the differential equations with
 one of the available Octave/Matlab integrators or one of your own design:
 
-.. code-include:: ../scripts/best-practices/integrate.m
+.. code-include:: {filename}/scripts/best-practices/integrate.m
    :lexer: matlab
 
 You may be wondering what the ``@`` symbol specifically means. This designates
@@ -200,9 +200,9 @@ Octave/Matlab function that returns the input vector given the current time,
 state, and constant parameter values. Save this as |eval_input|_.
 
 .. |eval_input| replace:: ``eval_input.m``
-.. _eval_input: ../scripts/best-practices/eval_input.m
+.. _eval_input: {filename}/scripts/best-practices/eval_input.m
 
-.. code-include:: ../scripts/best-practices/eval_input.m
+.. code-include:: {filename}/scripts/best-practices/eval_input.m
    :lexer: matlab
 
 For this function to be useful a slight adjustment to ``eval_rhs.m`` needs to
@@ -210,9 +210,9 @@ be made so that it accepts the input function instead of the values directly.
 Save this as |eval_rhs_with_input|_.
 
 .. |eval_rhs_with_input| replace:: ``eval_rhs_with_input.m``
-.. _eval_rhs_with_input: ../scripts/best-practices/eval_rhs_with_input.m
+.. _eval_rhs_with_input: {filename}/scripts/best-practices/eval_rhs_with_input.m
 
-.. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
+.. code-include:: {filename}/scripts/best-practices/eval_rhs_with_input.m
    :lexer: matlab
 
 Now you can pass in the input function as an anoymous function in similar
@@ -220,9 +220,9 @@ fashion as shown earlier for ``eval_rhs()``. Save as
 |integrate_with_input_function|_.
 
 .. |integrate_with_input_function| replace:: ``integrate_with_input_function.m``
-.. _integrate_with_input_function: ../scripts/best-practices/integrate_with_input_function.m
+.. _integrate_with_input_function: {filename}/scripts/best-practices/integrate_with_input_function.m
 
-.. code-include:: ../scripts/best-practices/integrate_with_input_function.m
+.. code-include:: {filename}/scripts/best-practices/integrate_with_input_function.m
    :lexer: matlab
 
 This design sets you up to easily swap out input functions. You can create an
@@ -230,9 +230,9 @@ input function for each desired input type. For example, here is a step
 function, |eval_step_input|_.
 
 .. |eval_step_input| replace:: ``eval_step_input.m``
-.. _eval_step_input: ../scripts/best-practices/eval_step_input.m
+.. _eval_step_input: {filename}/scripts/best-practices/eval_step_input.m
 
-.. code-include:: ../scripts/best-practices/eval_step_input.m
+.. code-include:: {filename}/scripts/best-practices/eval_step_input.m
    :lexer: matlab
 
 Now integrating with the new input only requires changing the name of the
@@ -240,9 +240,9 @@ anonymous funciton in the main script, named here as
 |integrate_with_step_function|_.
 
 .. |integrate_with_step_function| replace:: ``integrate_with_step_function.m``
-.. _integrate_with_step_function: ../scripts/best-practices/integrate_with_step_function.m
+.. _integrate_with_step_function: {filename}/scripts/best-practices/integrate_with_step_function.m
 
-.. code-include:: ../scripts/best-practices/integrate_with_step_function.m
+.. code-include:: {filename}/scripts/best-practices/integrate_with_step_function.m
    :lexer: matlab
 
 Outputs Other Than The States
@@ -273,18 +273,18 @@ Create a new function file, |eval_output|_, that encodes these mathematical
 operations.
 
 .. |eval_output| replace:: ``eval_output.m``
-.. _eval_output: ../scripts/best-practices/eval_output.m
+.. _eval_output: {filename}/scripts/best-practices/eval_output.m
 
-.. code-include:: ../scripts/best-practices/eval_output.m
+.. code-include:: {filename}/scripts/best-practices/eval_output.m
    :lexer: matlab
 
 Now this function can be used after integrating the ODEs to compute any desired
 outputs. The following file, |integrate_with_output|_, shows how this is done.
 
 .. |integrate_with_output| replace:: ``integrate_with_output.m``
-.. _integrate_with_output: ../scripts/best-practices/integrate_with_output.m
+.. _integrate_with_output: {filename}/scripts/best-practices/integrate_with_output.m
 
-.. code-include:: ../scripts/best-practices/integrate_with_output.m
+.. code-include:: {filename}/scripts/best-practices/integrate_with_output.m
    :lexer: matlab
 
 It is also worth noting that Octave/Matlab code can generally be written to
@@ -293,9 +293,9 @@ function will allow batch calculations of the outputs, as shown below in
 |eval_output_vectorized|_:
 
 .. |eval_output_vectorized| replace:: ``eval_output_vectorized.m``
-.. _eval_output_vectorized: ../scripts/best-practices/eval_output_vectorized.m
+.. _eval_output_vectorized: {filename}/scripts/best-practices/eval_output_vectorized.m
 
-.. code-include:: ../scripts/best-practices/eval_output_vectorized.m
+.. code-include:: {filename}/scripts/best-practices/eval_output_vectorized.m
    :lexer: matlab
 
 Now, instead of the for loop, you can type:
@@ -323,9 +323,9 @@ calculates the radial and tangential acceleration of the pendulum bob. The
 tangential acceleration depends on :math:`\dot{omega}`.
 
 .. |eval_output_with_state_derivatives| replace:: ``eval_output_with_state_derivatives.m``
-.. _eval_output_with_state_derivatives: ../scripts/best-practices/eval_output_with_state_derivatives.m
+.. _eval_output_with_state_derivatives: {filename}/scripts/best-practices/eval_output_with_state_derivatives.m
 
-.. code-include:: ../scripts/best-practices/eval_output_with_state_derivatives.m
+.. code-include:: {filename}/scripts/best-practices/eval_output_with_state_derivatives.m
    :lexer: matlab
 
 The state derivatives are calculated internally when ``ode45()`` is called and
@@ -333,7 +333,7 @@ are not stored during integration. These can be recalculated after integration
 for use in you primary script, e.g. as in |integrate_with_derivative_output|_.
 
 .. |integrate_with_derivative_output| replace:: ``integrate_with_derivative_output.m``
-.. _integrate_with_derivative_output: ../scripts/best-practices/integrate_with_derivative_output.m
+.. _integrate_with_derivative_output: {filename}/scripts/best-practices/integrate_with_derivative_output.m
 
-.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+.. code-include:: {filename}/scripts/best-practices/integrate_with_derivative_output.m
    :lexer: matlab
