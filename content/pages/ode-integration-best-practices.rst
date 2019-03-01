@@ -4,7 +4,7 @@
 This document describes some recommended best practices for integrating
 ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
-some advantages in computational efficiency [1]_.
+advantages in computational efficiency [1]_.
 
 .. [1] Efficiency is not the primary purpose of this document. More terse
        optimized code can certainly be written to maximize computation speed if
@@ -14,37 +14,49 @@ Evaluating the ODEs
 ===================
 
 There are several equations that are of potential interest. The primary
-equations are the ordinary differential equations. These always have to be
-considered, other equations described below are optional. You should already
-have these in explicit first order form before moving forward here.
+equations are the ordinary differential equations, ODEs. These always have to
+be considered; other equations described below are optional. You should already
+have the equations in explicit first order form before moving forward here.
+"Explicit" refers to the fact that there are no time derivatives on the right
+hand side of the equations and "first order" refers to their being :math:`m`
+equations, one for each of the :math:`m` states. The general form for these
+equations is:
 
 .. math::
 
    \dot{\mathbf{x}}(t) = \mathbf{f}(t, \mathbf{x}(t), \mathbf{r}(t), \mathbf{p})
+
+where
 
 - :math:`\mathbf{f}` is the function defining the right hand side of the
   explicit first order ordinary differential equations. It defines the time
   derivatives of the states at any given time, i.e. how the states change with
   time.
 - :math:`\mathbf{x}(t)` is the state vector which is implicitly a function of
-  time, size mx1.
+  time, size :math:`m\times1`.
 - :math:`\mathbf{r}(t)` is the input vector which is implicitly a function of
-  time, size ox1.
+  time, size :math:`o\times1`.
 - :math:`\mathbf{p}` is the constant parameter vector (not a function of time),
   size :math:`p\times1`.
 
 Note that it is typical to drop the :math:`(t)` that expresses the implicit
-function of time that the variables have.
+function of time for the various time dependent variables.
 
-:math:`\mathbf{x}` is determined by integrating :math:`\mathbf{f}` with respect
-to time:
+The state trajectory, :math:`\mathbf{x}`, is determined by integrating
+:math:`\mathbf{f}` with respect to time:
 
 .. math::
 
    \mathbf{x} = \int_{t_0}^{t_f} \mathbf{f}(t, \mathbf{x}, \mathbf{r}, \mathbf{p}) dt
 
-Here we will numerically integrate :math:`\mathbf{f}`, with the first step
-being to write a Octave/Matlab function that evaluates :math:`\mathbf{f}`.
+In general, these equations are non-linear functions of the state variables and
+thus there are unlikley to be analytical symbolic solutions that describe the
+state trajectory in time. Thus, numerical integration is required to reach a
+solution. This is fine because linear ODEs really only represent a tiny
+percentage of all possible ODEs and the methods described here work with linear
+and nonlinear ODEs. Here we will numerically integrate :math:`\mathbf{f}`, with
+the first step being to write a Octave/Matlab function that evaluates
+:math:`\mathbf{f}`.
 
 Defining the State Derivative Function
 --------------------------------------
@@ -62,23 +74,35 @@ simple pendulum are:
 - The parameter vector is :math:`\mathbf{p} = [m \quad l \quad g]^T`. The
   variables, respectively, are mass, length, and acceleration due to gravity.
 - The input vector is :math:`\mathbf{r} = [\tau]^T`, a torque acting between
-  the pendulum and it's static attachment (inertial space).
+  the pendulum and its static attachment (inertial space).
 
 The derivation of this model can be found on the `relevant wikipedia page
 <https://en.wikipedia.org/wiki/Pendulum_(mathematics)>`_.
 
-The first step is to translate these differential equations into a function
-that evaluates :math:`\mathbf{f}` at any given time instant. Below a function
-named ``eval_rhs()`` is defined in an m-file named |eval_rhs|_ that
-evaluates :math:`\mathbf{f}`, i.e. the right hand side of the differential
-equations. Note that the inputs and outputs of this function are carefully
-documented and calling ``help eval_rhs`` would print this documentation.
+The first step is to translate these ordinary differential equations into a
+function that evaluates :math:`\mathbf{f}` at any given time instant. Below a
+function named ``eval_rhs()`` is defined in an m-file named |eval_rhs|_ that
+evaluates :math:`\mathbf{f}`, i.e. the right hand side (rhs) of the
+differential equations. Note that the inputs and outputs of this function are
+carefully documented and calling ``help eval_rhs`` will print this
+documentation at the Octave/Matlab command prompt.
 
 .. code-include:: ../scripts/best-practices/eval_rhs.m
    :lexer: matlab
 
 .. |eval_rhs| replace:: ``eval_rhs.m``
 .. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
+
+It is important that this function only calculates the state derivatives and
+does nothing else because this function is executed many many times. At a
+minimum it is evaluated :math:`n` times, where :math:`n` is the number of time
+instances you desire a solution. But any good ODE solver will execute this
+function many times :math:`n`. The solvers are generally adaptive and will take
+adjust the time step during integration to ensure a minimal solution tolerance
+when the trajectories change rapidly. Systems that have rapidly changing state
+trajectories are referred to as "stiff systems" or "stiff equations". For
+example, a stiff system may require :math:`1000 \times n` executions for an
+acceptable solution.
 
 Integrating the Equations
 -------------------------
@@ -150,7 +174,7 @@ script's scope:
    >> b = 2;
    >> c = 3;
    >> my_func = @(x) mean([x, b, c]);
-   >> my_func(a)
+   >> my_func(1)
    ans = 2
 
 Note that you have to declare the variables before declaring the anonymous
