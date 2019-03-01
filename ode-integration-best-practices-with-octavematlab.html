@@ -19,7 +19,7 @@
   <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
         href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
   
-  <meta name="description" content="This document describes some recommended best practices for integrating ordinary differential equations using Octave or Matlab. Following these guidelines will result in well organized, modular, readable code and provide some advantages in computational efficiency (the later is not the optimized and more terse code can certainly be written to maximize …">
+  <meta name="description" content="This document describes some recommended best practices for integrating ordinary differential equations using Octave or Matlab. Following these guidelines will result in well organized, modular, readable code and provide some advantages in computational efficiency [1]. [1]Efficiency is not the primary purpose of this document. More terse optimized code can …">
 
 
 </head>
@@ -50,8 +50,15 @@
       <p>This document describes some recommended best practices for integrating
 ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
-some advantages in computational efficiency (the later is not the optimized and
-more terse code can certainly be written to maximize computation speed).</p>
+some advantages in computational efficiency <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Efficiency is not the primary purpose of this document. More terse
+optimized code can certainly be written to maximize computation speed if
+needed.</td></tr>
+</tbody>
+</table>
 <div class="section" id="evaluating-the-odes">
 <h2>Evaluating the ODEs</h2>
 <p>There are several equations that are of potential interest. The primary
