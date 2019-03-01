@@ -19,7 +19,7 @@
   <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
         href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
   
-  <meta name="description" content="This document describes some recommended best practices for integrating ordinary differential equations using Octave or Matlab. Following these guidelines will result in well organized, modular, readable code and provide some advantages in computational efficiency [1]. [1]Efficiency is not the primary purpose of this document. More terse optimized code can …">
+  <meta name="description" content="This document describes some recommended best practices for integrating ordinary differential equations using Octave or Matlab. Following these guidelines will result in well organized, modular, readable code and provide advantages in computational efficiency [1]. [1]Efficiency is not the primary purpose of this document. More terse optimized code can certainly …">
 
 
 </head>
@@ -50,7 +50,7 @@
       <p>This document describes some recommended best practices for integrating
 ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
-some advantages in computational efficiency <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+advantages in computational efficiency <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -62,37 +62,48 @@ needed.</td></tr>
 <div class="section" id="evaluating-the-odes">
 <h2>Evaluating the ODEs</h2>
 <p>There are several equations that are of potential interest. The primary
-equations are the ordinary differential equations. These always have to be
-considered, other equations described below are optional. You should already
-have these in explicit first order form before moving forward here.</p>
+equations are the ordinary differential equations, ODEs. These always have to
+be considered; other equations described below are optional. You should already
+have the equations in explicit first order form before moving forward here.
+&quot;Explicit&quot; refers to the fact that there are no time derivatives on the right
+hand side of the equations and &quot;first order&quot; refers to their being <span class="math">\(m\)</span>
+equations, one for each of the <span class="math">\(m\)</span> states. The general form for these
+equations is:</p>
 <div class="math">
 \begin{equation*}
 \dot{\mathbf{x}}(t) = \mathbf{f}(t, \mathbf{x}(t), \mathbf{r}(t), \mathbf{p})
 \end{equation*}
 </div>
+<p>where</p>
 <ul class="simple">
 <li><span class="math">\(\mathbf{f}\)</span> is the function defining the right hand side of the
 explicit first order ordinary differential equations. It defines the time
 derivatives of the states at any given time, i.e. how the states change with
 time.</li>
 <li><span class="math">\(\mathbf{x}(t)\)</span> is the state vector which is implicitly a function of
-time, size mx1.</li>
+time, size <span class="math">\(m\times1\)</span>.</li>
 <li><span class="math">\(\mathbf{r}(t)\)</span> is the input vector which is implicitly a function of
-time, size ox1.</li>
+time, size <span class="math">\(o\times1\)</span>.</li>
 <li><span class="math">\(\mathbf{p}\)</span> is the constant parameter vector (not a function of time),
 size <span class="math">\(p\times1\)</span>.</li>
 </ul>
 <p>Note that it is typical to drop the <span class="math">\((t)\)</span> that expresses the implicit
-function of time that the variables have.</p>
-<p><span class="math">\(\mathbf{x}\)</span> is determined by integrating <span class="math">\(\mathbf{f}\)</span> with respect
-to time:</p>
+function of time for the various time dependent variables.</p>
+<p>The state trajectory, <span class="math">\(\mathbf{x}\)</span>, is determined by integrating
+<span class="math">\(\mathbf{f}\)</span> with respect to time:</p>
 <div class="math">
 \begin{equation*}
 \mathbf{x} = \int_{t_0}^{t_f} \mathbf{f}(t, \mathbf{x}, \mathbf{r}, \mathbf{p}) dt
 \end{equation*}
 </div>
-<p>Here we will numerically integrate <span class="math">\(\mathbf{f}\)</span>, with the first step
-being to write a Octave/Matlab function that evaluates <span class="math">\(\mathbf{f}\)</span>.</p>
+<p>In general, these equations are non-linear functions of the state variables and
+thus there are unlikley to be analytical symbolic solutions that describe the
+state trajectory in time. Thus, numerical integration is required to reach a
+solution. This is fine because linear ODEs really only represent a tiny
+percentage of all possible ODEs and the methods described here work with linear
+and nonlinear ODEs. Here we will numerically integrate <span class="math">\(\mathbf{f}\)</span>, with
+the first step being to write a Octave/Matlab function that evaluates
+<span class="math">\(\mathbf{f}\)</span>.</p>
 <div class="section" id="defining-the-state-derivative-function">
 <h3>Defining the State Derivative Function</h3>
 <p>For example, the two explicit first order ordinary differential equations of a
@@ -109,15 +120,16 @@ simple pendulum are:</p>
 <li>The parameter vector is <span class="math">\(\mathbf{p} = [m \quad l \quad g]^T\)</span>. The
 variables, respectively, are mass, length, and acceleration due to gravity.</li>
 <li>The input vector is <span class="math">\(\mathbf{r} = [\tau]^T\)</span>, a torque acting between
-the pendulum and it's static attachment (inertial space).</li>
+the pendulum and its static attachment (inertial space).</li>
 </ul>
 <p>The derivation of this model can be found on the <a class="reference external" href="https://en.wikipedia.org/wiki/Pendulum_(mathematics)">relevant wikipedia page</a>.</p>
-<p>The first step is to translate these differential equations into a function
-that evaluates <span class="math">\(\mathbf{f}\)</span> at any given time instant. Below a function
-named <tt class="docutils literal">eval_rhs()</tt> is defined in an m-file named <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_rhs.m"><tt class="docutils literal">eval_rhs.m</tt></a> that
-evaluates <span class="math">\(\mathbf{f}\)</span>, i.e. the right hand side of the differential
-equations. Note that the inputs and outputs of this function are carefully
-documented and calling <tt class="docutils literal">help eval_rhs</tt> would print this documentation.</p>
+<p>The first step is to translate these ordinary differential equations into a
+function that evaluates <span class="math">\(\mathbf{f}\)</span> at any given time instant. Below a
+function named <tt class="docutils literal">eval_rhs()</tt> is defined in an m-file named <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/eval_rhs.m"><tt class="docutils literal">eval_rhs.m</tt></a> that
+evaluates <span class="math">\(\mathbf{f}\)</span>, i.e. the right hand side (rhs) of the
+differential equations. Note that the inputs and outputs of this function are
+carefully documented and calling <tt class="docutils literal">help eval_rhs</tt> will print this
+documentation at the Octave/Matlab command prompt.</p>
 <div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_rhs</span><span class="p">(</span>t, x, r, p<span class="p">)</span><span class="w"></span>
 <span class="w">     </span><span class="c">% EVAL_RHS - Returns the time derivative of the states, i.e. evaluates the</span>
      <span class="c">% right hand side of the explicit ordinary differential equations.</span>
@@ -153,6 +165,16 @@ documented and calling <tt class="docutils literal">help eval_rhs</tt> would pri
 
 <span class="k">end</span>
 </pre></div>
+<p>It is important that this function only calculates the state derivatives and
+does nothing else because this function is executed many many times. At a
+minimum it is evaluated <span class="math">\(n\)</span> times, where <span class="math">\(n\)</span> is the number of time
+instances you desire a solution. But any good ODE solver will execute this
+function many times <span class="math">\(n\)</span>. The solvers are generally adaptive and will take
+adjust the time step during integration to ensure a minimal solution tolerance
+when the trajectories change rapidly. Systems that have rapidly changing state
+trajectories are referred to as &quot;stiff systems&quot; or &quot;stiff equations&quot;. For
+example, a stiff system may require <span class="math">\(1000 \times n\)</span> executions for an
+acceptable solution.</p>
 </div>
 <div class="section" id="integrating-the-equations">
 <h3>Integrating the Equations</h3>
@@ -260,7 +282,7 @@ script's scope:</p>
 <div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">b</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="gp">&gt;&gt; </span><span class="n">c</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="gp">&gt;&gt; </span><span class="n">my_func</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">mean</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]);</span>
-<span class="gp">&gt;&gt; </span><span class="n">my_func</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt; </span><span class="n">my_func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">ans = 2</span>
 </pre></div>
 <p>Note that you have to declare the variables before declaring the anonymous
