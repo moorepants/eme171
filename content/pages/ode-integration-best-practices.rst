@@ -13,14 +13,14 @@ advantages in computational efficiency [1]_.
 Evaluating the ODEs
 ===================
 
-There are several equations that are of potential interest. The primary
+There are several equations that are of potential interest, but the primary
 equations are the ordinary differential equations, ODEs. These always have to
 be considered; other equations described below are optional. You should already
 have the equations in explicit first order form before moving forward here.
 "Explicit" refers to the fact that there are no time derivatives on the right
 hand side of the equations and "first order" refers to their being :math:`m`
-equations, one for each of the :math:`m` states. The general form for these
-equations is:
+equations, one for each of the :math:`m` state variables. The general form for
+these equations is:
 
 .. math::
 
@@ -32,10 +32,10 @@ where
   explicit first order ordinary differential equations. It defines the time
   derivatives of the states at any given time, i.e. how the states change with
   time.
-- :math:`\mathbf{x}(t)` is the state vector which is implicitly a function of
-  time, size :math:`m\times1`.
-- :math:`\mathbf{r}(t)` is the input vector which is implicitly a function of
-  time, size :math:`o\times1`.
+- :math:`\mathbf{x}(t)` is the state trajectory vector which is implicitly a
+  function of time, size :math:`m\times1`.
+- :math:`\mathbf{r}(t)` is the input trajectory vector which is implicitly a
+  function of time, size :math:`o\times1`.
 - :math:`\mathbf{p}` is the constant parameter vector (not a function of time),
   size :math:`p\times1`.
 
@@ -49,14 +49,16 @@ The state trajectory, :math:`\mathbf{x}`, is determined by integrating
 
    \mathbf{x} = \int_{t_0}^{t_f} \mathbf{f}(t, \mathbf{x}, \mathbf{r}, \mathbf{p}) dt
 
-In general, these equations are non-linear functions of the state variables and
-thus there are unlikley to be analytical symbolic solutions that describe the
+In general, these equations will be non-linear functions of the state variables
+and there is unlikely to be analytical symbolic solutions that describe the
 state trajectory in time. Thus, numerical integration is required to reach a
 solution. This is fine because linear ODEs really only represent a tiny
 percentage of all possible ODEs and the methods described here work with linear
-and nonlinear ODEs. Here we will numerically integrate :math:`\mathbf{f}`, with
-the first step being to write a Octave/Matlab function that evaluates
-:math:`\mathbf{f}`.
+and nonlinear ODEs.
+
+The following describes how to numerically integrate :math:`\mathbf{f}` using
+Octave or Matlab. The first step is to write an Octave/Matlab function that
+evaluates :math:`\mathbf{f}`.
 
 Defining the State Derivative Function
 --------------------------------------
@@ -76,16 +78,18 @@ simple pendulum are:
 - The input vector is :math:`\mathbf{r} = [\tau]^T`, a torque acting between
   the pendulum and its static attachment (inertial space).
 
-The derivation of this model can be found on the `relevant wikipedia page
+The derivation of these equations can be found on the `relevant wikipedia page
 <https://en.wikipedia.org/wiki/Pendulum_(mathematics)>`_.
 
 The first step is to translate these ordinary differential equations into a
 function that evaluates :math:`\mathbf{f}` at any given time instant. Below a
 function named ``eval_rhs()`` is defined in an m-file named |eval_rhs|_ that
-evaluates :math:`\mathbf{f}`, i.e. the right hand side (rhs) of the
-differential equations. Note that the inputs and outputs of this function are
-carefully documented and calling ``help eval_rhs`` will print this
-documentation at the Octave/Matlab command prompt.
+does so. ``rhs`` stands for the "right hand side" of the
+differential equations.
+
+Note that the inputs and outputs of this function are carefully documented in
+the lines just below the function signature. Typing ``help eval_rhs`` will
+print this documentation at the Octave/Matlab command prompt.
 
 .. code-include:: ../scripts/best-practices/eval_rhs.m
    :lexer: matlab
@@ -93,16 +97,21 @@ documentation at the Octave/Matlab command prompt.
 .. |eval_rhs| replace:: ``eval_rhs.m``
 .. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
 
-It is important that this function only calculates the state derivatives and
-does nothing else because this function is executed many many times. At a
-minimum it is evaluated :math:`n` times, where :math:`n` is the number of time
-instances you desire a solution. But any good ODE solver will execute this
-function many times :math:`n`. The solvers are generally adaptive and will take
-adjust the time step during integration to ensure a minimal solution tolerance
-when the trajectories change rapidly. Systems that have rapidly changing state
-trajectories are referred to as "stiff systems" or "stiff equations". For
-example, a stiff system may require :math:`1000 \times n` executions for an
-acceptable solution.
+.. topic:: Computation speed of ``eval_rhs``
+   :class: alert alert-info
+
+   This function will be executed many many times so it is important that this
+   function only calculates the state derivatives and does nothing else. At a
+   minimum it is evaluated :math:`n` times, where :math:`n` is the number of
+   time instances you desire a solution at. But any quality ODE solver will
+   execute this function much more then :math:`n`. The solvers are often
+   adaptive and will adjust the time step during integration to ensure low
+   integration error when the trajectories change rapidly. Systems that have
+   rapidly changing state trajectories are referred to as "stiff systems" or
+   "stiff equations". For example, a stiff system may require :math:`1000
+   \times n` executions for an acceptable solution. Below, it is shown how to
+   calculate all desired quantities that you may be tempted to calculate in
+   ``eval_rhs``.
 
 Integrating the Equations
 -------------------------
@@ -135,7 +144,7 @@ a normal function (written in a unique m-file) doesn't have:
    use of global variables or other bad practices at making the values
    available across a set of functions and scripts.
 
-Anonymous functions are declared like with the following syntax:
+Anonymous functions are declared with the following syntax:
 
 .. code-block:: text
 
@@ -196,19 +205,20 @@ function, the following code fails to compute:
    error: called from
        @<anonymous> at line 1 column 22
 
-Why not global variables?
--------------------------
+.. topic:: Why not global variables?
+   :class: alert alert-warning
 
-It is possible to use global variables to simultaneously make the constant
-parameters available to both your primary script file and the file that defines
-your state derivative function. This works, but it is best to avoid global
-variables except for special needs. Each function provides a unique scope where
-all variables defined in the function are contained in the function. Using
-global variables increases the likelihood of programming errors when programs
-become more complex. A google search on "why global variables are bad" will
-provide you with background. Here is a Matlab specific note on them:
+   It is possible to use global variables to simultaneously make the constant
+   parameters available to both your primary script file and the file that
+   defines your state derivative function. This works, but it is best to avoid
+   global variables except for special needs. Each function provides a unique
+   scope where all variables defined in the function are contained in the
+   function. Using global variables increases the likelihood of programming
+   errors when programs become more complex. A google search on "why global
+   variables are bad" will provide you with background. Here is a Matlab
+   specific note on them:
 
-https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F
+   https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F
 
 Time Varying Inputs
 ===================
