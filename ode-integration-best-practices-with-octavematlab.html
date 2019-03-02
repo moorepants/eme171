@@ -169,18 +169,20 @@ print this documentation at the Octave/Matlab command prompt.</p>
 </pre></div>
 <div class="alert alert-info topic">
 <p class="topic-title first">Computation speed of <tt class="docutils literal">eval_rhs</tt></p>
-<p>This function will be executed many many times so it is important that this
-function only calculates the state derivatives and does nothing else. At a
-minimum it is evaluated <span class="math">\(n\)</span> times, where <span class="math">\(n\)</span> is the number of
-time instances you desire a solution at. But any quality ODE solver will
-execute this function much more then <span class="math">\(n\)</span>. The solvers are often
-adaptive and will adjust the time step during integration to ensure low
-integration error when the trajectories change rapidly. Systems that have
-rapidly changing state trajectories are referred to as &quot;stiff systems&quot; or
-&quot;stiff equations&quot;. For example, a stiff system may require <span class="math">\(1000
-\times n\)</span> executions for an acceptable solution. Below, it is shown how to
-calculate all desired quantities that you may be tempted to calculate in
-<tt class="docutils literal">eval_rhs</tt>.</p>
+<p>This function will be executed many times so it is important that this
+function only calculates the state derivatives and does nothing else. A
+simple ODE solver will evaluate the function <span class="math">\(n\)</span> times, where
+<span class="math">\(n\)</span> is the number of time instances you desire a solution at. But any
+quality ODE solver will execute this function more or less times than
+<span class="math">\(n\)</span>.  The solvers are often adaptive and will adjust the time step
+during integration to ensure low integration error. Fewer time evaluations
+are needed for slowly changing trajectories and more evaluations are needed
+when the trajectories change rapidly. Systems that have rapidly changing
+state trajectories are referred to as &quot;stiff systems&quot; or &quot;stiff equations&quot;.
+For example, a stiff system may require <span class="math">\(1000 \times n\)</span> executions for
+an acceptable solution. Below, it is shown how to calculate all desired
+quantities that you may be tempted to calculate in <tt class="docutils literal">eval_rhs</tt> so that you
+can keep this function minimal.</p>
 </div>
 </div>
 <div class="section" id="integrating-the-equations">
