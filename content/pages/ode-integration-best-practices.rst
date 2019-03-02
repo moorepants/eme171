@@ -100,18 +100,20 @@ print this documentation at the Octave/Matlab command prompt.
 .. topic:: Computation speed of ``eval_rhs``
    :class: alert alert-info
 
-   This function will be executed many many times so it is important that this
-   function only calculates the state derivatives and does nothing else. At a
-   minimum it is evaluated :math:`n` times, where :math:`n` is the number of
-   time instances you desire a solution at. But any quality ODE solver will
-   execute this function much more then :math:`n`. The solvers are often
-   adaptive and will adjust the time step during integration to ensure low
-   integration error when the trajectories change rapidly. Systems that have
-   rapidly changing state trajectories are referred to as "stiff systems" or
-   "stiff equations". For example, a stiff system may require :math:`1000
-   \times n` executions for an acceptable solution. Below, it is shown how to
-   calculate all desired quantities that you may be tempted to calculate in
-   ``eval_rhs``.
+   This function will be executed many times so it is important that this
+   function only calculates the state derivatives and does nothing else. A
+   simple ODE solver will evaluate the function :math:`n` times, where
+   :math:`n` is the number of time instances you desire a solution at. But any
+   quality ODE solver will execute this function more or less times than
+   :math:`n`.  The solvers are often adaptive and will adjust the time step
+   during integration to ensure low integration error. Fewer time evaluations
+   are needed for slowly changing trajectories and more evaluations are needed
+   when the trajectories change rapidly. Systems that have rapidly changing
+   state trajectories are referred to as "stiff systems" or "stiff equations".
+   For example, a stiff system may require :math:`1000 \times n` executions for
+   an acceptable solution. Below, it is shown how to calculate all desired
+   quantities that you may be tempted to calculate in ``eval_rhs`` so that you
+   can keep this function minimal.
 
 Integrating the Equations
 -------------------------
