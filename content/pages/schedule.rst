@@ -55,10 +55,11 @@ NA W-Feb-20                                                                     
 -- ----------  ------------------------------------  -------------------------  ---------------
 15 T-Feb-26    State Space Equations                 - Read 5.4-5.6             HW #7: 4.8, 4.11, 4.21, 4.30, 5.1
                                                      - `Notes 15`_
-16 R-Feb-28    State Space Equations
+16 R-Feb-28    State Space Equation                  - `Notes 16`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-04                                                                     HW #8: 5.3, 5.4, 5.8, 5.11, 5.19
-17 T-Mar-05    Linear Systems                        - Read 6.1-6.3
+17 T-Mar-05    - State Space Equations
+               - Linear Systems                      - Read 6.1-6.3
 NA W-Mar-06                                                                     Lab 4
 18 R-Mar-07    Linear Systems                        - Read 6.4-6.7
 -- ----------  ------------------------------------  -------------------------  ---------------
@@ -85,5 +86,6 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 13: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l13.pdf
 .. _Notes 14: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l14.pdf
 .. _Notes 15: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l15.pdf
+.. _Notes 16: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l16.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
