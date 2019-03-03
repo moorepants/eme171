@@ -1,0 +1,6 @@
+# config file for this repository
+local-config.yml
+# pelican output
+output/
+# python stuff
+__pycache__

@@ -39,7 +39,7 @@ DEFAULT_PAGINATION = False
 #RELATIVE_URLS = True
 
 try:
-    with open('config.yml', 'r') as config_file:
+    with open('local-config.yml', 'r') as config_file:
         config_data = yaml.load(config_file)
 except IOError:
     THEME = ''
