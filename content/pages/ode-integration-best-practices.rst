@@ -14,13 +14,14 @@ Evaluating the ODEs
 ===================
 
 There are several equations that are of potential interest, but the primary
-equations are the ordinary differential equations, ODEs. These always have to
-be considered; other equations described below are optional. You should already
-have the equations in explicit first order form before moving forward here.
-"Explicit" refers to the fact that there are no time derivatives on the right
-hand side of the equations and "first order" refers to their being :math:`m`
-equations, one for each of the :math:`m` state variables. The general form for
-these equations is:
+equations are the ordinary differential equations, the "ODEs". These equations
+always have to be considered; other equations described below are optional.
+Your primary goal is to solve the ODEs and discover the time dependent behavior
+of the system's states. You should already have the equations in explicit first
+order form before moving forward here.  "Explicit" refers to the fact that
+there are no time derivatives on the right hand side of the equations and
+"first order" refers to their being :math:`m` equations, one for each of the
+:math:`m` state variables. The general form for these equations is:
 
 .. math::
 
@@ -39,8 +40,9 @@ where
 - :math:`\mathbf{p}` is the constant parameter vector (not a function of time),
   size :math:`p\times1`.
 
-Note that it is typical to drop the :math:`(t)` that expresses the implicit
-function of time for the various time dependent variables.
+Note that it is customary to drop the :math:`(t)` that expresses the implicit
+function of time for the various time dependent variables. That is done from
+here forward.
 
 The state trajectory, :math:`\mathbf{x}`, is determined by integrating
 :math:`\mathbf{f}` with respect to time:
@@ -96,24 +98,6 @@ print this documentation at the Octave/Matlab command prompt.
 
 .. |eval_rhs| replace:: ``eval_rhs.m``
 .. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
-
-.. topic:: Computation speed of ``eval_rhs``
-   :class: alert alert-info
-
-   This function will be executed many times so it is important that this
-   function only calculates the state derivatives and does nothing else. A
-   simple ODE solver will evaluate the function :math:`n` times, where
-   :math:`n` is the number of time instances you desire a solution at. But any
-   quality ODE solver will execute this function more or less times than
-   :math:`n`.  The solvers are often adaptive and will adjust the time step
-   during integration to ensure low integration error. Fewer time evaluations
-   are needed for slowly changing trajectories and more evaluations are needed
-   when the trajectories change rapidly. Systems that have rapidly changing
-   state trajectories are referred to as "stiff systems" or "stiff equations".
-   For example, a stiff system may require :math:`1000 \times n` executions for
-   an acceptable solution. Below, it is shown how to calculate all desired
-   quantities that you may be tempted to calculate in ``eval_rhs`` so that you
-   can keep this function minimal.
 
 Integrating the Equations
 -------------------------
@@ -221,6 +205,63 @@ function, the following code fails to compute:
    specific note on them:
 
    https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F
+
+.. topic:: Computation speed of ``eval_rhs``
+   :class: alert alert-info
+
+   This function will be executed many times so it is important that this
+   function only calculates the state derivatives and does nothing else. A
+   simple ODE solver will evaluate the function :math:`n` times, where
+   :math:`n` is the number of time instances you desire a solution at. But any
+   quality ODE solver will execute this function more or less times than
+   :math:`n`.  The solvers are often adaptive and will adjust the time step
+   during integration to ensure low integration error. Fewer time evaluations
+   are needed for slowly changing trajectories and more evaluations are needed
+   when the trajectories change rapidly. Systems that have rapidly changing
+   state trajectories are referred to as "stiff systems" or "stiff equations".
+   For example, a stiff system may require :math:`1000 \times n` executions for
+   an acceptable solution. Below, it is shown how to calculate all desired
+   quantities that you may be tempted to calculate in ``eval_rhs`` so that you
+   can keep this function minimal.
+
+   For example, the number of right hand side function evaluations can be
+   obtained by turning on the ``stats`` option for the integrator. Below shows
+   that the equations, as described above, only need to be evaluated about half
+   the number of desired output times.
+
+   .. code-block:: matlabsession
+
+      >> x0 = [5*pi/180; 0];
+      >> ts = linspace(0, 10, 500);
+      >> r = [5.0];
+      >> p = [1; 1; 9.81];
+      >> f_anon = @(t, x) eval_rhs(t, x, r, p);
+      >> opt = odeset('stats', 'on');
+      >> t_start = time();
+      >> solution = ode45(f_anon, ts, x0, opt);
+      >> time() - t_start
+      ans = 0.050903
+      >> solution.stats.nfevals
+      ans =  217
+
+   But notice that if the system is stiffened, significaanly increaasing
+   :math:`g` does this, it now takes almost twice the number of evaluations
+   than the desired output times.
+
+   .. code-block:: matlabsession
+
+      >> p = [1; 1; 1000];
+      >> f_anon = @(t, x) eval_rhs_with_input(t, x, @eval_input, p);
+      >> t_start = time();
+      >> solution = ode45(f_anon, ts, x0, opt);
+      >> time() - t_start
+      ans = 0.35892
+      >> solution.stats.nfevals
+      ans =  1975
+
+   This results in the stiff system integration taking about 7 times that of
+   the less stiff system. If the ``eval_rhs`` takes a long time to execute by
+   itself this can easily cause longer integration times.
 
 Time Varying Inputs
 ===================
