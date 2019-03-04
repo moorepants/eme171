@@ -62,13 +62,14 @@ needed.</td></tr>
 <div class="section" id="evaluating-the-odes">
 <h2>Evaluating the ODEs</h2>
 <p>There are several equations that are of potential interest, but the primary
-equations are the ordinary differential equations, ODEs. These always have to
-be considered; other equations described below are optional. You should already
-have the equations in explicit first order form before moving forward here.
-&quot;Explicit&quot; refers to the fact that there are no time derivatives on the right
-hand side of the equations and &quot;first order&quot; refers to their being <span class="math">\(m\)</span>
-equations, one for each of the <span class="math">\(m\)</span> state variables. The general form for
-these equations is:</p>
+equations are the ordinary differential equations, the &quot;ODEs&quot;. These equations
+always have to be considered; other equations described below are optional.
+Your primary goal is to solve the ODEs and discover the time dependent behavior
+of the system's states. You should already have the equations in explicit first
+order form before moving forward here.  &quot;Explicit&quot; refers to the fact that
+there are no time derivatives on the right hand side of the equations and
+&quot;first order&quot; refers to their being <span class="math">\(m\)</span> equations, one for each of the
+<span class="math">\(m\)</span> state variables. The general form for these equations is:</p>
 <div class="math">
 \begin{equation*}
 \dot{\mathbf{x}}(t) = \mathbf{f}(t, \mathbf{x}(t), \mathbf{r}(t), \mathbf{p})
@@ -87,8 +88,9 @@ function of time, size <span class="math">\(o\times1\)</span>.</li>
 <li><span class="math">\(\mathbf{p}\)</span> is the constant parameter vector (not a function of time),
 size <span class="math">\(p\times1\)</span>.</li>
 </ul>
-<p>Note that it is typical to drop the <span class="math">\((t)\)</span> that expresses the implicit
-function of time for the various time dependent variables.</p>
+<p>Note that it is customary to drop the <span class="math">\((t)\)</span> that expresses the implicit
+function of time for the various time dependent variables. That is done from
+here forward.</p>
 <p>The state trajectory, <span class="math">\(\mathbf{x}\)</span>, is determined by integrating
 <span class="math">\(\mathbf{f}\)</span> with respect to time:</p>
 <div class="math">
@@ -167,23 +169,6 @@ print this documentation at the Octave/Matlab command prompt.</p>
 
 <span class="k">end</span>
 </pre></div>
-<div class="alert alert-info topic">
-<p class="topic-title first">Computation speed of <tt class="docutils literal">eval_rhs</tt></p>
-<p>This function will be executed many times so it is important that this
-function only calculates the state derivatives and does nothing else. A
-simple ODE solver will evaluate the function <span class="math">\(n\)</span> times, where
-<span class="math">\(n\)</span> is the number of time instances you desire a solution at. But any
-quality ODE solver will execute this function more or less times than
-<span class="math">\(n\)</span>.  The solvers are often adaptive and will adjust the time step
-during integration to ensure low integration error. Fewer time evaluations
-are needed for slowly changing trajectories and more evaluations are needed
-when the trajectories change rapidly. Systems that have rapidly changing
-state trajectories are referred to as &quot;stiff systems&quot; or &quot;stiff equations&quot;.
-For example, a stiff system may require <span class="math">\(1000 \times n\)</span> executions for
-an acceptable solution. Below, it is shown how to calculate all desired
-quantities that you may be tempted to calculate in <tt class="docutils literal">eval_rhs</tt> so that you
-can keep this function minimal.</p>
-</div>
 </div>
 <div class="section" id="integrating-the-equations">
 <h3>Integrating the Equations</h3>
@@ -324,6 +309,55 @@ errors when programs become more complex. A google search on &quot;why global
 variables are bad&quot; will provide you with background. Here is a Matlab
 specific note on them:</p>
 <p><a class="reference external" href="https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F">https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F</a></p>
+</div>
+<div class="alert alert-info topic">
+<p class="topic-title first">Computation speed of <tt class="docutils literal">eval_rhs</tt></p>
+<p>This function will be executed many times so it is important that this
+function only calculates the state derivatives and does nothing else. A
+simple ODE solver will evaluate the function <span class="math">\(n\)</span> times, where
+<span class="math">\(n\)</span> is the number of time instances you desire a solution at. But any
+quality ODE solver will execute this function more or less times than
+<span class="math">\(n\)</span>.  The solvers are often adaptive and will adjust the time step
+during integration to ensure low integration error. Fewer time evaluations
+are needed for slowly changing trajectories and more evaluations are needed
+when the trajectories change rapidly. Systems that have rapidly changing
+state trajectories are referred to as &quot;stiff systems&quot; or &quot;stiff equations&quot;.
+For example, a stiff system may require <span class="math">\(1000 \times n\)</span> executions for
+an acceptable solution. Below, it is shown how to calculate all desired
+quantities that you may be tempted to calculate in <tt class="docutils literal">eval_rhs</tt> so that you
+can keep this function minimal.</p>
+<p>For example, the number of right hand side function evaluations can be
+obtained by turning on the <tt class="docutils literal">stats</tt> option for the integrator. Below shows
+that the equations, as described above, only need to be evaluated about half
+the number of desired output times.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
+<span class="gp">&gt;&gt; </span><span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+<span class="gp">&gt;&gt; </span><span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">];</span>
+<span class="gp">&gt;&gt; </span><span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mf">9.81</span><span class="p">];</span>
+<span class="gp">&gt;&gt; </span><span class="n">f_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="gp">&gt;&gt; </span><span class="n">opt</span> <span class="p">=</span> <span class="n">odeset</span><span class="p">(</span><span class="s">&#39;stats&#39;</span><span class="p">,</span> <span class="s">&#39;on&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt; </span><span class="n">t_start</span> <span class="p">=</span> <span class="n">time</span><span class="p">();</span>
+<span class="gp">&gt;&gt; </span><span class="n">solution</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">opt</span><span class="p">);</span>
+<span class="gp">&gt;&gt; </span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
+<span class="go">ans = 0.050903</span>
+<span class="gp">&gt;&gt; </span><span class="n">solution</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">nfevals</span>
+<span class="go">ans =  217</span>
+</pre></div>
+<p>But notice that if the system is stiffened, significaanly increaasing
+<span class="math">\(g\)</span> does this, it now takes almost twice the number of evaluations
+than the desired output times.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1000</span><span class="p">];</span>
+<span class="gp">&gt;&gt; </span><span class="n">f_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="gp">&gt;&gt; </span><span class="n">t_start</span> <span class="p">=</span> <span class="n">time</span><span class="p">();</span>
+<span class="gp">&gt;&gt; </span><span class="n">solution</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">opt</span><span class="p">);</span>
+<span class="gp">&gt;&gt; </span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
+<span class="go">ans = 0.35892</span>
+<span class="gp">&gt;&gt; </span><span class="n">solution</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">nfevals</span>
+<span class="go">ans =  1975</span>
+</pre></div>
+<p>This results in the stiff system integration taking about 7 times that of
+the less stiff system. If the <tt class="docutils literal">eval_rhs</tt> takes a long time to execute by
+itself this can easily cause longer integration times.</p>
 </div>
 </div>
 </div>
