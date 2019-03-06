@@ -6,9 +6,12 @@ function xdot = eval_rhs(t, x, r, p)
      %
      % Inputs:
      %   t - Scalar value of time, size 1x1.
-     %   x - State vector at time t, size mx1 where m is the number of states.
-     %   r - Input vector at time t, size ox1 were o is the number of inputs.
-     %   p - Constant parameter vector, size px1 were p is the number of parameters.
+     %   x - State vector at time t, size mx1 where m is the number of
+     %       states.
+     %   r - Input vector at time t, size ox1 were o is the number of
+     %       inputs.
+     %   p - Constant parameter vector, size px1 were p is the number of
+     %       parameters.
      % Outputs:
      %   xdot - Time derivative of the states at time t, size mx1.
 
