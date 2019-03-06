@@ -13,7 +13,7 @@ eval_step_input(5.0, x0, p)
 % check if the eval_rhs funciton works with the input function passed in as
 % an anoymous function
 display('Checking rhs input function:');
-eval_rhs(5.0, x0, @eval_step_input, p)
+eval_rhs_with_input(5.0, x0, @eval_step_input, p)
 
 % changing the input only requires changing the function name here
 f = @(t, x) eval_rhs_with_input(t, x, @eval_step_input, p);

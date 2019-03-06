@@ -8,7 +8,6 @@
 ./ode-integration-best-practices-with-octavematlab.html
 ./resources.html
 ./schedule.html
-./scripts/best-practices/calc_inputs_step.m
 ./scripts/best-practices/eval_input.m
 ./scripts/best-practices/eval_output.m
 ./scripts/best-practices/eval_output_vectorized.m

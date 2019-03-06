@@ -1,3 +1,5 @@
+%% Script that demonstrates basic integration of ODEs.
+
 % create a vector with the initial state values, size 2x1
 x0 = [5*pi/180;  % theta0, angle in rad
       0];  % omega0, angular rate in rad/s
