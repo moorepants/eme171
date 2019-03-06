@@ -295,7 +295,7 @@ Save this as |eval_rhs_with_input|_.
 .. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
    :lexer: matlab
 
-Now you can pass in the input function as an anoymous function in similar
+Now you can pass in the input function as an anonymous function in similar
 fashion as shown earlier for ``eval_rhs()``. Save as
 |integrate_with_input_function|_.
 
@@ -316,7 +316,7 @@ function, |eval_step_input|_.
    :lexer: matlab
 
 Now integrating with the new input only requires changing the name of the
-anonymous funciton in the main script, named here as
+anonymous function in the main script, named here as
 |integrate_with_step_function|_.
 
 .. |integrate_with_step_function| replace:: ``integrate_with_step_function.m``
