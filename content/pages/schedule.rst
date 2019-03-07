@@ -61,13 +61,15 @@ NA M-Mar-04                                                                     
 17 T-Mar-05    - State Space Equations
                - Linear Systems                      - Read 6.1-6.3
 NA W-Mar-06                                                                     Lab 4
-18 R-Mar-07    Linear Systems                        - Read 6.4-6.7
+18 R-Mar-07    - Linear Systems                      - Read 6.4-6.7
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-11                                                                     HW #9: 5.17, 5.18, 6.2, 6.3, 6.4
-19 T-Mar-12    Transducers                           - Read 8.1-8.4
-20 R-Mar-14    Transducers
+NA M-Mar-11
+19 T-Mar-12    - Introduction to control
+20 R-Mar-14    - Segway control
+               - Review
+NA F-Mar-15                                                                     HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-18                                                                     HW #10: 6.6, 6.8, 6.12, 6.19
+NA M-Mar-18
 NA W-Mar-19                                                                     Lab 5
 NA F-Mar-22    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
