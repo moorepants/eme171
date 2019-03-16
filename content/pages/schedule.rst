@@ -65,9 +65,9 @@ NA W-Mar-06                                                                     
                                                      - `Notes 18`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-11
-19 T-Mar-12    - Introduction to control
-20 R-Mar-14    - Segway control
-               - Review
+19 T-Mar-12    - Introduction to control             - `Notes 19`_
+20 R-Mar-14    - Segway control                      - `Notes 20`_
+               - Review                              - `Script 20`_
 NA F-Mar-15                                                                     HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-18
@@ -92,5 +92,8 @@ NA F-Mar-22    Final Exam: 3:30 PM
 .. _Notes 16: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l16.pdf
 .. _Notes 17: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l17.pdf
 .. _Notes 18: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l18.pdf
+.. _Notes 19: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l19.pdf
+.. _Notes 20: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l20.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
+.. _Script 20: {filename}/pages/segway-simulation.rst
