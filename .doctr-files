@@ -5,9 +5,11 @@
 ./electric-bicycle-simulation.html
 ./feeds/all.atom.xml
 ./index.html
+./modeling-simulation-and-control-of-a-segway.html
 ./ode-integration-best-practices-with-octavematlab.html
 ./resources.html
 ./schedule.html
+./scripts/animate_segway.py
 ./scripts/best-practices/eval_input.m
 ./scripts/best-practices/eval_output.m
 ./scripts/best-practices/eval_output_vectorized.m
@@ -20,8 +22,13 @@
 ./scripts/best-practices/integrate_with_input_function.m
 ./scripts/best-practices/integrate_with_output.m
 ./scripts/best-practices/integrate_with_step_function.m
+./scripts/eval_segway_input.m
+./scripts/eval_segway_output.m
+./scripts/eval_segway_rhs.m
+./scripts/segway_state_space.m
 ./scripts/simulate_dc_motor.m
 ./scripts/simulate_ebike.m
+./scripts/simulate_segway.m
 ./tags.html
 ./theme/css/bootstrap.min.css
 ./theme/css/font-awesome.min.css
