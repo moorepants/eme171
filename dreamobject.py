@@ -19,5 +19,10 @@ for fname in files:
         key = boto.s3.key.Key(bucket, 'lecture-notes/{}/{}'.format(year, fname))
         key.set_contents_from_filename(os.path.join(pdf_dir, fname))
 
+for fname in os.listdir('assets'):
+    print('Uploading {}'.format(fname))
+    key = boto.s3.key.Key(bucket, 'assets/{}/{}'.format(year, fname))
+    key.set_contents_from_filename(os.path.join('assets', fname))
+
 for o in bucket.list():
     o.set_acl('public-read')
