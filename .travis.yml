@@ -10,7 +10,6 @@ install:
   - git clone --depth=1 --single-branch --branch mechmotum https://github.com/mechmotum/pelican-alchemy.git
   - git clone --depth=1 https://github.com/getpelican/pelican-plugins.git
   - cd pelican-plugins
-  - git apply ../hidden-math.patch
   - cd -
 before_script:
   - pip freeze
