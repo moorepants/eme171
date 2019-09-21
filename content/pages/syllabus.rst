@@ -30,6 +30,16 @@ Prerequisites
 - ENG 100 (C- or better)
 - ENG 102 (C- or better)
 
+MAE Learning Objectives
+-----------------------
+
+Upon completion of the course students will be able to:
+
+   1. model and analyze dynamic systems,
+   2. define objectives for the performance of dynamic systems,
+   3. design computer simulations for dynamic systems, and
+   4. communicate effectively the results of modeling studies orally and in writing.
+
 Instructors
 ===========
 
