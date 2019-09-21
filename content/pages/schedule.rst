@@ -2,98 +2,82 @@
 :sortorder: 1
 
 This is the schedule for the quarter. The midterm and final dates are firm and
-homework will be due each week on before class on Tuesdays. The lecture topics
-are tentative and will be adjusted to fit the flow of the class. The labs will
-be scheduled as we go along, may or may not align with the suggested week
-below, and are subject to the schedules of the various sponsors. **Check the
-schedule periodically for changes.**
+homework will be due each week on Mondays. The lecture topics are tentative and
+will be adjusted to fit the flow of the class. The labs will be due on Fridays,
+approximately every two weeks. The course notes and scripts will be posted here
+after each lecture. **Check the schedule periodically for changes.**
 
 .. class:: table table-striped table-bordered
 
 == ==========  ====================================  =========================  ===============
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============
-01 T-Jan-08    Introduction                          - Read 1.1-1.6
-                                                     - `Notes 01`_
-                                                     - `Script 01`_
-02 R-Jan-10    Introduction                          - `Notes 02`_
+01 W-Sep-25    Introduction                          - Read 1.1-1.3
+02 F-Sep-27    Introduction                          - Read 1.4-1.6
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Jan-14                                                                     HW #1: 1.6, 1.7, 1.8
-03 T-Jan-15    Multiport Systems                     - Read 2.1-2.4, 3.1
-                                                     - `Notes 03`_
-04 R-Jan-17    Multiport Systems                     - `Notes 04`_
+03 M-Sep-30    Multiport Systems                     - Read 2.1-2.2             HW #1: 1.6, 1.7, 1.8
+04 W-Oct-02    Multiport Systems                     - Read 2.3-2.4
+05 F-Oct-04    Multiport Systems                     - Read 3.1
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Jan-21                                                                     HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
-05 T-Jan-22    Numerical Simulation                  - `Notes 05`_
-                                                     - `Script 05`_
-06 R-Jan-24    - Causality of Basic Components       - Read 3.2-3.6
-               - System Models: Electrical
-                                                     - `Notes 06`_
-NA F-Jan-25                                                                     Lab 1
+06 M-Oct-07    Numerical Simulation                                             HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
+07 W-Oct-09    Causality of Basic Components         - Read 3.2-3.3
+08 F-Oct-11    System Models: Electrical             - Read 3.3-3.6             Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Jan-28                                                                     HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
-07 T-Jan-29    System Models: Electrical             - Read 4.1
-                                                     - `Notes 07`_
-08 R-Jan-31    System Models: Mechanical             - `Notes 08`_
+09 M-Oct-14    System Models: Electrical             - Read 4.1                 HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
+10 W-Oct-16    System Models: Mechanical             - Read 4.2
+11 F-Oct-18    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Feb-04                                                                     HW #4: 4.1, 4.2, 4.3, 4.4, 4.5
-09 T-Feb-05    System Models: Mechanical             - Read 4.2
-                                                     - `Notes 09`_
-NA W-Feb-06                                                                     Lab 2
-10 R-Feb-07    System Models: Mechanical             - `Notes 10`_
+12 M-Oct-21    System Models: Mechanical                                        HW #4: 4.1, 4.2, 4.3, 4.4, 4.5
+13 W-Oct-23    System Models: Mechanical
+14 F-Oct-25    System Models: Mechanical                                        Lab 2
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Feb-11                                                                     HW #5: 4.16, 4.22, 4.23, 4.24
-11 T-Feb-12    Midterm
-12 R-Feb-14    System Models: Hydraulic              - Read 4.3-4.4
-                                                     - `Notes 12`_
+15 M-Oct-28    Midterm Exam
+16 W-Oct-30    System Models: Hydraulic              - Read 4.3
+17 F-Nov-01    System Models: Hydraulic              - Read 4.4
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Feb-18                                                                     HW #6: Half-car model
-13 T-Feb-19    System Models: Hydraulic              - `Notes 13`_
-NA W-Feb-20                                                                     Lab 3
-14 R-Feb-21    State Space Equations                 - Read 5.1-5.3
-                                                     - `Notes 14`_
+18 M-Nov-04    System Models: Hydraulic                                         HW #5: 4.16, 4.22, 4.23, 4.24
+19 W-Nov-06    State Space Equations                 - Read 5.1-5.2
+20 F-Nov-08    State Space Equations                 - Read 5.3                 Lab 3
 -- ----------  ------------------------------------  -------------------------  ---------------
-15 T-Feb-26    State Space Equations                 - Read 5.4-5.6             HW #7: 4.8, 4.11, 4.21, 4.30, 5.1
-                                                     - `Notes 15`_
-16 R-Feb-28    State Space Equation                  - `Notes 16`_
+NA M-Nov-11    Veterans Day Holiday
+NA T-Nov-12                                                                     HW #6: Half-car model
+21 W-Nov-13    State Space Equations                 - Read 5.4
+22 F-Nov-15    State Space Equations                 - Read 5.5
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-04                                                                     HW #8: 5.3, 5.4, 5.8, 5.11, 5.19
-17 T-Mar-05    - State Space Equations               - `Notes 17`_
-               - Linear Systems                      - Read 6.1-6.3
-NA W-Mar-06                                                                     Lab 4
-18 R-Mar-07    - Linear Systems                      - Read 6.4-6.7
-                                                     - `Notes 18`_
+23 M-Nov-18    State Space Equation                  - Read 5.6                 HW #7: 4.8, 4.11, 4.21, 4.30, 5.1s
+24 W-Nov-20    Linear Systems                        - Read 6.1-6.3
+25 F-Nov-22    Linear Systems                        - Read 6.4-6.6             Lab 4
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-11
-19 T-Mar-12    - Introduction to control             - `Notes 19`_
-20 R-Mar-14    - Segway control                      - `Notes 20`_
-               - Review                              - `Script 20`_
-NA F-Mar-15                                                                     HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
+26 M-Nov-25    Linear Systems                        - Read 6.7                 HW #8: 5.3, 5.4, 5.8, 5.11, 5.19
+27 W-Nov-27    Introduction to control
+28 F-Nov-29    Thanksgiving Holiday
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-18
-NA W-Mar-20                                                                     Lab 5
-NA F-Mar-22    Final Exam: 3:30 PM
+29 M-Dec-02    Segway Modeling and Control                                      HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
+30 W-Dec-04    Segway Modeling and Control
+31 F-Dec-06    Review                                                           Lab 5
+-- ----------  ------------------------------------  -------------------------  ---------------
+NA R-Dec-12    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
 
-.. _Notes 01: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l01.pdf
-.. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l02.pdf
-.. _Notes 03: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l03.pdf
-.. _Notes 04: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l04.pdf
-.. _Notes 05: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l05.pdf
-.. _Notes 06: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l06.pdf
-.. _Notes 07: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l07.pdf
-.. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l08.pdf
-.. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l09.pdf
-.. _Notes 10: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l10.pdf
-.. _Notes 12: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l12.pdf
-.. _Notes 13: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l13.pdf
-.. _Notes 14: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l14.pdf
-.. _Notes 15: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l15.pdf
-.. _Notes 16: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l16.pdf
-.. _Notes 17: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l17.pdf
-.. _Notes 18: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l18.pdf
-.. _Notes 19: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l19.pdf
-.. _Notes 20: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019/eme171-l20.pdf
+.. _Notes 01: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l01.pdf
+.. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l02.pdf
+.. _Notes 03: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l03.pdf
+.. _Notes 04: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l04.pdf
+.. _Notes 05: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l05.pdf
+.. _Notes 06: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l06.pdf
+.. _Notes 07: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l07.pdf
+.. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l08.pdf
+.. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l09.pdf
+.. _Notes 10: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l10.pdf
+.. _Notes 12: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l12.pdf
+.. _Notes 13: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l13.pdf
+.. _Notes 14: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l14.pdf
+.. _Notes 15: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l15.pdf
+.. _Notes 16: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l16.pdf
+.. _Notes 17: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l17.pdf
+.. _Notes 18: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l18.pdf
+.. _Notes 19: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l19.pdf
+.. _Notes 20: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l20.pdf
 .. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 05: {filename}/pages/dc-motor-simulation.rst
 .. _Script 20: {filename}/pages/segway-simulation.rst
