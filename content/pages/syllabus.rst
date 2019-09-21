@@ -9,17 +9,17 @@ Course Description
 | University of California, Davis
 | Department of Mechanical and Aerospace Engineering
 | Analysis, Simulation and Design of Mechatronic Systems - EME 171
-| 2019 Winter, Lecture: TR 12:10-1:30 PM in Olson 205
-| CRN: 32758
+| 2019 Fall, Lecture: MWF 3:10-4:00 PM in Chemistry 176
+| CRN: 62958
 
 Catalog Description
 -------------------
 
-   EME 171—Analysis, Simulation and Design of Mechatronic Systems (4)
+   EME 171—Analysis, Simulation & Design of Mechatronic Systems (4)
    Lecture—3 hour(s); Laboratory—3 hour(s). Prerequisite(s): ENG 100 C- or
    better; ENG 102 C- or better. Restricted to Mechanical Engineering,
-   Aerospace Science and Engineering, Mechanical Engineering/Materials Science
-   and Engineering. Modeling of dynamic engineering systems in various energy
+   Aerospace Science & Engineering, Mechanical Engineering/Materials Science
+   and Engineering.  Modeling of dynamic engineering systems in various energy
    domains. Analysis and design of dynamic systems. Response of linear systems.
    Digital computer simulation and physical experiments. GE credit: SE.
    Effective: 2017 Fall Quarter.
@@ -34,18 +34,20 @@ Instructors
 ===========
 
 | Jason K. Moore
+| Assistant Teaching Professor
 | 2095 Bainer Hall
 | 530-752-4805
 | jkm@ucdavis.edu
 |
-| Ehsan Arasteh
-| earasteh@ucdavis.edu
+| Kevin Mallon
+| Graduate Student
+| krmallon@ucdavis.edu
 
 Time and Location
 =================
 
-The lecture meets on Tuesdays and Thursdays from 12:10 PM to 1:30 PM in Olson
-Hall 205.
+The lecture meets on Mondays, Wednesdays, and Fridays from 3:10 PM to 4:00 PM
+in Chemistry 176.
 
 **If you have any conflicts with the schedule, especially for the exams, you
 must tell me in the first week of class (emergencies will be the only
@@ -56,17 +58,17 @@ Office Hours
 
 .. class:: table table-striped table-bordered
 
-+----------------------+----------------------+
-| Jason's Office Hours | Ehsan's Office Hours |
-+======================+======================+
-| Bainer 2095          | Bainer 2021A         |
-| F 3-4                | T 4-5, W 3-4, R 3-4  |
-+----------------------+----------------------+
++----------------------+-----------------------+
+| Jason's Office Hours | Kevins's Office Hours |
++======================+=======================+
+| Bainer 2095          | Bainer 2021A          |
+| TBA                  | TBA                   |
++----------------------+-----------------------+
 
 If it is impossible to make office hours, schedule an appointment with Jason by
 checking his `work calendar`_ and select a free time between 8:00 AM and 6:30
 PM Monday-Friday. Send him an email requesting an appointment at the suggested
-meeting times at least a day in advance. You can also email Ehsan and request a
+meeting times at least a day in advance. You can also email Kevin and request a
 meeting.
 
 .. _work calendar: http://www.moorepants.info/work-calendar.html
@@ -84,8 +86,8 @@ Feel free to discuss homework assignments and work on them together, but each
 student must turn in a *unique* solution. Keep in mind that actually doing all
 of the homework yourself is critical for learning and passing the course.
 
-No help from other people is allowed when completing the midterm and final
-exam.
+No help from other people or non-approved resources are allowed when completing
+the midterm and final exam.
 
 Textbook
 ========
@@ -134,7 +136,7 @@ Projects
    responsible for competence in simulation/analysis tools. Project reports
    will be collected and graded during the quarter.
 Midterm
-   You will have to complete a one and half hour in-class midterm exam.
+   You will have to complete a 50 minute in-class midterm exam.
 Final
    You will have to complete a two-hour in-class final exam.
 
@@ -142,7 +144,7 @@ Canvas
 ======
 
 We will make use of Canvas for the course. Log in to canvas.ucdavis.edu_ with
-your Kerberos ID and passphrase then select **EME 171 001 WQ 2019**.
+your Kerberos ID and passphrase then select **EME 171 001 FQ 2019**.
 
 We will be using several features in canvas:
 
