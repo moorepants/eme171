@@ -49,10 +49,10 @@ README for instructions on editing and viewing the site locally.
 Canvas
 ------
 
-Canvas_ will be used for all of the private information related to the course
-that is shared with the students, e.g. grades, copyrighted materials,
-announcements, roster, email lists, solutions, etc. Request to be added to the
-roster as an instructor.
+Canvas_ will be used for private information related to the course that is
+shared with the students, e.g. grades, copyrighted materials, announcements,
+roster, email lists, solutions, etc. Request to be added to the roster as an
+instructor.
 
 Students should be directed to the Discussions section of the course Canvas
 page to ask asynchronous questions electronically (instead of email). Any
@@ -257,24 +257,22 @@ Week 0
 - [Instructor] Add any Hyundai visiting students to Canvas manually (they don’t
   seem to be added to the roster). Find these out from the Hyundai center
   secretary.
-- Print and cut out the letters for students to choose to get a lab
-   partner.
 - [TA] Get added to the Canvas course, Google Drive, and Github site.
 
 Week 1
 ------
 
 -  [TA] Send out whenisgood poll for lab/OH times, due date Friday.
--  [TA] Select two 2 hour lab periods that are at optimal times, report
-   how many students are unlikely to make those times and discuss with
-   Jason.
+-  [TA] Select three 1 hour lab periods that are at optimal times, report how
+   many students are unlikely to make those times and discuss with Jason. Need
+   to book the CAE lab for these.
 -  [TA] Prepare Lab 1 assignment on Canvas and post by Friday.
--  [TA] Setup Canvas groups for each lab team pair by Friday (use for
-   lab assignments).
 
 Week 2
 ------
 
+-  [TA] Setup Canvas groups for each lab team pair by Monday (use for
+   lab assignments).
 -  [TA] Make an announcement on Canvas with the selected lab times and
    update the website to reflect these times.
 -  [TA] Post solutions to HW 1 on Tuesday.
