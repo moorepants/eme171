@@ -13,9 +13,14 @@ from pelicanconf import *
 THEME = "pelican-alchemy/alchemy"
 PLUGIN_PATHS = "pelican-plugins"
 
-# If your site is available via HTTPS, make sure SITEURL begins with https://
-SITEURL = 'https://moorepants.github.io/eme171'
 RELATIVE_URLS = False
+
+if 'TRAVIS_TAG' in os.environ and os.environ.get('TRAVIS_TAG') is not '':
+    TAG_DIR = '/' + os.environ.get('TRAVIS_TAG')
+else:
+    TAG_DIR = ''
+
+SITEURL = 'https://moorepants.github.io/eme171{}'.format(TAG_DIR)
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
@@ -25,4 +30,4 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 #DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""
+GOOGLE_ANALYTICS = "UA-15966419-8"
