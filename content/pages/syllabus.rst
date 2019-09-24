@@ -19,7 +19,7 @@ Catalog Description
    Lecture—3 hour(s); Laboratory—3 hour(s). Prerequisite(s): ENG 100 C- or
    better; ENG 102 C- or better. Restricted to Mechanical Engineering,
    Aerospace Science & Engineering, Mechanical Engineering/Materials Science
-   and Engineering.  Modeling of dynamic engineering systems in various energy
+   and Engineering. Modeling of dynamic engineering systems in various energy
    domains. Analysis and design of dynamic systems. Response of linear systems.
    Digital computer simulation and physical experiments. GE credit: SE.
    Effective: 2017 Fall Quarter.
@@ -38,13 +38,14 @@ Upon completion of the course students will be able to:
    1. model and analyze dynamic systems,
    2. define objectives for the performance of dynamic systems,
    3. design computer simulations for dynamic systems, and
-   4. communicate effectively the results of modeling studies orally and in writing.
+   4. communicate effectively the results of modeling studies orally and in
+      writing.
 
 Instructors
 ===========
 
 | Jason K. Moore
-| Assistant Teaching Professor
+| Assistant Professor of Teaching
 | 2095 Bainer Hall
 | 530-752-4805
 | jkm@ucdavis.edu
@@ -120,14 +121,14 @@ Assignments & Grades
 Grades will be available in the canvas.ucdavis.edu_ grade book periodically
 throughout the course along with class statistics. Check the website on a
 regular basis to gauge your performance. Keep in mind that **15% is deducted
-per business day late** on projects. Homeworks must be turned in on time to
+per business day late** on lab reports. Homework must be turned in on time to
 count.
 
 .. class:: table table-striped table-bordered
 
 ==================== =====
-Homework             15%
-Projects             25%
+Homework             10%
+Lab Reports          30%
 Midterm              25%
 Final                35%
 ==================== =====
@@ -135,16 +136,28 @@ Final                35%
 .. _canvas.ucdavis.edu: http://canvas.ucdavis.edu
 
 Homework
-   Weekly homework will be assigned which will be due before class the
-   following week. Unique solutions are required from each student but you can
-   work with anyone on the homework. You can miss up to two homework
-   submissions out of the total and still get the full 15% credit. Graded on
-   pass/fail for showing complete work on all problems. Solutions will be
-   shared after the due date.
-Projects
-   Projects will be done in pairs of two students; students are individually
-   responsible for competence in simulation/analysis tools. Project reports
-   will be collected and graded during the quarter.
+   Weekly homework will be assigned from the book problems which will be due on
+   Monday's by midnight (except during exam weeks). Unique solutions are
+   required from each student but you are allowed to work with anyone on the
+   homework and help each other. You can miss up to two homework submissions
+   out of the total and still get the full 15% credit. Graded on pass/fail for
+   showing complete work on all problems. There is no partial credit and
+   homework will not be accepted past the due date and time. You should scan or
+   photograph your homeworks and submit them as a single PDF file. Solutions
+   will be shared after the due date on Canvas.
+Lab Reports
+   The labs will be done in pairs of two students. Each student is expected to
+   contribute significantly to all aspects of the lab: understanding the
+   problem, formulating a solution, writing code, and writing the report. Every
+   student in the class is individually responsible for competence in
+   simulation/analysis tools and methods used to complete the labs. Lab reports
+   will be collected approximately every two weeks on Fridays and graded based
+   on a provided rubric. Reports should be typed and submitted as a PDF file to
+   Canvas. Each lab report due date will be preceded by multiple lab sessions
+   lead by the teaching assistant. Each student is required to attend at least
+   one of the two lab sessions during the two week period before the lab report
+   is due. Attendance will be taken and being absent will count against the
+   pair's grade.
 Midterm
    You will have to complete a 50 minute in-class midterm exam.
 Final
@@ -192,7 +205,7 @@ Personal electronic correspondence from the instructors will be made to your
 UCD email address. It is your responsibility to check this regularly.
 
 Electronic announcements from the instructors to the whole class will be made
-through Canvas. By default, Canvas will automatically sends the announcement to
+through Canvas. By default, Canvas will automatically send the announcement to
 your UCD email address. You can change your Canvas settings to opt out, send it
 to a different email, or as an SMS. You are responsible for reading the
 announcements made via canvas.
