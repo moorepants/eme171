@@ -108,6 +108,55 @@ print this documentation at the Octave/Matlab command prompt.
 .. |eval_rhs| replace:: ``eval_rhs.m``
 .. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
 
+.. topic:: An alternative for passing in the constant parameters
+   :class: alert alert-warning
+
+   Octave/Matlab have a data type called a "structure" (similar to a C
+   structure). The simplest use of a structure is a key-value pair mapping. To
+   create a structure with a single key value pair assign a value to the
+   desired name of the structure followed by a ``.`` and the key variable name.
+
+   .. code-block:: matlabsession
+
+      >> p.a = 2
+      p =
+
+        scalar structure containing the fields:
+
+          a =  2
+
+   More key value pairs can be added to the same structure by repeating what
+   the same thing with different keys and values.
+
+   .. code-block:: matlabsession
+      >> p.b = 3
+      p =
+
+        scalar structure containing the fields:
+
+          a =  2
+          b =  3
+
+      >> p.c = 4.192
+      p =
+
+        scalar structure containing the fields:
+
+          a =  2
+          b =  3
+          c =  4.1920
+
+   Now you can access these values of the structure ``p`` by appending ``.``
+   and the key's variable name. The values in the structure can be used in
+   computations just like other variables.
+
+   .. code-block:: matlabsession
+
+      >> p.a
+      ans =  2
+      >> p.a^2 + p.b^2 - p.c^2
+      ans = -4.5729
+
 Integrating the Equations
 -------------------------
 
