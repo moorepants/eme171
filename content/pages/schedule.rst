@@ -13,6 +13,7 @@ after each lecture. **Check the schedule periodically for changes.**
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============
 01 W-Sep-25    Introduction                          - Read 1.1-1.3
+                                                     - `Script 01`_
 02 F-Sep-27    Introduction                          - Read 1.4-1.6
 -- ----------  ------------------------------------  -------------------------  ---------------
 03 M-Sep-30    Multiport Systems                     - Read 2.1-2.2             HW #1: 1.6, 1.7, 1.8

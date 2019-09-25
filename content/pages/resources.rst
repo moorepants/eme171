@@ -20,6 +20,7 @@ class but you may be interested in learning it on your own.
 Scripts
 =======
 
+- `EBike Simulation <{filename}/pages/ebike-simulation.rst>`_
 - `ODE Integration Best Practices <{filename}/pages/ode-integration-best-practices.rst>`_
 
 Supplementary Materials
