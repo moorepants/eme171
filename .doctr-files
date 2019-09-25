@@ -22,6 +22,7 @@
 ./scripts/best-practices/integrate_with_input_function.m
 ./scripts/best-practices/integrate_with_output.m
 ./scripts/best-practices/integrate_with_step_function.m
+./scripts/eval_ebike_rhs.m
 ./scripts/eval_segway_input.m
 ./scripts/eval_segway_output.m
 ./scripts/eval_segway_rhs.m

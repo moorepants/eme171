@@ -19,7 +19,7 @@
   <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
         href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
   
-  <meta name="description" content="This Matlab/Octave file demonstrates a simulation of a simple ebike model simulation. simulate_ebike.m Download simulate_ebike.m function simulate_ebike() % This m file simulates the linear motion of a simple electric bicycle model. % The states are wheel angle theta, wheel angular rate omega, motor current i, % and distance traveled x …">
+  <meta name="description" content="These two Octave/Matlab files demonstrate the simulation of a model of an electric bicycle traveling over a sinusoidal road. The format of the files follows the ODE integration best practices eval_ebike_rhs The file eval_ebike_rhs.m encodes the 1st order ordinary differential equations that govern the coupled dynamics of the …">
   <script>
     (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -62,103 +62,159 @@
 
 <article class="article">
   <div class="content">
-    <p>This Matlab/Octave file demonstrates a simulation of a simple ebike model
-simulation.</p>
+    <p>These two Octave/Matlab files demonstrate the simulation of a model of an
+electric bicycle traveling over a sinusoidal road. The format of the files
+follows the <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html">ODE integration best practices</a></p>
+<div class="section" id="eval-ebike-rhs">
+<h2>eval_ebike_rhs</h2>
+<p>The file <a class="reference external" href="https://moorepants.github.io/eme171/scripts/eval_ebike_rhs.m"><tt class="docutils literal">eval_ebike_rhs.m</tt></a> encodes the 1st order ordinary differential
+equations that govern the coupled dynamics of the electrical and mechanical
+system.</p>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>sdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_ebike_rhs</span><span class="p">(</span>t, s, r, p<span class="p">)</span><span class="w"></span>
+<span class="c">% EVAL_EBIKE_RHS - Returns the time derivative of the states, i.e. evaluates</span>
+<span class="c">% the right hand side of the explicit ordinary differential equations.</span>
+<span class="c">%</span>
+<span class="c">% Syntax: sdot = eval_rhs(t, s, r, p)</span>
+<span class="c">%</span>
+<span class="c">% Inputs:</span>
+<span class="c">%   t - Scalar value of time, size 1x1.</span>
+<span class="c">%   s - State vector at time t, size mx1 where m is the number of</span>
+<span class="c">%       states.</span>
+<span class="c">%   r - Input vector at time t, size ox1 were o is the number of</span>
+<span class="c">%       inputs.</span>
+<span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
+<span class="c">%       parameters.</span>
+<span class="c">% Outputs:</span>
+<span class="c">%   sdot - Time derivative of the states at time t, size mx1.</span>
+
+<span class="c">% unpack the states</span>
+<span class="n">theta</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% rotation angle of the wheel [rad]</span>
+<span class="n">omega</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="c">% angular rate of the wheel [rad/s]</span>
+<span class="nb">i</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>  <span class="c">% motor current [A]</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>  <span class="c">% x distance traveled [m]</span>
+
+<span class="c">% unpack the input</span>
+<span class="n">V</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% voltage applied to motor [V]</span>
+
+<span class="c">% unpack the constant parameters</span>
+<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">R</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">Cr</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">Cd</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">rho</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="n">J</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="n">bm</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">Kt</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">L</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+<span class="n">Rw</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">X</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">H</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+
+<span class="c">% calculate the road angle at this x location on the sine curve road</span>
+<span class="n">wr</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="nb">pi</span><span class="o">/</span><span class="n">X</span><span class="p">;</span>
+<span class="n">slope</span> <span class="p">=</span> <span class="n">H</span><span class="o">*</span><span class="n">wr</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">wr</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
+<span class="n">alpha</span> <span class="p">=</span> <span class="nb">atan</span><span class="p">(</span><span class="n">slope</span><span class="p">);</span>
+
+<span class="c">% caculate some intermediate quantities for evaluating the ODEs</span>
+<span class="n">v</span> <span class="p">=</span> <span class="n">omega</span><span class="o">*</span><span class="n">R</span><span class="p">;</span>  <span class="c">% v-omega relationship from no-slip tires</span>
+
+<span class="c">% forces acting on e-bicyclist</span>
+<span class="n">Fd</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">Cd</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">v</span>^<span class="mi">2</span><span class="p">;</span>  <span class="c">% drag force [N]</span>
+<span class="n">Fr</span> <span class="p">=</span> <span class="n">Cr</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>  <span class="c">% rolling resistant [N]</span>
+<span class="n">Fg</span> <span class="p">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>  <span class="c">% gravity force [N]</span>
+
+<span class="c">% evaluate the four 1st order explicit ordinary differential equations</span>
+<span class="n">thetadot</span> <span class="p">=</span> <span class="n">omega</span><span class="p">;</span>
+<span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="n">Kt</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">bm</span><span class="o">*</span><span class="n">omega</span> <span class="o">-</span> <span class="n">Fd</span><span class="o">*</span><span class="n">R</span> <span class="o">-</span> <span class="n">Fr</span><span class="o">*</span><span class="n">R</span> <span class="o">-</span> <span class="n">Fg</span><span class="o">*</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">R</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">idot</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Rw</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">Kt</span><span class="o">*</span><span class="n">omega</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">;</span>
+<span class="n">xdot</span> <span class="p">=</span> <span class="n">v</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
+
+<span class="c">% pack the state derivatives in a vector</span>
+<span class="n">sdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">;</span> <span class="n">idot</span><span class="p">;</span> <span class="n">xdot</span><span class="p">];</span>
+
+<span class="k">end</span>
+</pre></div>
+</div>
 <div class="section" id="simulate-ebike-m">
 <h2>simulate_ebike.m</h2>
-<p><a class="reference external" href="https://moorepants.github.io/eme171/scripts/simulate_ebike.m">Download simulate_ebike.m</a></p>
-<div class="highlight"><pre class="code matlab highlight literal-block">
-<span class="k">function</span><span class="w"> </span><span class="nf">simulate_ebike</span><span class="p">()</span><span class="w">
-  </span><span class="c">% This m file simulates the linear motion of a simple electric bicycle model.</span>
-  <span class="c">% The states are wheel angle theta, wheel angular rate omega, motor current i,</span>
-  <span class="c">% and distance traveled x. The no-slip constraint provides that the forward</span>
-  <span class="c">% speed v is equal to the angular rate time the wheel speed.</span>
+<p>The file <a class="reference external" href="https://moorepants.github.io/eme171/scripts/simulate_ebike.m"><tt class="docutils literal">simulate_ebike.m</tt></a> runs the simulation and plots the resulting motion.</p>
+<div class="highlight"><pre><span></span><span class="c">% This m file simulates the linear motion of a simple electric bicycle model</span>
+<span class="c">% traveling over a 2D sinusoidal road. The sinusoidal road is defined by its</span>
+<span class="c">% amplitude, H, and the horizontal distance corresponding to the &quot;period&quot; of</span>
+<span class="c">% the road. The states are wheel angle theta, wheel angular rate omega,</span>
+<span class="c">% motor current i, and horizontal distance traveled x. The no-slip</span>
+<span class="c">% constraint provides that the forward speed v is equal to the angular rate</span>
+<span class="c">% time the wheel speed.</span>
 
-  <span class="c">% integrate the dynamic equations over 20 seconds</span>
-  <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(&#64;</span><span class="n">rhs</span><span class="p">,</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="c">% define numerical constants</span>
+<span class="n">m</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>  <span class="c">% mass of bike and rider [kg]</span>
+<span class="n">R</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>  <span class="c">% wheel radius [m]</span>
+<span class="n">Cr</span> <span class="p">=</span> <span class="mf">0.005</span><span class="p">;</span>  <span class="c">% coefficient of rolling resistance [unitless]</span>
+<span class="n">Cd</span> <span class="p">=</span> <span class="mf">1.1</span><span class="p">;</span>  <span class="c">% coefficient of drag [unitless]</span>
+<span class="n">rho</span> <span class="p">=</span> <span class="mf">1.2</span><span class="p">;</span>  <span class="c">% density of air [kg/m^3]</span>
+<span class="n">A</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% frontal area [m^2]</span>
+<span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acceleration due to gravity [m/s^2]</span>
+<span class="n">J</span> <span class="p">=</span> <span class="mf">0.24</span><span class="p">;</span>  <span class="c">% wheel moment of inertia [kg m^2]</span>
+<span class="n">bm</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>  <span class="c">% hub friction coefficient [N*m*s]</span>
+<span class="n">Kt</span> <span class="p">=</span> <span class="mf">1.5</span><span class="p">;</span>  <span class="c">% motor torque constant [N*m/A]</span>
+<span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% motor inductance [H]</span>
+<span class="n">Rw</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% motor winding resistance [Ohm]</span>
+<span class="n">X</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c">% x distance for one period of sine curve road [m]</span>
+<span class="n">H</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c">% amplitude of sine curve road [m]</span>
 
-  <span class="c">% extract the states from the integration results</span>
-  <span class="n">theta</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="n">omega</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">);</span>
-  <span class="nb">i</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">3</span><span class="p">);</span>
-  <span class="n">x</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="c">% pack constant parameters into a 1d vector</span>
+<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="n">m</span><span class="p">;</span> <span class="n">R</span><span class="p">;</span> <span class="n">Cr</span><span class="p">;</span> <span class="n">Cd</span><span class="p">;</span> <span class="n">rho</span><span class="p">;</span> <span class="n">A</span><span class="p">;</span> <span class="n">g</span><span class="p">;</span> <span class="n">J</span><span class="p">;</span> <span class="n">bm</span><span class="p">;</span> <span class="n">Kt</span><span class="p">;</span> <span class="n">L</span><span class="p">;</span> <span class="n">Rw</span><span class="p">;</span> <span class="n">X</span><span class="p">;</span> <span class="n">H</span><span class="p">];</span>
 
-  <span class="c">% plot the variables of interest versus time</span>
-  <span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">theta</span><span class="p">);</span>
-  <span class="n">ylabel</span><span class="p">(</span><span class="s">'\theta [deg]'</span><span class="p">);</span>
-  <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+<span class="c">% apply a constant voltage (throttle applies 50 volts)</span>
+<span class="n">V</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span>  <span class="c">% voltage [V]</span>
 
-  <span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-  <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">);</span>
-  <span class="n">ylabel</span><span class="p">(</span><span class="s">'\omega [deg/s]'</span><span class="p">);</span>
-  <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+<span class="c">% create an anoymous function to pass in inputs and parameters</span>
+<span class="n">rhs</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="n">eval_ebike_rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 
-  <span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
-  <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
-  <span class="n">ylabel</span><span class="p">(</span><span class="s">'i [A]'</span><span class="p">);</span>
-  <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+<span class="c">% integrate the dynamic equations over 60 seconds with the initinal</span>
+<span class="c">% condition at zero</span>
+<span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 
-  <span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-  <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
-  <span class="n">ylabel</span><span class="p">(</span><span class="s">'x [m]'</span><span class="p">);</span>
-  <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+<span class="c">% extract the states from the integration results</span>
+<span class="n">theta</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">omega</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">i</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">4</span><span class="p">);</span>
 
-  <span class="n">R</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>  <span class="c">% wheel radius [m] (change in rhs function too)</span>
-  <span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-  <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">omega</span><span class="o">*</span><span class="n">R</span><span class="p">);</span>
-  <span class="n">ylabel</span><span class="p">(</span><span class="s">'v [m/s]'</span><span class="p">);</span>
-  <span class="n">xlabel</span><span class="p">(</span><span class="s">'Time [s]'</span><span class="p">);</span>
+<span class="c">% plot the variables of interest versus time</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;\theta [deg]&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-<span class="k">end</span>
-<span class="k">
-function</span><span class="w"> </span>dy <span class="p">=</span><span class="w"> </span><span class="nf">rhs</span><span class="p">(</span>t, y<span class="p">)</span><span class="w">
-  </span><span class="c">% evaluates the right hand side of the first order ordinary differential equations</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;\omega [deg/s]&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-  <span class="c">% define numerical constants</span>
-  <span class="n">m</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>  <span class="c">% mass [kg]</span>
-  <span class="n">R</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>  <span class="c">% wheel radius [m]</span>
-  <span class="n">Cr</span> <span class="p">=</span> <span class="mf">0.005</span><span class="p">;</span>  <span class="c">% coefficient of rolling resistance [unitless]</span>
-  <span class="n">Cd</span> <span class="p">=</span> <span class="mf">1.1</span><span class="p">;</span>  <span class="c">% coefficient of drag [unitless]</span>
-  <span class="n">rho</span> <span class="p">=</span> <span class="mf">1.2</span><span class="p">;</span>  <span class="c">% density of air [kg/m^3]</span>
-  <span class="n">A</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% frontal area [m^2]</span>
-  <span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acceleration due to gravity [m/s^2]</span>
-  <span class="n">J</span> <span class="p">=</span> <span class="mf">0.24</span><span class="p">;</span>  <span class="c">% wheel moment of inertia [kg m^2]</span>
-  <span class="n">bm</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>  <span class="c">% hub friction coefficient [N*m*s]</span>
-  <span class="n">Kt</span> <span class="p">=</span> <span class="mf">1.5</span><span class="p">;</span>  <span class="c">% motor torque constant [N*m/A]</span>
-  <span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% motor inductance [H]</span>
-  <span class="n">Rw</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% motor winding resistance [Ohm]</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;i [A]&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-  <span class="c">% extract the states</span>
-  <span class="n">theta</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="n">omega</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-  <span class="nb">i</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-  <span class="n">x</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;x [m]&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-  <span class="c">% apply a constant voltage (throttle applies 50 volts)</span>
-  <span class="n">V</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span>  <span class="c">% voltage [V]</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">omega</span><span class="o">*</span><span class="n">R</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;v [m/s]&#39;</span><span class="p">);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-  <span class="c">% evaluate the right hand side of the ode's</span>
-  <span class="n">v</span> <span class="p">=</span> <span class="n">omega</span><span class="o">*</span><span class="n">R</span><span class="p">;</span>  <span class="c">% v-omega relationship from no-slip tires</span>
-
-  <span class="n">Fd</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">Cd</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">v</span>^<span class="mi">2</span><span class="p">;</span>  <span class="c">% drag force [N]</span>
-  <span class="n">Fr</span> <span class="p">=</span> <span class="n">Cr</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="p">;</span>  <span class="c">% rolling resistant [N]</span>
-
-  <span class="c">% four 1st order ordinary differential equations in explicit form</span>
-  <span class="n">thetadot</span> <span class="p">=</span> <span class="n">omega</span><span class="p">;</span>
-  <span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="n">Kt</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">bm</span><span class="o">*</span><span class="n">omega</span> <span class="o">-</span> <span class="n">Fd</span><span class="o">*</span><span class="n">R</span> <span class="o">-</span> <span class="n">Fr</span><span class="o">*</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">R</span>^<span class="mi">2</span><span class="p">);</span>
-  <span class="n">idot</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Rw</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">Kt</span><span class="o">*</span><span class="n">omega</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">;</span>
-  <span class="n">xdot</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
-
-  <span class="c">% store the result in a vector</span>
-  <span class="n">dy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">thetadot</span><span class="p">;</span>
-  <span class="n">dy</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">omegadot</span><span class="p">;</span>
-  <span class="n">dy</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">idot</span><span class="p">;</span>
-  <span class="n">dy</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">=</span> <span class="n">xdot</span><span class="p">;</span>
-
-<span class="k">end</span>
-</pre>
-</div></div>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">V</span><span class="o">*</span><span class="nb">i</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Power [W]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 
   </div>
 </article>
