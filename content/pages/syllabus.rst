@@ -69,12 +69,12 @@ Office Hours
 
 .. class:: table table-striped table-bordered
 
-+----------------------+-----------------------+
-| Jason's Office Hours | Kevins's Office Hours |
-+======================+=======================+
-| Bainer 2095          | Bainer 2021A          |
-| TBA                  | TBA                   |
-+----------------------+-----------------------+
++----------------------+------------------------+
+| Jason's Office Hours | Kevins's Office Hours  |
++======================+========================+
+| Bainer 2095          | Bainer 2121A (CAE Lab) |
+| TBA                  | TBA                    |
++----------------------+------------------------+
 
 If it is impossible to make office hours, schedule an appointment with Jason by
 checking his `work calendar`_ and select a free time between 8:00 AM and 6:30
@@ -109,6 +109,9 @@ We will use the following book as the official and required textbook:
    Dean C. Karnopp, Donald L. Margolis, and Ronald C. Rosenberg, 5th Edition,
    2012, Wiley, ISBN 978-0-4708-8908-4 [`Book Information`_]
 
+If connected through the UC Davis network, you can download a copy of the book
+for free from the above link.
+
 Past editions of the book are likely sufficient but the problem sets will not
 necessarily match. We will also provide you with free online resources and
 other supplementary materials.
@@ -121,8 +124,8 @@ Assignments & Grades
 Grades will be available in the canvas.ucdavis.edu_ grade book periodically
 throughout the course along with class statistics. Check the website on a
 regular basis to gauge your performance. Keep in mind that **15% is deducted
-per business day late** on lab reports. Homework must be turned in on time to
-count.
+per business day late on lab reports. Homework must be turned in on time to
+count.**
 
 .. class:: table table-striped table-bordered
 
@@ -143,7 +146,7 @@ Homework
    out of the total and still get the full 15% credit. Graded on pass/fail for
    showing complete work on all problems. There is no partial credit and
    homework will not be accepted past the due date and time. You should scan or
-   photograph your homeworks and submit them as a single PDF file. Solutions
+   photograph your homework and submit them as a single PDF file. Solutions
    will be shared after the due date on Canvas.
 Lab Reports
    The labs will be done in pairs of two students. Each student is expected to
@@ -155,9 +158,9 @@ Lab Reports
    on a provided rubric. Reports should be typed and submitted as a PDF file to
    Canvas. Each lab report due date will be preceded by multiple lab sessions
    lead by the teaching assistant. Each student is required to attend at least
-   one of the two lab sessions during the two week period before the lab report
-   is due. Attendance will be taken and being absent will count against the
-   pair's grade.
+   one of the lab sessions during the two week period before the lab report is
+   due. Attendance will be taken and being absent will count against the pair's
+   grade.
 Midterm
    You will have to complete a 50 minute in-class midterm exam.
 Final
