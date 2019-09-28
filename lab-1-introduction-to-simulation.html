@@ -188,8 +188,8 @@ and damper are expected to experience, so that they can size the components
 appropriately. The forces can be determined from a force balance:</p>
 <div class="math">
 \begin{align*}
-F_{spring} = K q(t) \\
-F_{damper} = B \left(v_{in}(t) - \frac{p(t)}{M}\right)
+F_{spring}(t) = K q(t) \\
+F_{damper}(t) = B \left(v_{in}(t) - \frac{p(t)}{M}\right)
 \end{align*}
 </div>
 <p>A designer concerned with the comfort of the passengers may like to know what
@@ -197,7 +197,7 @@ the maximum absolute vertical acceleration is of the vehicle. The acceleration
 is a function of the time derivative of a state variable:</p>
 <div class="math">
 \begin{equation*}
-a = \dot{p} / M
+a(t) = \frac{\dot{p}(t)}{M}
 \end{equation*}
 </div>
 </div>
