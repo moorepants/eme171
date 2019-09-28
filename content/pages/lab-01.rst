@@ -139,8 +139,8 @@ appropriately. The forces can be determined from a force balance:
 
 .. math::
 
-   F_{spring} = K q(t) \\
-   F_{damper} = B \left(v_{in}(t) - \frac{p(t)}{M}\right)
+   F_{spring}(t) = K q(t) \\
+   F_{damper}(t) = B \left(v_{in}(t) - \frac{p(t)}{M}\right)
 
 A designer concerned with the comfort of the passengers may like to know what
 the maximum absolute vertical acceleration is of the vehicle. The acceleration
@@ -148,7 +148,7 @@ is a function of the time derivative of a state variable:
 
 .. math::
 
-   a = \dot{p} / M
+   a(t) = \frac{\dot{p}(t)}{M}
 
 Time Steps
 ==========
