@@ -6,6 +6,7 @@
 ./feeds/all.atom.xml
 ./index.html
 ./instructor-guide.html
+./lab-1-introduction-to-simulation.html
 ./modeling-simulation-and-control-of-a-segway.html
 ./ode-integration-best-practices-with-octavematlab.html
 ./resources.html

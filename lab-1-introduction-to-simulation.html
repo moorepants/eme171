@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  Lab 1: Introduction to Simulation | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/lab-1-introduction-to-simulation.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
+  
+  <meta name="description" content="Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given point in time numerically integrate ordinary differential equations with Octave/Matlab's ode45 create complete and legible plots of the resulting input, state, and output …">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      a.async = 1;
+      a.src = g;
+      m = s.getElementsByTagName(o)[0];
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-15966419-8', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  Lab 1: Introduction to Simulation
+</h1>
+      <hr>
+
+<article class="article">
+  <div class="content">
+    <div class="section" id="learning-objectives">
+<h2>Learning Objectives</h2>
+<p>After completing this lab you will be able to:</p>
+<ul class="simple">
+<li>translate ordinary differential equations into a computer function that
+evaluates the equations at any given point in time</li>
+<li>numerically integrate ordinary differential equations with Octave/Matlab's
+<a class="reference external" href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a></li>
+<li>create complete and legible plots of the resulting input, state, and output
+trajectories</li>
+<li>create a report with textual explanations and plots of the simulation</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<p>This lab assignment deals with using engineering computation to numerically
+integrate the differential equations generated from a bond graph model of a
+system. This process of integrating these time dependent equations is called
+&quot;simulation&quot;. Simulation is a powerful tool for studying both linear and
+non-linear systems. In this case, the differential equations are provided to
+you and your job is to translate them into correctly functioning m-files and
+show through plots that the simulation is working as expected. As we move
+forward in the course you will apply this method to other problems.</p>
+<p>On the course website we have created a <a class="reference external" href="{filename}/pages/ode-interation-best-practices.rst">guide that explains how to create a
+working simulation of a simple torque driven pendulum system</a>. Using this guide, your
+goal for this lab is to apply the same methods to a different example problem
+described below.</p>
+</div>
+<div class="section" id="the-example-system">
+<h2>The Example System</h2>
+<p>The schematic of a vibratory system shown below if often used as a simple model
+of a four-wheeled vehicle suspension. The mass <span class="math">\(M\)</span> is one-quarter of the
+total vehicle mass, thus the model is typically called a &quot;quarter car model&quot;.
+The spring represents the effective stiffness between the ground and the
+vehicle chassis at one wheel. The damper represents the shock absorber and the
+effective damping at the wheel. In a real vehicle, the spring and shock
+absorber are nonlinear elements but here they will be considered to behave
+linearly, which is a reasonable assumption for small motions. The wheel mass
+and the tire stiffness are not represented explicitly in this simple model.
+Additionally, the effect of the force due to gravity has been eliminated. To do
+so, the position of the mass is measured from its equilibrium position in a
+gravitational field. The velocity input at the base <span class="math">\(v_{in}\)</span> represents
+the roadway unevenness the vehicle would experience if it were rolling over the
+roadway.</p>
+<p>The figure to the right of the mechanical schematic is a <strong>bond graph</strong>, a
+domain neutral representation of the system components and the associated
+energy flow among the components. You will learn to create bond graphs in this
+course. For now, we provide it for reference but with no explanations beyond
+the fact that you can see some of the same parameters in the mechanical
+schematic that you do in the bond graph.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-01-fig-01.png" style="width: 600px;" />
+<p class="caption"><strong>Figure 1</strong>: Mechanical Schematic of Quarter Car Model (left) and
+equivalent bond graph (right).</p>
+</div>
+<div class="section" id="dynamic-equations">
+<h3>Dynamic Equations</h3>
+<p>After a bond graph is created, the first order linear ordinary differential
+equations that describe how the dynamics of the system change with respect to
+time can be formulated. You will learn how to generate these equations from a
+bond graph in this class. For now, we provide you with the resulting two
+differential equations:</p>
+<div class="math">
+\begin{align*}
+\dot{p}(t) = K q(t) + B \left(v_{in}(t) - \frac{p(t)}{M}\right) \\
+\dot{q}(t) = v_{in}(t) - \frac{p(t)}{M}
+\end{align*}
+</div>
+<p>These equations define expressions for the derivatives of the two state
+variables <span class="math">\(p(t)\)</span> and <span class="math">\(q(t)\)</span> which are described below. Note that
+the time derivatives are the only thing on the left hand side of the equations.
+This form is called the <strong>explicit form</strong>, i.e. there are no time derivatives
+on the right hand side.</p>
+<p>The road motion will be described by its vertical velocity (see below &quot;Inputs&quot;)
+but it will also be useful to see what the bump looks like in terms of vertical
+displacement. To do so, an additional, optional, differential equation can be
+added. If we know <span class="math">\(v_{in}\)</span> we must integrate to get <span class="math">\(y_{in}\)</span> thus:</p>
+<div class="math">
+\begin{equation*}
+\dot{y}_{in}(t) = v_{in}(t)
+\end{equation*}
+</div>
+<p>These three differential equations define the time derivatives of the three
+state variables which are:</p>
+<ul class="simple">
+<li>Momentum of the sprung mass: <span class="math">\(p(t)\)</span></li>
+<li>Change in displacement between the sprung mass and the ground: <span class="math">\(q(t)\)</span></li>
+<li>Vertical displacement of the road: <span class="math">\(y_{in}(t)\)</span></li>
+</ul>
+</div>
+<div class="section" id="parameters">
+<h3>Parameters</h3>
+<p>This model has three constant parameters associated with the three components.
+Values for these parameters that represent a light car are:</p>
+<ul class="simple">
+<li>Quarter car mass: <span class="math">\(M = 267 \textrm{ kg}\)</span></li>
+<li>Linear shock absorber damping coefficient: <span class="math">\(B = 1398 \textrm{ Nsm}^{-1}\)</span></li>
+<li>Linear spring stiffness: <span class="math">\(K = 1.87\times 10^4 \textrm{ Nm}^{-1]}\)</span></li>
+</ul>
+</div>
+<div class="section" id="inputs">
+<h3>Inputs</h3>
+<p>We want the velocity input <span class="math">\(v_{in}\)</span> input to represent a triangular bump
+for the wheel to move over. Since we're describing the velocity input, not
+displacement, it will take the form of two steps: moving upward for a time,
+then downward at the same rate for the same duration. Integrating a constant
+gives a sloped line, i.e. <span class="math">\(\int c dx = cx\)</span>. Start with an amplitude of
+the step as <span class="math">\(A = 0.2 \textrm{ms}^{-1}\)</span> and the steps described by:</p>
+<div class="math">
+\begin{equation*}
+v_{in}(t) =
+\begin{cases}
+  A &amp; \text{if}\ 0.5s \leq t &lt; 1.0s \\
+  -A &amp; \text{if}\ 1.0s \leq t &lt; 1.5s \\
+  0 &amp; \text{otherwise} \\
+\end{cases}
+\end{equation*}
+</div>
+</div>
+<div class="section" id="outputs">
+<h3>Outputs</h3>
+<p>A suspension designer may be interested in knowing how much force the spring
+and damper are expected to experience, so that they can size the components
+appropriately. The forces can be determined from a force balance:</p>
+<div class="math">
+\begin{align*}
+F_{spring} = K q(t) \\
+F_{damper} = B \left(v_{in}(t) - \frac{p(t)}{M}\right)
+\end{align*}
+</div>
+<p>A designer concerned with the comfort of the passengers may like to know what
+the maximum absolute vertical acceleration is of the vehicle. The acceleration
+is a function of the time derivative of a state variable:</p>
+<div class="math">
+\begin{equation*}
+a = \dot{p} / M
+\end{equation*}
+</div>
+</div>
+</div>
+<div class="section" id="time-steps">
+<h2>Time Steps</h2>
+<p>You will also have to decide on how long your simulation will run and at what
+time resolution you should report values of the states, inputs, and outputs. To
+help in deciding on computing time steps and the total time for a computing
+run, it is useful to compute natural frequencies and damping ratios.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Natural_frequency">natural frequency</a> of
+this system is:</p>
+<div class="math">
+\begin{equation*}
+\omega_n = \sqrt{\frac{K}{M}}
+\end{equation*}
+</div>
+<p>This can be expressed in cycles per second (Hertz) instead of radians per
+second with:</p>
+<div class="math">
+\begin{equation*}
+f_n = \frac{\omega_n}{2\pi}
+\end{equation*}
+</div>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Damping_ratio">damping ratio</a> of this
+system is defined as:</p>
+<div class="math">
+\begin{equation*}
+\zeta = \frac{B}{2\sqrt{MK}}
+\end{equation*}
+</div>
+<p>Use these values to determine how long your simulation should last such that at
+least five oscillations occur or the oscillation magnitude is reduced to
+approximately 1/10 maximum. Also use them to choose a time resolution (spacing
+between time steps) such that you plot at least ten time points for the
+shortest duration oscillation.</p>
+</div>
+<div class="section" id="deliverables">
+<h2>Deliverables</h2>
+<p>Submit a report as a single PDF file to Canvas by the due date that addresses
+the following items:</p>
+<ol class="arabic">
+<li><p class="first">Create a function defined in an m-file that evaluates the right hand side of
+the ODEs, i.e. evaluates the state derivatives. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#defining-the-state-derivative-function">Defining the State
+Derivative Function</a> for an explanation.</p>
+</li>
+<li><p class="first">Create a function defined in an m-file that generates the bump in the
+road. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#time-varying-inputs">Time Varying Inputs</a> for an explanation.</p>
+</li>
+<li><p class="first">Create a function defined in an m-file that calculates two outputs: force
+applied to the damper and force applied to the spring. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-other-than-the-states">Outputs Other
+Than the States</a> for an explanation.</p>
+</li>
+<li><p class="first">Create a function defined in an m-file that calculates the vertical
+acceleration. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-involving-state-derivatives">Outputs Involving State Derivatives</a></p>
+</li>
+<li><p class="first">Create a script in an m-file that utilizes the above four functions to
+simulate the suspension system traversing the bump in the road. This should
+setup the constants, integrate the dynamics equations, and plot each state,
+input, and output versus time. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#integrating-the-equations">Integrating the State Equations</a> for an
+explanation.</p>
+</li>
+<li><p class="first">Show the effects that removing the damper, i.e. setting <span class="math">\(B=0\)</span>, has on
+traversing the bump. Use plots and written text to describe the differences
+in the motion.</p>
+</li>
+<li><p class="first">Choose one of the following road inputs and create an m-file that generates
+this input:</p>
+<ol class="arabic simple">
+<li>A sinusoidal undulating road input with velocity amplitude of 0.1 meters per
+second, at the natural frequency: <span class="math">\(\sqrt{K/M}\)</span>.</li>
+<li>Driving over a 20 cm curb.</li>
+<li>A random roadway with bumps described by a velocity input uniformly
+distributed between -0.1 and 0.1 meters per second.</li>
+</ol>
+<p>Plot the resulting simulation and describe the motion and what you learn
+from it.</p>
+</li>
+</ol>
+<div class="section" id="notes-on-creating-a-quality-submission">
+<h3>Notes On Creating A Quality Submission</h3>
+<ul class="simple">
+<li>Include a title page with the lab assignment name &amp; number, course, quarter,
+year, date, your name, and student ID.</li>
+<li>Use both text and plots to explain your work and findings.</li>
+<li>Include your code in the report. Show each function and the main script.
+These should be monospaced font formatting and ideally syntax highlighted.
+You can use the publish function in Octave and Matlab to export code files to
+nice formats. See
+<a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html</a>
+for more information.</li>
+<li>Your code should be readable by someone else. Include comments, useful
+variable names, and follow good style recommendations, for example see this
+<a class="reference external" href="http://www.datatool.com/downloads/MatlabStyle2%20book.pdf">guide</a>. Imagine that you will come back to this in 10 years and you want to
+be able to understand it quickly.</li>
+<li>All functions should have a &quot;help&quot; description written in the standard style
+describing the inputs and outputs of the function. This <a class="reference external" href="https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template">template</a> is useful
+(click the function tab).</li>
+<li>All plots should have:<ul>
+<li>Axes labeled with units</li>
+<li>Axes limits set to show the important aspects of the graph</li>
+<li>Fonts large enough to read (&gt;= 8pt)</li>
+<li>A figure number, short title, and caption explaining what the figure is</li>
+<li>Legends to describe multiple lines on a single plot</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+</article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
