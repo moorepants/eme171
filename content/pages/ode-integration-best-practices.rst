@@ -384,25 +384,28 @@ outputs. The following file, |integrate_with_output|_, shows how this is done.
 .. code-include:: ../scripts/best-practices/integrate_with_output.m
    :lexer: matlab
 
-It is also worth noting that Octave/Matlab code can generally be written to
-avoid loops, like in the above example. Slight adjustments to the output
-function will allow batch calculations of the outputs, as shown below in
-|eval_output_vectorized|_:
+.. topic:: Vectorizing functions
+   :class: alert alert-info
 
-.. |eval_output_vectorized| replace:: ``eval_output_vectorized.m``
-.. _eval_output_vectorized: {filename}/scripts/best-practices/eval_output_vectorized.m
+   It is also worth noting that Octave/Matlab code can generally be written to
+   avoid loops, like in the above example. Slight adjustments to the output
+   function will allow batch calculations of the outputs, as shown below in
+   |eval_output_vectorized|_:
 
-.. code-include:: ../scripts/best-practices/eval_output_vectorized.m
-   :lexer: matlab
+   .. |eval_output_vectorized| replace:: ``eval_output_vectorized.m``
+   .. _eval_output_vectorized: {filename}/scripts/best-practices/eval_output_vectorized.m
 
-Now, instead of the for loop, you can type:
+   .. code-include:: ../scripts/best-practices/eval_output_vectorized.m
+      :lexer: matlab
 
-.. code-block:: matlab
+   Now, instead of the for loop, you can type:
 
-   ys = eval_output_vectorized(ts, xs, nan, p);
+   .. code-block:: matlab
 
-These batch, or "vectorized", calculations can be significantly faster than the
-loops, if that is desirable.
+      ys = eval_output_vectorized(ts, xs, nan, p);
+
+   These batch, or "vectorized", calculations can be significantly faster than
+   the loops, if that is desirable.
 
 Outputs Involving State Derivatives
 ===================================

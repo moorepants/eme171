@@ -25,7 +25,7 @@ function ys = eval_output_vectorized(ts, xs, rs, p)
     theta = xs(:, 1);  % size n
     omega = xs(:, 2);  % size n
 
-    % unpacke the parameters
+    % unpack the parameters
     m = p(1);
     l = p(2);
     g = p(3);
