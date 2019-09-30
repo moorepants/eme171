@@ -13,8 +13,11 @@ after each lecture. **Check the schedule periodically for changes.**
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============
 01 W-Sep-25    Introduction                          - Read 1.1-1.3
-                                                     - `Script 01`_
+                                                     - `Slides 01`_
+                                                     - `Notes 01`_
 02 F-Sep-27    Introduction                          - Read 1.4-1.6
+                                                     - `Script 02`_
+                                                     - `Notes 02`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 03 M-Sep-30    Multiport Systems                     - Read 2.1-2.2             HW #1: 1.6, 1.7, 1.8
 04 W-Oct-02    Multiport Systems                     - Read 2.3-2.4
@@ -60,25 +63,9 @@ NA T-Nov-12                                                                     
 NA R-Dec-12    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
 
-.. _Notes 01: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l01.pdf
-.. _Notes 02: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l02.pdf
-.. _Notes 03: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l03.pdf
-.. _Notes 04: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l04.pdf
-.. _Notes 05: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l05.pdf
-.. _Notes 06: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l06.pdf
-.. _Notes 07: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l07.pdf
-.. _Notes 08: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l08.pdf
-.. _Notes 09: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l09.pdf
-.. _Notes 10: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l10.pdf
-.. _Notes 12: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l12.pdf
-.. _Notes 13: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l13.pdf
-.. _Notes 14: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l14.pdf
-.. _Notes 15: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l15.pdf
-.. _Notes 16: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l16.pdf
-.. _Notes 17: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l17.pdf
-.. _Notes 18: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l18.pdf
-.. _Notes 19: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l19.pdf
-.. _Notes 20: https://objects-us-east-1.dream.io/eme171/lecture-notes/2019fall/eme171-l20.pdf
-.. _Script 01: {filename}/pages/ebike-simulation.rst
-.. _Script 05: {filename}/pages/dc-motor-simulation.rst
-.. _Script 20: {filename}/pages/segway-simulation.rst
+.. _Slides 01: https://objects-us-east-1.dream.io/eme171/2019f/slides-l01.pdf
+
+.. _Notes 01: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l01.pdf
+.. _Notes 02: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l02.pdf
+
+.. _Script 02: {filename}/pages/ebike-simulation.rst
