@@ -10,9 +10,10 @@ ts = linspace(0, 10, 500);
 
 % create a vector to hold all the constants, be careful with units!
 % size 3x1 constant parameter vector.
-p = [1.00;   % m, mass in kg
-     1.00;   % l, length in m
-     9.81];  % g, acc due to gravity in m/s^2
+m = 1.00;  % mass in kg
+l = 1.00;  % length in m
+g = 9.81;  % acc due to gravity in m/s^2
+p = [m; l; g];  % 3x1 vector parameter
 
 % create a vector to hold all of the inputs (constant torque in this case),
 % size 1x1

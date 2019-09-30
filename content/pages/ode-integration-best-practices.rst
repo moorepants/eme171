@@ -70,8 +70,17 @@ simple pendulum are:
 
 .. math::
 
-   \dot{\theta} & = \omega \\
-   \dot{\omega} & = \frac{-mgl\sin(\theta) + \tau}{ml^2}
+   \mathbf{f}
+   =
+   \begin{bmatrix}
+     \dot{\theta} \\
+     \dot{\omega}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+     \omega \\
+     \frac{-mgl\sin(\theta) + \tau}{ml^2}
+   \end{bmatrix}
 
 - The state vector is :math:`\mathbf{x} = [\theta \quad \omega]^T`, where
   :math:`\theta` is the pendulum angle and :math:`\omega` is the angular rate.
@@ -107,6 +116,14 @@ one of the available Octave/Matlab integrators or one of your own design:
 
 .. code-include:: ../scripts/best-practices/integrate.m
    :lexer: matlab
+
+.. topic:: Only define numbers once!
+   :class: alert alert-warning
+
+   Note that the constant parameters are only defined in this file. This is on
+   purpose. If you define numerical values redundantly in multiple files and
+   functions you significantly increase your chances of having an erroroneous
+   output due to forgetting to change them all when you make edits.
 
 You may be wondering what the ``@`` symbol specifically means. This designates
 an *anonymous function* and is required by ``ode45()``. The following section
