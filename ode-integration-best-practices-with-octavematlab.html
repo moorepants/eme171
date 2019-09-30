@@ -127,10 +127,19 @@ evaluates <span class="math">\(\mathbf{f}\)</span>.</p>
 <p>For example, the two explicit first order ordinary differential equations of a
 simple pendulum are:</p>
 <div class="math">
-\begin{align*}
-\dot{\theta} &amp; = \omega \\
-\dot{\omega} &amp; = \frac{-mgl\sin(\theta) + \tau}{ml^2}
-\end{align*}
+\begin{equation*}
+\mathbf{f}
+=
+\begin{bmatrix}
+  \dot{\theta} \\
+  \dot{\omega}
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \omega \\
+  \frac{-mgl\sin(\theta) + \tau}{ml^2}
+\end{bmatrix}
+\end{equation*}
 </div>
 <ul class="simple">
 <li>The state vector is <span class="math">\(\mathbf{x} = [\theta \quad \omega]^T\)</span>, where
@@ -204,9 +213,10 @@ one of the available Octave/Matlab integrators or one of your own design:</p>
 
 <span class="c">% create a vector to hold all the constants, be careful with units!</span>
 <span class="c">% size 3x1 constant parameter vector.</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.00</span><span class="p">;</span>   <span class="c">% m, mass in kg</span>
-     <span class="mf">1.00</span><span class="p">;</span>   <span class="c">% l, length in m</span>
-     <span class="mf">9.81</span><span class="p">];</span>  <span class="c">% g, acc due to gravity in m/s^2</span>
+<span class="n">m</span> <span class="p">=</span> <span class="mf">1.00</span><span class="p">;</span>  <span class="c">% mass in kg</span>
+<span class="n">l</span> <span class="p">=</span> <span class="mf">1.00</span><span class="p">;</span>  <span class="c">% length in m</span>
+<span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acc due to gravity in m/s^2</span>
+<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="n">m</span><span class="p">;</span> <span class="n">l</span><span class="p">;</span> <span class="n">g</span><span class="p">];</span>  <span class="c">% 3x1 vector parameter</span>
 
 <span class="c">% create a vector to hold all of the inputs (constant torque in this case),</span>
 <span class="c">% size 1x1</span>
@@ -253,6 +263,13 @@ one of the available Octave/Matlab integrators or one of your own design:</p>
 
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">)</span>
 </pre></div>
+<div class="alert alert-warning topic">
+<p class="topic-title first">Only define numbers once!</p>
+<p>Note that the constant parameters are only defined in this file. This is on
+purpose. If you define numerical values redundantly in multiple files and
+functions you significantly increase your chances of having an erroroneous
+output due to forgetting to change them all when you make edits.</p>
+</div>
 <p>You may be wondering what the <tt class="docutils literal">&#64;</tt> symbol specifically means. This designates
 an <em>anonymous function</em> and is required by <tt class="docutils literal">ode45()</tt>. The following section
 explains what an anonymous function is along with why and how it can be used.</p>
