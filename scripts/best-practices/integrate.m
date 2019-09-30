@@ -1,12 +1,13 @@
 %% Script that demonstrates basic integration of ODEs.
 
-% create a vector with the initial state values, size 2x1
-x0 = [5*pi/180;  % theta0, angle in rad
-      0];  % omega0, angular rate in rad/s
-
 % create time values that you desire a solution at, size 1x500
 % for example, 0 to 10 seconds with 500 equally spaced time values
 ts = linspace(0, 10, 500);
+
+% create a vector with the initial state values, size 2x1
+theta0 = 5*pi/180;  % angle in rad
+omega0 = 0.0;  % angular rate in rad/s
+x0 = [theta0; omega0];  % 2x1 vector
 
 % create a vector to hold all the constants, be careful with units!
 % size 3x1 constant parameter vector.

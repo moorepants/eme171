@@ -12,7 +12,7 @@ function y = eval_output(t, x, r, p)
     %   p - Constant parameter vector, size px1 were p is the number of
     %       parameters.
     % Outputs:
-    %   t - Output vector at time t, size qx1 where q is the number of
+    %   y - Output vector at time t, size qx1 where q is the number of
     %       outputs.
 
     % unpacke the states
