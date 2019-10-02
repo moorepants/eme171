@@ -69,12 +69,14 @@ Office Hours
 
 .. class:: table table-striped table-bordered
 
-+----------------------+------------------------+
-| Jason's Office Hours | Kevins's Office Hours  |
-+======================+========================+
-| Bainer 2095          | Bainer 2121A (CAE Lab) |
-| TBA                  | TBA                    |
-+----------------------+------------------------+
++----------------------+--------------------------+
+| Jason's Office Hours | Kevins's Lab Sessions    |
++======================+==========================+
+| - Bainer 2095        | - Bainer 2121A (CAE Lab) |
+| - W, R 1:10-2:00 PM  | - T 6:10-7:00 PM         |
+|                      | - R 9:00-9:50 AM         |
+|                      | - F 2:10-3:00 PM         |
++----------------------+--------------------------+
 
 If it is impossible to make office hours, schedule an appointment with Jason by
 checking his `work calendar`_ and select a free time between 8:00 AM and 6:30
