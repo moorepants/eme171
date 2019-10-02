@@ -18,6 +18,10 @@ Editing Guide
   hosting site. Ask Jason about using his Dreamhost DreamObject bucket. He'll
   set it up for multi-user access when needed. Do not commit binary assets to
   this repository.
+- You can edit and add rst files directly in the contents directory using the
+  Github interface. The small pencil on files lets you edit and submit pull
+  requests. Just above the directory view has buttons for adding files. See 
+  these instructions: https://help.github.com/en/articles/editing-files-in-your-repository
 
 .. _Pelican documentation: http://docs.getpelican.com/en/stable/
 .. _Sphinx reStructuredText primer: http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
