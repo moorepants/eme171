@@ -101,6 +101,16 @@ state variables which are:
 - Change in displacement between the sprung mass and the ground: :math:`q(t)`
 - Vertical displacement of the road: :math:`y_{in}(t)`
 
+Initial Conditions
+------------------
+
+Initial conditions are the starting point values for the integrated variables
+in the systems. This system has three state variables, so there are three
+initial conditions. For this lab, all the initial conditions are zero. See
+`Integrating the State Equations`_ for how to set up the initial condition vector.
+Make sure that your initial conditions are arranged in the same order as your
+state variables.
+
 Parameters
 ----------
 
