@@ -16,6 +16,13 @@ After completing this lab you will be able to:
 
 .. _ode45: https://www.mathworks.com/help/matlab/ref/ode45.html
 
+Grading Rubric
+==============
+
+State derivative, input, and output functions translated
+Numerically integrated
+
+
 Introduction
 ============
 
