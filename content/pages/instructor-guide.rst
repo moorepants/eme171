@@ -39,10 +39,12 @@ Course Website
 --------------
 
 All of the public information about the course should go on the `course
-website`_. The website source is at https://github.com/moorepants/eme171.
-You'll need to make a GitHub account and share your user name with Jason to get
-access to modify the website and permission to edit the GitHub issues. See the
-README for instructions on editing and viewing the site locally.
+website`_. The website source is at https://github.com/moorepants/eme171. Jason
+is an advocate for open access teaching materials and attempts to make as much
+of his materials available in this way. You'll need to make a GitHub account
+and share your user name with Jason to get access to modify the website and
+permission to edit the GitHub issues. See the README for instructions on
+editing and viewing the site locally.
 
 .. _course website: http://moorepants.github.io/eme171/
 
@@ -65,17 +67,20 @@ account preferences.
 Canvas's SpeedGrader system will be used to grade submitted assignments
 (homework and lab reports). Rubrics will be added to each assignment and
 SpeedGrader allows you to fill out the rubric for each group's submission and
-add comments to the document for the students to see.
+add comments to the document for the students to see. We try to use electronic
+submission and grading as much as possible to collect data for our and the
+department's program assessment needs.
 
 .. _Canvas: http://canvas.ucdavis.edu
 
 Google Drive
 ------------
 
-We will use a Google Drive for collaborative grading and sharing information
-among the instructors. This should not be shared outside of the instructors as
-it will have FERPA protected information. **You must be extremely careful that
-you do not share any document in this drive directory with any student.**
+We will use a Google Drive folder for collaborative grading and sharing
+information among the instructors. This folder should not be shared outside of
+the instructors as it will have FERPA protected information. **You must be
+extremely careful that you do not share any document in this drive directory
+with any student.**
 
 There will be two Google Drive folders. One private to instructors and one
 meant for sharing with students and general public. Both folders will have only
@@ -95,10 +100,11 @@ page`_ for anything that we need to note for the future. **This is publicly
 veiwable so no private information should be shared here.** These can be things
 that need to fixed on the website, ideas for improving the course, things that
 suck about the course, etc. Where appropriate, use the assignee and labels
-features to help keep issues organized and easy to filter.
+features to help keep issues organized and easy to filter. Both TAs and the
+instructor are responsible for maintaining and addressing this list.
 
-You're also encouraged to add to this guide to help improve the operation of
-the course in the future.
+Both TAs and instructors are expected to add to this instructor guide to help
+improve the operation of the course in the future.
 
 At the end of each quarter, all instructors should meet to reflect on how the
 course/quarter went. Notes from this meeting should be added to the `Github
@@ -123,11 +129,11 @@ Lab assignments
 Groups
 ------
 
-Students are in groups of 2 for the lab assignments. The first part, they are
-randomly chosen in the first session. TA/Instructor has to make sure to keep
-track of the people who drop/add to the class later since groups might need
-adjustments (Rooster is more updated than the Canvas website). Create canvas
-groups letter A through Z so that assignments can be assigned to groups.
+Students will be in groups of 2 for the lab assignments 2 through 5. Every
+student must turn in lab 1. The TA should create canvas groups letter A through
+Z for random pairs of students before the second lab and announce these to the
+students. The students can see and message their partner when they log in to
+canvas.
 
 For the second part of the class (lab 4 and 5), students self organize to form
 groups of 2. If one student remains without a group, the student should be
@@ -156,26 +162,6 @@ Share this link:
 
 https://community.canvaslms.com/docs/DOC-10542-4212352349
 
-MATLAB publishing
------------------
-
-For all the lab except lab 5, students used the MATLAB publish function to
-generate their report. For lab 5, students were asked to use Matlab Live
-Script. It is similar to Jupyter Notebook for Python, Mathematica, and Maple
-environment. You can make interactive reports with it and export your report to
-.pdf and .html. Here are two tutorials to get you started:
-
-- `Link <https://www.mathworks.com/products/matlab/live-editor.html>`__,
-- `Link. <https://www.mathworks.com/videos/using-the-live-editor-117940.html>`__
-
-If you have MATLAB 2018a or above, you can also add interactive controls to
-your scripts, e.i. as variable changes, the following plots and simulations
-change as well (More information, `here
-<https://www.mathworks.com/help/matlab/matlab_prog/add-interactive-controls-to-a-live-script.html>`__).
-
-For the future, this can be the main method instead of using the publish
-function.
-
 Homeworks
 =========
 
@@ -184,7 +170,7 @@ have up to two excuses). No late submission is accepted for the homework. HWs
 are graded in less than a week after submission. HW solutions are posted after
 the deadline (the solution comes from the solution manual and latex-typed
 solutions but has to be cut to have ONLY those specific questions asked in the
-assignment).
+assignment). The TA is responsible for all these tasks.
 
 HW6: This is a custom problem. Make sure everyone attempts to derive the bond
 graph on their own for full credit. (bond graph of Lab 3, motocross)
@@ -200,7 +186,7 @@ Academic Integrity
 
 HWs and Labs should have unique solutions and the TA has to make sure that the
 HWs are not copied from the solution manual by comparing them side-by-side.
-Prof. Moore’s rule is that they have to turn in a “unique” solution. This means
+Prof. Moore’s rule is that they have to turn in a "unique" solution. This means
 no copying from manuals and no copying from other students.
 
 In case of finding potential cheating on HW/Labs: 1. List each HW that looks
@@ -208,6 +194,7 @@ like the solution manual for each student. 2. Take a screenshot of the manual
 beside their submission for evidence (side-by-side comparison). 3. Put the
 screenshots in a folder on the drive and have the filenames be
 lastname-firstname-hw02.png to organize. Do not discuss this with any students.
+Report this to the instructor.
 
 Answering Questions Via Email/Discussions/Etc.
 ==============================================
@@ -262,83 +249,103 @@ Week 0
 Week 1
 ------
 
--  [TA] Send out whenisgood poll for lab/OH times, due date Friday.
--  [TA] Select three 1 hour lab periods that are at optimal times, report how
-   many students are unlikely to make those times and discuss with Jason. Need
-   to book the CAE lab for these.
--  [TA] Prepare Lab 1 assignment on Canvas and post by Friday.
+- [TA] Send out whenisgood.net poll for lab/OH times, due date Friday.
+- [TA] Select three 1 hour lab periods that are at optimal times, report how
+  many students are unlikely to make those times and discuss with Jason. Need
+  to book the CAE lab for these. This should be announced the day lab 1 is
+  released, if possible.
+- [TA] Review Lab 1 assignment, make any edits/updates.
+- [Instructor] Review Lab 1 assignment, make any edits/updates, and post by Friday.
 
 Week 2
 ------
 
--  [TA] Setup Canvas groups for each lab team pair by Monday (use for
-   lab assignments).
--  [TA] Make an announcement on Canvas with the selected lab times and
-   update the website to reflect these times.
--  [TA] Post solutions to HW 1 on Tuesday.
--  [TA] Grade homework 1 within a week of submission.
+- [TA] Post solutions to HW 1 the day after submission.
+- [TA] Grade homework 1 within a week of submission.
+- [TA] Make an announcement on Canvas with the selected lab times and update
+  the website to reflect these times (early in week as possible).
+- [TA] Review the ODE best practices and prepare to teach it during the lab
+  sessions.
+- [TA] Hold lab sessions.
 
 Week 3
 ------
 
--  [TA] Post solutions to HW 2 on Tuesday.
--  [TA] Grade homework 2 within a week of submission.
--  [TA] Post and publish lab 2 to Canvas on Friday.
--  [TA] Make sure all the groups all 2-3 person
+- [TA] Post solutions to HW 2 the day after submission.
+- [TA] Grade homework 2 within a week of submission.
+- [TA] Setup random Canvas groups (pairs) for each lab team and release when
+  lab 2 is released.
+- [TA] Review Lab 2 assignment, make any edits/updates.
+- [Instructor] Review Lab 2 assignment, make any edits/updates, and post by Friday.
+- [TA] Review numerical integration materials (teach Euler's method).
+- [TA] Hold lab sessions.
 
 Week 4
 ------
 
--  [TA] Create Rubric for lab 1
--  [TA] Grade lab 1 within one week of the submission.
--  [TA] Post solutions to HW3
--  [TA] Grade HW3
+- [TA] Post solutions to HW 3 the day after submission.
+- [TA] Grade homework 3 within a week of submission.
+- [TA] Post the lab 1 solution 1 week after the due date (since student can
+  turn this in late).
+- [TA] Grade lab 1 within one week of the submission.
+- [TA] Grade HW3
+- [TA] Hold lab sessions.
 
 Week 5
 ------
 
--  [TA] Grade lab 2
--  [TA] Grade HW 4
--  [TA] Answer questions for midterm
+- [TA] Post solutions to HW 4 the day after submission.
+- [TA] Grade homework 4 within a week of submission.
+- [TA] Grade lab 2
+- [TA] Grade HW 4
+- [TA] Answer questions for midterm
+- [TA] Review Lab 2 assignment, make any edits/updates.
+- [Instructor] Review Lab 2 assignment, make any edits/updates, and post by Friday.
+- [TA] Hold lab sessions.
 
 Week 6
 ------
 
--  [TA] Grade midterm
--  [TA] Grade HW 5
--  [TA] Post solution to HW 5
--  [TA] Grade lab 2
+- [ALL] Grade midterm
+- [TA] Grade lab 1 within one week of the submission.
+- [TA] Hold lab sessions.
 
 Week 7
 ------
 
--  [TA] Polish and pre-release lab 4
--  [TA] Grade HW 6
--  [TA] Review all the HWs for potential cheaters
--  [TA] Midterm reflection points
--  [TA] Post solution to HW 6
+- [TA] Post solutions to HW 4 the day after submission.
+- [TA] Grade homework 4 within a week of submission.
+- [TA] Polish and pre-release lab 4
+- [TA] Grade HW 6
+- [TA] Review all the HWs for potential cheaters
+- [TA] Midterm reflection points
+- [TA] Post solution to HW 6
+- [TA] Hold lab sessions.
 
 Week 8
 ------
 
--  [TA] Grade Lab 3
--  [TA] Solution to Lab 4
--  [TA] Complete cheaters sheet
--  [TA] Post solution to HW 7
+- [TA] Grade Lab 3
+- [TA] Solution to Lab 4
+- [TA] Complete cheaters sheet
+- [TA] Post solution to HW 7
+- [TA] Hold lab sessions.
 
 Week 9
 ------
 
--  [TA] Grade Lab 4
--  [TA] Grade HW 8
--  [TA] Post solutions to HW 8
--  [TA] Post solutions to Lab 3 and 4
+- [TA] Grade Lab 4
+- [TA] Grade HW 8
+- [TA] Post solutions to HW 8
+- [TA] Post solutions to Lab 3 and 4
+- [TA] Hold lab sessions.
 
 Week 10
 -------
 
--  [TA] Grade Lab 5
--  [TA] Grade HW 9
--  [TA] Post solution to HW 9
--  [TA] Finalize the instructor guide
--  [TA] Hold additional office hour for the final exam
+- [TA] Grade Lab 5
+- [TA] Grade HW 9
+- [TA] Post solution to HW 9
+- [TA] Finalize the instructor guide
+- [TA] Hold additional office hour for the final exam
+- [TA] Hold lab sessions.
