@@ -591,8 +591,8 @@ pendulum bob and the energy, kinetic and potential. The equations below
 describe these computations:</p>
 <div class="math">
 \begin{align*}
-x_p = l \cos(\theta) \\
-y_p = l \sin(\theta) \\
+x_p = l \sin(\theta) \\
+y_p = l - l \cos(\theta) \\
 E_k = ml^2\omega/2 \\
 E_p = mghy_p
 \end{align*}
@@ -626,8 +626,8 @@ operations.</p>
     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 
     <span class="c">% calculate the Cartesian position of the pendulum bob</span>
-    <span class="n">x_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
-    <span class="n">y_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+    <span class="n">x_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+    <span class="n">y_pos</span> <span class="p">=</span> <span class="n">l</span> <span class="o">-</span> <span class="n">l</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>  <span class="c">% position relative to stable equilibrium</span>
 
     <span class="c">% calculate the kinetic and potential energies</span>
     <span class="n">kinetic_energy</span> <span class="p">=</span> <span class="n">m</span><span class="o">*</span><span class="n">l</span>^<span class="mi">2</span><span class="o">*</span><span class="n">omega</span>^<span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
@@ -696,8 +696,8 @@ function will allow batch calculations of the outputs, as shown below in
 
     <span class="c">% make sure to use elementwise operators, e.g. .* instead of * for</span>
     <span class="c">% vectorized calculations</span>
-    <span class="n">x_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
-    <span class="n">y_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+    <span class="n">x_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+    <span class="n">y_pos</span> <span class="p">=</span> <span class="n">l</span> <span class="o">-</span> <span class="n">l</span><span class="o">.*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
 
     <span class="n">kinetic_energy</span> <span class="p">=</span> <span class="n">m</span><span class="o">.*</span><span class="n">l</span><span class="o">.^</span><span class="mf">2.</span><span class="o">*</span><span class="n">omega</span><span class="o">.^</span><span class="mf">2.</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
     <span class="n">potential_energy</span> <span class="p">=</span> <span class="n">m</span><span class="o">.*</span><span class="n">g</span><span class="o">.*</span><span class="n">y_pos</span><span class="p">;</span>
