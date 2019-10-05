@@ -20,8 +20,11 @@ after each lecture. **Check the schedule periodically for changes.**
                                                      - `Notes 02`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 03 M-Sep-30    Multiport Systems                     - Read 2.1-2.2             HW #1: 1.6, 1.7, 1.8
+                                                     - `Notes 03`_
 04 W-Oct-02    Multiport Systems                     - Read 2.3-2.4
+                                                     - `Notes 04`_
 05 F-Oct-04    Multiport Systems                     - Read 3.1
+                                                     - `Notes 05`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 06 M-Oct-07    Numerical Simulation                                             HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
 07 W-Oct-09    Causality of Basic Components         - Read 3.2-3.3
@@ -67,5 +70,8 @@ NA R-Dec-12    Final Exam: 3:30 PM
 
 .. _Notes 01: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l01.pdf
 .. _Notes 02: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l02.pdf
+.. _Notes 03: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l03.pdf
+.. _Notes 04: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l04.pdf
+.. _Notes 05: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l05.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
