@@ -64,18 +64,25 @@ in Chemistry 176.
 must tell me in the first week of class (emergencies will be the only
 exception).**
 
-Office Hours
-============
+Office Hours and Labs
+=====================
 
 .. class:: table table-striped table-bordered
 
 +----------------------+--------------------------+
-| Jason's Office Hours | Kevins's Lab Sessions    |
+| Jason's              | Kevins's                 |
 +======================+==========================+
-| - Bainer 2095        | - Bainer 2121A (CAE Lab) |
-| - W, R 1:10-2:00 PM  | - T 6:10-7:00 PM         |
-|                      | - R 9:00-9:50 AM         |
-|                      | - F 2:10-3:00 PM         |
+| Office Hours         | Office Hours             |
+|                      |                          |
+| - Bainer 2095        | - TB 207 Room 110        |
+| - W, R 1:10-2:00 PM  | - M 1:10- 2:00PM         |
+|                      |                          |
+|                      | Labs                     |
+|                      |                          |
+|                      | - Bainer 2121A (CAE Lab) |
+|                      | - T 6:10-7:00 PM (Lab)   |
+|                      | - R 9:00-9:50 AM (Lab)   |
+|                      | - F 2:10-3:00 PM (Lab)   |
 +----------------------+--------------------------+
 
 If it is impossible to make office hours, schedule an appointment with Jason by
