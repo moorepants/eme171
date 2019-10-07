@@ -19,23 +19,7 @@ After completing this lab you will be able to:
 Grading Rubric
 ==============
 
-- State derivative function takes correct inputs and produces the expected outputs
-- Road triangular bump input function takes correct input and produces expected outputs
-- Force output function takes correct input and produces expected outputs
-- Acceleration output function takes correct input and produces expected outputs
-- Second road input function takes correct input and produces expected outputs
-
-- Constant parameters only defined once in main script, integration 
-- Integration produces the correct state, input, and output trajectories
-- Good choices in number of time steps and resolution are chosen
-
-- Effects of no damping are presented and explained
-- Behavior with a second road input is presented and explained
-
-- All axes labeled with units, legible font sizes, informative captions
-- Professional, very legible, quality writing
-- Functions are documented with docstrings which fully explain the inputs and
-  outputs
+Points will be added to 40 to get your score from 40-100.
 
 Functions (20 points)
 
@@ -86,20 +70,6 @@ Attendance [10 points]
 
 - [10] Attended at least one lab session in two weeks prior to due date.
 - [0] Did not Attended at least one lab session in two weeks prior to due date.
-
-Attendance [10 points]
-
-- [10] Both students attended at least 1 lab session for the two weeks prior to
-  the lab being due.
-- [0] Boht students did not attend a lab.
-
-Contributions [10 points]
-
-- [10] Very clear that everyone in the lab group conrtributed equitably. (both
-  need to do some coding, both work on bond graph, both should contribute to
-  writing)
-- [5] Needs improvement in equitable
-- [0] Clear that everyone is not contributing equilably
 
 Introduction
 ============
