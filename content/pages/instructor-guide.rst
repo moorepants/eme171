@@ -245,6 +245,8 @@ Week 0
   seem to be added to the roster). Find these out from the Hyundai center
   secretary.
 - [TA] Get added to the Canvas course, Google Drive, and Github site.
+- [TA] Set up homework solutions to reveal automatically in canvas day after
+  due.
 
 Week 1
 ------
@@ -277,7 +279,6 @@ Week 3
   lab 2 is released.
 - [TA] Review Lab 2 assignment, make any edits/updates.
 - [Instructor] Review Lab 2 assignment, make any edits/updates, and post by Friday.
-- [TA] Review numerical integration materials (teach Euler's method).
 - [TA] Hold lab sessions.
 
 Week 4
@@ -289,6 +290,7 @@ Week 4
   turn this in late).
 - [TA] Grade lab 1 within one week of the submission.
 - [TA] Grade HW3
+- [TA] Review numerical integration materials (teach Euler's method).
 - [TA] Hold lab sessions.
 
 Week 5
