@@ -19,8 +19,62 @@ After completing this lab you will be able to:
 Grading Rubric
 ==============
 
-State derivative, input, and output functions translated
-Numerically integrated
+- State derivative function takes correct inputs and produces the expected outputs
+- Road triangular bump input function takes correct input and produces expected outputs
+- Force output function takes correct input and produces expected outputs
+- Acceleration output function takes correct input and produces expected outputs
+- Second road input function takes correct input and produces expected outputs
+
+- Constant parameters only defined once in main script, integration 
+- Integration produces the correct state, input, and output trajectories
+- Good choices in number of time steps and resolution are chosen
+
+- Effects of no damping are presented and explained
+- Behavior with a second road input is presented and explained
+
+- All axes labeled with units, legible font sizes, informative captions
+- Professional, very legible, quality writing
+- Functions are documented with docstrings which fully explain the inputs and
+  outputs
+
+Functions (20 points)
+
+- All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present and
+  take correct inputs and produce the expected outputs
+- Most functions are present and mostly take correct inputs and produce the
+  expected outputs
+- No functions are present.
+
+Main Script (15 points)
+
+- Constant parameters only defined once in main script; Integration produces
+  the correct state, input, and output trajectories; Good choices in number of
+  time steps and resolution are chosen
+
+- Constants defined redundantly; Integration produces incorrect trajectories;
+  Poor choices in time duration and steps
+
+Explanations (15 points)
+
+- Explanation of no damping is correct and well explained; Explanation of
+  second road input behavior correctly describes results
+
+- Explanation of no damping is incorrect and poorly explained; Explanation of
+  second road input behavior incorrectly describes results
+
+Report and Code Formatting (10 points)
+
+- All axes labeled with units, legible font sizes, informative captions;
+  Functions are documented with docstrings which fully explain the inputs and
+  outputs; Professional, very legible, quality writing; All report format
+  requirements met
+
+- Axes do not have labels, legible font sizes, or informative captions;
+  Functions do not have docstrings; Report is not professionally written and
+  formatted.
+
+
+
 
 
 Introduction
