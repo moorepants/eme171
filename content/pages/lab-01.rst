@@ -39,43 +39,67 @@ Grading Rubric
 
 Functions (20 points)
 
-- All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present and
-  take correct inputs and produce the expected outputs
-- Most functions are present and mostly take correct inputs and produce the
-  expected outputs
-- No functions are present.
+- [20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
+  and take correct inputs and produce the expected outputs.
+- [10] Most functions are present and mostly take correct inputs and produce
+  the expected outputs
+- [0] No functions are present.
 
-Main Script (15 points)
+Main Script (10 points)
 
-- Constant parameters only defined once in main script; Integration produces
+- [10] Constant parameters only defined once in main script(s); Integration produces
   the correct state, input, and output trajectories; Good choices in number of
   time steps and resolution are chosen
+- [5] Parameters are defined in multiple places; Integration produces some
+  correct state, input, and output trajectories; Poor choices in number of time
+  steps and resolution are chosen
+- [0] Constants defined redundantly; Integration produces incorrect
+  trajectories; Poor choices in time duration and steps
 
-- Constants defined redundantly; Integration produces incorrect trajectories;
-  Poor choices in time duration and steps
+Explanations (10 points)
 
-Explanations (15 points)
-
-- Explanation of no damping is correct and well explained; Explanation of
-  second road input behavior correctly describes results
-
-- Explanation of no damping is incorrect and poorly explained; Explanation of
-  second road input behavior incorrectly describes results
+- [10] Explanation of no damping is correct and well explained; Explanation of
+  second road input behavior correctly describes results; Plots of appropriate
+  variables are used in the explanations
+- [5] Explanation of no damping is somewhat correct and reasonably explained;
+  Explanation of second road input behavior somewhat correctly describes
+  results; Plots of appropriate variables are used in the explanations, but
+  some are missing
+- [0] Explanation of no damping is incorrect and poorly explained; Explanation
+  of second road input behavior incorrectly describes results
 
 Report and Code Formatting (10 points)
 
-- All axes labeled with units, legible font sizes, informative captions;
+- [10] All axes labeled with units, legible font sizes, informative captions;
   Functions are documented with docstrings which fully explain the inputs and
   outputs; Professional, very legible, quality writing; All report format
   requirements met
-
-- Axes do not have labels, legible font sizes, or informative captions;
+- [5] Some axes labeled with units, mostly legible font sizes,
+  less-than-informative captions; Functions have docstrings but the inputs and
+  outputs are not fully explained; Semi-professional, somewhat legible, writing
+  needs improvement; Most report format requirements met
+- [0] Axes do not have labels, legible font sizes, or informative captions;
   Functions do not have docstrings; Report is not professionally written and
-  formatted.
+  formatted; Report format requirements are not met
 
+Attendance [10 points]
 
+- [10] Attended at least one lab session in two weeks prior to due date.
+- [0] Did not Attended at least one lab session in two weeks prior to due date.
 
+Attendance [10 points]
 
+- [10] Both students attended at least 1 lab session for the two weeks prior to
+  the lab being due.
+- [0] Boht students did not attend a lab.
+
+Contributions [10 points]
+
+- [10] Very clear that everyone in the lab group conrtributed equitably. (both
+  need to do some coding, both work on bond graph, both should contribute to
+  writing)
+- [5] Needs improvement in equitable
+- [0] Clear that everyone is not contributing equilably
 
 Introduction
 ============
