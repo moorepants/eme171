@@ -26,13 +26,15 @@ after each lecture. **Check the schedule periodically for changes.**
 05 F-Oct-04    Multiport Systems                     - Read 3.1
                                                      - `Notes 05`_
 -- ----------  ------------------------------------  -------------------------  ---------------
-06 M-Oct-07    Numerical Simulation                                             HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
-07 W-Oct-09    Causality of Basic Components         - Read 3.2-3.3
-08 F-Oct-11    System Models: Electrical             - Read 3.3-3.6             Lab 1
+06 M-Oct-07    2-Ports                               - Read 3.2                 HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
+                                                     - `Notes 06`_
+07 W-Oct-09    Numerical Simulation                  - `Notes 07`_
+                                                     - `Script 07`_
+08 F-Oct-11    Causality of Basic Components         - Read 3.4                 Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
 09 M-Oct-14    System Models: Electrical             - Read 4.1                 HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
-10 W-Oct-16    System Models: Mechanical             - Read 4.2
-11 F-Oct-18    System Models: Mechanical
+10 W-Oct-16    System Models: Electrical
+11 F-Oct-18    System Models: Mechanical             - Read 4.2
 -- ----------  ------------------------------------  -------------------------  ---------------
 12 M-Oct-21    System Models: Mechanical                                        HW #4: 4.1, 4.2, 4.3, 4.4, 4.5
 13 W-Oct-23    System Models: Mechanical
@@ -73,5 +75,10 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 03: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l03.pdf
 .. _Notes 04: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l04.pdf
 .. _Notes 05: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l05.pdf
+.. _Notes 06: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l06.pdf
+.. _Notes 07: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l07.pdf
+.. _Notes 08: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l08.pdf
+.. _Notes 09: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l09.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
+.. _Script 07: {filename}/pages/bicycle-balance-simlation.rst
