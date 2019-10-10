@@ -81,4 +81,4 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 09: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l09.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
-.. _Script 07: {filename}/pages/bicycle-balance-simlation.rst
+.. _Script 07: {filename}/pages/bicycle-balance-simulation.rst

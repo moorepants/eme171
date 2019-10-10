@@ -22,7 +22,7 @@ Scripts
 
 - `EBike Simulation <{filename}/pages/ebike-simulation.rst>`_
 - `ODE Integration Best Practices <{filename}/pages/ode-integration-best-practices.rst>`_
-- `Bicycle Balance Simulation <{filename}/pages/bicycle-balance-simlation.rst>`_
+- `Bicycle Balance Simulation <{filename}/pages/bicycle-balance-simulation.rst>`_
 
 Supplementary Materials
 =======================
