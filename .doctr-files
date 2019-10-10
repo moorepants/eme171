@@ -24,10 +24,14 @@
 ./scripts/best-practices/integrate_with_input_function.m
 ./scripts/best-practices/integrate_with_output.m
 ./scripts/best-practices/integrate_with_step_function.m
+./scripts/bicycle_main.m
+./scripts/eval_bicycle_rhs.m
+./scripts/eval_bicycle_rhs2.m
 ./scripts/eval_ebike_rhs.m
 ./scripts/eval_segway_input.m
 ./scripts/eval_segway_output.m
 ./scripts/eval_segway_rhs.m
+./scripts/eval_steer_control_input.m
 ./scripts/segway_state_space.m
 ./scripts/simulate_dc_motor.m
 ./scripts/simulate_ebike.m
