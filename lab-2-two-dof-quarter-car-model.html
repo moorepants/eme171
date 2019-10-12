@@ -19,7 +19,7 @@
   <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
         href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
   
-  <meta name="description" content="Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given point in time numerically integrate ordinary differential equations with Octave/Matlab's ode45 create complete and legible plots of the resulting input, state, and output …">
+  <meta name="description" content="Contents Learning Objectives Introduction Model Description State Equations and States Constant Parameters Initial Conditions Inputs Outputs Time Duration and Resolution Deliverables Report Guidelines Assessment Rubric Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any …">
   <script>
     (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -62,8 +62,27 @@
 
 <article class="article">
   <div class="content">
-    <div class="section" id="learning-objectives">
-<h2>Learning Objectives</h2>
+    <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#learning-objectives" id="id1">Learning Objectives</a></li>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#model-description" id="id3">Model Description</a><ul>
+<li><a class="reference internal" href="#state-equations-and-states" id="id4">State Equations and States</a></li>
+<li><a class="reference internal" href="#constant-parameters" id="id5">Constant Parameters</a></li>
+<li><a class="reference internal" href="#initial-conditions" id="id6">Initial Conditions</a></li>
+<li><a class="reference internal" href="#inputs" id="id7">Inputs</a></li>
+<li><a class="reference internal" href="#outputs" id="id8">Outputs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#time-duration-and-resolution" id="id9">Time Duration and Resolution</a></li>
+<li><a class="reference internal" href="#deliverables" id="id10">Deliverables</a></li>
+<li><a class="reference internal" href="#report-guidelines" id="id11">Report Guidelines</a></li>
+<li><a class="reference internal" href="#assessment-rubric" id="id12">Assessment Rubric</a></li>
+</ul>
+</div>
+<div class="section" id="learning-objectives">
+<h2><a class="toc-backref" href="#id1">Learning Objectives</a></h2>
 <p>After completing this lab you will be able to:</p>
 <ul class="simple">
 <li>translate ordinary differential equations into a computer function that
@@ -77,74 +96,8 @@ trajectories</li>
 quarter car model</li>
 </ul>
 </div>
-<div class="section" id="grading-rubric">
-<h2>Grading Rubric</h2>
-<p>Points will be added to 40 to get your score from 40-100.</p>
-<p>Functions (10 points)</p>
-<ul class="simple">
-<li>[20] All functions (1 state derivative, 1 input, 1 output) are present and
-take correct inputs and produce the expected outputs.</li>
-<li>[10] Most functions are present and mostly take correct inputs and produce
-the expected outputs</li>
-<li>[0] No functions are present.</li>
-</ul>
-<p>Main Script (10 points)</p>
-<ul class="simple">
-<li>[10] Constant parameters only defined once in main script(s); Integration produces
-the correct state, input, and output trajectories; Good choices in number of
-time steps and resolution are chosen and explained</li>
-<li>[5] Parameters are defined in multiple places; Integration produces some
-correct state, input, and output trajectories; Poor choices in number of time
-steps and resolution are chosen or not explained</li>
-<li>[0] Constants defined redundantly; Integration produces incorrect
-trajectories; No clear choices in time duration and steps</li>
-</ul>
-<p>Explanations (10 points)</p>
-<ul class="simple">
-<li>[10] Explanation of damping effects is correct and well explained;
-Explanation of the vibration period and frequency is correct and well
-explained; Plots of appropriate variables are used in the explanations</li>
-<li>[5] Explanation of damping effects is somewhat correct and reasonably explained;
-Explanation of vibration period and frequency is somewhat correctly describes
-results; Plots of appropriate variables are used in the explanations, but
-some are missing</li>
-<li>[0] Explanation of damping is incorrect and poorly explained; Explanation of
-vibration and frequency behavior incorrectly describes results; Plots are not
-used.</li>
-</ul>
-<p>Report and Code Formatting (10 points)</p>
-<ul class="simple">
-<li>[10] All axes labeled with units, legible font sizes, informative captions;
-Functions are documented with docstrings which fully explain the inputs and
-outputs; Professional, very legible, quality writing; All report format
-requirements met</li>
-<li>[5] Some axes labeled with units, mostly legible font sizes,
-less-than-informative captions; Functions have docstrings but the inputs and
-outputs are not fully explained; Semi-professional, somewhat legible, writing
-needs improvement; Most report format requirements met</li>
-<li>[0] Axes do not have labels, legible font sizes, or informative captions;
-Functions do not have docstrings; Report is not professionally written and
-formatted; Report format requirements are not met</li>
-</ul>
-<p>Attendance [10 points]</p>
-<ul class="simple">
-<li>[10] Both students attended at least 1 lab session for the two weeks prior to
-the lab being due.</li>
-<li>[5] Only one student attended at least 1 lab session for the two weeks prior
-to the lab being due.</li>
-<li>[0] Both students did not attend a lab.</li>
-</ul>
-<p>Contributions [10 points]</p>
-<ul class="simple">
-<li>[10] Very clear that everyone in the lab group contributed equitably. (e.g.
-both need to do some coding, both work on bond graph, both should contribute
-to writing)</li>
-<li>[5] Need to improve the contributions of one or more members</li>
-<li>[0] Clear that everyone is not contributing equitably</li>
-</ul>
-</div>
 <div class="section" id="introduction">
-<h2>Introduction</h2>
+<h2><a class="toc-backref" href="#id2">Introduction</a></h2>
 <p>In the last lab, you simulated a one degree-of-freedom quarter car suspension
 model. Here we present a two degree-of-freedom quarter car suspension model in
 which the additional degree-of-freedom captures the simplified
@@ -162,7 +115,7 @@ outputs.</li>
 </ul>
 </div>
 <div class="section" id="model-description">
-<h2>Model Description</h2>
+<h2><a class="toc-backref" href="#id3">Model Description</a></h2>
 <p>The sprung mass, <span class="math">\(M\)</span>, represents a quarter of the weight of the car that
 is located above the shock absorber. The shock absorber is represented by a
 linear spring and damper in parallel. The unsprung mass, <span class="math">\(M_u\)</span>,
@@ -176,7 +129,7 @@ positive velocity is defined).</p>
 model and (right) a bond graph representing the system</p>
 </div>
 <div class="section" id="state-equations-and-states">
-<h3>State Equations and States</h3>
+<h3><a class="toc-backref" href="#id4">State Equations and States</a></h3>
 <p>The state equations derived from the bond graph are as follows:</p>
 <div class="math">
 \begin{align*}
@@ -216,32 +169,32 @@ road height:</p>
 </div>
 </div>
 <div class="section" id="constant-parameters">
-<h3>Constant Parameters</h3>
+<h3><a class="toc-backref" href="#id5">Constant Parameters</a></h3>
 <p>The quarter car is defined by the following constant parameters:</p>
 <ul class="simple">
-<li>Sprung mass: <span class="math">\(M = 250 \textrm{kg}\)</span></li>
+<li>Sprung mass: <span class="math">\(M = 250 \textrm{ kg}\)</span></li>
 <li>Ratio of the sprung and unsprung masses: <span class="math">\(\frac{M}{M_u} = 5\)</span></li>
-<li>Acceleration due to gravity: <span class="math">\(g=9.81 \textrm{ms}^{-2}\)</span></li>
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Natural_frequency">Natural frequency</a> of the sprung mass: <span class="math">\(f_n=1 \textrm{Hz}\)</span></li>
+<li>Acceleration due to gravity: <span class="math">\(g=9.81 \textrm{ ms}^{-2}\)</span></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Natural_frequency">Natural frequency</a> of the sprung mass: <span class="math">\(f_n=1 \textrm{ Hz}\)</span></li>
 <li><a class="reference external" href="https://en.wikipedia.org/wiki/Damping_ratio">Damping ratio</a> of the sprung mass: <span class="math">\(\zeta=0.3\)</span></li>
 <li>Ratio of the tire and suspension spring stiffnesses: <span class="math">\(\frac{K_t}{K} = 10\)</span></li>
 </ul>
 <p>The pothole input is defined by the following constant parameters:</p>
 <ul class="simple">
-<li>Forward speed of the car: <span class="math">\(V_c = 10 \textr{ms}^{-1}\)</span></li>
-<li>Width of the pothole: <span class="math">\(L = 1.2 \textrm{m}\)</span></li>
-<li>Depth of the pothole: <span class="math">\(A = 0.08 \textrm{m}\)</span></li>
+<li>Forward speed of the car: <span class="math">\(V_c = 10 \textrm{ ms}^{-1}\)</span></li>
+<li>Width of the pothole: <span class="math">\(L = 1.2 \textrm{ m}\)</span></li>
+<li>Depth of the pothole: <span class="math">\(A = 0.08 \textrm{ m}\)</span></li>
 </ul>
 </div>
 <div class="section" id="initial-conditions">
-<h3>Initial Conditions</h3>
+<h3><a class="toc-backref" href="#id6">Initial Conditions</a></h3>
 <p>The initial velocities of the two masses should be set to zero, which implies
 that the momentums are also zero:</p>
 <div class="math">
-\begin{equation*}
-p_2 = 0 \textrm{ at } t = 0
-p_8 = 0 \textrm{ at } t = 0
-\end{equation*}
+\begin{align*}
+p_2 &amp; = 0 \textrm{ at } t = 0 \\
+p_8 &amp; = 0 \textrm{ at } t = 0
+\end{align*}
 </div>
 <p>The initial conditions of the displacements, <span class="math">\(q_6,q_{11}\)</span>, should reflect
 the equilibrium state of the springs. To find the equilibrium value of the two
@@ -251,7 +204,7 @@ equations and solve for <span class="math">\(q_6,q_{11}\)</span>. Use these resu
 conditions.</p>
 </div>
 <div class="section" id="inputs">
-<h3>Inputs</h3>
+<h3><a class="toc-backref" href="#id7">Inputs</a></h3>
 <p>The single input to the model is the vertical velocity of the road as seen from
 a reference frame that translates with the forward motion of the car. This
 velocity will vary over time and be partially determined by the travel speed of
@@ -271,19 +224,36 @@ of the pothole. Using the slope, you can find an equation for the amplitude of
 the velocity input.You will need to create a function that calculates this
 input for any given time, <span class="math">\(t\)</span>.</p>
 </div>
+<div class="section" id="outputs">
+<h3><a class="toc-backref" href="#id8">Outputs</a></h3>
+<p>One output that may be useful for a suspension engineer is the deflection of
+the suspension relative to the equilibrium deflection. You may know that if the
+suspension bottoms out, there may be damage to the car when hitting the
+pothole. The deflection of the suspension is:</p>
+<div class="math">
+\begin{equation*}
+q_(t) - q_{6}(t=0)
+\end{equation*}
+</div>
+<p>Remember a positive number represents compression. Include this output in your
+report and be sure to discuss what you learn from it.</p>
+<p>Another output that is useful is the sprung mass acceleration, as this
+acceleration will correlate to the forces the car's frame and the passengers
+experience. Include this output and explain what you learn from it.</p>
+</div>
 </div>
 <div class="section" id="time-duration-and-resolution">
-<h2>Time Duration and Resolution</h2>
+<h2><a class="toc-backref" href="#id9">Time Duration and Resolution</a></h2>
 <p>You need to determine the desired maximum time step to ensure that the
 simulation outputs capture all important variations with respect to time. To
 determine the time step you need to think about the dynamics of the system.
 Useful values to help you do so are the natural frequency and damping ratio of
 the masses. For example, the natural frequency of the sprung mass is:</p>
 <div class="math">
-\begin{equation*}
-\omega_n = \sqrt{\frac{K}{M} \textrm{rad/s}
-f_n = \frac{\omega_n}{2\pi} \textrm{Hz}
-\end{equation*}
+\begin{align*}
+\omega_n = \sqrt{\frac{K}{M}} \textrm{ rad/s} \\
+f_n = \frac{\omega_n}{2\pi} \textrm{ Hz}
+\end{align*}
 </div>
 <p>This gives you an estimate of the oscillation frequency of the system. Note
 that you have two springs, each with different natural frequencies. You can
@@ -316,30 +286,14 @@ e^{-t/\tau}
 oscillation is very slow or if there is a huge amount of damping, the time step
 can be longer. Ensure that there are at least 10 data points per oscillation
 for the shortest duration period you determine. Also, ensure that the total
-duration of the simulation includes data up to a decay of 5% of the maximum.
-Finally, inspect the simulation results and if you think that time resolution
-doesn't show enough detail in parts of the motion, decrease the time step until
-it does show sufficient detail. Be sure to explain what you choose and why.</p>
-</div>
-<div class="section" id="outputs">
-<h2>Outputs</h2>
-<p>One output that may be useful for a suspension engineer is the deflection of
-the suspension relative to the equilibrium deflection. You may know that if the
-suspension bottoms out, there may be damage to the car when hitting the
-pothole. The deflection of the suspension is:</p>
-<div class="math">
-\begin{equation*}
-q_(t) - q_{6}(t=0)
-\end{equation*}
-</div>
-<p>Remember a positive number represents compression. Include this output in your
-report and be sure to discuss what you learn from it.</p>
-<p>Another output that is useful is t he sprung mass acceleration, as this
-acceleration will correlate to the forces the car's frame and the passengers
-experience. Include this output and explain what you learn from it.</p>
+duration of the simulation includes data up to a decay of <span class="math">\(2\tau\)</span>
+seconds. Finally, inspect the simulation results and if you think that time
+resolution doesn't show enough detail in parts of the motion, decrease the time
+step until it does show sufficient detail. Be sure to explain what you choose
+and why.</p>
 </div>
 <div class="section" id="deliverables">
-<h2>Deliverables</h2>
+<h2><a class="toc-backref" href="#id10">Deliverables</a></h2>
 <p>Submit a report as a single PDF file to Canvas by the due date that addresses
 the following items:</p>
 <ol class="arabic simple">
@@ -365,7 +319,7 @@ change in <span class="math">\(\zeta\)</span> affect the mass acceleration?</li>
 </ol>
 </div>
 <div class="section" id="report-guidelines">
-<h2>Report Guidelines</h2>
+<h2><a class="toc-backref" href="#id11">Report Guidelines</a></h2>
 <ul>
 <li><p class="first">Submit one report per group.</p>
 </li>
@@ -415,6 +369,72 @@ useful (click the function tab).</li>
 </ul>
 </blockquote>
 </li>
+</ul>
+</div>
+<div class="section" id="assessment-rubric">
+<h2><a class="toc-backref" href="#id12">Assessment Rubric</a></h2>
+<p>Points will be added to 40 to get your score from 40-100.</p>
+<p>Functions (10 points)</p>
+<ul class="simple">
+<li>[20] All functions (1 state derivative, 1 input, 1 output) are present and
+take correct inputs and produce the expected outputs.</li>
+<li>[10] Most functions are present and mostly take correct inputs and produce
+the expected outputs</li>
+<li>[0] No functions are present.</li>
+</ul>
+<p>Main Script (10 points)</p>
+<ul class="simple">
+<li>[10] Constant parameters only defined once in main script(s); Integration produces
+the correct state, input, and output trajectories; Good choices in number of
+time steps and resolution are chosen and explained</li>
+<li>[5] Parameters are defined in multiple places; Integration produces some
+correct state, input, and output trajectories; Poor choices in number of time
+steps and resolution are chosen or not explained</li>
+<li>[0] Constants defined redundantly; Integration produces incorrect
+trajectories; No clear choices in time duration and steps</li>
+</ul>
+<p>Explanations (10 points)</p>
+<ul class="simple">
+<li>[10] Explanation of damping effects is correct and well explained;
+Explanation of the vibration period and frequency is correct and well
+explained; Plots of appropriate variables are used in the explanations</li>
+<li>[5] Explanation of damping effects is somewhat correct and reasonably explained;
+Explanation of vibration period and frequency is somewhat correctly describes
+results; Plots of appropriate variables are used in the explanations, but
+some are missing</li>
+<li>[0] Explanation of damping is incorrect and poorly explained; Explanation of
+vibration and frequency behavior incorrectly describes results; Plots are not
+used.</li>
+</ul>
+<p>Report and Code Formatting (10 points)</p>
+<ul class="simple">
+<li>[10] All axes labeled with units, legible font sizes, informative captions;
+Functions are documented with docstrings which fully explain the inputs and
+outputs; Professional, very legible, quality writing; All report format
+requirements met</li>
+<li>[5] Some axes labeled with units, mostly legible font sizes,
+less-than-informative captions; Functions have docstrings but the inputs and
+outputs are not fully explained; Semi-professional, somewhat legible, writing
+needs improvement; Most report format requirements met</li>
+<li>[0] Axes do not have labels, legible font sizes, or informative captions;
+Functions do not have docstrings; Report is not professionally written and
+formatted; Report format requirements are not met</li>
+</ul>
+<p>Contributions [10 points]</p>
+<ul class="simple">
+<li>[10] Very clear that everyone in the lab group contributed equitably. (e.g.
+both need to do some coding, both work on bond graph, both should contribute
+to writing)</li>
+<li>[5] Need to improve the contributions of one or more members</li>
+<li>[0] Clear that everyone is not contributing equitably</li>
+</ul>
+<p>Attendance [10 points]</p>
+<ul class="simple">
+<li>[10] Both students attended at least 1 lab session for the two weeks prior to
+the lab being due.</li>
+<li>[5] Only one student attended at least 1 lab session for the two weeks prior
+to the lab being due.</li>
+<li>[0] Both students did not attend a lab.</li>
 </ul>
 </div>
 <script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
