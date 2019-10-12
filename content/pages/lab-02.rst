@@ -1,6 +1,8 @@
 :title: Lab 2: Two DoF Quarter Car Model
 :status: hidden
 
+.. contents::
+
 Learning Objectives
 ===================
 
@@ -17,73 +19,6 @@ After completing this lab you will be able to:
   quarter car model
 
 .. _ode45: https://www.mathworks.com/help/matlab/ref/ode45.html
-
-Grading Rubric
-==============
-
-Points will be added to 40 to get your score from 40-100.
-
-Functions (10 points)
-
-- [20] All functions (1 state derivative, 1 input, 1 output) are present and
-  take correct inputs and produce the expected outputs.
-- [10] Most functions are present and mostly take correct inputs and produce
-  the expected outputs
-- [0] No functions are present.
-
-Main Script (10 points)
-
-- [10] Constant parameters only defined once in main script(s); Integration produces
-  the correct state, input, and output trajectories; Good choices in number of
-  time steps and resolution are chosen and explained
-- [5] Parameters are defined in multiple places; Integration produces some
-  correct state, input, and output trajectories; Poor choices in number of time
-  steps and resolution are chosen or not explained
-- [0] Constants defined redundantly; Integration produces incorrect
-  trajectories; No clear choices in time duration and steps
-
-Explanations (10 points)
-
-- [10] Explanation of damping effects is correct and well explained;
-  Explanation of the vibration period and frequency is correct and well
-  explained; Plots of appropriate variables are used in the explanations
-- [5] Explanation of damping effects is somewhat correct and reasonably explained;
-  Explanation of vibration period and frequency is somewhat correctly describes
-  results; Plots of appropriate variables are used in the explanations, but
-  some are missing
-- [0] Explanation of damping is incorrect and poorly explained; Explanation of
-  vibration and frequency behavior incorrectly describes results; Plots are not
-  used.
-
-Report and Code Formatting (10 points)
-
-- [10] All axes labeled with units, legible font sizes, informative captions;
-  Functions are documented with docstrings which fully explain the inputs and
-  outputs; Professional, very legible, quality writing; All report format
-  requirements met
-- [5] Some axes labeled with units, mostly legible font sizes,
-  less-than-informative captions; Functions have docstrings but the inputs and
-  outputs are not fully explained; Semi-professional, somewhat legible, writing
-  needs improvement; Most report format requirements met
-- [0] Axes do not have labels, legible font sizes, or informative captions;
-  Functions do not have docstrings; Report is not professionally written and
-  formatted; Report format requirements are not met
-
-Attendance [10 points]
-
-- [10] Both students attended at least 1 lab session for the two weeks prior to
-  the lab being due.
-- [5] Only one student attended at least 1 lab session for the two weeks prior
-  to the lab being due.
-- [0] Both students did not attend a lab.
-
-Contributions [10 points]
-
-- [10] Very clear that everyone in the lab group contributed equitably. (e.g.
-  both need to do some coding, both work on bond graph, both should contribute
-  to writing)
-- [5] Need to improve the contributions of one or more members
-- [0] Clear that everyone is not contributing equitably
 
 Introduction
 ============
@@ -158,10 +93,10 @@ Constant Parameters
 
 The quarter car is defined by the following constant parameters:
 
-- Sprung mass: :math:`M = 250 \textrm{kg}`
+- Sprung mass: :math:`M = 250 \textrm{ kg}`
 - Ratio of the sprung and unsprung masses: :math:`\frac{M}{M_u} = 5`
-- Acceleration due to gravity: :math:`g=9.81 \textrm{ms}^{-2}`
-- `Natural frequency`_ of the sprung mass: :math:`f_n=1 \textrm{Hz}`
+- Acceleration due to gravity: :math:`g=9.81 \textrm{ ms}^{-2}`
+- `Natural frequency`_ of the sprung mass: :math:`f_n=1 \textrm{ Hz}`
 - `Damping ratio`_ of the sprung mass: :math:`\zeta=0.3`
 - Ratio of the tire and suspension spring stiffnesses: :math:`\frac{K_t}{K} = 10`
 
@@ -170,9 +105,9 @@ The quarter car is defined by the following constant parameters:
 
 The pothole input is defined by the following constant parameters:
 
-- Forward speed of the car: :math:`V_c = 10 \textr{ms}^{-1}`
-- Width of the pothole: :math:`L = 1.2 \textrm{m}`
-- Depth of the pothole: :math:`A = 0.08 \textrm{m}`
+- Forward speed of the car: :math:`V_c = 10 \textrm{ ms}^{-1}`
+- Width of the pothole: :math:`L = 1.2 \textrm{ m}`
+- Depth of the pothole: :math:`A = 0.08 \textrm{ m}`
 
 Initial Conditions
 ------------------
@@ -182,8 +117,8 @@ that the momentums are also zero:
 
 .. math::
 
-   p_2 = 0 \textrm{ at } t = 0
-   p_8 = 0 \textrm{ at } t = 0
+   p_2 & = 0 \textrm{ at } t = 0 \\
+   p_8 & = 0 \textrm{ at } t = 0
 
 The initial conditions of the displacements, :math:`q_6,q_{11}`, should reflect
 the equilibrium state of the springs. To find the equilibrium value of the two
@@ -216,6 +151,25 @@ of the pothole. Using the slope, you can find an equation for the amplitude of
 the velocity input.You will need to create a function that calculates this
 input for any given time, :math:`t`.
 
+Outputs
+-------
+
+One output that may be useful for a suspension engineer is the deflection of
+the suspension relative to the equilibrium deflection. You may know that if the
+suspension bottoms out, there may be damage to the car when hitting the
+pothole. The deflection of the suspension is:
+
+.. math::
+
+   q_(t) - q_{6}(t=0)
+
+Remember a positive number represents compression. Include this output in your
+report and be sure to discuss what you learn from it.
+
+Another output that is useful is the sprung mass acceleration, as this
+acceleration will correlate to the forces the car's frame and the passengers
+experience. Include this output and explain what you learn from it.
+
 Time Duration and Resolution
 ============================
 
@@ -227,8 +181,8 @@ the masses. For example, the natural frequency of the sprung mass is:
 
 .. math::
 
-   \omega_n = \sqrt{\frac{K}{M} \textrm{rad/s}
-   f_n = \frac{\omega_n}{2\pi} \textrm{Hz}
+   \omega_n = \sqrt{\frac{K}{M}} \textrm{ rad/s} \\
+   f_n = \frac{\omega_n}{2\pi} \textrm{ Hz}
 
 This gives you an estimate of the oscillation frequency of the system. Note
 that you have two springs, each with different natural frequencies. You can
@@ -262,29 +216,11 @@ If the system oscillates very rapidly you will want a shorter time step. If the
 oscillation is very slow or if there is a huge amount of damping, the time step
 can be longer. Ensure that there are at least 10 data points per oscillation
 for the shortest duration period you determine. Also, ensure that the total
-duration of the simulation includes data up to a decay of 5% of the maximum.
-Finally, inspect the simulation results and if you think that time resolution
-doesn't show enough detail in parts of the motion, decrease the time step until
-it does show sufficient detail. Be sure to explain what you choose and why.
-
-Outputs
-=======
-
-One output that may be useful for a suspension engineer is the deflection of
-the suspension relative to the equilibrium deflection. You may know that if the
-suspension bottoms out, there may be damage to the car when hitting the
-pothole. The deflection of the suspension is:
-
-.. math::
-
-   q_(t) - q_{6}(t=0)
-
-Remember a positive number represents compression. Include this output in your
-report and be sure to discuss what you learn from it.
-
-Another output that is useful is t he sprung mass acceleration, as this
-acceleration will correlate to the forces the car's frame and the passengers
-experience. Include this output and explain what you learn from it.
+duration of the simulation includes data up to a decay of :math:`2\tau`
+seconds. Finally, inspect the simulation results and if you think that time
+resolution doesn't show enough detail in parts of the motion, decrease the time
+step until it does show sufficient detail. Be sure to explain what you choose
+and why.
 
 Deliverables
 ============
@@ -359,3 +295,70 @@ Report Guidelines
 
 .. _guide: http://www.datatool.com/downloads/MatlabStyle2%20book.pdf
 .. _template: https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template
+
+Assessment Rubric
+=================
+
+Points will be added to 40 to get your score from 40-100.
+
+Functions (10 points)
+
+- [20] All functions (1 state derivative, 1 input, 1 output) are present and
+  take correct inputs and produce the expected outputs.
+- [10] Most functions are present and mostly take correct inputs and produce
+  the expected outputs
+- [0] No functions are present.
+
+Main Script (10 points)
+
+- [10] Constant parameters only defined once in main script(s); Integration produces
+  the correct state, input, and output trajectories; Good choices in number of
+  time steps and resolution are chosen and explained
+- [5] Parameters are defined in multiple places; Integration produces some
+  correct state, input, and output trajectories; Poor choices in number of time
+  steps and resolution are chosen or not explained
+- [0] Constants defined redundantly; Integration produces incorrect
+  trajectories; No clear choices in time duration and steps
+
+Explanations (10 points)
+
+- [10] Explanation of damping effects is correct and well explained;
+  Explanation of the vibration period and frequency is correct and well
+  explained; Plots of appropriate variables are used in the explanations
+- [5] Explanation of damping effects is somewhat correct and reasonably explained;
+  Explanation of vibration period and frequency is somewhat correctly describes
+  results; Plots of appropriate variables are used in the explanations, but
+  some are missing
+- [0] Explanation of damping is incorrect and poorly explained; Explanation of
+  vibration and frequency behavior incorrectly describes results; Plots are not
+  used.
+
+Report and Code Formatting (10 points)
+
+- [10] All axes labeled with units, legible font sizes, informative captions;
+  Functions are documented with docstrings which fully explain the inputs and
+  outputs; Professional, very legible, quality writing; All report format
+  requirements met
+- [5] Some axes labeled with units, mostly legible font sizes,
+  less-than-informative captions; Functions have docstrings but the inputs and
+  outputs are not fully explained; Semi-professional, somewhat legible, writing
+  needs improvement; Most report format requirements met
+- [0] Axes do not have labels, legible font sizes, or informative captions;
+  Functions do not have docstrings; Report is not professionally written and
+  formatted; Report format requirements are not met
+
+Contributions [10 points]
+
+- [10] Very clear that everyone in the lab group contributed equitably. (e.g.
+  both need to do some coding, both work on bond graph, both should contribute
+  to writing)
+- [5] Need to improve the contributions of one or more members
+- [0] Clear that everyone is not contributing equitably
+
+Attendance [10 points]
+
+- [10] Both students attended at least 1 lab session for the two weeks prior to
+  the lab being due.
+- [5] Only one student attended at least 1 lab session for the two weeks prior
+  to the lab being due.
+- [0] Both students did not attend a lab.
