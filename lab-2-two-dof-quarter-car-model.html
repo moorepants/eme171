@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  Lab 2: Two DoF Quarter Car Model | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/lab-2-two-dof-quarter-car-model.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
+  
+  <meta name="description" content="Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given point in time numerically integrate ordinary differential equations with Octave/Matlab's ode45 create complete and legible plots of the resulting input, state, and output …">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      a.async = 1;
+      a.src = g;
+      m = s.getElementsByTagName(o)[0];
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-15966419-8', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  Lab 2: Two DoF Quarter Car Model
+</h1>
+      <hr>
+
+<article class="article">
+  <div class="content">
+    <div class="section" id="learning-objectives">
+<h2>Learning Objectives</h2>
+<p>After completing this lab you will be able to:</p>
+<ul class="simple">
+<li>translate ordinary differential equations into a computer function that
+evaluates the equations at any given point in time</li>
+<li>numerically integrate ordinary differential equations with Octave/Matlab's
+<a class="reference external" href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a></li>
+<li>create complete and legible plots of the resulting input, state, and output
+trajectories</li>
+<li>create a report with textual explanations and plots of the simulation</li>
+<li>explain how various parameters affect the motion of a two degree-of-freedom
+quarter car model</li>
+</ul>
+</div>
+<div class="section" id="grading-rubric">
+<h2>Grading Rubric</h2>
+<p>Points will be added to 40 to get your score from 40-100.</p>
+<p>Functions (10 points)</p>
+<ul class="simple">
+<li>[20] All functions (1 state derivative, 1 input, 1 output) are present and
+take correct inputs and produce the expected outputs.</li>
+<li>[10] Most functions are present and mostly take correct inputs and produce
+the expected outputs</li>
+<li>[0] No functions are present.</li>
+</ul>
+<p>Main Script (10 points)</p>
+<ul class="simple">
+<li>[10] Constant parameters only defined once in main script(s); Integration produces
+the correct state, input, and output trajectories; Good choices in number of
+time steps and resolution are chosen and explained</li>
+<li>[5] Parameters are defined in multiple places; Integration produces some
+correct state, input, and output trajectories; Poor choices in number of time
+steps and resolution are chosen or not explained</li>
+<li>[0] Constants defined redundantly; Integration produces incorrect
+trajectories; No clear choices in time duration and steps</li>
+</ul>
+<p>Explanations (10 points)</p>
+<ul class="simple">
+<li>[10] Explanation of damping effects is correct and well explained;
+Explanation of the vibration period and frequency is correct and well
+explained; Plots of appropriate variables are used in the explanations</li>
+<li>[5] Explanation of damping effects is somewhat correct and reasonably explained;
+Explanation of vibration period and frequency is somewhat correctly describes
+results; Plots of appropriate variables are used in the explanations, but
+some are missing</li>
+<li>[0] Explanation of damping is incorrect and poorly explained; Explanation of
+vibration and frequency behavior incorrectly describes results; Plots are not
+used.</li>
+</ul>
+<p>Report and Code Formatting (10 points)</p>
+<ul class="simple">
+<li>[10] All axes labeled with units, legible font sizes, informative captions;
+Functions are documented with docstrings which fully explain the inputs and
+outputs; Professional, very legible, quality writing; All report format
+requirements met</li>
+<li>[5] Some axes labeled with units, mostly legible font sizes,
+less-than-informative captions; Functions have docstrings but the inputs and
+outputs are not fully explained; Semi-professional, somewhat legible, writing
+needs improvement; Most report format requirements met</li>
+<li>[0] Axes do not have labels, legible font sizes, or informative captions;
+Functions do not have docstrings; Report is not professionally written and
+formatted; Report format requirements are not met</li>
+</ul>
+<p>Attendance [10 points]</p>
+<ul class="simple">
+<li>[10] Both students attended at least 1 lab session for the two weeks prior to
+the lab being due.</li>
+<li>[5] Only one student attended at least 1 lab session for the two weeks prior
+to the lab being due.</li>
+<li>[0] Both students did not attend a lab.</li>
+</ul>
+<p>Contributions [10 points]</p>
+<ul class="simple">
+<li>[10] Very clear that everyone in the lab group contributed equitably. (e.g.
+both need to do some coding, both work on bond graph, both should contribute
+to writing)</li>
+<li>[5] Need to improve the contributions of one or more members</li>
+<li>[0] Clear that everyone is not contributing equitably</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<p>In the last lab, you simulated a one degree-of-freedom quarter car suspension
+model. Here we present a two degree-of-freedom quarter car suspension model in
+which the additional degree-of-freedom captures the simplified
+compression/extension of the tire between the wheel hub and the ground.
+Similar to the prior lab, the goal is to simulate this system to see the
+response as it is driven over a pothole.</p>
+<p>To view the system response to driving over a pothole, you need to:</p>
+<ul class="simple">
+<li>Determine the state equations, states, constant parameters, inputs, initial
+conditions, and outputs.</li>
+<li>Write the functions for calculating the state derivatives, inputs, and
+outputs.</li>
+<li>Simulate the system and plot the desired responses.</li>
+<li>Interpret and explain the results.</li>
+</ul>
+</div>
+<div class="section" id="model-description">
+<h2>Model Description</h2>
+<p>The sprung mass, <span class="math">\(M\)</span>, represents a quarter of the weight of the car that
+is located above the shock absorber. The shock absorber is represented by a
+linear spring and damper in parallel. The unsprung mass, <span class="math">\(M_u\)</span>,
+represents the mass of the wheel and tire. The spring between the unsprung mass
+and the ground represents the stiffness of the tire. Power flowing from the
+system to the ground is considered positive (note the direction in which
+positive velocity is defined).</p>
+<div class="figure align-center">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-02-fig-01.png" style="width: 600px;" />
+<p class="caption"><strong>Figure 1</strong>: (left) schematic of the two degree-of-freedom quarter car
+model and (right) a bond graph representing the system</p>
+</div>
+<div class="section" id="state-equations-and-states">
+<h3>State Equations and States</h3>
+<p>The state equations derived from the bond graph are as follows:</p>
+<div class="math">
+\begin{align*}
+\dot{p}_2 &amp; = -\frac{B}{M}p_2 - Kq_6 + \frac{B}{M}_up_8 + Mg  \\
+\end{align*}
+</div>
+<div class="math">
+\begin{align*}
+\dot{q}_6 &amp; = \frac{1}{M}p_2 - \frac{1}{M}p_8  \\
+\end{align*}
+</div>
+<div class="math">
+\begin{align*}
+\dot{p}_8 &amp; = \frac{B}{M}p_2 + Kq_6 - \frac{B}{M_u}p_8 - K_tq_{11} + M_ug \\
+\end{align*}
+</div>
+<div class="math">
+\begin{align*}
+\dot{q}_{11} &amp; = \frac{1}{M_u}p_8 - v_i \\
+\end{align*}
+</div>
+<p>where the time varying states are defined as:</p>
+<ul class="simple">
+<li><span class="math">\(p_2\)</span>: vertical momentum of the sprung mass [kg m/s]</li>
+<li><span class="math">\(q_6\)</span>: displacement between the sprung and unsprung mass [m]</li>
+<li><span class="math">\(p_8\)</span>: vertical momentum of the unsprung mass [kg m/s]</li>
+<li><span class="math">\(q_{11}\)</span>: displacement between the unsprung mass and the ground [m]</li>
+</ul>
+<p>It will once again be useful to find the vertical displacement of the road,
+<span class="math">\(y_i\)</span> [m], to visualize the shape of the road. An additional state
+equation can be added to the above minimal set of equations to calculate the
+road height:</p>
+<div class="math">
+\begin{equation*}
+\dot{y}_i = v_i
+\end{equation*}
+</div>
+</div>
+<div class="section" id="constant-parameters">
+<h3>Constant Parameters</h3>
+<p>The quarter car is defined by the following constant parameters:</p>
+<ul class="simple">
+<li>Sprung mass: <span class="math">\(M = 250 \textrm{kg}\)</span></li>
+<li>Ratio of the sprung and unsprung masses: <span class="math">\(\frac{M}{M_u} = 5\)</span></li>
+<li>Acceleration due to gravity: <span class="math">\(g=9.81 \textrm{ms}^{-2}\)</span></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Natural_frequency">Natural frequency</a> of the sprung mass: <span class="math">\(f_n=1 \textrm{Hz}\)</span></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Damping_ratio">Damping ratio</a> of the sprung mass: <span class="math">\(\zeta=0.3\)</span></li>
+<li>Ratio of the tire and suspension spring stiffnesses: <span class="math">\(\frac{K_t}{K} = 10\)</span></li>
+</ul>
+<p>The pothole input is defined by the following constant parameters:</p>
+<ul class="simple">
+<li>Forward speed of the car: <span class="math">\(V_c = 10 \textr{ms}^{-1}\)</span></li>
+<li>Width of the pothole: <span class="math">\(L = 1.2 \textrm{m}\)</span></li>
+<li>Depth of the pothole: <span class="math">\(A = 0.08 \textrm{m}\)</span></li>
+</ul>
+</div>
+<div class="section" id="initial-conditions">
+<h3>Initial Conditions</h3>
+<p>The initial velocities of the two masses should be set to zero, which implies
+that the momentums are also zero:</p>
+<div class="math">
+\begin{equation*}
+p_2 = 0 \textrm{ at } t = 0
+p_8 = 0 \textrm{ at } t = 0
+\end{equation*}
+</div>
+<p>The initial conditions of the displacements, <span class="math">\(q_6,q_{11}\)</span>, should reflect
+the equilibrium state of the springs. To find the equilibrium value of the two
+displacements, set the momentums, their time derivatives, the time derivatives
+of the displacements, and the road velocity input equal to zero in the state
+equations and solve for <span class="math">\(q_6,q_{11}\)</span>. Use these results as the initial
+conditions.</p>
+</div>
+<div class="section" id="inputs">
+<h3>Inputs</h3>
+<p>The single input to the model is the vertical velocity of the road as seen from
+a reference frame that translates with the forward motion of the car. This
+velocity will vary over time and be partially determined by the travel speed of
+the car.</p>
+<p>When the wheel hits the first part of the pothole, the wheel travels down
+(positive for the bond graph) with a constant vertical velocity. Once the tire
+reaches the bottom of the hole the wheel reverses its vertical direction and
+travels up at the same speed. Assume that the profile of the pothole represents
+the displacement of the point where the tire rubber meets the road. At the end
+of the pothole, the wheel resumes a vertical velocity of zero.</p>
+<p>The amount of time it takes for the tire to cross the pothole is
+<span class="math">\(T=\frac{L}{V_c}\)</span>. Consequently, if the tire enters the pothole at
+<span class="math">\(t=T_1\)</span>, the middle of the pothole occurs at <span class="math">\(T_2 = T_1 + T/2\)</span>, and
+the tire leaves the pothole at <span class="math">\(T_3 = T_1 + T\)</span>. The vertical velocity is
+given by <span class="math">\(V_c = \frac{dy}{dx}\)</span>, where <span class="math">\(\frac{dy}{dx}\)</span> is the slope
+of the pothole. Using the slope, you can find an equation for the amplitude of
+the velocity input.You will need to create a function that calculates this
+input for any given time, <span class="math">\(t\)</span>.</p>
+</div>
+</div>
+<div class="section" id="time-duration-and-resolution">
+<h2>Time Duration and Resolution</h2>
+<p>You need to determine the desired maximum time step to ensure that the
+simulation outputs capture all important variations with respect to time. To
+determine the time step you need to think about the dynamics of the system.
+Useful values to help you do so are the natural frequency and damping ratio of
+the masses. For example, the natural frequency of the sprung mass is:</p>
+<div class="math">
+\begin{equation*}
+\omega_n = \sqrt{\frac{K}{M} \textrm{rad/s}
+f_n = \frac{\omega_n}{2\pi} \textrm{Hz}
+\end{equation*}
+</div>
+<p>This gives you an estimate of the oscillation frequency of the system. Note
+that you have two springs, each with different natural frequencies. You can
+calculate the natural period of each to get an idea of the minimum time
+resolution you may need.</p>
+<p>The damping ratio of the sprung mass is:</p>
+<div class="math">
+\begin{equation*}
+\zeta = \frac{B}{2M\omega_n}
+\end{equation*}
+</div>
+<p>For an over damped system, this gives you an estimate of of how fast the
+oscillations will exponentially decay. Remember that the decay function takes
+this form:</p>
+<div class="math">
+\begin{equation*}
+e^{-2\zeta\omega_n t}
+\end{equation*}
+</div>
+<p>You can figure out the time it takes to decay a particular percentage from this
+equation. Popular times to check are &quot;time to half&quot; or calculating the time
+constant <span class="math">\(tau\)</span>, which is the time it takes to decrease 63%. The time
+constant is defined as:</p>
+<div class="math">
+\begin{equation*}
+e^{-t/\tau}
+\end{equation*}
+</div>
+<p>If the system oscillates very rapidly you will want a shorter time step. If the
+oscillation is very slow or if there is a huge amount of damping, the time step
+can be longer. Ensure that there are at least 10 data points per oscillation
+for the shortest duration period you determine. Also, ensure that the total
+duration of the simulation includes data up to a decay of 5% of the maximum.
+Finally, inspect the simulation results and if you think that time resolution
+doesn't show enough detail in parts of the motion, decrease the time step until
+it does show sufficient detail. Be sure to explain what you choose and why.</p>
+</div>
+<div class="section" id="outputs">
+<h2>Outputs</h2>
+<p>One output that may be useful for a suspension engineer is the deflection of
+the suspension relative to the equilibrium deflection. You may know that if the
+suspension bottoms out, there may be damage to the car when hitting the
+pothole. The deflection of the suspension is:</p>
+<div class="math">
+\begin{equation*}
+q_(t) - q_{6}(t=0)
+\end{equation*}
+</div>
+<p>Remember a positive number represents compression. Include this output in your
+report and be sure to discuss what you learn from it.</p>
+<p>Another output that is useful is t he sprung mass acceleration, as this
+acceleration will correlate to the forces the car's frame and the passengers
+experience. Include this output and explain what you learn from it.</p>
+</div>
+<div class="section" id="deliverables">
+<h2>Deliverables</h2>
+<p>Submit a report as a single PDF file to Canvas by the due date that addresses
+the following items:</p>
+<ol class="arabic simple">
+<li>Create a function defined in an m-file that evaluates the right hand side of
+the ODEs, i.e. evaluates the state derivatives. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#defining-the-state-derivative-function">Defining the State
+Derivative Function</a> for an explanation.</li>
+<li>Create a function defined in an m-file that generates the pothole in the
+road. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#time-varying-inputs">Time Varying Inputs</a> for an explanation.</li>
+<li>Create a function defined in an m-file that calculates the two outputs:
+suspension deflection and sprung mass acceleration. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-other-than-the-states">Outputs Other Than
+the States</a> and <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-involving-state-derivatives">Outputs Involving State Derivatives</a> for an explanation.</li>
+<li>Create a script in an m-file that utilizes the above functions to simulate
+the suspension system traversing the pothole in the road. This should setup
+the constants, integrate the dynamics equations, and plot each state, input,
+and output versus time. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#integrating-the-equations">Integrating the State Equations</a> for an
+explanation.</li>
+<li>From the plots above give your best estimation of the vibration period and
+the frequency of the system. Explain how you determined these numbers.</li>
+<li>Try changing only the damping ratio, <span class="math">\(\zeta\)</span>, to a larger and smaller
+value. Plot suspension deflection and acceleration for these new damping
+ratios. What happens when <span class="math">\(\zeta\)</span> decreases/increases? How does the
+change in <span class="math">\(\zeta\)</span> affect the mass acceleration?</li>
+</ol>
+</div>
+<div class="section" id="report-guidelines">
+<h2>Report Guidelines</h2>
+<ul>
+<li><p class="first">Submit one report per group.</p>
+</li>
+<li><p class="first">Include a title page with the lab assignment name &amp; number, course, quarter,
+year, date, your names, and student IDs.</p>
+</li>
+<li><p class="first">Use both text and plots to explain your work and findings. Write the report
+such that a reader can understand the topic given only your document. All
+results should be explained with text (complete sentences and paragraphs)
+interwoven among the figures that you present.</p>
+</li>
+<li><p class="first">All plots should have:</p>
+<blockquote>
+<ul class="simple">
+<li>Axes labeled with units</li>
+<li>Axes limits set to show the important aspects of the graph</li>
+<li>Fonts large enough to read (&gt;= 8pt)</li>
+<li>A figure number, short title, and caption explaining what the figure is</li>
+<li>Legends to describe multiple lines on a single plot</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Grammar, spelling, conciseness, structure, organization, and formatting will
+also be assessed.</p>
+</li>
+<li><p class="first">Constant parameters and time-varying variables (inputs, states, outputs)
+should be identified with descriptive text, a variable name, and units.</p>
+</li>
+<li><p class="first">There should be a section describing the contributions of each team member to
+work done to complete the assignment.</p>
+</li>
+<li><p class="first">Include your code in the report in an appendix.</p>
+<blockquote>
+<ul class="simple">
+<li>Show each function and the main script. These should be monospaced font
+formatting and ideally syntax highlighted. You can use the publish
+function in Octave and Matlab to export code files to nice formats. See
+<a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html</a>
+for more information.</li>
+<li>Your code should be readable by someone else. Include comments, useful
+variable names, and follow good style recommendations, for example see
+this <a class="reference external" href="http://www.datatool.com/downloads/MatlabStyle2%20book.pdf">guide</a>. Imagine that you will come back to this in 10 years and you
+want to be able to understand it quickly.</li>
+<li>All functions should have a &quot;help&quot; description written in the standard
+style describing the inputs and outputs of the function. This <a class="reference external" href="https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template">template</a> is
+useful (click the function tab).</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+</article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
