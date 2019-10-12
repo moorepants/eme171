@@ -66,7 +66,7 @@ The state equations derived from the bond graph are as follows:
 
    \dot{p}_2 & = -\frac{B}{M}p_2 - Kq_6 + \frac{B}{M}_up_8 + Mg  \\
 
-   \dot{q}_6 & = \frac{1}{M}p_2 - \frac{1}{M}p_8  \\
+   \dot{q}_6 & = \frac{1}{M}p_2 - \frac{1}{M}_u p_8  \\
 
    \dot{p}_8 & = \frac{B}{M}p_2 + Kq_6 - \frac{B}{M_u}p_8 - K_tq_{11} + M_ug \\
 
@@ -81,8 +81,9 @@ where the time varying states are defined as:
 
 It will once again be useful to find the vertical displacement of the road,
 :math:`y_i` [m], to visualize the shape of the road. An additional state
-equation can be added to the above minimal set of equations to calculate the
-road height:
+equation and state :math:`y_i` can be added to the above minimal set of
+equations to calculate the road height. You have to add this as a state
+equation and not an output equation because it requires integration to compute.
 
 .. math::
 
@@ -130,10 +131,10 @@ conditions.
 Inputs
 ------
 
-The single input to the model is the vertical velocity of the road as seen from
-a reference frame that translates with the forward motion of the car. This
-velocity will vary over time and be partially determined by the travel speed of
-the car.
+The single input to the model is the vertical velocity of the road :math:`v_i`
+as seen from a reference frame that translates with the forward motion of the
+car. This velocity will vary over time and be partially determined by the
+travel speed of the car.
 
 When the wheel hits the first part of the pothole, the wheel travels down
 (positive for the bond graph) with a constant vertical velocity. Once the tire
@@ -148,7 +149,7 @@ The amount of time it takes for the tire to cross the pothole is
 the tire leaves the pothole at :math:`T_3 = T_1 + T`. The vertical velocity is
 given by :math:`V_c = \frac{dy}{dx}`, where :math:`\frac{dy}{dx}` is the slope
 of the pothole. Using the slope, you can find an equation for the amplitude of
-the velocity input.You will need to create a function that calculates this
+the velocity input. You will need to create a function that calculates this
 input for any given time, :math:`t`.
 
 Outputs
@@ -161,7 +162,7 @@ pothole. The deflection of the suspension is:
 
 .. math::
 
-   q_(t) - q_{6}(t=0)
+   q_6(t) - q_{6}(t=0)
 
 Remember a positive number represents compression. Include this output in your
 report and be sure to discuss what you learn from it.
@@ -201,7 +202,7 @@ this form:
 
 .. math::
 
-   e^{-2\zeta\omega_n t}
+   e^{-\zeta\omega_n t}
 
 You can figure out the time it takes to decay a particular percentage from this
 equation. Popular times to check are "time to half" or calculating the time
@@ -258,6 +259,7 @@ Report Guidelines
 =================
 
 - Submit one report per group.
+- The report must be a single PDf file.
 - Include a title page with the lab assignment name & number, course, quarter,
   year, date, your names, and student IDs.
 - Use both text and plots to explain your work and findings. Write the report
@@ -303,10 +305,10 @@ Points will be added to 40 to get your score from 40-100.
 
 Functions (10 points)
 
-- [20] All functions (1 state derivative, 1 input, 1 output) are present and
+- [10] All functions (1 state derivative, 1 input, 1 output) are present and
   take correct inputs and produce the expected outputs.
-- [10] Most functions are present and mostly take correct inputs and produce
-  the expected outputs
+- [5] Most functions are present and mostly take correct inputs and produce the
+  expected outputs
 - [0] No functions are present.
 
 Main Script (10 points)
