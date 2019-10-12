@@ -138,7 +138,7 @@ model and (right) a bond graph representing the system</p>
 </div>
 <div class="math">
 \begin{align*}
-\dot{q}_6 &amp; = \frac{1}{M}p_2 - \frac{1}{M}p_8  \\
+\dot{q}_6 &amp; = \frac{1}{M}p_2 - \frac{1}{M}_u p_8  \\
 \end{align*}
 </div>
 <div class="math">
@@ -160,8 +160,9 @@ model and (right) a bond graph representing the system</p>
 </ul>
 <p>It will once again be useful to find the vertical displacement of the road,
 <span class="math">\(y_i\)</span> [m], to visualize the shape of the road. An additional state
-equation can be added to the above minimal set of equations to calculate the
-road height:</p>
+equation and state <span class="math">\(y_i\)</span> can be added to the above minimal set of
+equations to calculate the road height. You have to add this as a state
+equation and not an output equation because it requires integration to compute.</p>
 <div class="math">
 \begin{equation*}
 \dot{y}_i = v_i
@@ -205,10 +206,10 @@ conditions.</p>
 </div>
 <div class="section" id="inputs">
 <h3><a class="toc-backref" href="#id7">Inputs</a></h3>
-<p>The single input to the model is the vertical velocity of the road as seen from
-a reference frame that translates with the forward motion of the car. This
-velocity will vary over time and be partially determined by the travel speed of
-the car.</p>
+<p>The single input to the model is the vertical velocity of the road <span class="math">\(v_i\)</span>
+as seen from a reference frame that translates with the forward motion of the
+car. This velocity will vary over time and be partially determined by the
+travel speed of the car.</p>
 <p>When the wheel hits the first part of the pothole, the wheel travels down
 (positive for the bond graph) with a constant vertical velocity. Once the tire
 reaches the bottom of the hole the wheel reverses its vertical direction and
@@ -221,7 +222,7 @@ of the pothole, the wheel resumes a vertical velocity of zero.</p>
 the tire leaves the pothole at <span class="math">\(T_3 = T_1 + T\)</span>. The vertical velocity is
 given by <span class="math">\(V_c = \frac{dy}{dx}\)</span>, where <span class="math">\(\frac{dy}{dx}\)</span> is the slope
 of the pothole. Using the slope, you can find an equation for the amplitude of
-the velocity input.You will need to create a function that calculates this
+the velocity input. You will need to create a function that calculates this
 input for any given time, <span class="math">\(t\)</span>.</p>
 </div>
 <div class="section" id="outputs">
@@ -232,7 +233,7 @@ suspension bottoms out, there may be damage to the car when hitting the
 pothole. The deflection of the suspension is:</p>
 <div class="math">
 \begin{equation*}
-q_(t) - q_{6}(t=0)
+q_6(t) - q_{6}(t=0)
 \end{equation*}
 </div>
 <p>Remember a positive number represents compression. Include this output in your
@@ -270,7 +271,7 @@ oscillations will exponentially decay. Remember that the decay function takes
 this form:</p>
 <div class="math">
 \begin{equation*}
-e^{-2\zeta\omega_n t}
+e^{-\zeta\omega_n t}
 \end{equation*}
 </div>
 <p>You can figure out the time it takes to decay a particular percentage from this
@@ -322,6 +323,8 @@ change in <span class="math">\(\zeta\)</span> affect the mass acceleration?</li>
 <h2><a class="toc-backref" href="#id11">Report Guidelines</a></h2>
 <ul>
 <li><p class="first">Submit one report per group.</p>
+</li>
+<li><p class="first">The report must be a single PDf file.</p>
 </li>
 <li><p class="first">Include a title page with the lab assignment name &amp; number, course, quarter,
 year, date, your names, and student IDs.</p>
@@ -376,10 +379,10 @@ useful (click the function tab).</li>
 <p>Points will be added to 40 to get your score from 40-100.</p>
 <p>Functions (10 points)</p>
 <ul class="simple">
-<li>[20] All functions (1 state derivative, 1 input, 1 output) are present and
+<li>[10] All functions (1 state derivative, 1 input, 1 output) are present and
 take correct inputs and produce the expected outputs.</li>
-<li>[10] Most functions are present and mostly take correct inputs and produce
-the expected outputs</li>
+<li>[5] Most functions are present and mostly take correct inputs and produce the
+expected outputs</li>
 <li>[0] No functions are present.</li>
 </ul>
 <p>Main Script (10 points)</p>
