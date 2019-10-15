@@ -144,13 +144,13 @@ the displacement of the point where the tire rubber meets the road. At the end
 of the pothole, the wheel resumes a vertical velocity of zero.
 
 The amount of time it takes for the tire to cross the pothole is
-:math:`T=\frac{L}{V_c}`. Consequently, if the tire enters the pothole at
+:math:`T=\frac{L}{v_c}`. Consequently, if the tire enters the pothole at
 :math:`t=T_1`, the middle of the pothole occurs at :math:`T_2 = T_1 + T/2`, and
 the tire leaves the pothole at :math:`T_3 = T_1 + T`. The vertical velocity is
-given by :math:`V_c = \frac{dy}{dx}`, where :math:`\frac{dy}{dx}` is the slope
-of the pothole. Using the slope, you can find an equation for the amplitude of
-the velocity input. You will need to create a function that calculates this
-input for any given time, :math:`t`.
+given by :math:`v_i = v_c\frac{dy}{dx}`, where :math:`\frac{dy}{dx}` is the
+slope of the pothole. Using the slope, you can find an equation for the
+amplitude of the velocity input. You will need to create a function that
+calculates this input for any given time, :math:`t`.
 
 Outputs
 -------
@@ -356,11 +356,3 @@ Contributions [10 points]
   to writing)
 - [5] Need to improve the contributions of one or more members
 - [0] Clear that everyone is not contributing equitably
-
-Attendance [10 points]
-
-- [10] Both students attended at least 1 lab session for the two weeks prior to
-  the lab being due.
-- [5] Only one student attended at least 1 lab session for the two weeks prior
-  to the lab being due.
-- [0] Both students did not attend a lab.
