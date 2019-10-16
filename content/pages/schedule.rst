@@ -31,8 +31,10 @@ after each lecture. **Check the schedule periodically for changes.**
 07 W-Oct-09    Numerical Simulation                  - `Notes 07`_
                                                      - `Script 07`_
 08 F-Oct-11    Causality of Basic Components         - Read 3.4                 Lab 1
+                                                     - `Notes 08`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 09 M-Oct-14    System Models: Electrical             - Read 4.1                 HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
+                                                     - `Notes 09`_
 10 W-Oct-16    System Models: Electrical
 11 F-Oct-18    System Models: Mechanical             - Read 4.2
 -- ----------  ------------------------------------  -------------------------  ---------------
