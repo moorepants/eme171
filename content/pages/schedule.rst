@@ -35,7 +35,7 @@ after each lecture. **Check the schedule periodically for changes.**
 -- ----------  ------------------------------------  -------------------------  ---------------
 09 M-Oct-14    System Models: Electrical             - Read 4.1                 HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
                                                      - `Notes 09`_
-10 W-Oct-16    System Models: Electrical
+10 W-Oct-16    System Models: Electrical             - `Notes 10`_
 11 F-Oct-18    System Models: Mechanical             - Read 4.2
 -- ----------  ------------------------------------  -------------------------  ---------------
 12 M-Oct-21    System Models: Mechanical                                        HW #4: 4.1, 4.2, 4.3, 4.4, 4.5
@@ -81,6 +81,7 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 07: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l07.pdf
 .. _Notes 08: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l08.pdf
 .. _Notes 09: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l09.pdf
+.. _Notes 10: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l10.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
