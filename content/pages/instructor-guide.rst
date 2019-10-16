@@ -245,8 +245,8 @@ Week 0
   seem to be added to the roster). Find these out from the Hyundai center
   secretary.
 - [TA] Get added to the Canvas course, Google Drive, and Github site.
-- [TA] Set up homework solutions to reveal automatically in canvas day after
-  due.
+- [TA] Set up homework solutions to reveal automatically in Canvas day after
+  due. Publish the homework solutions folder.
 
 Week 1
 ------
