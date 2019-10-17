@@ -169,24 +169,19 @@ The example code shown below does not correspond to the system above, provides a
 Master Script
 -------------
 .. code-include:: ../scripts/best-practices/integrate.m
-   :lexer: matlab
 
 Input Function
 --------------
 .. code-include:: ../scripts/best-practices/integrate.m
-   :lexer: matlab
 
 State Equations Function
 ------------------------
 .. code-include:: ../scripts/best-practices/integrate.m
-   :lexer: matlab
 
 Output Function
 ---------------
 .. code-include:: ../scripts/best-practices/integrate.m
-   :lexer: matlab
 
 Output Function with State Derivatives
 --------------------------------------
 .. code-include:: ../scripts/best-practices/integrate.m
-   :lexer: matlab
