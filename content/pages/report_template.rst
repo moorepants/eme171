@@ -8,7 +8,7 @@
 =======================
 Lab reports prepared for EME 171 should meet the following guidelines:
 
-* One lab report per group.
+* One lab report per group. 
 
 * Lab reports must be submitted online on Canvas. You may scan or take pictures of hand-calculations or hand-drawn figures (such as bond graphs) to include them in the report.
 
