@@ -168,9 +168,6 @@ The example code shown below does not correspond to the system above, provides a
 
 Master Script
 -------------
-asd 
 
-.. code-include:: ../scripts/best-practices/integrate.m
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
    :lexer: matlab
-   
-asd
