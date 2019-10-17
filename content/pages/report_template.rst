@@ -171,29 +171,34 @@ Note: the preview breaks when I add the code-include blocks, so I have left them
 -----------------
 Simulation Script
 -----------------
-asd
 
 .. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
    :lexer: matlab
-   
-esd
 
 --------------
 Input Function
 --------------
-asd
+
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :lexer: matlab
 
 ------------------------
 State Equations Function
 ------------------------
-asd
+
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :lexer: matlab
 
 ---------------
 Output Function
 ---------------
-asd
 
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :lexer: matlab
+   
 --------------------------------------
 Output Function with State Derivatives
 --------------------------------------
-asd
+
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :lexer: matlab
