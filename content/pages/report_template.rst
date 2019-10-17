@@ -71,11 +71,23 @@ Cover Page
    * - Student A -- 123456789
    * - Student B -- 987654321
 
+Introduction
+============
 
+Introduce the lab material. This includes describing the system you are simulating, providing the system diagram, bond graph, state equations, and parameters, discussing the learning objectives, This lab concerns the simulation of a nonlinear mass/spring/damper system subjected to a force input. The goal of this lab is to linearize the spring and to demonstrate the effects of linearization on simulation accuracy. The system and bond graph are shown in Figure 1.
 
+.. figure:: content/images/example-system-and-bondgraph.PNG
+   :width: 600px
 
+   **Figure 1**: Mechanical Schematic of Quarter Car Model (left) and
+   equivalent bond graph (right).
 
+After completing this lab you will be able to:
 
+    translate ordinary differential equations into a computer function that evaluates the equations at any given point in time
+    numerically integrate ordinary differential equations with Octave/Matlab's ode45 (Links to an external site.)
+    create complete and legible plots of the resulting input, state, and output trajectories
+    create a report with textual explanations and plots of the simulation
 
 
 There are several equations that are of potential interest, but the primary
