@@ -4,7 +4,7 @@
 Evaluating the ODEs
 ===================
 
-This document describes some recommended best practices for integrating
+This dsdfocument describes some recommended best practices for integrating
 ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
 advantages in computational efficiency [1]_.
