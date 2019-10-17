@@ -168,9 +168,6 @@ The example code shown below does not correspond to the system above, provides a
 
 Master Script
 -------------
-The state derivatives are calculated internally when ``ode45()`` is called and
-are not stored during integration. These can be recalculated after integration
-for use in you primary script, e.g. as in |integrate_with_derivative_output|_.
 
-.. |integrate_with_derivative_output| replace:: ``integrate_with_derivative_output.m``
-.. _integrate_with_derivative_output: {filename}/scripts/best-practices/integrate_with_derivative_output.m
+.. literalinclude:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :language: matlab
