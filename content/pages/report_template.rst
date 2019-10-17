@@ -1,5 +1,7 @@
 :title: EME 171 Lab Report Guidelines and Template
-:status: hidden
+:url:
+:save_as: index.html
+:sortorder: 0
 
 =======================
  Lab Report Guidelines
