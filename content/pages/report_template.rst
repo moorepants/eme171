@@ -174,6 +174,3 @@ for use in you primary script, e.g. as in |integrate_with_derivative_output|_.
 
 .. |integrate_with_derivative_output| replace:: ``integrate_with_derivative_output.m``
 .. _integrate_with_derivative_output: {filename}/scripts/best-practices/integrate_with_derivative_output.m
-
-.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
-   :lexer: matlab
