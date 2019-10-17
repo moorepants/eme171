@@ -179,26 +179,26 @@ Simulation Script
 Input Function
 --------------
 
-.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+.. code-include:: ../scripts/best-practices/eval_step_input.m
    :lexer: matlab
 
 ------------------------
 State Equations Function
 ------------------------
 
-.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+.. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
    :lexer: matlab
 
 ---------------
 Output Function
 ---------------
 
-.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+.. code-include:: ../scripts/best-practices/eval_output.m
    :lexer: matlab
    
 --------------------------------------
 Output Function with State Derivatives
 --------------------------------------
 
-.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+.. code-include:: ../scripts/best-practices/eval_output_with_state_derivatives.m
    :lexer: matlab
