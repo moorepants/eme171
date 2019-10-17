@@ -162,11 +162,11 @@ these simulations are shown below. In all cases, the linearized model overestima
 
 Code
 ====
-Include all code at the *end* of your report. Your code should be well-commented, and any function files you write should include a standard "help" description written in the standard style describing the inputs and outputs of the function.
+Include all code at the end of your report. Your code should be well-commented, and any function files you write should include a standard "help" description written in the standard style describing the inputs and outputs of the function.
 
 The example code shown below does not correspond to the system above, provides an example of what yours submitted code should look like.
 
-*Note: the preview breaks when I add the code-include blocks, so I have left them out here.*
+Note: the preview breaks when I add the code-include blocks, so I have left them out here.
 
 Simulation Script
 -----------------
