@@ -168,7 +168,27 @@ The example code shown below does not correspond to the system above, provides a
 
 Note: the preview breaks when I add the code-include blocks, so I have left them out here.
 
+-----------------
 Simulation Script
 -----------------
 asd
 
+--------------
+Input Function
+--------------
+asd
+
+------------------------
+State Equations Function
+------------------------
+asd
+
+---------------
+Output Function
+---------------
+asd
+
+--------------------------------------
+Output Function with State Derivatives
+--------------------------------------
+asd
