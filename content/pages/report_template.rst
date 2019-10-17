@@ -66,7 +66,8 @@ Cover Page
 .. list-table::
    
    * - Lab 1: Introduction to Simulation 
-   * - EME171 Fall 2019
+   * - EME171 - Analysis, Simulation and Design of Mechatronic Systems
+   * - Fall 2019
    * - October 18, 2019
    * - Student A -- 123456789
    * - Student B -- 987654321
