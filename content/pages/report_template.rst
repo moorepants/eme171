@@ -115,9 +115,9 @@ Calculations
 
 In this section, show your work for any computed variables like initial conditions, equilibrium points, or computed parameters. Make sure to include these here even if the calculations are present in your code. You may include scanned images of hand computations if need be. In this example, we have a section for computing system parameters and time parameters, but these will of course vary with each lab.
 
-------------------
- System Paramters
-------------------
+-------------------
+ System Parameters
+-------------------
 A mass :math:`m=10`kg is lowered onto a nonlinear spring and damper and reaches its equilibrium position at  :math:`q_{k,eq}=0.25`m. Knowing this, the nonlinear spring constant  :math:`G` can be found:
 
 .. math::
