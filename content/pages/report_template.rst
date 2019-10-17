@@ -82,7 +82,7 @@ Introduce the lab material. This includes describing the system you are simulati
    
 The goal of this lab is to linearize the spring and to demonstrate the effects of linearization on simulation accuracy. The system and bond graph are shown in Figure 1.
 
-.. figure:: ../master/content/images/example-system-and-bondgraph.PNG
+.. figure:: https://raw.githubusercontent.com/kevinrmallon/eme171/master/content/images/example-system-and-bondgraph.PNG
    :width: 600px
 
    **Figure 1**: Mechanical Schematic of Nonlinear System (left) and equivalent bond graph (right).
@@ -155,7 +155,7 @@ In this section, discuss what you simulated and the ensuing results. Use both te
 The linear and nonlinear equations of motion were simulated for :math:`F/mg =` 0.1, 0.2, 2.0, and 5.0. The results of
 these simulations are shown below. In all cases, the linearized model overestimated the system's displacement. This is because the actual spring force increased much more rapidly than the spring force of the linearized model (specifically, cubic growth vs. linear growth). Additionally, the linearized model kept a constant natural frequency, while the response frequency of the nonlinear system increased with displacement. Again, this discrepancy is due to the linearized model not accounting for the actual system's increasing stiffness.
 
-.. figure:: ../content/images/example-results-plot.PNG
+.. figure:: https://raw.githubusercontent.com/kevinrmallon/eme171/master/content/images/example-results-plot.PNG
    :width: 600px
    
 **Figure 2**: Comparison of results for the nonlinear and linearized deflections.
