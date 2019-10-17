@@ -173,6 +173,11 @@ Simulation Script
 -----------------
 asd
 
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
+   :lexer: matlab
+   
+esd
+
 --------------
 Input Function
 --------------
