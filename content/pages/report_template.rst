@@ -165,3 +165,28 @@ Code
 Include all code at the *end* of your report. Your code should be well-commented, and any function files you write should include a standard "help" description written in the standard style describing the inputs and outputs of the function.
 
 The example code shown below does not correspond to the system above, provides an example of what yours submitted code should look like.
+
+Master Script
+-------------
+.. code-include:: ../scripts/best-practices/integrate.m
+   :lexer: matlab
+
+Input Function
+--------------
+.. code-include:: ../scripts/best-practices/integrate.m
+   :lexer: matlab
+
+State Equations Function
+------------------------
+.. code-include:: ../scripts/best-practices/integrate.m
+   :lexer: matlab
+
+Output Function
+---------------
+.. code-include:: ../scripts/best-practices/integrate.m
+   :lexer: matlab
+
+Output Function with State Derivatives
+--------------------------------------
+.. code-include:: ../scripts/best-practices/integrate.m
+   :lexer: matlab
