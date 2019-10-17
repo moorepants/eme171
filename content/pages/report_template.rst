@@ -165,39 +165,3 @@ Code
 Include all code at the *end* of your report. Your code should be well-commented, and any function files you write should include a standard "help" description written in the standard style describing the inputs and outputs of the function.
 
 The example code shown below does not correspond to the system above, provides an example of what yours submitted code should look like.
-
-Master script
--------------
-
-.. code-include:: ../scripts/best-practices/eval_step_input.m
-   :lexer: matlab
-
-Input function
---------------
-
-.. code-include:: ../scripts/best-practices/eval_step_input.m
-   :lexer: matlab
-   
-
-State equations function
-------------------------
-
-.. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
-   :lexer: matlab
-   
-
-Output function
----------------
-
-.. code-include:: ../scripts/best-practices/eval_output.m
-   :lexer: matlab
-   
-
-Output function with state derivatives
----------------
-
-.. code-include:: ../scripts/best-practices/eval_output_with_state_derivatives.m
-   :lexer: matlab
-
-
-   
