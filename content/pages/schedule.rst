@@ -83,6 +83,15 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 08: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l08.pdf
 .. _Notes 09: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l09.pdf
 .. _Notes 10: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l10.pdf
+.. _Notes 11: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l11.pdf
+.. _Notes 12: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l12.pdf
+.. _Notes 13: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l13.pdf
+.. _Notes 14: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l14.pdf
+.. _Notes 15: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l15.pdf
+.. _Notes 16: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l16.pdf
+.. _Notes 17: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l17.pdf
+.. _Notes 18: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l18.pdf
+.. _Notes 19: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l19.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
