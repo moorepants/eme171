@@ -65,15 +65,14 @@ Cover Page
 ----------
 
 .. list-table::
-   :class: table table-striped table-bordered
+   :class: table table-bordered
 
-   -
-      - Lab 1: Introduction to Simulation
-      - EME171 - Analysis, Simulation and Design of Mechatronic Systems
-      - Fall 2019
-      - October 18, 2019
-      - Student A -- 123456789
-      - Student B -- 987654321
+   * - Lab 1: Introduction to Simulation
+   * - EME171 - Analysis, Simulation and Design of Mechatronic Systems
+   * - Fall 2019
+   * - October 18, 2019
+   * - Student A -- 123456789
+   * - Student B -- 987654321
 
 Introduction
 ------------
@@ -93,7 +92,7 @@ The goal of this lab is to linearize the spring and to demonstrate the effects
 of linearization on simulation accuracy. The system and bond graph are shown in
 Figure 1.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019/example-system-and-bondgraph.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/example-system-and-bondgraph.png
    :width: 600px
 
    **Figure 1**: Mechanical Schematic of Nonlinear System (left) and equivalent
@@ -197,7 +196,7 @@ response frequency of the nonlinear system increased with displacement. Again,
 this discrepancy is due to the linearized model not accounting for the actual
 system's increasing stiffness.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019/example-results-plot.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/example-results-plot.png
    :width: 600px
 
    **Figure 2**: Comparison of results for the nonlinear and linearized
