@@ -214,9 +214,6 @@ The example code shown below does not correspond to the system above, provides
 an example of what yours submitted code should look like. Make sure it is in a
 fixed-width font and (ideally) has syntax highlighting.
 
-Note: the preview breaks when I add the code-include blocks, so I have left
-them out here.
-
 Simulation Script
 ^^^^^^^^^^^^^^^^^
 
