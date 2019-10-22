@@ -20,6 +20,7 @@ class but you may be interested in learning it on your own.
 Labs
 ====
 
+- `Lab Report Guidelines and Template <{filename}/pages/report-template.rst>`_
 - `Lab 1: Introduction to simulation <{filename}/pages/lab-01.rst>`_
 - `Lab 2: Two DoF Quarter Car Model <{filename}/pages/lab-02.rst>`_
 
