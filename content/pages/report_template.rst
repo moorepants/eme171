@@ -1,4 +1,4 @@
-:title: EME 171 Lab Report Guidelines and Template
+:title: Lab Report Guidelines and Template
 :status: hidden
 
 Lab Report Guidelines
@@ -93,7 +93,7 @@ The goal of this lab is to linearize the spring and to demonstrate the effects
 of linearization on simulation accuracy. The system and bond graph are shown in
 Figure 1.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/assets/2019/example-system-and-bondgraph.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019/example-system-and-bondgraph.png
    :width: 600px
 
    **Figure 1**: Mechanical Schematic of Nonlinear System (left) and equivalent
@@ -197,7 +197,7 @@ response frequency of the nonlinear system increased with displacement. Again,
 this discrepancy is due to the linearized model not accounting for the actual
 system's increasing stiffness.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/assets/2019/example-results-plot.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019/example-results-plot.png
    :width: 600px
 
    **Figure 2**: Comparison of results for the nonlinear and linearized
@@ -218,29 +218,29 @@ fixed-width font and (ideally) has syntax highlighting.
 Simulation Script
 ^^^^^^^^^^^^^^^^^
 
-.. code-include:: {filename}/../scripts/best-practices/integrate_with_derivative_output.m
+.. code-include:: ../scripts/best-practices/integrate_with_derivative_output.m
    :lexer: matlab
 
 Input Function
 ^^^^^^^^^^^^^^
 
-.. code-include:: {filename}/../scripts/best-practices/eval_step_input.m
+.. code-include:: ../scripts/best-practices/eval_step_input.m
    :lexer: matlab
 
 State Equations Function
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-include:: {filename}/../scripts/best-practices/eval_rhs_with_input.m
+.. code-include:: ../scripts/best-practices/eval_rhs_with_input.m
    :lexer: matlab
 
 Output Function
 ^^^^^^^^^^^^^^^
 
-.. code-include:: {filename}/../scripts/best-practices/eval_output.m
+.. code-include:: ../scripts/best-practices/eval_output.m
    :lexer: matlab
 
 Output Function with State Derivatives
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-include:: {filename}/../scripts/best-practices/eval_output_with_state_derivatives.m
+.. code-include:: ../scripts/best-practices/eval_output_with_state_derivatives.m
    :lexer: matlab
