@@ -361,8 +361,8 @@ describe these computations:
 
 .. math::
 
-   x_p = l \cos(\theta) \\
-   y_p = l \sin(\theta) \\
+   x_p = l \sin(\theta) \\
+   y_p = l - l \cos(\theta) \\
    E_k = ml^2\omega/2 \\
    E_p = mghy_p
 

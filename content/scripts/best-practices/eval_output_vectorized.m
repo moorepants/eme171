@@ -34,8 +34,8 @@ function ys = eval_output_vectorized(ts, xs, rs, p)
 
     % make sure to use elementwise operators, e.g. .* instead of * for
     % vectorized calculations
-    x_pos = l.*cos(theta);
-    y_pos = l.*sin(theta);
+    x_pos = l.*sin(theta);
+    y_pos = l - l.*cos(theta);
 
     kinetic_energy = m.*l.^2.*omega.^2./2;
     potential_energy = m.*g.*y_pos;

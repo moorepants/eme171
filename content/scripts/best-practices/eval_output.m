@@ -25,8 +25,8 @@ function y = eval_output(t, x, r, p)
     g = p(3);
 
     % calculate the Cartesian position of the pendulum bob
-    x_pos = l.*cos(theta);
-    y_pos = l.*sin(theta);
+    x_pos = l*sin(theta);
+    y_pos = l - l*cos(theta);  % position relative to stable equilibrium
 
     % calculate the kinetic and potential energies
     kinetic_energy = m*l^2*omega^2/2;

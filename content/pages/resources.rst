@@ -17,11 +17,18 @@ interface for constructing bond graphs graphically and automatically generating
 equations of motion code for simulation. We will not teach this software in the
 class but you may be interested in learning it on your own.
 
+Labs
+====
+
+- `Lab 1: Introduction to simulation <{filename}/pages/lab-01.rst>`_
+- `Lab 2: Two DoF Quarter Car Model <{filename}/pages/lab-02.rst>`_
+
 Scripts
 =======
 
 - `EBike Simulation <{filename}/pages/ebike-simulation.rst>`_
 - `ODE Integration Best Practices <{filename}/pages/ode-integration-best-practices.rst>`_
+- `Bicycle Balance Simulation <{filename}/pages/bicycle-balance-simulation.rst>`_
 
 Supplementary Materials
 =======================

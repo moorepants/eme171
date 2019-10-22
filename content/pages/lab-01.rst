@@ -16,6 +16,61 @@ After completing this lab you will be able to:
 
 .. _ode45: https://www.mathworks.com/help/matlab/ref/ode45.html
 
+Grading Rubric
+==============
+
+Points will be added to 40 to get your score from 40-100.
+
+Functions (20 points)
+
+- [20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
+  and take correct inputs and produce the expected outputs.
+- [10] Most functions are present and mostly take correct inputs and produce
+  the expected outputs
+- [0] No functions are present.
+
+Main Script (10 points)
+
+- [10] Constant parameters only defined once in main script(s); Integration produces
+  the correct state, input, and output trajectories; Good choices in number of
+  time steps and resolution are chosen
+- [5] Parameters are defined in multiple places; Integration produces some
+  correct state, input, and output trajectories; Poor choices in number of time
+  steps and resolution are chosen
+- [0] Constants defined redundantly; Integration produces incorrect
+  trajectories; Poor choices in time duration and steps
+
+Explanations (10 points)
+
+- [10] Explanation of no damping is correct and well explained; Explanation of
+  second road input behavior correctly describes results; Plots of appropriate
+  variables are used in the explanations
+- [5] Explanation of no damping is somewhat correct and reasonably explained;
+  Explanation of second road input behavior somewhat correctly describes
+  results; Plots of appropriate variables are used in the explanations, but
+  some are missing
+- [0] Explanation of no damping is incorrect and poorly explained; Explanation
+  of second road input behavior incorrectly describes results
+
+Report and Code Formatting (10 points)
+
+- [10] All axes labeled with units, legible font sizes, informative captions;
+  Functions are documented with docstrings which fully explain the inputs and
+  outputs; Professional, very legible, quality writing; All report format
+  requirements met
+- [5] Some axes labeled with units, mostly legible font sizes,
+  less-than-informative captions; Functions have docstrings but the inputs and
+  outputs are not fully explained; Semi-professional, somewhat legible, writing
+  needs improvement; Most report format requirements met
+- [0] Axes do not have labels, legible font sizes, or informative captions;
+  Functions do not have docstrings; Report is not professionally written and
+  formatted; Report format requirements are not met
+
+Attendance [10 points]
+
+- [10] Attended at least one lab session in two weeks prior to due date.
+- [0] Did not Attended at least one lab session in two weeks prior to due date.
+
 Introduction
 ============
 
@@ -100,6 +155,16 @@ state variables which are:
 - Momentum of the sprung mass: :math:`p(t)`
 - Change in displacement between the sprung mass and the ground: :math:`q(t)`
 - Vertical displacement of the road: :math:`y_{in}(t)`
+
+Initial Conditions
+------------------
+
+Initial conditions are the starting point values for the integrated variables
+in the systems. This system has three state variables, so there are three
+initial conditions. For this lab, all the initial conditions are zero. See
+`Integrating the State Equations`_ for how to set up the initial condition vector.
+Make sure that your initial conditions are arranged in the same order as your
+state variables.
 
 Parameters
 ----------
