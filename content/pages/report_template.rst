@@ -2,7 +2,7 @@
 :status: hidden
 
 Lab Report Guidelines
-=======================
+=====================
 
 Lab reports prepared for EME 171 should meet the following guidelines:
 
@@ -65,6 +65,7 @@ Cover Page
 ----------
 
 .. list-table::
+   :class: table table-striped table-bordered
 
    -
       - Lab 1: Introduction to Simulation
@@ -92,7 +93,7 @@ The goal of this lab is to linearize the spring and to demonstrate the effects
 of linearization on simulation accuracy. The system and bond graph are shown in
 Figure 1.
 
-.. figure:: https://raw.githubusercontent.com/kevinrmallon/eme171/master/content/images/example-system-and-bondgraph.PNG
+.. figure:: https://objects-us-east-1.dream.io/eme171/assets/2019/example-system-and-bondgraph.png
    :width: 600px
 
    **Figure 1**: Mechanical Schematic of Nonlinear System (left) and equivalent
@@ -196,7 +197,7 @@ response frequency of the nonlinear system increased with displacement. Again,
 this discrepancy is due to the linearized model not accounting for the actual
 system's increasing stiffness.
 
-.. figure:: https://raw.githubusercontent.com/kevinrmallon/eme171/master/content/images/example-results-plot.PNG
+.. figure:: https://objects-us-east-1.dream.io/eme171/assets/2019/example-results-plot.png
    :width: 600px
 
    **Figure 2**: Comparison of results for the nonlinear and linearized
