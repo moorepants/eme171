@@ -41,8 +41,8 @@ after each lecture. **Check the schedule periodically for changes.**
 12 M-Oct-21    System Models: Mechanical             - Read 4.2
                                                      - `Notes 12`_
 13 W-Oct-23    System Models: Mechanical             - `Notes 13`_
-14 F-Oct-25    - System Models: Mechanical                                      - Lab 2
-               - Midterm Review                                                 - HW #4: 4.1, 4.2, 4.3, 4.4
+14 F-Oct-25    Midterm Review                        - `Notes 14`_              - Lab 2
+                                                                                - HW #4: 4.1, 4.2, 4.3, 4.4
 -- ----------  ------------------------------------  -------------------------  ---------------
 15 M-Oct-28    Midterm Exam
 16 W-Oct-30    System Models: Mechanical             - Read 4.3
