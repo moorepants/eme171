@@ -292,45 +292,49 @@ Week 4
 - [TA] Grade HW3
 - [TA] Review numerical integration materials (teach Euler's method).
 - [TA] Hold lab sessions.
+- [TA] Review Lab 2 assignment, make any edits/updates.
+- [Instructor] Review Lab 2 assignment, make any edits/updates, and post by Friday.
 
 Week 5
 ------
 
-- [TA] Post solutions to HW 4 the day after submission.
+- [TA] Post solutions to HW 4 the day after submission. (immediately because
+  midterm is next week)
 - [TA] Grade homework 4 within a week of submission.
-- [TA] Grade lab 2
-- [TA] Grade HW 4
+- [TA] Grade lab 2 within a week of submission.
 - [TA] Answer questions for midterm
-- [TA] Review Lab 2 assignment, make any edits/updates.
-- [Instructor] Review Lab 2 assignment, make any edits/updates, and post by Friday.
 - [TA] Hold lab sessions.
+- [Instructor] Review HW 5 and adjust if needed.
+- [Instructor] Make the midterm.
 
 Week 6
 ------
 
+- [TA] Review Lab 3 assignment, make any edits/updates.
+- [Instructor] Review Lab 3 assignment, make any edits/updates, and post by Friday.
 - [ALL] Grade midterm
-- [TA] Grade lab 1 within one week of the submission.
+- [TA] Grade lab 2 within one week of the submission.
 - [TA] Hold lab sessions.
+- [Instructor] Post midterm reflection
 
 Week 7
 ------
 
-- [TA] Post solutions to HW 4 the day after submission.
-- [TA] Grade homework 4 within a week of submission.
-- [TA] Polish and pre-release lab 4
-- [TA] Grade HW 6
-- [TA] Review all the HWs for potential cheaters
-- [TA] Midterm reflection points
-- [TA] Post solution to HW 6
+- [TA] Post solutions to HW 5 the day after submission.
+- [TA] Post lab 2 solutions one week after due date.
+- [TA] Grade homework 5 within a week of submission.
+- [TA] Post solution to HW 5
 - [TA] Hold lab sessions.
+- [TA] Review Lab 4 assignment, make any edits/updates.
+- [Instructor] Review Lab 4 assignment, make any edits/updates, and post by Friday.
 
 Week 8
 ------
 
-- [TA] Grade Lab 3
-- [TA] Solution to Lab 4
-- [TA] Complete cheaters sheet
-- [TA] Post solution to HW 7
+- [TA] Add midterm reflection points to canvas
+- [TA] Grade Lab 3 within one week of submission
+- [TA] Post solution to lab one week after submission
+- [TA] Post solution to HW 6
 - [TA] Hold lab sessions.
 
 Week 9
@@ -351,3 +355,6 @@ Week 10
 - [TA] Finalize the instructor guide
 - [TA] Hold additional office hour for the final exam
 - [TA] Hold lab sessions.
+
+Week 11
+-------

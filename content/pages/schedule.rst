@@ -46,9 +46,9 @@ after each lecture. **Check the schedule periodically for changes.**
 -- ----------  ------------------------------------  -------------------------  ---------------
 15 M-Oct-28    Midterm Exam
 16 W-Oct-30    System Models: Mechanical             - Read 4.3
-17 F-Nov-01    System Models: Hydraulic              - Read 4.4
+17 F-Nov-01    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
-18 M-Nov-04    System Models: Hydraulic                                         HW #5: 4.5, 4.16, 4.22, 4.23, 4.24
+18 M-Nov-04    System Models: Hydraulic              - Read 4.4                 HW #5: 4.5, 4.16, 4.22, 4.23, 4.24
 19 W-Nov-06    State Space Equations                 - Read 5.1-5.2
 20 F-Nov-08    State Space Equations                 - Read 5.3                 Lab 3
 -- ----------  ------------------------------------  -------------------------  ---------------
