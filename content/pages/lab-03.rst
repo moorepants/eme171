@@ -218,7 +218,7 @@ following relationships can help you make your calculations:
 
    T=\frac{1}{f_n} \\
    f_n=\frac{\omega_n}{2\pi} \\
-   \omega_n=\sqrt{\frac{stiffness}{inertia}}
+   \omega_n=\sqrt{\frac{\textrm{stiffness}}{\textrm{inertia}}}
 
 You may use a small angle assumption (:math:`\sin\theta\approx\theta`) when
 determining the pitch natural frequency.
