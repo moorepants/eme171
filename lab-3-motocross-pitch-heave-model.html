@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  Lab 3: Motocross Pitch-Heave Model | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/lab-3-motocross-pitch-heave-model.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
+  
+  <meta name="description" content="Contents Learning Objectives Introduction Model Description Constant Parameters System Equations Inputs Simulation Steps Deliverables Bonus Question Report Guidelines Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given point in time numerically integrate ordinary …">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      a.async = 1;
+      a.src = g;
+      m = s.getElementsByTagName(o)[0];
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-15966419-8', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  Lab 3: Motocross Pitch-Heave Model
+</h1>
+      <hr>
+
+<article class="article">
+  <div class="content">
+    <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#learning-objectives" id="id1">Learning Objectives</a></li>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#model-description" id="id3">Model Description</a><ul>
+<li><a class="reference internal" href="#constant-parameters" id="id4">Constant Parameters</a></li>
+<li><a class="reference internal" href="#system-equations" id="id5">System Equations</a></li>
+<li><a class="reference internal" href="#inputs" id="id6">Inputs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simulation-steps" id="id7">Simulation Steps</a></li>
+<li><a class="reference internal" href="#deliverables" id="id8">Deliverables</a><ul>
+<li><a class="reference internal" href="#bonus-question" id="id9">Bonus Question</a></li>
+<li><a class="reference internal" href="#report-guidelines" id="id10">Report Guidelines</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="learning-objectives">
+<h2><a class="toc-backref" href="#id1">Learning Objectives</a></h2>
+<p>After completing this lab you will be able to:</p>
+<ul class="simple">
+<li>translate ordinary differential equations into a computer function that
+evaluates the equations at any given point in time</li>
+<li>numerically integrate ordinary differential equations with Octave/Matlab's
+<a class="reference external" href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a></li>
+<li>create complete and legible plots of the resulting input, state, and output
+trajectories</li>
+<li>create a report with textual explanations and plots of the simulation</li>
+<li>explain how various parameters affect the motion of a two degree-of-freedom
+quarter car model</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a></h2>
+<p>In this lab, you will investigate the response of a motocross motorcycle as it
+traverses two road bumps. You will look into the pitch and heave motion of the
+motorcycle when it travels over the bumps. You will also consider how the rider
+can change the dynamics of the vehicle by shifting his or her weight around on
+the motorcycle.</p>
+</div>
+<div class="section" id="model-description">
+<h2><a class="toc-backref" href="#id3">Model Description</a></h2>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-01.png" style="width: 600px;" />
+<p class="caption"><strong>Figure 1</strong> Motocross cycle model (pitch-heave model). Note: In this
+schematic, the front wheel has already gone over the first bump.</p>
+</div>
+<div class="section" id="constant-parameters">
+<h3><a class="toc-backref" href="#id4">Constant Parameters</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="49%" />
+<col width="9%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Symbol</td>
+<td>Description</td>
+<td>Value</td>
+<td>Units</td>
+</tr>
+<tr><td><span class="math">\(v_c\)</span></td>
+<td>Cycle forward velocity</td>
+<td>10</td>
+<td>m/s</td>
+</tr>
+<tr><td><span class="math">\(L_{cg}\)</span></td>
+<td>Center of gravity distance (standard config.)</td>
+<td>0.9</td>
+<td>m</td>
+</tr>
+<tr><td><span class="math">\(L_{cg}\)</span></td>
+<td>Center of gravity distance (forward config.)</td>
+<td>0.7</td>
+<td>m</td>
+</tr>
+<tr><td><span class="math">\(m_{cr}\)</span></td>
+<td>Mass of cycle and rider</td>
+<td>300</td>
+<td>kg</td>
+</tr>
+<tr><td><span class="math">\(r_{gy}\)</span></td>
+<td>Body radius of gyration</td>
+<td>0.5</td>
+<td>m</td>
+</tr>
+<tr><td><span class="math">\(k_{sf}\)</span></td>
+<td>Front suspension stiffness</td>
+<td>3000</td>
+<td>N/m</td>
+</tr>
+<tr><td><span class="math">\(k_{sr}\)</span></td>
+<td>Rear suspension stiffness</td>
+<td>3500</td>
+<td>N/m</td>
+</tr>
+<tr><td><span class="math">\(b_{sf}\)</span></td>
+<td>Front damping coefficient</td>
+<td>400</td>
+<td>Ns/m</td>
+</tr>
+<tr><td><span class="math">\(b_{sr}\)</span></td>
+<td>Rear damping coefficient</td>
+<td>500</td>
+<td>Ns/m</td>
+</tr>
+<tr><td><span class="math">\(m_{tf}\)</span></td>
+<td>Front tire (unsprung) mass</td>
+<td>15</td>
+<td>kg</td>
+</tr>
+<tr><td><span class="math">\(m_{tr}\)</span></td>
+<td>Rear tire (unsprung) mass</td>
+<td>20</td>
+<td>kg</td>
+</tr>
+<tr><td><span class="math">\(k_{tf}\)</span></td>
+<td>Front tire stiffness</td>
+<td>30,000</td>
+<td>N/m</td>
+</tr>
+<tr><td><span class="math">\(k_{tr}\)</span></td>
+<td>Rear tire stiffness</td>
+<td>40,000</td>
+<td>N/m</td>
+</tr>
+<tr><td><span class="math">\(L_{wb}\)</span></td>
+<td>Wheel base distance</td>
+<td>1.6</td>
+<td>m</td>
+</tr>
+<tr><td><span class="math">\(A\)</span></td>
+<td>Bump height</td>
+<td>See Note</td>
+<td>m</td>
+</tr>
+<tr><td><span class="math">\(L\)</span></td>
+<td>Bump distance</td>
+<td>0.5</td>
+<td>m</td>
+</tr>
+<tr><td><span class="math">\(g\)</span></td>
+<td>Acceleration due to gravity</td>
+<td>9.81</td>
+<td><span class="math">\(\frac{m}{s^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Hint: <span class="math">\(J_{cr}\:=\:m_{cr}\:\cdot r_{gy}\:^2\)</span></p>
+<p>The maximum suspension deflection <strong>from equilibrium conditions</strong> is
+<span class="math">\(\delta_{\max}=0.1\:m\)</span> for both the front and rear suspensions.</p>
+<p>The cycle will go over two bumps, each height A. We want to determine
+the largest bump height which the cycle can go over <strong>without bottoming
+out either the front or rear suspension.</strong> Bottoming out means that the
+suspension deflection has equaled or exceeded the maximum suspension
+deflection specified above.</p>
+<p>This should be determined for both loading
+configurations (<span class="math">\(L_{cg}\:=\:0.9\:m| and |LaTeX: L_{cg}\:=\:0.7\:m\)</span>). A clue is that this is a linear system, which means
+that if inputs are scaled up or down, the responses of all variables
+will be scaled identically (e.g., if you double the inputs, the outputs
+are doubled as well). This means that only two simulation runs are
+necessary to determine the size of the bump that will cause the
+suspension to bottom out (one for each configuration). You may want to
+use the MATLAB/Octave command <em>max</em> () to find the maximum suspension
+deflections.</p>
+</div>
+<div class="section" id="system-equations">
+<h3><a class="toc-backref" href="#id5">System Equations</a></h3>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png" style="width: 600px;" />
+<p class="caption"><strong>Figure 2</strong> System equations</p>
+</div>
+<p>State Variables</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><span class="math">\(p_J\)</span></td>
+<td>Pitch angular momentum</td>
+</tr>
+<tr><td><span class="math">\(p_{cr}\)</span></td>
+<td>Vertical momentum of cycle and rider</td>
+</tr>
+<tr><td><span class="math">\(q_{sf}\)</span></td>
+<td>Front suspension spring displacement</td>
+</tr>
+<tr><td><span class="math">\(q_{sr}\)</span></td>
+<td>Rear suspension spring displacement</td>
+</tr>
+<tr><td><span class="math">\(p_{tf}\)</span></td>
+<td>The momentum of front tire mass</td>
+</tr>
+<tr><td><span class="math">\(p_{tr}\)</span></td>
+<td>The momentum of rear tire mass</td>
+</tr>
+<tr><td><span class="math">\(q_{tf}\)</span></td>
+<td>Front tire deflection</td>
+</tr>
+<tr><td><span class="math">\(q_{tr}\)</span></td>
+<td>Rear tire deflection</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="inputs">
+<h3><a class="toc-backref" href="#id6">Inputs</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><span class="math">\(m_{cr}\:g\)</span></td>
+<td>Gravity on cycle and rider</td>
+</tr>
+<tr><td><span class="math">\(m_{tf}g\)</span></td>
+<td>Gravity on the front tire</td>
+</tr>
+<tr><td><span class="math">\(m_{tr}g\)</span></td>
+<td>Gravity on the rear tire</td>
+</tr>
+<tr><td><span class="math">\(v_{fi}(t)\)</span></td>
+<td>Vertical velocity at the front tire</td>
+</tr>
+<tr><td><span class="math">\(v_{ri}(t)\)</span></td>
+<td>Vertical velocity at the rear tire</td>
+</tr>
+</tbody>
+</table>
+<p>Note:&nbsp;<span class="math">\(a\:=\:L_{cg}\:and\:b\:=\:L_{wb}-\:L_{cg}\)</span></p>
+<p>Kinematics: <span class="math">\(v_{sf}\:=\:v_h\:+a\:\cos\theta\:\omega_p\:,\:v_{sr\:}\:=\:v_h\:-b\:\cos\theta\:\omega_p\)</span>,
+where <span class="math">\(\\theta=\int_0^t\omega_pdt\)</span>. With a small angle
+assumption: <span class="math">\(v_{sf}\:=\:v_h\:_{\:}+\:a\omega_p\:,\:v_{sr}\:=\:v_h\:-b\omega_p\)</span>.</p>
+</div>
+</div>
+<div class="section" id="simulation-steps">
+<h2><a class="toc-backref" href="#id7">Simulation Steps</a></h2>
+<p>Develop the model and write a report. Here are the things you need to do
+in order to perform the simulation and analysis of the motocross model.</p>
+<ol class="arabic simple">
+<li>Draw the bond graph for the system with the power flow and velocities
+as shown in the schematic in Figure 1. Spring deflections are
+positive in compression. Note: when drawing the kinematic
+relationships between <span class="math">\(v_h\:,\:\omega_p\:,\:v_{sf}\:,\textrm{and}\:v_{sr}\)</span>on the bond
+graph, use the small angle assumption shown under the &quot;Lab 3
+Equations&quot; section of this assignment.</li>
+<li>Create a master and equations m-file for this model. In the master
+file, define all physical parameters for the system and globalize
+them.</li>
+<li>Determine the initial conditions from the equations of motion
+(remember, the system is initially in equilibrium, with all state
+derivatives equal to zero) or by using statics. <strong>Develop these in
+equations form; let the computer calculate the actual values</strong>.
+Define the initial conditions in the master file.</li>
+<li>Define all system inputs for the effort and flow sources in the
+equations file. The effort sources are the force of gravity on the
+tire masses and the mass of the cycle and rider. The flow sources are
+the road input velocities, dependent on the road profile. For the
+flow sources, you need to first define a start time (when the front
+tire first hits the bump). Then, using the forward velocity and the
+given cycle/road geometry, find the following:<ul>
+<li>The times when the front tire reaches the apex and end of the
+first bump.</li>
+<li>The times when the front tire reaches the start, apex, and end of
+the second bump.</li>
+<li>The times when the rear tire reaches the start, apex, and end of
+the first bump.</li>
+<li>The times when the rear tire reaches the start, apex, and end of
+the second bump.</li>
+<li>The input velocity amplitude when going up and down a bump (the
+amplitude is the same for both bumps and for front and rear
+inputs)</li>
+</ul>
+</li>
+</ol>
+<p>Note: You can assume that the horizontal distance between the wheel
+bases (<span class="math">\(L_{wb}\)</span>) does not change as the angle of the top mass
+changes. Show the complete input equations in your report.</p>
+<ol class="arabic simple" start="5">
+<li>Define the state derivative equations in the equations file. Refer to
+the provided equations of motion. You do not need any extra outputs
+and you do not need to integrate any extra variables, but it may be
+useful to take the input velocities (<span class="math">\(v_{fi}|\ and |LaTeX: v_{ri}\)</span>) as extra outputs and road displacements (the integrals of
+<span class="math">\(v_{fi}|~and |LaTeX: v_{ri}\)</span>) as extra integrated outputs in
+order to verify that your input equations are properly defined.</li>
+<li>Set your time control parameters. The time control parameters are the
+maximum step size and the finish time. To determine these, you will
+need to estimate the system natural frequencies. Use Figure 2 to
+approximate the range of natural frequencies for this system. Invert
+the frequency estimations to determine the vibration periods, and
+then choose appropriate time control parameters. You want the maximum
+step size to be at most about one-tenth of the shortest vibration
+period or one-tenth of the time it takes to go over one half of one
+bump, whichever is shorter. Set the finish time to be about three of
+the longest vibration periods after the rear tire reaches the end of
+the second bump. Once you have determined your final time and your
+step size, set the simulation timespan in the master file.</li>
+</ol>
+<p>Hint: <span class="math">\(T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}\)</span>&nbsp;.</p>
+<p>You may use a small angle assumption (
+<span class="math">\(\\sin\:\theta\:\approx\theta\)</span>) when determining the pitch natural
+frequency.</p>
+<ol class="arabic simple" start="7">
+<li>Simulate the system to obtain the front and rear suspension
+deflections, heave velocity (vertical velocity of the cycle and
+rider) and pitch angular velocity. Suspension deflection is defined
+as the spring displacement minus the initial value so that it starts
+at zero in gravitational equilibrium.</li>
+</ol>
+<p>Simulate your system for some arbitrary bump height (an even number like
+0.1 m might be a good choice). Find the maximum suspension deflections
+(front and rear) for that bump height and use it to determine the
+maximum bump height that the cycle can travel over (recall the note
+above about linear systems mentioned earlier).</p>
+<p>You can refer to previous labs for help in determining initial
+conditions and system inputs as well as for the general structure of
+your simulation files.</p>
+</div>
+<div class="section" id="deliverables">
+<h2><a class="toc-backref" href="#id8">Deliverables</a></h2>
+<p>In your lab report, show your work for creating and evaluating the
+simulation model. That is, include your bond graph drawing and any
+calculations for initial conditions, input equations, maximum bump
+height, time control parameters, and any other parameters. Additionally,
+provide/answer the indicated plots/questions and provide a copy of your
+Matlab/Octave code.</p>
+<p>Plots</p>
+<p>You should provide six total plots, three for the standard CG
+configuration () and three for the forward configuration (). For each
+configuration, provide a plot of:</p>
+<ol class="arabic simple">
+<li>The front and rear suspension deflections (on the same plot).</li>
+<li>The heave velocity.</li>
+<li>The pitch angular velocity.</li>
+</ol>
+<p>These plots should be scaled so that the bump size &nbsp;corresponds to the
+maximum allowable bump height.</p>
+<ol class="arabic simple">
+<li>What are the natural frequencies of the system? How do these
+frequencies affect your choice of sample time and simulation length?</li>
+<li>According to the power flow on the bond graph, are the deflections of
+the suspension positive in compression or tension? Why?</li>
+<li>Compare the plots of the suspension deflections for the two
+center-of-gravity configurations and describe how the shift in the
+center of mass affects the system response to the bumps (for example,
+discuss maximum displacements or shape of the response).</li>
+<li>From the required plots of heave velocity and angular velocity,
+explain why the spikes in heave velocity are in the same direction,
+while those of the angular velocity switch direction.</li>
+</ol>
+<div class="section" id="bonus-question">
+<h3><a class="toc-backref" href="#id9">Bonus Question</a></h3>
+<p>What would it mean if the force in one of the tires were to become
+negative (or in other words, if the tire were to be put in tension)?
+Would the model still be valid? (Hint:Would this happen in real life?)
+If this is not valid, explain how you would modify your model to make it
+valid (feel free to try your fix and show results). If you get this
+correct or show an honest effort in trying to answer this question, you
+will receive some extra credit.</p>
+</div>
+<div class="section" id="report-guidelines">
+<h3><a class="toc-backref" href="#id10">Report Guidelines</a></h3>
+<p>Submit one report per group.</p>
+<p>The reports must be generated using Octave or Matlab’s publish
+functionality with the final result being a <strong>single PDF file</strong>.</p>
+<ol class="arabic simple">
+<li>Matlab:
+<a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html&nbsp;(Links
+to an external site.)Links to an external
+site.</a></li>
+<li>Octave:
+<a class="reference external" href="https://octave.org/doc/v4.2.0/Publish-Octave-Script-Files.html">https://octave.org/doc/v4.2.0/Publish-Octave-Script-Files.html&nbsp;(Links
+to an external site.)Links to an external
+site.</a></li>
+</ol>
+<p>Reports begin with the following information (no cover pages please):</p>
+<ol class="arabic simple">
+<li>Names of both group members</li>
+<li>Assignment number and title</li>
+</ol>
+<p>Write the report such that a reader can understand the topic given only
+your document, i.e. include any relevant and necessary figures.</p>
+<p>All results should be explained with text (complete sentences and
+paragraphs) interwoven among the figures that you present.</p>
+<p>All plots, diagrams, and figures must be:</p>
+<ol class="arabic simple">
+<li>clearly labeled (both axes, legend, etc) and titled.</li>
+<li>scaled and cropped to appropriately present data.</li>
+</ol>
+<p>Constant parameters and time-varying variables (inputs, states, outputs)
+should be identified with descriptive text, a variable name, and units.</p>
+<p>Grammar, spelling, conciseness, structure, organization, and formatting
+will also be assessed.</p>
+<p>There should be a section describing the contributions of each team
+member to work done to complete the assignment.</p>
+</div>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+</article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
