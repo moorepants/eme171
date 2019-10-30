@@ -266,11 +266,11 @@ schematic, the front wheel has already gone over the first bump.</p>
 </tbody>
 </table>
 <p>Hint: <span class="math">\(J_{cr}\:=\:m_{cr}\:\cdot r_{gy}\:^2\)</span></p>
-<p>The maximum suspension deflection <strong>from equilibrium conditions</strong> is
-<span class="math">\(\delta_{\max}=0.1\:m\)</span> for both the front and rear suspensions.</p>
 </div>
 <div class="section" id="inputs">
 <h3><a class="toc-backref" href="#id7">Inputs</a></h3>
+<p>The maximum suspension deflection <strong>from equilibrium conditions</strong> is
+<span class="math">\(\delta_{\max}=0.1\:m\)</span> for both the front and rear suspensions.</p>
 <p>The motorcycle will go over two bumps, each height <span class="math">\(A\)</span>. You want to
 determine the largest bump height which the motorcycle can go over <strong>without
 bottoming out either the front or rear suspension.</strong> Bottoming out means that
@@ -339,12 +339,11 @@ changes. Show the complete input equations in your report.</p>
 <div class="section" id="initial-conditions">
 <h3><a class="toc-backref" href="#id8">Initial Conditions</a></h3>
 <p>You will need to calculate all of the displacements at the equilibrium state
-and use these values for the initial displacements.</p>
-<p>Determine the initial conditions from the equations of motion (remember, the
-system is initially in equilibrium, with all state derivatives equal to zero)
-or by using statics. <strong>Develop these in equations form; let the computer
-calculate the actual values</strong>.  Define the initial conditions in the master
-file.</p>
+and use these values for the initial displacements. Determine the initial
+conditions from the equations of motion (remember, the system is initially in
+equilibrium, with all state derivatives equal to zero) or by using statics.
+<strong>Develop these in equations form; let the computer calculate the actual
+values</strong>.</p>
 </div>
 </div>
 <div class="section" id="simulation">
@@ -371,20 +370,18 @@ of one bump, whichever is shorter. Set the finish time to be about three of the
 longest vibration periods after the rear tire reaches the end of the second
 bump. Once you have determined your final time and your step size, set the
 simulation timespan in the master file.</p>
-<p>Hint: <span class="math">\(T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}\)</span>&nbsp;.</p>
-<p>You may use a small angle assumption (
-<span class="math">\(\\sin\:\theta\:\approx\theta\)</span>) when determining the pitch natural
-frequency.</p>
+<p>Hint: <span class="math">\(T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}\)</span>.</p>
+<p>You may use a small angle assumption (<span class="math">\(\sin\:\theta\:\approx\theta\)</span>) when
+determining the pitch natural frequency.</p>
 </div>
 </div>
 <div class="section" id="deliverables">
 <h2><a class="toc-backref" href="#id11">Deliverables</a></h2>
-<p>In your lab report, show your work for creating and evaluating the
-simulation model. That is, include your bond graph drawing and any
-calculations for initial conditions, input equations, maximum bump
-height, time control parameters, and any other parameters. Additionally,
-provide/answer the indicated plots/questions and provide a copy of your
-Matlab/Octave code.</p>
+<p>In your lab report, show your work for creating and evaluating the simulation
+model. That is, include your bond graph drawing and any calculations for
+initial conditions, input equations, maximum bump height, time control
+parameters, and any other parameters. Additionally, provide/answer the
+indicated plots/questions and provide a copy of your Matlab/Octave code.</p>
 <div class="section" id="bond-graph">
 <h3><a class="toc-backref" href="#id12">Bond Graph</a></h3>
 <p>Draw the bond graph for the system with the power flow and velocities as shown
