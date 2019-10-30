@@ -19,7 +19,7 @@
   <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
         href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
   
-  <meta name="description" content="Contents Learning Objectives Introduction Model Description Constant Parameters System Equations Inputs Simulation Steps Deliverables Bonus Question Report Guidelines Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given point in time numerically integrate ordinary …">
+  <meta name="description" content="Contents Learning Objectives Introduction Model Description System Equations State Variables Constant Parameters Inputs Initial Conditions Simulation Time Deliverables Bond Graph Plots Questions Bonus Question Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given …">
   <script>
     (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -68,15 +68,22 @@
 <li><a class="reference internal" href="#learning-objectives" id="id1">Learning Objectives</a></li>
 <li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
 <li><a class="reference internal" href="#model-description" id="id3">Model Description</a><ul>
-<li><a class="reference internal" href="#constant-parameters" id="id4">Constant Parameters</a></li>
-<li><a class="reference internal" href="#system-equations" id="id5">System Equations</a></li>
-<li><a class="reference internal" href="#inputs" id="id6">Inputs</a></li>
+<li><a class="reference internal" href="#system-equations" id="id4">System Equations</a></li>
+<li><a class="reference internal" href="#state-variables" id="id5">State Variables</a></li>
+<li><a class="reference internal" href="#constant-parameters" id="id6">Constant Parameters</a></li>
+<li><a class="reference internal" href="#inputs" id="id7">Inputs</a></li>
+<li><a class="reference internal" href="#initial-conditions" id="id8">Initial Conditions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#simulation-steps" id="id7">Simulation Steps</a></li>
-<li><a class="reference internal" href="#deliverables" id="id8">Deliverables</a><ul>
-<li><a class="reference internal" href="#bonus-question" id="id9">Bonus Question</a></li>
-<li><a class="reference internal" href="#report-guidelines" id="id10">Report Guidelines</a></li>
+<li><a class="reference internal" href="#simulation" id="id9">Simulation</a><ul>
+<li><a class="reference internal" href="#time" id="id10">Time</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deliverables" id="id11">Deliverables</a><ul>
+<li><a class="reference internal" href="#bond-graph" id="id12">Bond Graph</a></li>
+<li><a class="reference internal" href="#plots" id="id13">Plots</a></li>
+<li><a class="reference internal" href="#questions" id="id14">Questions</a></li>
+<li><a class="reference internal" href="#bonus-question" id="id15">Bonus Question</a></li>
 </ul>
 </li>
 </ul>
@@ -106,13 +113,58 @@ the motorcycle.</p>
 </div>
 <div class="section" id="model-description">
 <h2><a class="toc-backref" href="#id3">Model Description</a></h2>
+<p>The schematic for the model is shown in Figure 1. There is a primary mass and
+inertia that represents the rider and the motorcycle lumped as a single rigid
+body supported by front and rear suspension systems and tires.</p>
 <div class="figure">
 <img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-01.png" style="width: 600px;" />
 <p class="caption"><strong>Figure 1</strong> Motocross cycle model (pitch-heave model). Note: In this
 schematic, the front wheel has already gone over the first bump.</p>
 </div>
+<div class="section" id="system-equations">
+<h3><a class="toc-backref" href="#id4">System Equations</a></h3>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png" style="width: 600px;" />
+<p class="caption"><strong>Figure 2</strong> System equations</p>
+</div>
+</div>
+<div class="section" id="state-variables">
+<h3><a class="toc-backref" href="#id5">State Variables</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><span class="math">\(p_J\)</span></td>
+<td>Pitch angular momentum</td>
+</tr>
+<tr><td><span class="math">\(p_{cr}\)</span></td>
+<td>Vertical momentum of motorcycle and rider</td>
+</tr>
+<tr><td><span class="math">\(q_{sf}\)</span></td>
+<td>Front suspension spring displacement</td>
+</tr>
+<tr><td><span class="math">\(q_{sr}\)</span></td>
+<td>Rear suspension spring displacement</td>
+</tr>
+<tr><td><span class="math">\(p_{tf}\)</span></td>
+<td>The momentum of front tire mass</td>
+</tr>
+<tr><td><span class="math">\(p_{tr}\)</span></td>
+<td>The momentum of rear tire mass</td>
+</tr>
+<tr><td><span class="math">\(q_{tf}\)</span></td>
+<td>Front tire deflection</td>
+</tr>
+<tr><td><span class="math">\(q_{tr}\)</span></td>
+<td>Rear tire deflection</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="constant-parameters">
-<h3><a class="toc-backref" href="#id4">Constant Parameters</a></h3>
+<h3><a class="toc-backref" href="#id6">Constant Parameters</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />
@@ -216,63 +268,22 @@ schematic, the front wheel has already gone over the first bump.</p>
 <p>Hint: <span class="math">\(J_{cr}\:=\:m_{cr}\:\cdot r_{gy}\:^2\)</span></p>
 <p>The maximum suspension deflection <strong>from equilibrium conditions</strong> is
 <span class="math">\(\delta_{\max}=0.1\:m\)</span> for both the front and rear suspensions.</p>
-<p>The cycle will go over two bumps, each height A. We want to determine
-the largest bump height which the cycle can go over <strong>without bottoming
-out either the front or rear suspension.</strong> Bottoming out means that the
-suspension deflection has equaled or exceeded the maximum suspension
-deflection specified above.</p>
-<p>This should be determined for both loading
-configurations (<span class="math">\(L_{cg}\:=\:0.9\:m| and |LaTeX: L_{cg}\:=\:0.7\:m\)</span>). A clue is that this is a linear system, which means
-that if inputs are scaled up or down, the responses of all variables
-will be scaled identically (e.g., if you double the inputs, the outputs
-are doubled as well). This means that only two simulation runs are
-necessary to determine the size of the bump that will cause the
-suspension to bottom out (one for each configuration). You may want to
-use the MATLAB/Octave command <em>max</em> () to find the maximum suspension
-deflections.</p>
-</div>
-<div class="section" id="system-equations">
-<h3><a class="toc-backref" href="#id5">System Equations</a></h3>
-<div class="figure">
-<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png" style="width: 600px;" />
-<p class="caption"><strong>Figure 2</strong> System equations</p>
-</div>
-<p>State Variables</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="29%" />
-<col width="71%" />
-</colgroup>
-<tbody valign="top">
-<tr><td><span class="math">\(p_J\)</span></td>
-<td>Pitch angular momentum</td>
-</tr>
-<tr><td><span class="math">\(p_{cr}\)</span></td>
-<td>Vertical momentum of cycle and rider</td>
-</tr>
-<tr><td><span class="math">\(q_{sf}\)</span></td>
-<td>Front suspension spring displacement</td>
-</tr>
-<tr><td><span class="math">\(q_{sr}\)</span></td>
-<td>Rear suspension spring displacement</td>
-</tr>
-<tr><td><span class="math">\(p_{tf}\)</span></td>
-<td>The momentum of front tire mass</td>
-</tr>
-<tr><td><span class="math">\(p_{tr}\)</span></td>
-<td>The momentum of rear tire mass</td>
-</tr>
-<tr><td><span class="math">\(q_{tf}\)</span></td>
-<td>Front tire deflection</td>
-</tr>
-<tr><td><span class="math">\(q_{tr}\)</span></td>
-<td>Rear tire deflection</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="section" id="inputs">
-<h3><a class="toc-backref" href="#id6">Inputs</a></h3>
+<h3><a class="toc-backref" href="#id7">Inputs</a></h3>
+<p>The motorcycle will go over two bumps, each height <span class="math">\(A\)</span>. You want to
+determine the largest bump height which the motorcycle can go over <strong>without
+bottoming out either the front or rear suspension.</strong> Bottoming out means that
+the suspension deflection has equaled or exceeded the maximum suspension
+deflection specified above.</p>
+<p>This should be determined for both loading configurations
+(<span class="math">\(L_{cg}\:=\:0.9\:m| and |LaTeX: L_{cg}\:=\:0.7\:m\)</span>). A clue is that this
+is a linear system, which means that if inputs are scaled up or down, the
+responses of all variables will be scaled identically (e.g., if you double the
+inputs, the outputs are doubled as well). This means that only two simulation
+runs are necessary to determine the size of the bump that will cause the
+suspension to bottom out (one for each configuration). You may want to use the
+MATLAB/Octave command <em>max</em> () to find the maximum suspension deflections.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="34%" />
@@ -296,38 +307,18 @@ deflections.</p>
 </tr>
 </tbody>
 </table>
-<p>Note:&nbsp;<span class="math">\(a\:=\:L_{cg}\:and\:b\:=\:L_{wb}-\:L_{cg}\)</span></p>
+<p>Note: <span class="math">\(a\:=\:L_{cg}\:and\:b\:=\:L_{wb}-\:L_{cg}\)</span></p>
 <p>Kinematics: <span class="math">\(v_{sf}\:=\:v_h\:+a\:\cos\theta\:\omega_p\:,\:v_{sr\:}\:=\:v_h\:-b\:\cos\theta\:\omega_p\)</span>,
 where <span class="math">\(\\theta=\int_0^t\omega_pdt\)</span>. With a small angle
 assumption: <span class="math">\(v_{sf}\:=\:v_h\:_{\:}+\:a\omega_p\:,\:v_{sr}\:=\:v_h\:-b\omega_p\)</span>.</p>
-</div>
-</div>
-<div class="section" id="simulation-steps">
-<h2><a class="toc-backref" href="#id7">Simulation Steps</a></h2>
-<p>Develop the model and write a report. Here are the things you need to do
-in order to perform the simulation and analysis of the motocross model.</p>
-<ol class="arabic simple">
-<li>Draw the bond graph for the system with the power flow and velocities
-as shown in the schematic in Figure 1. Spring deflections are
-positive in compression. Note: when drawing the kinematic
-relationships between <span class="math">\(v_h\:,\:\omega_p\:,\:v_{sf}\:,\textrm{and}\:v_{sr}\)</span>on the bond
-graph, use the small angle assumption shown under the &quot;Lab 3
-Equations&quot; section of this assignment.</li>
-<li>Create a master and equations m-file for this model. In the master
-file, define all physical parameters for the system and globalize
-them.</li>
-<li>Determine the initial conditions from the equations of motion
-(remember, the system is initially in equilibrium, with all state
-derivatives equal to zero) or by using statics. <strong>Develop these in
-equations form; let the computer calculate the actual values</strong>.
-Define the initial conditions in the master file.</li>
-<li>Define all system inputs for the effort and flow sources in the
-equations file. The effort sources are the force of gravity on the
-tire masses and the mass of the cycle and rider. The flow sources are
-the road input velocities, dependent on the road profile. For the
-flow sources, you need to first define a start time (when the front
-tire first hits the bump). Then, using the forward velocity and the
-given cycle/road geometry, find the following:<ul>
+<p>Define all system inputs for the effort and flow sources in the equations file.
+The effort sources are the force of gravity on the tire masses and the mass of
+the cycle and rider. The flow sources are the road input velocities, dependent
+on the road profile. For the flow sources, you need to first define a start
+time (when the front tire first hits the bump). Then, using the forward
+velocity and the given cycle/road geometry, find the following:</p>
+<blockquote>
+<ul class="simple">
 <li>The times when the front tire reaches the apex and end of the
 first bump.</li>
 <li>The times when the front tire reaches the start, apex, and end of
@@ -340,70 +331,83 @@ the second bump.</li>
 amplitude is the same for both bumps and for front and rear
 inputs)</li>
 </ul>
-</li>
-</ol>
+</blockquote>
 <p>Note: You can assume that the horizontal distance between the wheel
 bases (<span class="math">\(L_{wb}\)</span>) does not change as the angle of the top mass
 changes. Show the complete input equations in your report.</p>
-<ol class="arabic simple" start="5">
-<li>Define the state derivative equations in the equations file. Refer to
-the provided equations of motion. You do not need any extra outputs
-and you do not need to integrate any extra variables, but it may be
-useful to take the input velocities (<span class="math">\(v_{fi}|\ and |LaTeX: v_{ri}\)</span>) as extra outputs and road displacements (the integrals of
-<span class="math">\(v_{fi}|~and |LaTeX: v_{ri}\)</span>) as extra integrated outputs in
-order to verify that your input equations are properly defined.</li>
-<li>Set your time control parameters. The time control parameters are the
-maximum step size and the finish time. To determine these, you will
-need to estimate the system natural frequencies. Use Figure 2 to
-approximate the range of natural frequencies for this system. Invert
-the frequency estimations to determine the vibration periods, and
-then choose appropriate time control parameters. You want the maximum
-step size to be at most about one-tenth of the shortest vibration
-period or one-tenth of the time it takes to go over one half of one
-bump, whichever is shorter. Set the finish time to be about three of
-the longest vibration periods after the rear tire reaches the end of
-the second bump. Once you have determined your final time and your
-step size, set the simulation timespan in the master file.</li>
-</ol>
-<p>Hint: <span class="math">\(T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}\)</span>&nbsp;.</p>
-<p>You may use a small angle assumption (
-<span class="math">\(\\sin\:\theta\:\approx\theta\)</span>) when determining the pitch natural
-frequency.</p>
-<ol class="arabic simple" start="7">
-<li>Simulate the system to obtain the front and rear suspension
-deflections, heave velocity (vertical velocity of the cycle and
-rider) and pitch angular velocity. Suspension deflection is defined
-as the spring displacement minus the initial value so that it starts
-at zero in gravitational equilibrium.</li>
-</ol>
+</div>
+<div class="section" id="initial-conditions">
+<h3><a class="toc-backref" href="#id8">Initial Conditions</a></h3>
+<p>You will need to calculate all of the displacements at the equilibrium state
+and use these values for the initial displacements.</p>
+<p>Determine the initial conditions from the equations of motion (remember, the
+system is initially in equilibrium, with all state derivatives equal to zero)
+or by using statics. <strong>Develop these in equations form; let the computer
+calculate the actual values</strong>.  Define the initial conditions in the master
+file.</p>
+</div>
+</div>
+<div class="section" id="simulation">
+<h2><a class="toc-backref" href="#id9">Simulation</a></h2>
+<p>Simulate the system to obtain the front and rear suspension deflections, heave
+velocity (vertical velocity of the cycle and rider) and pitch angular velocity.
+Suspension deflection is defined as the spring displacement minus the initial
+value so that it starts at zero in gravitational equilibrium.</p>
 <p>Simulate your system for some arbitrary bump height (an even number like
 0.1 m might be a good choice). Find the maximum suspension deflections
 (front and rear) for that bump height and use it to determine the
 maximum bump height that the cycle can travel over (recall the note
 above about linear systems mentioned earlier).</p>
-<p>You can refer to previous labs for help in determining initial
-conditions and system inputs as well as for the general structure of
-your simulation files.</p>
+<div class="section" id="time">
+<h3><a class="toc-backref" href="#id10">Time</a></h3>
+<p>Set your time control parameters. The time control parameters are the maximum
+step size and the finish time. To determine these, you will need to estimate
+the system natural frequencies. Use Figure 2 to approximate the range of
+natural frequencies for this system. Invert the frequency estimations to
+determine the vibration periods, and then choose appropriate time control
+parameters. You want the maximum step size to be at most about one-tenth of the
+shortest vibration period or one-tenth of the time it takes to go over one half
+of one bump, whichever is shorter. Set the finish time to be about three of the
+longest vibration periods after the rear tire reaches the end of the second
+bump. Once you have determined your final time and your step size, set the
+simulation timespan in the master file.</p>
+<p>Hint: <span class="math">\(T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}\)</span>&nbsp;.</p>
+<p>You may use a small angle assumption (
+<span class="math">\(\\sin\:\theta\:\approx\theta\)</span>) when determining the pitch natural
+frequency.</p>
+</div>
 </div>
 <div class="section" id="deliverables">
-<h2><a class="toc-backref" href="#id8">Deliverables</a></h2>
+<h2><a class="toc-backref" href="#id11">Deliverables</a></h2>
 <p>In your lab report, show your work for creating and evaluating the
 simulation model. That is, include your bond graph drawing and any
 calculations for initial conditions, input equations, maximum bump
 height, time control parameters, and any other parameters. Additionally,
 provide/answer the indicated plots/questions and provide a copy of your
 Matlab/Octave code.</p>
-<p>Plots</p>
-<p>You should provide six total plots, three for the standard CG
-configuration () and three for the forward configuration (). For each
-configuration, provide a plot of:</p>
+<div class="section" id="bond-graph">
+<h3><a class="toc-backref" href="#id12">Bond Graph</a></h3>
+<p>Draw the bond graph for the system with the power flow and velocities as shown
+in the schematic in Figure 1. Spring deflections are positive in compression.
+Note: when drawing the kinematic relationships between
+<span class="math">\(v_h\:,\:\omega_p\:,\:v_{sf}\:,\textrm{and}\:v_{sr}\)</span>on the bond graph,
+use the small angle assumption shown under the &quot;Lab 3 Equations&quot; section of
+this assignment.</p>
+</div>
+<div class="section" id="plots">
+<h3><a class="toc-backref" href="#id13">Plots</a></h3>
+<p>You should provide six total plots, three for the standard CG configuration and
+three for the forward configuration. For each configuration, provide a plot of:</p>
 <ol class="arabic simple">
 <li>The front and rear suspension deflections (on the same plot).</li>
 <li>The heave velocity.</li>
 <li>The pitch angular velocity.</li>
 </ol>
-<p>These plots should be scaled so that the bump size &nbsp;corresponds to the
-maximum allowable bump height.</p>
+<p>These plots should be scaled so that the bump size corresponds to the maximum
+allowable bump height.</p>
+</div>
+<div class="section" id="questions">
+<h3><a class="toc-backref" href="#id14">Questions</a></h3>
 <ol class="arabic simple">
 <li>What are the natural frequencies of the system? How do these
 frequencies affect your choice of sample time and simulation length?</li>
@@ -417,8 +421,12 @@ discuss maximum displacements or shape of the response).</li>
 explain why the spikes in heave velocity are in the same direction,
 while those of the angular velocity switch direction.</li>
 </ol>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-03.png" style="width: 600px;" />
+</div>
+</div>
 <div class="section" id="bonus-question">
-<h3><a class="toc-backref" href="#id9">Bonus Question</a></h3>
+<h3><a class="toc-backref" href="#id15">Bonus Question</a></h3>
 <p>What would it mean if the force in one of the tires were to become
 negative (or in other words, if the tire were to be put in tension)?
 Would the model still be valid? (Hint:Would this happen in real life?)
@@ -426,42 +434,6 @@ If this is not valid, explain how you would modify your model to make it
 valid (feel free to try your fix and show results). If you get this
 correct or show an honest effort in trying to answer this question, you
 will receive some extra credit.</p>
-</div>
-<div class="section" id="report-guidelines">
-<h3><a class="toc-backref" href="#id10">Report Guidelines</a></h3>
-<p>Submit one report per group.</p>
-<p>The reports must be generated using Octave or Matlab’s publish
-functionality with the final result being a <strong>single PDF file</strong>.</p>
-<ol class="arabic simple">
-<li>Matlab:
-<a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html&nbsp;(Links
-to an external site.)Links to an external
-site.</a></li>
-<li>Octave:
-<a class="reference external" href="https://octave.org/doc/v4.2.0/Publish-Octave-Script-Files.html">https://octave.org/doc/v4.2.0/Publish-Octave-Script-Files.html&nbsp;(Links
-to an external site.)Links to an external
-site.</a></li>
-</ol>
-<p>Reports begin with the following information (no cover pages please):</p>
-<ol class="arabic simple">
-<li>Names of both group members</li>
-<li>Assignment number and title</li>
-</ol>
-<p>Write the report such that a reader can understand the topic given only
-your document, i.e. include any relevant and necessary figures.</p>
-<p>All results should be explained with text (complete sentences and
-paragraphs) interwoven among the figures that you present.</p>
-<p>All plots, diagrams, and figures must be:</p>
-<ol class="arabic simple">
-<li>clearly labeled (both axes, legend, etc) and titled.</li>
-<li>scaled and cropped to appropriately present data.</li>
-</ol>
-<p>Constant parameters and time-varying variables (inputs, states, outputs)
-should be identified with descriptive text, a variable name, and units.</p>
-<p>Grammar, spelling, conciseness, structure, organization, and formatting
-will also be assessed.</p>
-<p>There should be a section describing the contributions of each team
-member to work done to complete the assignment.</p>
 </div>
 </div>
 <script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
