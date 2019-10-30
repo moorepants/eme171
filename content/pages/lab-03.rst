@@ -57,7 +57,7 @@ With a small angle assumption in the rotation, this simplification can be used:
 .. math::
 
    v_{sf}=v_h+a\omega_p \\
-   v_{sr}=v_h-b\omega_p`
+   v_{sr}=v_h-b\omega_p
 
 System Equations
 ----------------
