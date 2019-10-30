@@ -37,7 +37,7 @@ inertia that represents the rider and the motorcycle lumped as a single rigid
 body supported by front and rear suspension systems and tires.
 
 .. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-01.png
-   :width: 600px
+   :width: 800px
 
    **Figure 1** Motocross motorcycle pitch-heave model. In this schematic, the
    front wheel has already gone over the first bump.
@@ -46,23 +46,24 @@ The kinematics are:
 
 .. math::
 
-   v_{sf}=v_h+a\cos\theta\\omega_p \\
-   v_{sr}=v_h-b\cos\theta\\omega_p
+   v_{sf}=v_h+a\omega_p\cos\theta \\
+   v_{sr}=v_h-b\omega_p\cos\theta
 
-with :math:`a=L_{cg}` and `b=L_{wb}-L_{cg}`, :math:`\theta=\int_0^t\omega_p dt`.
+with :math:`a=L_{cg}` and :math:`b=L_{wb}-L_{cg}`,
+:math:`\theta=\int_0^t\omega_p dt`.
 
 With a small angle assumption in the rotation, this simplification can be used:
 
 .. math::
 
-   v_{sf}=\:v_h\:_{\:}+a\omega_p \\
+   v_{sf}=v_h+a\omega_p \\
    v_{sr}=v_h-b\omega_p`
 
 System Equations
 ----------------
 
 .. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png
-   :width: 600px
+   :width: 800px
 
    **Figure 2** System equations
 
@@ -115,7 +116,7 @@ The moment of inertia of the motorcycle and rider can be estimated with:
 
 .. math::
 
-   J_{cr}\:=\:m_{cr}\:\cdot r_{gy}\:^2
+   J_{cr}=m_{cr}r_{gy}^2
 
 Inputs
 ------
@@ -199,7 +200,7 @@ the system natural frequencies. Use Figure 3 to approximate the range of
 natural frequencies for this system.
 
 .. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-03.png
-   :width: 600px
+   :width: 800px
 
    **Figure 3** Three independent systems that you can calculate natural
    frequencies for.
