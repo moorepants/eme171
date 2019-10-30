@@ -23,6 +23,7 @@ Labs
 - `Lab Report Guidelines and Template <{filename}/pages/report-template.rst>`_
 - `Lab 1: Introduction to simulation <{filename}/pages/lab-01.rst>`_
 - `Lab 2: Two DoF Quarter Car Model <{filename}/pages/lab-02.rst>`_
+- `Lab 3: Motocross Model <{filename}/pages/lab-03.rst>`_
 
 Scripts
 =======
