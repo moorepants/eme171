@@ -32,11 +32,37 @@ the motorcycle.
 Model Description
 =================
 
+The schematic for the model is shown in Figure 1. There is a primary mass and
+inertia that represents the rider and the motorcycle lumped as a single rigid
+body supported by front and rear suspension systems and tires.
+
 .. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-01.png
    :width: 600px
 
    **Figure 1** Motocross cycle model (pitch-heave model). Note: In this
    schematic, the front wheel has already gone over the first bump.
+
+System Equations
+----------------
+
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png
+   :width: 600px
+
+   **Figure 2** System equations
+
+State Variables
+---------------
+
+=============== ====================================
+:math:`p_J`     Pitch angular momentum
+:math:`p_{cr}`  Vertical momentum of motorcycle and rider
+:math:`q_{sf}`  Front suspension spring displacement
+:math:`q_{sr}`  Rear suspension spring displacement
+:math:`p_{tf}`  The momentum of front tire mass
+:math:`p_{tr}`  The momentum of rear tire mass
+:math:`q_{tf}`  Front tire deflection
+:math:`q_{tr}`  Rear tire deflection
+=============== ====================================
 
 Constant Parameters
 -------------------
@@ -67,46 +93,23 @@ Hint: :math:`J_{cr}\:=\:m_{cr}\:\cdot r_{gy}\:^2`
 The maximum suspension deflection **from equilibrium conditions** is
 :math:`\delta_{\max}=0.1\:m` for both the front and rear suspensions.
 
-The cycle will go over two bumps, each height A. We want to determine
-the largest bump height which the cycle can go over **without bottoming
-out either the front or rear suspension.** Bottoming out means that the
-suspension deflection has equaled or exceeded the maximum suspension
-deflection specified above.
-
-This should be determined for both loading
-configurations (:math:`L_{cg}\:=\:0.9\:m| and |LaTeX: L_{cg}\:=\:0.7\:m`). A clue is that this is a linear system, which means
-that if inputs are scaled up or down, the responses of all variables
-will be scaled identically (e.g., if you double the inputs, the outputs
-are doubled as well). This means that only two simulation runs are
-necessary to determine the size of the bump that will cause the
-suspension to bottom out (one for each configuration). You may want to
-use the MATLAB/Octave command *max* () to find the maximum suspension
-deflections.
-
-System Equations
-----------------
-
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png
-   :width: 600px
-
-   **Figure 2** System equations
-
-
-State Variables
-
-=============== ====================================
-:math:`p_J`     Pitch angular momentum
-:math:`p_{cr}`  Vertical momentum of cycle and rider
-:math:`q_{sf}`  Front suspension spring displacement
-:math:`q_{sr}`  Rear suspension spring displacement
-:math:`p_{tf}`  The momentum of front tire mass
-:math:`p_{tr}`  The momentum of rear tire mass
-:math:`q_{tf}`  Front tire deflection
-:math:`q_{tr}`  Rear tire deflection
-=============== ====================================
-
 Inputs
 ------
+
+The motorcycle will go over two bumps, each height :math:`A`. You want to
+determine the largest bump height which the motorcycle can go over **without
+bottoming out either the front or rear suspension.** Bottoming out means that
+the suspension deflection has equaled or exceeded the maximum suspension
+deflection specified above.
+
+This should be determined for both loading configurations
+(:math:`L_{cg}\:=\:0.9\:m| and |LaTeX: L_{cg}\:=\:0.7\:m`). A clue is that this
+is a linear system, which means that if inputs are scaled up or down, the
+responses of all variables will be scaled identically (e.g., if you double the
+inputs, the outputs are doubled as well). This means that only two simulation
+runs are necessary to determine the size of the bump that will cause the
+suspension to bottom out (one for each configuration). You may want to use the
+MATLAB/Octave command *max* () to find the maximum suspension deflections.
 
 ================== ===================================
 :math:`m_{cr}\:g`  Gravity on cycle and rider
@@ -116,39 +119,18 @@ Inputs
 :math:`v_{ri}(t)`  Vertical velocity at the rear tire
 ================== ===================================
 
-Note: :math:`a\:=\:L_{cg}\:and\:b\:=\:L_{wb}-\:L_{cg}`
+Note: :math:`a\:=\:L_{cg}\:and\:b\:=\:L_{wb}-\:L_{cg}`
 
 Kinematics: :math:`v_{sf}\:=\:v_h\:+a\:\cos\theta\:\omega_p\:,\:v_{sr\:}\:=\:v_h\:-b\:\cos\theta\:\omega_p`,
 where :math:`\\theta=\int_0^t\omega_pdt`. With a small angle
 assumption: :math:`v_{sf}\:=\:v_h\:_{\:}+\:a\omega_p\:,\:v_{sr}\:=\:v_h\:-b\omega_p`.
 
-Simulation Steps
-================
-
-Develop the model and write a report. Here are the things you need to do
-in order to perform the simulation and analysis of the motocross model.
-
-#. Draw the bond graph for the system with the power flow and velocities
-   as shown in the schematic in Figure 1. Spring deflections are
-   positive in compression. Note: when drawing the kinematic
-   relationships between :math:`v_h\:,\:\omega_p\:,\:v_{sf}\:,\textrm{and}\:v_{sr}`\ on the bond
-   graph, use the small angle assumption shown under the "Lab 3
-   Equations" section of this assignment.
-#. Create a master and equations m-file for this model. In the master
-   file, define all physical parameters for the system and globalize
-   them.
-#. Determine the initial conditions from the equations of motion
-   (remember, the system is initially in equilibrium, with all state
-   derivatives equal to zero) or by using statics. **Develop these in
-   equations form; let the computer calculate the actual values**.
-   Define the initial conditions in the master file.
-#. Define all system inputs for the effort and flow sources in the
-   equations file. The effort sources are the force of gravity on the
-   tire masses and the mass of the cycle and rider. The flow sources are
-   the road input velocities, dependent on the road profile. For the
-   flow sources, you need to first define a start time (when the front
-   tire first hits the bump). Then, using the forward velocity and the
-   given cycle/road geometry, find the following:
+Define all system inputs for the effort and flow sources in the equations file.
+The effort sources are the force of gravity on the tire masses and the mass of
+the cycle and rider. The flow sources are the road input velocities, dependent
+on the road profile. For the flow sources, you need to first define a start
+time (when the front tire first hits the bump). Then, using the forward
+velocity and the given cycle/road geometry, find the following:
 
    -  The times when the front tire reaches the apex and end of the
       first bump.
@@ -166,36 +148,25 @@ Note: You can assume that the horizontal distance between the wheel
 bases (:math:`L_{wb}`) does not change as the angle of the top mass
 changes. Show the complete input equations in your report.
 
-5. Define the state derivative equations in the equations file. Refer to
-   the provided equations of motion. You do not need any extra outputs
-   and you do not need to integrate any extra variables, but it may be
-   useful to take the input velocities (:math:`v_{fi}|\ and |LaTeX: v_{ri}`) as extra outputs and road displacements (the integrals of
-   :math:`v_{fi}| and |LaTeX: v_{ri}`) as extra integrated outputs in
-   order to verify that your input equations are properly defined.
-6. Set your time control parameters. The time control parameters are the
-   maximum step size and the finish time. To determine these, you will
-   need to estimate the system natural frequencies. Use Figure 2 to
-   approximate the range of natural frequencies for this system. Invert
-   the frequency estimations to determine the vibration periods, and
-   then choose appropriate time control parameters. You want the maximum
-   step size to be at most about one-tenth of the shortest vibration
-   period or one-tenth of the time it takes to go over one half of one
-   bump, whichever is shorter. Set the finish time to be about three of
-   the longest vibration periods after the rear tire reaches the end of
-   the second bump. Once you have determined your final time and your
-   step size, set the simulation timespan in the master file.
+Initial Conditions
+------------------
 
-Hint: :math:`T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}` .
+You will need to calculate all of the displacements at the equilibrium state
+and use these values for the initial displacements.
 
-You may use a small angle assumption (
-:math:`\\sin\:\theta\:\approx\theta`) when determining the pitch natural
-frequency.
+Determine the initial conditions from the equations of motion (remember, the
+system is initially in equilibrium, with all state derivatives equal to zero)
+or by using statics. **Develop these in equations form; let the computer
+calculate the actual values**.  Define the initial conditions in the master
+file.
 
-7. Simulate the system to obtain the front and rear suspension
-   deflections, heave velocity (vertical velocity of the cycle and
-   rider) and pitch angular velocity. Suspension deflection is defined
-   as the spring displacement minus the initial value so that it starts
-   at zero in gravitational equilibrium.
+Simulation
+==========
+
+Simulate the system to obtain the front and rear suspension deflections, heave
+velocity (vertical velocity of the cycle and rider) and pitch angular velocity.
+Suspension deflection is defined as the spring displacement minus the initial
+value so that it starts at zero in gravitational equilibrium.
 
 Simulate your system for some arbitrary bump height (an even number like
 0.1 m might be a good choice). Find the maximum suspension deflections
@@ -203,9 +174,26 @@ Simulate your system for some arbitrary bump height (an even number like
 maximum bump height that the cycle can travel over (recall the note
 above about linear systems mentioned earlier).
 
-You can refer to previous labs for help in determining initial
-conditions and system inputs as well as for the general structure of
-your simulation files.
+Time
+----
+
+Set your time control parameters. The time control parameters are the maximum
+step size and the finish time. To determine these, you will need to estimate
+the system natural frequencies. Use Figure 2 to approximate the range of
+natural frequencies for this system. Invert the frequency estimations to
+determine the vibration periods, and then choose appropriate time control
+parameters. You want the maximum step size to be at most about one-tenth of the
+shortest vibration period or one-tenth of the time it takes to go over one half
+of one bump, whichever is shorter. Set the finish time to be about three of the
+longest vibration periods after the rear tire reaches the end of the second
+bump. Once you have determined your final time and your step size, set the
+simulation timespan in the master file.
+
+Hint: :math:`T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}` .
+
+You may use a small angle assumption (
+:math:`\\sin\:\theta\:\approx\theta`) when determining the pitch natural
+frequency.
 
 Deliverables
 ============
@@ -217,18 +205,31 @@ height, time control parameters, and any other parameters. Additionally,
 provide/answer the indicated plots/questions and provide a copy of your
 Matlab/Octave code.
 
-Plots
+Bond Graph
+----------
 
-You should provide six total plots, three for the standard CG
-configuration () and three for the forward configuration (). For each
-configuration, provide a plot of:
+Draw the bond graph for the system with the power flow and velocities as shown
+in the schematic in Figure 1. Spring deflections are positive in compression.
+Note: when drawing the kinematic relationships between
+:math:`v_h\:,\:\omega_p\:,\:v_{sf}\:,\textrm{and}\:v_{sr}`\ on the bond graph,
+use the small angle assumption shown under the "Lab 3 Equations" section of
+this assignment.
+
+Plots
+-----
+
+You should provide six total plots, three for the standard CG configuration and
+three for the forward configuration. For each configuration, provide a plot of:
 
 #. The front and rear suspension deflections (on the same plot).
 #. The heave velocity.
 #. The pitch angular velocity.
 
-These plots should be scaled so that the bump size  corresponds to the
-maximum allowable bump height.
+These plots should be scaled so that the bump size corresponds to the maximum
+allowable bump height.
+
+Questions
+---------
 
 #. What are the natural frequencies of the system? How do these
    frequencies affect your choice of sample time and simulation length?
@@ -242,6 +243,9 @@ maximum allowable bump height.
    explain why the spikes in heave velocity are in the same direction,
    while those of the angular velocity switch direction.
 
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-03.png
+   :width: 600px
+
 Bonus Question
 --------------
 
@@ -252,45 +256,3 @@ If this is not valid, explain how you would modify your model to make it
 valid (feel free to try your fix and show results). If you get this
 correct or show an honest effort in trying to answer this question, you
 will receive some extra credit.
-
-Report Guidelines
------------------
-
-Submit one report per group.
-
-The reports must be generated using Octave or Matlab’s publish
-functionality with the final result being a **single PDF file**.
-
-#. Matlab:
-   `https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html (Links
-   to an external site.)Links to an external
-   site. <https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html>`__
-#. Octave:
-   `https://octave.org/doc/v4.2.0/Publish-Octave-Script-Files.html (Links
-   to an external site.)Links to an external
-   site. <https://octave.org/doc/v4.2.0/Publish-Octave-Script-Files.html>`__
-
-Reports begin with the following information (no cover pages please):
-
-#. Names of both group members
-#. Assignment number and title
-
-Write the report such that a reader can understand the topic given only
-your document, i.e. include any relevant and necessary figures.
-
-All results should be explained with text (complete sentences and
-paragraphs) interwoven among the figures that you present.
-
-All plots, diagrams, and figures must be:
-
-#. clearly labeled (both axes, legend, etc) and titled.
-#. scaled and cropped to appropriately present data.
-
-Constant parameters and time-varying variables (inputs, states, outputs)
-should be identified with descriptive text, a variable name, and units.
-
-Grammar, spelling, conciseness, structure, organization, and formatting
-will also be assessed.
-
-There should be a section describing the contributions of each team
-member to work done to complete the assignment.
