@@ -90,11 +90,11 @@ Symbol          Description                                   Value    Units
 
 Hint: :math:`J_{cr}\:=\:m_{cr}\:\cdot r_{gy}\:^2`
 
-The maximum suspension deflection **from equilibrium conditions** is
-:math:`\delta_{\max}=0.1\:m` for both the front and rear suspensions.
-
 Inputs
 ------
+
+The maximum suspension deflection **from equilibrium conditions** is
+:math:`\delta_{\max}=0.1\:m` for both the front and rear suspensions.
 
 The motorcycle will go over two bumps, each height :math:`A`. You want to
 determine the largest bump height which the motorcycle can go over **without
@@ -152,13 +152,11 @@ Initial Conditions
 ------------------
 
 You will need to calculate all of the displacements at the equilibrium state
-and use these values for the initial displacements.
-
-Determine the initial conditions from the equations of motion (remember, the
-system is initially in equilibrium, with all state derivatives equal to zero)
-or by using statics. **Develop these in equations form; let the computer
-calculate the actual values**.  Define the initial conditions in the master
-file.
+and use these values for the initial displacements. Determine the initial
+conditions from the equations of motion (remember, the system is initially in
+equilibrium, with all state derivatives equal to zero) or by using statics.
+**Develop these in equations form; let the computer calculate the actual
+values**.
 
 Simulation
 ==========
@@ -189,21 +187,19 @@ longest vibration periods after the rear tire reaches the end of the second
 bump. Once you have determined your final time and your step size, set the
 simulation timespan in the master file.
 
-Hint: :math:`T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}` .
+Hint: :math:`T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:\sqrt{\frac{stiffness}{inertia}}`.
 
-You may use a small angle assumption (
-:math:`\\sin\:\theta\:\approx\theta`) when determining the pitch natural
-frequency.
+You may use a small angle assumption (:math:`\sin\:\theta\:\approx\theta`) when
+determining the pitch natural frequency.
 
 Deliverables
 ============
 
-In your lab report, show your work for creating and evaluating the
-simulation model. That is, include your bond graph drawing and any
-calculations for initial conditions, input equations, maximum bump
-height, time control parameters, and any other parameters. Additionally,
-provide/answer the indicated plots/questions and provide a copy of your
-Matlab/Octave code.
+In your lab report, show your work for creating and evaluating the simulation
+model. That is, include your bond graph drawing and any calculations for
+initial conditions, input equations, maximum bump height, time control
+parameters, and any other parameters. Additionally, provide/answer the
+indicated plots/questions and provide a copy of your Matlab/Octave code.
 
 Bond Graph
 ----------
