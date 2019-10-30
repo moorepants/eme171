@@ -192,6 +192,9 @@ Hint: :math:`T\:=\frac{\:1}{f_n},\:f_n\:=\frac{\omega_n}{2\pi\:},\:\omega_n\:=\:
 You may use a small angle assumption (:math:`\sin\:\theta\:\approx\theta`) when
 determining the pitch natural frequency.
 
+.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-03.png
+   :width: 600px
+
 Deliverables
 ============
 
@@ -238,9 +241,6 @@ Questions
 #. From the required plots of heave velocity and angular velocity,
    explain why the spikes in heave velocity are in the same direction,
    while those of the angular velocity switch direction.
-
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-03.png
-   :width: 600px
 
 Bonus Question
 --------------
