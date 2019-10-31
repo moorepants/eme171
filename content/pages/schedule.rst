@@ -46,15 +46,16 @@ after each lecture. **Check the schedule periodically for changes.**
 -- ----------  ------------------------------------  -------------------------  ---------------
 15 M-Oct-28    Midterm Exam
 16 W-Oct-30    System Models: Mechanical             - Read 4.3
+                                                     - `Notes 16`_
 17 F-Nov-01    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
 18 M-Nov-04    System Models: Hydraulic              - Read 4.4                 HW #5: 4.5, 4.16, 4.22, 4.23, 4.24
 19 W-Nov-06    State Space Equations                 - Read 5.1-5.2
-20 F-Nov-08    State Space Equations                 - Read 5.3                 Lab 3
+20 F-Nov-08    State Space Equations                 - Read 5.3
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Nov-11    Veterans Day Holiday
 NA T-Nov-12                                                                     HW #6: Half-car model
-21 W-Nov-13    State Space Equations                 - Read 5.4
+21 W-Nov-13    State Space Equations                 - Read 5.4                 Lab 3
 22 F-Nov-15    State Space Equations                 - Read 5.5
 -- ----------  ------------------------------------  -------------------------  ---------------
 23 M-Nov-18    State Space Equation                  - Read 5.6                 HW #7: 4.8, 4.11, 4.21, 4.30, 5.1s
@@ -93,6 +94,7 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 17: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l17.pdf
 .. _Notes 18: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l18.pdf
 .. _Notes 19: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l19.pdf
+.. _Notes 20: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l20.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
