@@ -227,11 +227,12 @@ Deliverables
 ============
 
 In your lab report, show your work for creating and evaluating the simulation
-model. That is, include your bond graph drawing and any calculations for
-initial conditions, input equations, maximum bump height, time parameters, and
-any other parameters. Additionally, provide the indicated plots and answer the
+model. Include your bond graph drawing and any calculations for initial
+conditions, input equations, maximum bump height, time parameters, and any
+other parameters. Additionally, provide the indicated plots and answer the
 questions below. Append a copy of your Matlab/Octave code to the end of the
-report.
+report. The report should follow the `report template and guidelines
+<{filename}/pages/report-template.rst>`_.
 
 Bond Graph
 ----------
