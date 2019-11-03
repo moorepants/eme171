@@ -49,14 +49,14 @@ after each lecture. **Check the schedule periodically for changes.**
                                                      - `Notes 16`_
 17 F-Nov-01    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
-18 M-Nov-04    System Models: Hydraulic              - Read 4.4                 HW #5: 4.5, 4.16, 4.22, 4.23, 4.24
-19 W-Nov-06    State Space Equations                 - Read 5.1-5.2
-20 F-Nov-08    State Space Equations                 - Read 5.3
+18 M-Nov-04    System Models: Mechanical                                        HW #5: 4.5, 4.16
+19 W-Nov-06    System Models: Hydraulic              - Read 4.4
+20 F-Nov-08    System Models: Hydraulic
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Nov-11    Veterans Day Holiday
-NA T-Nov-12                                                                     HW #6: Half-car model
-21 W-Nov-13    State Space Equations                 - Read 5.4                 Lab 3
-22 F-Nov-15    State Space Equations                 - Read 5.5
+NA T-Nov-12                                                                     HW #6: 4.22, 4.23, 4.24
+21 W-Nov-13    State Space Equations                 - Read 5.1-5.3             Lab 3
+22 F-Nov-15    State Space Equations                 - Read 5.4, 5.5
 -- ----------  ------------------------------------  -------------------------  ---------------
 23 M-Nov-18    State Space Equation                  - Read 5.6                 HW #7: 4.8, 4.11, 4.21, 4.30, 5.1s
 24 W-Nov-20    Linear Systems                        - Read 6.1-6.3
