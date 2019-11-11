@@ -50,8 +50,9 @@ after each lecture. **Check the schedule periodically for changes.**
 17 F-Nov-01    System Models: Mechanical             - `Notes 17`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 18 M-Nov-04    System Models: Mechanical             - `Notes 18`_              HW #5: 4.5, 4.16
-19 W-Nov-06    System Models: Hydraulic              - Read 4.4
-20 F-Nov-08    System Models: Hydraulic
+19 W-Nov-06    System Models: Mechanical             - `Notes 19`_
+20 F-Nov-08    System Models: Hydraulic              - Read 4.4
+                                                     - `Notes 20`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Nov-11    Veterans Day Holiday
 NA T-Nov-12                                                                     HW #6: 4.22, 4.23, 4.24
