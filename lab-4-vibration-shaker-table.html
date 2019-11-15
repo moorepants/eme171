@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  Lab 4: Vibration Shaker Table | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/lab-4-vibration-shaker-table.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
+  
+  <meta name="description" content="Contents Learning Objectives Introduction Model Description System Equations and State Variables Constant Parameters Inputs Initial Conditions Simulation Time Deliverables Code Assessment Rubric Learning Objectives After completing this lab you will be able to: modify a bond graph with additional ports and update the related system equations translate ordinary differential equations …">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      a.async = 1;
+      a.src = g;
+      m = s.getElementsByTagName(o)[0];
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-15966419-8', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  Lab 4: Vibration Shaker Table
+</h1>
+      <hr>
+
+<article class="article">
+  <div class="content">
+    <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#learning-objectives" id="id3">Learning Objectives</a></li>
+<li><a class="reference internal" href="#introduction" id="id4">Introduction</a></li>
+<li><a class="reference internal" href="#model-description" id="id5">Model Description</a><ul>
+<li><a class="reference internal" href="#system-equations-and-state-variables" id="id6">System Equations and State Variables</a></li>
+<li><a class="reference internal" href="#constant-parameters" id="id7">Constant Parameters</a></li>
+<li><a class="reference internal" href="#inputs" id="id8">Inputs</a></li>
+<li><a class="reference internal" href="#initial-conditions" id="id9">Initial Conditions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simulation" id="id10">Simulation</a><ul>
+<li><a class="reference internal" href="#time" id="id11">Time</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deliverables" id="id12">Deliverables</a><ul>
+<li><a class="reference internal" href="#code" id="id13">Code</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assessment-rubric" id="id14">Assessment Rubric</a></li>
+</ul>
+</div>
+<div class="section" id="learning-objectives">
+<h2><a class="toc-backref" href="#id3">Learning Objectives</a></h2>
+<p>After completing this lab you will be able to:</p>
+<ul class="simple">
+<li>modify a bond graph with additional ports and update the related system
+equations</li>
+<li>translate ordinary differential equations into a computer function that
+evaluates the equations at any given point in time</li>
+<li>numerically integrate ordinary differential equations with Octave/Matlab's
+<a class="reference external" href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a></li>
+<li>create complete and legible plots of the resulting input, state, and output
+trajectories</li>
+<li>create a report with textual explanations and plots of the simulation</li>
+<li>investigate the dynamic response of a shaker by itself and the when it is
+coupled to a structure</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id4">Introduction</a></h2>
+<p>Pictures below show an LOS model V-203 electrodynamic shaker. This small
+precise tool is a mainstay of the vibration industry and it offers a perfect
+target for analog simulation <a class="footnote-reference" href="#id2" id="id1">[1]</a>. The intent of this lab is to build and
+simulate a model that accurately portrays the electrical and mechanical
+characteristics of this machine and its interaction with a test piece.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-04-fig-01.png" style="width: 800px;" />
+<p class="caption"><strong>Figure 1</strong> Picture of the LOS model V-203 electrodynamic shaker.</p>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Based on the &quot;Down and Dirty&quot; Details of Analog Programming, Sound and
+Vibration, August 2000</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-description">
+<h2><a class="toc-backref" href="#id5">Model Description</a></h2>
+<p>Figure 2 shows a schematic of the system. The shaker has a compliant suspension
+of stiffness <span class="math">\(K\)</span> and damping <span class="math">\(C\)</span> suspending a load-table of mass
+<span class="math">\(M\)</span>. The table is driven by a voice-coil of resistance <span class="math">\(R\)</span> and
+inductance <span class="math">\(L\)</span> which applies a force to the table in proportion to coil
+current <span class="math">\(i\)</span> by a magnetic constant <span class="math">\(k_2\)</span>. The table motion is
+resisted by the reaction force <span class="math">\(F_r\)</span> of the test object of mass
+<span class="math">\(M_s\)</span>. The moving coil also generates a back EMF in proportion to table
+velocity and the magnetic constant <span class="math">\(k_1\)</span>. The shaker is driven by a
+voltage <span class="math">\(e_{\textrm{in}}\)</span> from a power amplifier. The test piece mass
+structure support springs, <span class="math">\(K_s\)</span>, have negligible damping.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-04-fig-02.png" style="width: 800px;" />
+<p class="caption"><strong>Figure 2</strong> Schematic of the electrodynamic shaker (left side) connected to
+a test piece (right side) by the coupling spring.</p>
+</div>
+<p>Modify the shaker bond graph shown in Figure 3 to include a coupling spring and
+a one degree-of-freedom model of the test piece structure shown in the diagram.
+The reaction force <span class="math">\(F_r\)</span> will now come from the coupling spring (i.e.,
+remove this effort source). On your new bond graph it would make more sense to
+reverse the direction of the half arrow on the <span class="math">\(F_r\)</span> bond. Turn in a copy
+of your bond graph including power convention and causal strokes as one of the
+deliverables.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-04-fig-03.png" style="width: 600px;" />
+<p class="caption"><strong>Figure 3</strong> Schematic of the shaker showing key functional elements.</p>
+</div>
+<p>The pertinent equations are from the bond graph in Figure 3 are:</p>
+<div class="math">
+\begin{align*}
+M \frac{dX^2}{dt^2} + C \frac{dX}{dt} + KX = k_2 i + F_r \\
+Ri + L \frac{di}{dt} = e_{in} - k_1 \frac{dX}{dt}
+\end{align*}
+</div>
+<p>Note that the gyrator with constant <span class="math">\(k_1\)</span>, <span class="math">\(k_2\)</span> represents
+<span class="math">\(e=k_1\dot{X}\)</span> and&nbsp;<span class="math">\(k_2i=F\)</span>.</p>
+<div class="section" id="system-equations-and-state-variables">
+<h3><a class="toc-backref" href="#id6">System Equations and State Variables</a></h3>
+<p>You will need to arrive at the complete system's ordinary differential
+equations from the modified bond graph and the provided equations, i.e. replace
+<span class="math">\(F_r\)</span> with the force generated at the left end of the coupling spring.
+You will need to determine all of the state variables. Show both the complete
+differential equations and the list and names of the state variables your
+report.</p>
+</div>
+<div class="section" id="constant-parameters">
+<h3><a class="toc-backref" href="#id7">Constant Parameters</a></h3>
+<p>The basic physics of the system are found in the governing differential
+equations, and thus you are well on your way to building an analog simulation.
+However, you need to know all of the coefficients in the equations as well as
+the expected range of every variable before proceeding. Fortunately, there are
+some useful numerical values garnered from analyzing it extensively for the
+Electrodynamic Shaker Fundamentals article mentioned above. In particular, you
+know:</p>
+<ul class="simple">
+<li><span class="math">\(M_s = 0.7\textrm{kg}\)</span>: mass of the test piece</li>
+<li><span class="math">\(M=178.04\times10^{-6} \frac{\textrm{lb sec}^2}{\textrm{in}}\)</span>: shaker
+table mass</li>
+<li><span class="math">\(K = 16.54 \textrm{lb/in}\)</span>: shaker internal stiffness</li>
+<li><span class="math">\(C = 39.09 \times 10^{-3} \frac{\textrm{lb sec}}{\textrm{in}}\)</span>: shaker
+internal damping</li>
+<li><span class="math">\(R = 1.6 \Omega\)</span>: shaker coil resistance</li>
+<li><span class="math">\(L = 764 \mu\textrm{H}\)</span>: shaker coil inductance</li>
+<li><span class="math">\(k_1 = 95.10 \times 10^{-3} \frac{\textrm{Volt}}{\textrm{IPS}}\)</span>: shaker
+voltage-velocity proportionality coefficient</li>
+<li><span class="math">\(k_2 = 0.8416 \frac{lb}{A}\)</span>: shaker force-current proportionality coefficient</li>
+<li><span class="math">\(X_{\textrm{lim}} = \pm 100 \textrm{mm}\)</span>: maximum and minimum shaker stroke</li>
+<li><span class="math">\(\ddot{X}_{\textrm{lim}}=\pm 135 \textrm{g}\)</span>: maximum shaker acceleration</li>
+<li><span class="math">\(F_{\textrm{lim}}=\pm 4.4 \textrm{lb}\)</span>: maximum shaker force (use</li>
+</ul>
+<p>Buy looking only at the test piece with the shaker is disconnected via the
+coupling spring, compute a spring constant for the test piece support springs
+such that the natural frequency, <span class="math">\(f_n\)</span> , of the support structure itself
+is 20 Hz. Also compute the corresponding compliance (<span class="math">\(C_s =
+\frac{1}{K_s}\)</span>).</p>
+<p>You will need to convert the units given in the handout to the proper SI units
+used in computation.</p>
+</div>
+<div class="section" id="inputs">
+<h3><a class="toc-backref" href="#id8">Inputs</a></h3>
+<p>Using the constants above and the system equations, compute the maximum
+voltage, <span class="math">\(e_{in}\)</span>, that could be applied to the shaker if the force (on
+the mechanical side of the gyrator) is limited to 4.4 lbs. (Hint: This is a
+non-dynamic calculation involving only <span class="math">\(k_2\)</span> and <span class="math">\(R\)</span>.) Use this as
+a constant input to the system in your simulation.</p>
+</div>
+<div class="section" id="initial-conditions">
+<h3><a class="toc-backref" href="#id9">Initial Conditions</a></h3>
+<p>All initial conditions can be set to zero.</p>
+</div>
+</div>
+<div class="section" id="simulation">
+<h2><a class="toc-backref" href="#id10">Simulation</a></h2>
+<p>First let the coupling spring have a zero or nearly zero spring constant so
+that the shaker is not affected by the presence of the structure. You can
+either modify the equation for the spring from the form <span class="math">\(e_c =
+\frac{q_c}{C_c}\)</span> to <span class="math">\(e_c = K_c q_c\)</span> and set <span class="math">\(K_c\)</span> to zero, or you
+could use a very large number for <span class="math">\(C_c\)</span>.</p>
+<p>Use zero initial conditions for all momentum displacement variables and let
+<span class="math">\(e_{in}\)</span> from your power supply be the voltage you calculated. This
+corresponds to suddenly turning on the maximum voltage at t = 0.</p>
+<p>Simulate the system to see how the shaker behaves on its own. Report on the
+findings in your deliverables.</p>
+<p>Now do two more simulations with finite coupling spring constants (or
+equivalent compliances). Experiment with the coupling spring constant; try it
+with values less than the support spring constant and greater than the support
+spring constant. Be careful of extremely large coupling spring constants, you
+could create a system which would need a very small step size to be numerically
+stable. Report on the findings of the two additional simulations in your
+deliverables.</p>
+<div class="section" id="time">
+<h3><a class="toc-backref" href="#id11">Time</a></h3>
+<p>You have to choose the maximum step size and stop time for the simulation based
+on the considerations on the shortest period of oscillation or the shortest
+time constant of the system. You will learn more about these characteristic
+times of a system in Chapter 6 of the text. Approximates are:</p>
+<table border="1" class="table table-striped table-bordered docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Oscillation frequency</td>
+<td><span class="math">\(\omega_n = \sqrt{\frac{K}{M}} \frac{\textrm{rad}}{\textrm{sec}}\)</span></td>
+</tr>
+<tr><td>Period</td>
+<td><span class="math">\(T = \frac{2\pi}{\omega_n} \textrm{sec}\)</span></td>
+</tr>
+<tr><td>Mechanical time constant</td>
+<td><span class="math">\(\tau_1 = \frac{M}{C} \textrm{sec}\)</span></td>
+</tr>
+<tr><td>Electrical time constant</td>
+<td><span class="math">\(\tau_2 = \frac{L}{R} \textrm{sec}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The default integration scheme, ode45(), is a variable-step Bogacki-Shampine
+algorithm (Historical note: Prof. Bogacki taught Prof. Moore calculus in
+undergrad!). The maximum step size guarantees data points at a regular interval
+for plotting and analysis. Keep in mind that your max step size must be smaller
+than the shortest period of oscillation or the shortest time constant of the
+system. The stop time should be set such that most of the transient response
+will occur for 0 &lt; t &lt; stop time.</p>
+</div>
+</div>
+<div class="section" id="deliverables">
+<h2><a class="toc-backref" href="#id12">Deliverables</a></h2>
+<ol class="arabic simple">
+<li>A bond graph with power conventions, causal strokes, and linear coefficients
+for all ports.</li>
+<li>Complete system equations and state variables defined.</li>
+<li>A list of all constant parameters in acceptable SI units.</li>
+<li>Show plots of your selected variables for the three cases simulated. Plot at
+least 4 variables you think would be of interest and explain why they are of
+interest.</li>
+<li>Explanation of what you observe and learn about the system's motion from the
+three simulations.</li>
+<li>Append a copy of your Matlab/Octave code to the end of the report.</li>
+</ol>
+<p>The report should follow the <a class="reference external" href="https://moorepants.github.io/eme171/lab-report-guidelines-and-template.html">report template and guidelines</a>.</p>
+<div class="section" id="code">
+<h3><a class="toc-backref" href="#id13">Code</a></h3>
+<ol class="arabic simple">
+<li>Create a function defined in an m-file that evaluates the right hand side of
+the ODEs, i.e. evaluates the state derivatives. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#defining-the-state-derivative-function">Defining the State
+Derivative Function</a> for an explanation.</li>
+<li>Create a function defined in an m-file that calculates any necessary
+outputs. See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-other-than-the-states">Outputs Other Than the States</a> and <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-involving-state-derivatives">Outputs Involving State
+Derivatives</a> for an explanation.</li>
+<li>Create a script in an m-file that utilizes the above functions to simulate
+the system for three scenarios. This should setup the constants, integrate
+the dynamics equations, and plot each state, input, and output versus time.
+See <a class="reference external" href="https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#integrating-the-equations">Integrating the State Equations</a> for an explanation.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="assessment-rubric">
+<h2><a class="toc-backref" href="#id14">Assessment Rubric</a></h2>
+<p>Points will be added to 40 to get your score from 40-100.</p>
+<p>Functions (10 points)</p>
+<ul class="simple">
+<li>[10] All functions are present and take correct inputs and produce the
+expected outputs.</li>
+<li>[5] Most functions are present and mostly take correct inputs and produce the
+expected outputs</li>
+<li>[0] No functions are present.</li>
+</ul>
+<p>Main Script (10 points)</p>
+<ul class="simple">
+<li>[10] Constant parameters only defined once in main script(s); Integration produces
+the correct state, input, and output trajectories; Justified choices in
+number of time steps and resolution are chosen and explained</li>
+<li>[5] Parameters are defined in multiple places; Integration produces some
+correct state, input, and output trajectories; Poor choices in number of time
+steps and resolution are chosen or not explained</li>
+<li>[0] Constants defined redundantly; Integration produces incorrect
+trajectories; No clear choices in time duration and steps</li>
+</ul>
+<p>Explanations (10 points)</p>
+<ul class="simple">
+<li>[10] Explanation of dynamics are correct and well explained; Explanation of
+the vibration period and frequency is correct and well explained; Plots of
+appropriate variables are used in the explanations</li>
+<li>[5] Explanation of dynamics is somewhat correct and reasonably explained;
+Explanation of vibration period and frequency is somewhat correctly describes
+results; Plots of appropriate variables are used in the explanations, but
+some are missing</li>
+<li>[0] Explanation of damping is incorrect and poorly explained; Explanation of
+vibration and frequency behavior incorrectly describes results; Plots are not
+used.</li>
+</ul>
+<p>Report and Code Formatting (10 points)</p>
+<ul class="simple">
+<li>[10] All axes labeled with units, legible font sizes, informative captions;
+Functions are documented with docstrings which fully explain the inputs and
+outputs; Professional, very legible, quality writing; All report format
+requirements met</li>
+<li>[5] Some axes labeled with units, mostly legible font sizes,
+less-than-informative captions; Functions have docstrings but the inputs and
+outputs are not fully explained; Semi-professional, somewhat legible, writing
+needs improvement; Most report format requirements met</li>
+<li>[0] Axes do not have labels, legible font sizes, or informative captions;
+Functions do not have docstrings; Report is not professionally written and
+formatted; Report format requirements are not met</li>
+</ul>
+<p>Contributions [10 points]</p>
+<ul class="simple">
+<li>[10] Very clear that everyone in the lab group contributed equitably. (e.g.
+both need to do some coding, both work on bond graph, both should contribute
+to writing)</li>
+<li>[5] Need to improve the contributions of one or more members</li>
+<li>[0] Clear that everyone is not contributing equitably</li>
+</ul>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+</article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
