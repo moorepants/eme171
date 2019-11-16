@@ -51,24 +51,24 @@ after each lecture. **Check the schedule periodically for changes.**
 -- ----------  ------------------------------------  -------------------------  ---------------
 18 M-Nov-04    System Models: Mechanical             - `Notes 18`_              HW #5: 4.5, 4.16
 19 W-Nov-06    System Models: Mechanical             - `Notes 19`_
-20 F-Nov-08    System Models: Hydraulic              - Read 4.4
-                                                     - `Notes 20`_
+20 F-Nov-08    - System Models: Mechanical           - `Notes 20`_
+               - System Models: Hydraulic            - Read 4.4
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Nov-11    Veterans Day Holiday
 NA T-Nov-12                                                                     HW #6: 4.22, 4.23, 4.24
-21 W-Nov-13    State Space Equations                 - Read 5.1-5.3             Lab 3
-22 F-Nov-15    State Space Equations                 - Read 5.4, 5.5
+21 W-Nov-13    System Models: Hydraulic              - `Notes 21`_              Lab 3
+22 F-Nov-15    System Models: Hydraulic              - `Notes 22`_
 -- ----------  ------------------------------------  -------------------------  ---------------
-23 M-Nov-18    State Space Equation                  - Read 5.6                 HW #7: 4.8, 4.11, 4.21, 4.30
-24 W-Nov-20    Linear Systems                        - Read 6.1-6.3
-25 F-Nov-22    Linear Systems                        - Read 6.4-6.6
+23 M-Nov-18    State Space Equations                 - Read 5.1-5.3             HW #7: 4.8, 4.11, 4.21, 4.30
+24 W-Nov-20    State Space Equations                 - Read 5.4-5.5
+25 F-Nov-22    State Space Equation                  - Read 5.6
 -- ----------  ------------------------------------  -------------------------  ---------------
-26 M-Nov-25    Linear Systems                        - Read 6.7                 HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
-27 W-Nov-27    Introduction to control                                          Lab 4
+26 M-Nov-25    Linear Systems                        - Read 6.1-6.3             HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
+27 W-Nov-27    Linear Systems                        - Read 6.4-6.6             Lab 4
 28 F-Nov-29    Thanksgiving Holiday
 -- ----------  ------------------------------------  -------------------------  ---------------
-29 M-Dec-02    Segway Modeling and Control                                      HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
-30 W-Dec-04    Segway Modeling and Control
+29 M-Dec-02    Linear Systems                        - Read 6.7                 HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
+30 W-Dec-04    Special topic (maybe)
 31 F-Dec-06    Review
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Dec 09                                                                     Lab 5
@@ -97,6 +97,8 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 18: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l18.pdf
 .. _Notes 19: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l19.pdf
 .. _Notes 20: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l20.pdf
+.. _Notes 21: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l21.pdf
+.. _Notes 22: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l22.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
