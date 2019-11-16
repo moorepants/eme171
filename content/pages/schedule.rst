@@ -59,18 +59,19 @@ NA T-Nov-12                                                                     
 21 W-Nov-13    State Space Equations                 - Read 5.1-5.3             Lab 3
 22 F-Nov-15    State Space Equations                 - Read 5.4, 5.5
 -- ----------  ------------------------------------  -------------------------  ---------------
-23 M-Nov-18    State Space Equation                  - Read 5.6                 HW #7: 4.8, 4.11, 4.21, 4.30, 5.1s
+23 M-Nov-18    State Space Equation                  - Read 5.6                 HW #7: 4.8, 4.11, 4.21, 4.30
 24 W-Nov-20    Linear Systems                        - Read 6.1-6.3
-25 F-Nov-22    Linear Systems                        - Read 6.4-6.6             Lab 4
+25 F-Nov-22    Linear Systems                        - Read 6.4-6.6
 -- ----------  ------------------------------------  -------------------------  ---------------
-26 M-Nov-25    Linear Systems                        - Read 6.7                 HW #8: 5.3, 5.4, 5.8, 5.11, 5.19
-27 W-Nov-27    Introduction to control
+26 M-Nov-25    Linear Systems                        - Read 6.7                 HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
+27 W-Nov-27    Introduction to control                                          Lab 4
 28 F-Nov-29    Thanksgiving Holiday
 -- ----------  ------------------------------------  -------------------------  ---------------
 29 M-Dec-02    Segway Modeling and Control                                      HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 30 W-Dec-04    Segway Modeling and Control
-31 F-Dec-06    Review                                                           Lab 5
+31 F-Dec-06    Review
 -- ----------  ------------------------------------  -------------------------  ---------------
+NA M-Dec 09                                                                     Lab 5
 NA R-Dec-12    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
 
