@@ -63,13 +63,13 @@ NA T-Nov-12                                                                     
 24 W-Nov-20    State Space Equations                 - Read 5.4-5.5
 25 F-Nov-22    State Space Equation                  - Read 5.6
 -- ----------  ------------------------------------  -------------------------  ---------------
-26 M-Nov-25    Linear Systems                        - Read 6.1-6.3             HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
-27 W-Nov-27    Linear Systems                        - Read 6.4-6.6             Lab 4
+26 M-Nov-25    Linear Systems                        - Read 6.1-6.3
+27 W-Nov-27    Linear Systems                        - Read 6.4-6.6             HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
 28 F-Nov-29    Thanksgiving Holiday
 -- ----------  ------------------------------------  -------------------------  ---------------
-29 M-Dec-02    Linear Systems                        - Read 6.7                 HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
+29 M-Dec-02    Linear Systems                        - Read 6.7                 Lab 4
 30 W-Dec-04    Special topic (maybe)
-31 F-Dec-06    Review
+31 F-Dec-06    Review                                                           HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Dec 09                                                                     Lab 5
 NA R-Dec-12    Final Exam: 3:30 PM
