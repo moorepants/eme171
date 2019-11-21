@@ -60,7 +60,9 @@ NA T-Nov-12                                                                     
 22 F-Nov-15    System Models: Hydraulic              - `Notes 22`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 23 M-Nov-18    State Space Equations                 - Read 5.1-5.3             HW #7: 4.8, 4.11, 4.21, 4.30
+                                                     - `Notes 23`_
 24 W-Nov-20    State Space Equations                 - Read 5.4-5.5
+                                                     - `Notes 24`_
 25 F-Nov-22    State Space Equation                  - Read 5.6
 -- ----------  ------------------------------------  -------------------------  ---------------
 26 M-Nov-25    Linear Systems                        - Read 6.1-6.3
@@ -99,6 +101,8 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 20: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l20.pdf
 .. _Notes 21: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l21.pdf
 .. _Notes 22: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l22.pdf
+.. _Notes 23: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l23.pdf
+.. _Notes 24: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l24.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
