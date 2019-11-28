@@ -95,9 +95,9 @@ rate inputs are set to constants.</p>
 <span class="n">psidot</span> <span class="p">=</span> <span class="n">v</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="nb">tan</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
 
 <span class="c">% pack up the results</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span>
+<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 </div>
 <div class="section" id="eval-bicycle-rhs2">
@@ -134,9 +134,9 @@ rate inputs are calculated by an input function.</p>
 <span class="n">psidot</span> <span class="p">=</span> <span class="n">v</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="nb">tan</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
 
 <span class="c">% pack up the results</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span>
+<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 </div>
 <div class="section" id="eval-steer-control-input-m">
@@ -158,9 +158,9 @@ the steer and steer rate inputs.</p>
 <span class="n">delta</span> <span class="p">=</span> <span class="n">kp</span><span class="o">*</span><span class="n">theta</span> <span class="o">+</span> <span class="n">kd</span><span class="o">*</span><span class="n">omega</span><span class="p">;</span>
 
 <span class="c">% pack up the inputs</span>
-<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="nb">beta</span><span class="p">;</span> <span class="n">delta</span><span class="p">];</span>
+<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="nb">beta</span><span class="p">;</span> <span class="n">delta</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 </div>
 <div class="section" id="bicycle-main-m">

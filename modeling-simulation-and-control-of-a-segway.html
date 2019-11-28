@@ -139,9 +139,9 @@ constructing the two system matrices.</p>
     <span class="n">B</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
          <span class="mi">0</span><span class="p">,</span> <span class="n">Mb</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
          <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
-         <span class="mi">0</span><span class="p">,</span> <span class="n">Mb</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+         <span class="mi">0</span><span class="p">,</span> <span class="n">Mb</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>The following m-file computes the two inputs. The wind force is specified as a
 step function that provides a constant wind force between a start and stop
@@ -174,20 +174,20 @@ demonstration).</p>
     <span class="n">e</span> <span class="p">=</span> <span class="o">-</span><span class="n">G</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">);</span>
 
     <span class="c">% define a gust of wind applied between 1 and 2 seconds</span>
-    <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">&amp;&amp;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">2.0</span>
+<span class="n">    if </span><span class="s">t &gt; 1.0 &amp;&amp; t &lt; 2.0</span><span class="p"></span>
         <span class="c">% magnitude of force from a gust of wind hitting a human at speed v</span>
         <span class="n">rho</span> <span class="p">=</span> <span class="mf">1.2</span><span class="p">;</span>  <span class="c">% air density [kg/m^3]</span>
         <span class="n">CdA</span> <span class="p">=</span> <span class="mf">0.84</span><span class="p">;</span>  <span class="c">% drag coeff times frontal area [m^2]</span>
         <span class="n">v</span> <span class="p">=</span> <span class="mi">18</span><span class="p">;</span> <span class="c">% wind speed [m/s]</span>
-        <span class="n">F</span> <span class="p">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">CdA</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="n">F</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>
-    <span class="k">end</span>
+        <span class="n">F</span> <span class="p">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">CdA</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">F = 0.0</span><span class="p">;</span>
+<span class="n">    end</span>
 
-    <span class="c">% pack input into a 2x1 vector</span>
-    <span class="n">u</span> <span class="p">=</span> <span class="p">[</span><span class="n">e</span><span class="p">;</span> <span class="n">F</span><span class="p">];</span>
+<span class="n">    </span><span class="s">% pack input into a 2x1 vector</span><span class="p"></span>
+    <span class="n">u</span> <span class="p">=</span> <span class="p">[</span><span class="n">e</span><span class="p">;</span> <span class="n">F</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>The function that computes the derivative of the states then becomes fairly
 simple because we have defined the linear system as a state space. I do add an
@@ -229,9 +229,9 @@ longitudinal momentum of the wheel assembly</li>
     <span class="c">% add an extra non-essential ODE so we can get wheel position</span>
     <span class="n">omega_w</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span><span class="p">.</span><span class="n">Jw</span><span class="p">;</span>
     <span class="n">vw</span> <span class="p">=</span> <span class="n">omega_w</span> <span class="o">*</span> <span class="n">p</span><span class="p">.</span><span class="n">d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="n">xdot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">vw</span><span class="p">;</span>
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">vw</span><span class="p">;</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>The next m-file computes several useful outputs. The power draw from the
 battery is computed and the Cartesian location of the mass center of the wheel
@@ -272,9 +272,9 @@ the motion.</p>
     <span class="n">xp</span> <span class="p">=</span> <span class="n">xw</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">lp</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">thetap</span><span class="p">);</span>
     <span class="n">yp</span> <span class="p">=</span> <span class="n">yw</span> <span class="o">+</span> <span class="n">p</span><span class="p">.</span><span class="n">lp</span> <span class="o">*</span> <span class="nb">cos</span><span class="p">(</span><span class="n">thetap</span><span class="p">);</span>
 
-    <span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="n">xw</span><span class="p">;</span> <span class="n">xp</span><span class="p">;</span> <span class="n">yw</span><span class="p">;</span> <span class="n">yp</span><span class="p">;</span> <span class="n">power</span><span class="p">];</span>
+    <span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="n">xw</span><span class="p">;</span> <span class="n">xp</span><span class="p">;</span> <span class="n">yw</span><span class="p">;</span> <span class="n">yp</span><span class="p">;</span> <span class="n">power</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>Finally, the main script file is shown below. There are these main steps:</p>
 <ol class="arabic simple">
@@ -305,12 +305,12 @@ the motion.</p>
 
 <span class="c">%% calculate the eigenvalues and eigenvectors of the state matrix</span>
 <span class="p">[</span><span class="n">evecs</span><span class="p">,</span> <span class="n">evals</span><span class="p">]</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvalues&#39;</span><span class="p">);</span>
+<span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvalues&#39;</span><span class="p">);</span><span class="n"></span>
 <span class="n">evals</span>
-<span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvectors&#39;</span><span class="p">);</span>
+<span class="s">display(&#39;Eigenvectors&#39;)</span><span class="p">;</span>
 <span class="n">evecs</span>
 
-<span class="c">%% check to see if a simple proportional feedback of q8 will stabilize the</span>
+<span class="s">%% check to see if a simple proportional feedback of q8 will stabilize the</span><span class="p"></span>
 <span class="c">%% system</span>
 <span class="c">% create a SISO plant input: e, output: q8 and control: e=-k*q8.</span>
 <span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>  <span class="c">% i.e. y = q8</span>
@@ -338,7 +338,7 @@ the motion.</p>
 <span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvalues of PID controlled system&#39;</span><span class="p">)</span>
 <span class="n">L</span>
 
-<span class="c">%% simulate the system with the LQR controller</span>
+<span class="s">%% simulate the system with the LQR controller</span><span class="p"></span>
 <span class="n">final_time</span> <span class="p">=</span> <span class="mf">6.0</span><span class="p">;</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">final_time</span><span class="p">,</span> <span class="n">num</span><span class="p">=</span><span class="n">final_time</span><span class="o">*</span><span class="mi">60</span><span class="p">);</span>
 
@@ -351,13 +351,13 @@ the motion.</p>
 
 <span class="c">% calculate the inputs and outputs of the simulation</span>
 <span class="n">us</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
-<span class="n">ys</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">5</span><span class="p">);</span>
-<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">ys</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">5</span><span class="p">);</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1:length(ts)</span><span class="p"></span>
     <span class="n">us</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_segway_input</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
-    <span class="n">ys</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_segway_output</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_segway_input</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
-<span class="k">end</span>
+    <span class="n">ys</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_segway_output</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_segway_input</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
 
-<span class="c">% save all simulation input and output data to a file</span>
+<span class="s">% save all simulation input and output data to a file</span><span class="p"></span>
 <span class="n">save</span><span class="p">(</span><span class="s">&#39;-v6&#39;</span><span class="p">,</span> <span class="s">&#39;segway-sim-data.mat&#39;</span><span class="p">,</span> <span class="s">&#39;ts&#39;</span><span class="p">,</span> <span class="s">&#39;xs&#39;</span><span class="p">,</span> <span class="s">&#39;ys&#39;</span><span class="p">,</span> <span class="s">&#39;us&#39;</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">);</span>
 
 <span class="c">%% plot the simulation results</span>
@@ -405,14 +405,14 @@ recommend installing <a class="reference external" href="https://www.anaconda.co
 prompt.</p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="kn">as</span> <span class="nn">animation</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
 <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
 
 <span class="c1"># load the data and extract necessary variables</span>
-<span class="n">dat</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;segway-sim-data.mat&#39;</span><span class="p">,</span> <span class="n">squeeze_me</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;segway-sim-data.mat&#39;</span><span class="p">,</span> <span class="n">squeeze_me</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">d</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">][</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>
 <span class="n">ts</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span>

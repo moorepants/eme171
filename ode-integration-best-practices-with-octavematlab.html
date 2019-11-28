@@ -192,9 +192,9 @@ print this documentation at the Octave/Matlab command prompt.</p>
      <span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">l</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">l</span>^<span class="mi">2</span><span class="p">);</span>
 
      <span class="c">% pack the state derivatives into an mx1 vector (same order as states)</span>
-     <span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">];</span>
+     <span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 </div>
 <div class="section" id="integrating-the-equations">
@@ -321,7 +321,7 @@ script's scope:</p>
 </pre></div>
 <p>Note that you have to declare the variables before declaring the anonymous
 function, the following code fails to compute:</p>
-<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">clear </span><span class="s">all</span><span class="p">;</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="gp">&gt;&gt; </span><span class="n">my_func</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">mean</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]);</span>
 <span class="gp">&gt;&gt; </span><span class="n">my_func</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -438,9 +438,9 @@ state, and constant parameter values. Save this as <a class="reference external"
     <span class="n">tau</span> <span class="p">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">l</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="nb">pi</span><span class="o">/</span><span class="mi">20</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
 
     <span class="c">% pack the inputs into an 1x1 vector</span>
-    <span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">tau</span><span class="p">];</span>
+    <span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">tau</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>For this function to be useful a slight adjustment to <tt class="docutils literal">eval_rhs.m</tt> needs to
 be made so that it accepts the input function instead of the values directly.
@@ -484,9 +484,9 @@ Save this as <a class="reference external" href="https://moorepants.github.io/em
      <span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">l</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">l</span>^<span class="mi">2</span><span class="p">);</span>
 
      <span class="c">% pack the state derivatives into an mx1 vector</span>
-     <span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">];</span>
+     <span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>Now you can pass in the input function as an anonymous function in similar
 fashion as shown earlier for <tt class="docutils literal">eval_rhs()</tt>. Save as
@@ -536,16 +536,16 @@ function, <a class="reference external" href="https://moorepants.github.io/eme17
     <span class="c">% NOTE : x and p are not used in this case</span>
 
     <span class="c">% calculate the step input</span>
-    <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mf">1.0</span>
+<span class="n">    if </span><span class="s">t &gt; 1.0</span><span class="p"></span>
         <span class="n">tau</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% [N]</span>
-    <span class="k">else</span>
-        <span class="n">tau</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c">% [N]</span>
-    <span class="k">end</span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">tau = 0.0</span><span class="p">;</span> <span class="c">% [N]</span>
+<span class="n">    end</span>
 
-     <span class="c">% pack the input values into a ox1 vector</span>
-     <span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">tau</span><span class="p">];</span>
+<span class="n">     </span><span class="s">% pack the input values into a ox1 vector</span><span class="p"></span>
+     <span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">tau</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>Now integrating with the new input only requires changing the name of the
 anonymous function in the main script, named here as
@@ -634,9 +634,9 @@ operations.</p>
     <span class="n">potential_energy</span> <span class="p">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">y_pos</span><span class="p">;</span>
 
     <span class="c">% pack the outputs into a qx1 vector</span>
-    <span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="n">x_pos</span><span class="p">;</span> <span class="n">y_pos</span><span class="p">;</span> <span class="n">kinetic_energy</span><span class="p">;</span> <span class="n">potential_energy</span><span class="p">];</span>
+    <span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="n">x_pos</span><span class="p">;</span> <span class="n">y_pos</span><span class="p">;</span> <span class="n">kinetic_energy</span><span class="p">;</span> <span class="n">potential_energy</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>Now this function can be used after integrating the ODEs to compute any desired
 outputs. The following file, <a class="reference external" href="https://moorepants.github.io/eme171/scripts/best-practices/integrate_with_output.m"><tt class="docutils literal">integrate_with_output.m</tt></a>, shows how this is done.</p>
@@ -651,8 +651,8 @@ outputs. The following file, <a class="reference external" href="https://moorepa
 <span class="n">ys</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">4</span><span class="p">);</span>  <span class="c">% create a matrix to store the values, nxq</span>
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
     <span class="c">% the r input isn&#39;t used, so nan can be set as a placeholder</span>
-    <span class="n">ys</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_output</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="nb">nan</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="k">end</span>
+    <span class="n">ys</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_output</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="nb">nan</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
 </pre></div>
 <div class="alert alert-info topic">
 <p class="topic-title first">Vectorizing functions</p>
@@ -678,12 +678,12 @@ function will allow batch calculations of the outputs, as shown below in
     <span class="c">%        outputs or qx1 if n=1.</span>
 
     <span class="c">% for n=1, tranpose</span>
-    <span class="k">if</span> <span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">    if </span><span class="s">length(ts) == 1</span><span class="p"></span>
         <span class="n">xs</span> <span class="p">=</span> <span class="n">xs</span><span class="o">&#39;</span><span class="p">;</span>  <span class="c">% 1xm</span>
         <span class="n">rs</span> <span class="p">=</span> <span class="n">rs</span><span class="o">&#39;</span><span class="p">;</span>  <span class="c">% 1xo</span>
-    <span class="k">end</span>
+<span class="n">    end</span>
 
-    <span class="c">% unpack the state trajectories</span>
+<span class="n">    </span><span class="s">% unpack the state trajectories</span><span class="p"></span>
     <span class="n">theta</span> <span class="p">=</span> <span class="n">xs</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% size n</span>
     <span class="n">omega</span> <span class="p">=</span> <span class="n">xs</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">);</span>  <span class="c">% size n</span>
 
@@ -706,11 +706,11 @@ function will allow batch calculations of the outputs, as shown below in
     <span class="n">ys</span> <span class="p">=</span> <span class="p">[</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">kinetic_energy</span><span class="p">,</span> <span class="n">potential_energy</span><span class="p">];</span>
 
     <span class="c">% ensures this function returns a column vector if n=1</span>
-    <span class="k">if</span> <span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-        <span class="n">ys</span> <span class="p">=</span> <span class="n">ys</span><span class="o">&#39;</span><span class="p">;</span>
-    <span class="k">end</span>
+<span class="n">    if </span><span class="s">length(ts) == 1</span><span class="p"></span>
+        <span class="n">ys</span> <span class="p">=</span> <span class="n">ys</span><span class="o">&#39;</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
 
-<span class="k">end</span>
+<span class="s">end</span><span class="p"></span>
 </pre></div>
 <p>Now, instead of the for loop, you can type:</p>
 <div class="highlight"><pre><span></span><span class="n">ys</span> <span class="p">=</span> <span class="n">eval_output_vectorized</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="nb">nan</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
@@ -766,9 +766,9 @@ tangential acceleration depends on <span class="math">\(\dot{omega}\)</span>.</p
     <span class="n">tangential_acc</span> <span class="p">=</span> <span class="n">omegadot</span> <span class="o">*</span> <span class="n">l</span><span class="p">;</span>
 
     <span class="c">% pack the result into a qx1 vector</span>
-    <span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="n">radial_acc</span><span class="p">;</span> <span class="n">tangential_acc</span><span class="p">];</span>
+    <span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="n">radial_acc</span><span class="p">;</span> <span class="n">tangential_acc</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">end</span>
+<span class="n">end</span>
 </pre></div>
 <p>The state derivatives are calculated internally when <tt class="docutils literal">ode45()</tt> is called and
 are not stored during integration. These can be recalculated after integration
@@ -787,8 +787,8 @@ for use in you primary script, e.g. as in <a class="reference external" href="ht
     <span class="c">% calculate x&#39; at the given time</span>
     <span class="n">xdot</span> <span class="p">=</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
     <span class="c">% calculate the outputs that depend on x&#39; and store them</span>
-    <span class="n">zs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_output_with_state_derivatives</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xdot</span><span class="p">,</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="k">end</span>
+    <span class="n">zs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_output_with_state_derivatives</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xdot</span><span class="p">,</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
 </pre></div>
 </div>
 <script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
