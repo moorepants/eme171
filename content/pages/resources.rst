@@ -25,6 +25,7 @@ Labs
 - `Lab 2: Two DoF Quarter Car Model <{filename}/pages/lab-02.rst>`_
 - `Lab 3: Motocross Model <{filename}/pages/lab-03.rst>`_
 - `Lab 4: Vibration Shaker <{filename}/pages/lab-04.rst>`_
+- `Lab 5: The Drowning of Sacramento <{filename}/pages/lab-05.rst>`_
 
 Scripts
 =======
