@@ -64,13 +64,15 @@ NA T-Nov-12                                                                     
 24 W-Nov-20    State Space Equations                 - Read 5.4-5.5
                                                      - `Notes 24`_
 25 F-Nov-22    State Space Equation                  - Read 5.6
+                                                     - `Notes 25`_
 -- ----------  ------------------------------------  -------------------------  ---------------
-26 M-Nov-25    Linear Systems                        - Read 6.1-6.3
-27 W-Nov-27    Linear Systems                        - Read 6.4-6.6             HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
+26 M-Nov-25    - Algebraic Loops                     - `Notes 26`_
+               - Linear Outputs
+27 W-Nov-27    Derivative causality                  - `Notes 27`_              HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
 28 F-Nov-29    Thanksgiving Holiday
 -- ----------  ------------------------------------  -------------------------  ---------------
-29 M-Dec-02    Linear Systems                        - Read 6.7                 Lab 4
-30 W-Dec-04    Special topic (maybe)
+29 M-Dec-02    Linear Systems                        - Read 6.1-6.3             Lab 4
+30 W-Dec-04    Special topic (maybe)                 - Read 6.4-6.7
 31 F-Dec-06    Review                                                           HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Dec 09                                                                     Lab 5
@@ -103,6 +105,9 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 22: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l22.pdf
 .. _Notes 23: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l23.pdf
 .. _Notes 24: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l24.pdf
+.. _Notes 25: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l25.pdf
+.. _Notes 26: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l26.pdf
+.. _Notes 27: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l27.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
