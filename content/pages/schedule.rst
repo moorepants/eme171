@@ -69,11 +69,13 @@ NA T-Nov-12                                                                     
 26 M-Nov-25    - Algebraic Loops                     - `Notes 26`_
                - Linear Outputs
 27 W-Nov-27    Derivative causality                  - `Notes 27`_              HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
-28 F-Nov-29    Thanksgiving Holiday
+NA F-Nov-29    Thanksgiving Holiday
 -- ----------  ------------------------------------  -------------------------  ---------------
-29 M-Dec-02    Linear Systems                        - Read 6.1-6.3             Lab 4
-30 W-Dec-04    Special topic (maybe)                 - Read 6.4-6.7
-31 F-Dec-06    Review                                                           HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
+28 M-Dec-02    Linear Systems                        - Read 6.1-6.3             Lab 4
+                                                     - `Notes 28`_
+29 W-Dec-04    Linear Systems                        - Read 6.4-6.7
+                                                     - `Notes 29`_
+30 F-Dec-06    Review                                                           HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Dec 09                                                                     Lab 5
 NA R-Dec-12    Final Exam: 3:30 PM
@@ -108,6 +110,8 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 25: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l25.pdf
 .. _Notes 26: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l26.pdf
 .. _Notes 27: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l27.pdf
+.. _Notes 28: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l28.pdf
+.. _Notes 29: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l29.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
