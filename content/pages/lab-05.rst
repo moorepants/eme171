@@ -88,7 +88,7 @@ Constant parameters
 -------------------
 
 .. list-table::
-   :class: table table-bordered
+   :class: table table-striped table-bordered
    :header-rows: 1
 
    * - Symbol
