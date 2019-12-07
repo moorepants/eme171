@@ -75,7 +75,7 @@ NA F-Nov-29    Thanksgiving Holiday
                                                      - `Notes 28`_
 29 W-Dec-04    Linear Systems                        - Read 6.4-6.7
                                                      - `Notes 29`_
-30 F-Dec-06    Review                                                           HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
+30 F-Dec-06    Review                                - `Notes 30`_              HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Dec 09                                                                     Lab 5
 NA R-Dec-12    Final Exam: 3:30 PM
@@ -112,6 +112,7 @@ NA R-Dec-12    Final Exam: 3:30 PM
 .. _Notes 27: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l27.pdf
 .. _Notes 28: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l28.pdf
 .. _Notes 29: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l29.pdf
+.. _Notes 30: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l30.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
