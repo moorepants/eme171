@@ -38,32 +38,32 @@ i = res(:, 3);
 x = res(:, 4);
 
 % plot the variables of interest versus time
-subplot(6, 1, 1);
+figure(1);
 plot(t, 180/pi*theta);
 ylabel('\theta [deg]');
 xlabel('Time [s]');
 
-subplot(6, 1, 2);
+figure(2);
 plot(t, 180/pi*omega);
 ylabel('\omega [deg/s]');
 xlabel('Time [s]');
 
-subplot(6, 1, 3);
+figure(3);
 plot(t, i);
 ylabel('i [A]');
 xlabel('Time [s]');
 
-subplot(6, 1, 4);
+figure(4);
 plot(t, x);
 ylabel('x [m]');
 xlabel('Time [s]');
 
-subplot(6, 1, 5);
+figure(5);
 plot(t, omega*p.R);
 ylabel('v [m/s]');
 xlabel('Time [s]');
 
-subplot(6, 1, 6)
+figure(6);
 plot(t, p.V*i)
 xlabel('Time [s]');
 ylabel('Power [W]')
