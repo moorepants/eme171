@@ -1,4 +1,4 @@
-function sdot = eval_ebike_rhs(t, s, r, p)
+function sdot = eval_ebike_rhs(t, s, w, p)
 % EVAL_EBIKE_RHS - Returns the time derivative of the states, i.e. evaluates
 % the right hand side of the explicit ordinary differential equations.
 %
@@ -6,12 +6,10 @@ function sdot = eval_ebike_rhs(t, s, r, p)
 %
 % Inputs:
 %   t - Scalar value of time, size 1x1.
-%   s - State vector at time t, size mx1 where m is the number of
-%       states.
-%   r - Input vector at time t, size ox1 were o is the number of
-%       inputs.
-%   p - Constant parameter vector, size px1 were p is the number of
-%       parameters.
+%   s - State vector at time t, size 4x1: [theta, omega, i, x]'.
+%   w - Function that returns the road angle input.
+%   p - Constant parameter structure with 14 constants: m, R, Cr, Cd, rho,
+%       A, g, J, bm, Kt, L, Rw, X, H.
 % Outputs:
 %   sdot - Time derivative of the states at time t, size mx1.
 
@@ -20,9 +18,6 @@ theta = s(1);  % rotation angle of the wheel [rad]
 omega = s(2);  % angular rate of the wheel [rad/s]
 i = s(3);  % motor current [A]
 x = s(4);  % x distance traveled [m]
-
-% unpack the input
-V = r(1);  % voltage applied to motor [V]
 
 % unpack the constant parameters
 m = p.m;
@@ -37,18 +32,16 @@ bm = p.bm;
 Kt = p.Kt;
 L = p.L;
 Rw = p.Rw;
-X = p.X;
-H = p.H;
 
-% calculate the road angle at this x location on the sine curve road
-wr = 1/2/pi/X;
-slope = H*wr*cos(wr*x);
-alpha = atan(slope);
+% calculate the road angle using the provided input function
+r = w(t, s, p);
 
-% caculate some intermediate quantities for evaluating the ODEs
+% unpack the input vector
+V = r(1);
+alpha = r(2);
+
+% calculate some intermediate quantities for evaluating the ODEs
 v = omega*R;  % v-omega relationship from no-slip tires
-
-% forces acting on e-bicyclist
 Fd = 1/2*rho*Cd*A*v^2;  % drag force [N]
 Fr = Cr*m*g*cos(alpha);  % rolling resistant [N]
 Fg = m*g*sin(alpha);  % gravity force [N]
