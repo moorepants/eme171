@@ -12,107 +12,79 @@ after each lecture. **Check the schedule periodically for changes.**
 == ==========  ====================================  =========================  ===============
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============
-01 W-Sep-25    Introduction                          - Read 1.1-1.3
-                                                     - `Slides 01`_
-                                                     - `Notes 01`_
-02 F-Sep-27    Introduction                          - Read 1.4-1.6
-                                                     - `Script 02`_
-                                                     - `Notes 02`_
+01 T-Jan-07    Introduction                          - Read 1.1-1.6
+02 R-Jan-09    Introduction
 -- ----------  ------------------------------------  -------------------------  ---------------
-03 M-Sep-30    Multiport Systems                     - Read 2.1-2.2             HW #1: 1.6, 1.7, 1.8
-                                                     - `Notes 03`_
-04 W-Oct-02    Multiport Systems                     - Read 2.3-2.4
-                                                     - `Notes 04`_
-05 F-Oct-04    Multiport Systems                     - Read 3.1
-                                                     - `Notes 05`_
+NA M-Jan-13                                                                     HW #1: 1.6, 1.7, 1.8
+03 T-Jan-14    Multiport Systems                     - Read 2.1-2.4, 3.1
+04 R-Jan-16    Multiport Systems
 -- ----------  ------------------------------------  -------------------------  ---------------
-06 M-Oct-07    2-Ports                               - Read 3.2                 HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
-                                                     - `Notes 06`_
-07 W-Oct-09    Numerical Simulation                  - `Notes 07`_
-                                                     - `Script 07`_
-08 F-Oct-11    Causality of Basic Components         - Read 3.4                 Lab 1
-                                                     - `Notes 08`_
+NA M-Jan-20    Martin Luther King Jr. Holiday
+05 T-Jan-21    Numerical Simulation                                             HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
+06 R-Jan-23    - Causality of Basic Components       - Read 3.2-3.6
+               - System Models: Electrical
+NA F-Jan-24                                                                     Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
-09 M-Oct-14    System Models: Electrical             - Read 4.1                 HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
-                                                     - `Notes 09`_
-10 W-Oct-16    System Models: Electrical             - `Notes 10`_
-11 F-Oct-18    System Models: Electrical             - `Notes 11`_
+NA M-Jan-27                                                                     HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
+07 T-Jan-28    System Models: Electrical             - Read 4.1
+08 R-Jan-30    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
-12 M-Oct-21    System Models: Mechanical             - Read 4.2
-                                                     - `Notes 12`_
-13 W-Oct-23    System Models: Mechanical             - `Notes 13`_
-14 F-Oct-25    Midterm Review                        - `Notes 14`_              - Lab 2
-                                                                                - HW #4: 4.1, 4.2, 4.3, 4.4
+NA M-Feb-03                                                                     HW #4: 4.1, 4.2, 4.3, 4.4
+09 T-Feb-04    System Models: Mechanical             - Read 4.2
+10 R-Feb-06    System Models: Mechanical
+NA F-Feb-07                                                                     Lab 2
 -- ----------  ------------------------------------  -------------------------  ---------------
-15 M-Oct-28    Midterm Exam
-16 W-Oct-30    System Models: Mechanical             - Read 4.3
-                                                     - `Notes 16`_
-17 F-Nov-01    System Models: Mechanical             - `Notes 17`_
+NA M-Feb-10                                                                     HW #5: 4.5, 4.16
+11 T-Feb-11    Midterm
+12 R-Feb-13    System Models: Hydraulic              - Read 4.3-4.4
 -- ----------  ------------------------------------  -------------------------  ---------------
-18 M-Nov-04    System Models: Mechanical             - `Notes 18`_              HW #5: 4.5, 4.16
-19 W-Nov-06    System Models: Mechanical             - `Notes 19`_
-20 F-Nov-08    - System Models: Mechanical           - `Notes 20`_
-               - System Models: Hydraulic            - Read 4.4
+NA M-Feb-17    President's Day Holiday
+13 T-Feb-18    System Models: Hydraulic                                         HW #6: 4.22, 4.23, 4.24
+14 R-Feb-20    State Space Equations                 - Read 5.1-5.3
+NA F-Feb-21                                                                     Lab 3
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Nov-11    Veterans Day Holiday
-NA T-Nov-12                                                                     HW #6: 4.22, 4.23, 4.24
-21 W-Nov-13    System Models: Hydraulic              - `Notes 21`_              Lab 3
-22 F-Nov-15    System Models: Hydraulic              - `Notes 22`_
+NA M-Feb 24                                                                     HW #7: 4.8, 4.11, 4.21, 4.30
+15 T-Feb-25    State Space Equations                 - Read 5.4-5.6
+16 R-Feb-27    State Space Equation
 -- ----------  ------------------------------------  -------------------------  ---------------
-23 M-Nov-18    State Space Equations                 - Read 5.1-5.3             HW #7: 4.8, 4.11, 4.21, 4.30
-                                                     - `Notes 23`_
-24 W-Nov-20    State Space Equations                 - Read 5.4-5.5
-                                                     - `Notes 24`_
-25 F-Nov-22    State Space Equation                  - Read 5.6
-                                                     - `Notes 25`_
+NA M-Mar-02                                                                     HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
+17 T-Mar-03    - State Space Equations
+18 R-Mar-05    - Algebraic Loops
+               - Derivative causality
+NA F-Mar-06                                                                     Lab 4
 -- ----------  ------------------------------------  -------------------------  ---------------
-26 M-Nov-25    - Algebraic Loops                     - `Notes 26`_
-               - Linear Outputs
-27 W-Nov-27    Derivative causality                  - `Notes 27`_              HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
-NA F-Nov-29    Thanksgiving Holiday
+NA M-Mar-09
+19 T-Mar-10    - Linear Systems                      - Read 6.1-6.3
+20 R-Mar-12    - Linear Systems                      - Read 6.4-6.7
+               - Review
+NA F-Mar-13                                                                     HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
-28 M-Dec-02    Linear Systems                        - Read 6.1-6.3             Lab 4
-                                                     - `Notes 28`_
-29 W-Dec-04    Linear Systems                        - Read 6.4-6.7
-                                                     - `Notes 29`_
-30 F-Dec-06    Review                                - `Notes 30`_              HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
--- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Dec 09                                                                     Lab 5
-NA R-Dec-12    Final Exam: 3:30 PM
+NA M-Mar-16                                                                     Lab 5
+NA W-Mar-18    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
 
-.. _Slides 01: https://objects-us-east-1.dream.io/eme171/2019f/slides-l01.pdf
+.. _Slides 01: https://objects-us-east-1.dream.io/eme171/2020w/slides-l01.pdf
 
-.. _Notes 01: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l01.pdf
-.. _Notes 02: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l02.pdf
-.. _Notes 03: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l03.pdf
-.. _Notes 04: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l04.pdf
-.. _Notes 05: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l05.pdf
-.. _Notes 06: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l06.pdf
-.. _Notes 07: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l07.pdf
-.. _Notes 08: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l08.pdf
-.. _Notes 09: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l09.pdf
-.. _Notes 10: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l10.pdf
-.. _Notes 11: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l11.pdf
-.. _Notes 12: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l12.pdf
-.. _Notes 13: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l13.pdf
-.. _Notes 14: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l14.pdf
-.. _Notes 15: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l15.pdf
-.. _Notes 16: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l16.pdf
-.. _Notes 17: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l17.pdf
-.. _Notes 18: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l18.pdf
-.. _Notes 19: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l19.pdf
-.. _Notes 20: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l20.pdf
-.. _Notes 21: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l21.pdf
-.. _Notes 22: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l22.pdf
-.. _Notes 23: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l23.pdf
-.. _Notes 24: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l24.pdf
-.. _Notes 25: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l25.pdf
-.. _Notes 26: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l26.pdf
-.. _Notes 27: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l27.pdf
-.. _Notes 28: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l28.pdf
-.. _Notes 29: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l29.pdf
-.. _Notes 30: https://objects-us-east-1.dream.io/eme171/2019f/eme171-l30.pdf
+.. _Notes 01: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l01.pdf
+.. _Notes 02: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l02.pdf
+.. _Notes 03: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l03.pdf
+.. _Notes 04: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l04.pdf
+.. _Notes 05: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l05.pdf
+.. _Notes 06: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l06.pdf
+.. _Notes 07: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l07.pdf
+.. _Notes 08: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l08.pdf
+.. _Notes 09: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l09.pdf
+.. _Notes 10: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l10.pdf
+.. _Notes 11: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l11.pdf
+.. _Notes 12: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l12.pdf
+.. _Notes 13: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l13.pdf
+.. _Notes 14: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l14.pdf
+.. _Notes 15: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l15.pdf
+.. _Notes 16: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l16.pdf
+.. _Notes 17: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l17.pdf
+.. _Notes 18: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l18.pdf
+.. _Notes 19: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l19.pdf
+.. _Notes 20: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l20.pdf
 
 .. _Script 02: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
