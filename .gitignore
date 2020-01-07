@@ -1,3 +1,6 @@
+# non-tracked directories
+assets/
+misc/
 # config file for this repository
 local-config.yml
 # pelican output
