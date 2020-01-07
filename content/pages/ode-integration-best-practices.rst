@@ -108,8 +108,8 @@ print this documentation at the Octave/Matlab command prompt.
 .. |eval_rhs| replace:: ``eval_rhs.m``
 .. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
 
-.. topic:: A brief introduction to Matlab Structures
-   :class: alert alert-warning
+.. topic:: Matlab/Octave Structures
+   :class: alert alert-info
 
    Octave/Matlab have a data type called a "structure" (similar to a C
    structure). The simplest use of a structure is a key-value pair mapping. To
@@ -156,6 +156,9 @@ print this documentation at the Octave/Matlab command prompt.
       ans =  2
       >> p.a^2 + p.b^2 - p.c^2
       ans = -4.5729
+
+   A structure is a convenient way to store the constant parameters of your
+   system.
 
 Integrating the Equations
 -------------------------
@@ -310,7 +313,7 @@ function, the following code fails to compute:
       >> solution.stats.nfevals
       ans =  217
 
-   But notice that if the system is stiffened, significaanly increaasing
+   But notice that if the system is stiffened, significantly increaasing
    :math:`g` does this, it now takes almost twice the number of evaluations
    than the desired output times.
 
