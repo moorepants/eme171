@@ -3,8 +3,8 @@ import os
 import boto
 
 course = 'eme171'
-year = '2019'
-quarter = 'f'  # f: fall, w: winter, s: spring
+year = '2020'
+quarter = 'w'  # f: fall, w: winter, s: spring
 
 accepted_file_exts = ['.pdf', '.png', '.gif', '.mp4', '.jpg']
 
