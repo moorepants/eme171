@@ -9,12 +9,10 @@ theta0 = 5*pi/180;  % angle in rad
 omega0 = 0.0;  % angular rate in rad/s
 x0 = [theta0; omega0];  % 2x1 vector
 
-% create a vector to hold all the constants, be careful with units!
-% size 3x1 constant parameter vector.
-m = 1.00;  % mass in kg
-l = 1.00;  % length in m
-g = 9.81;  % acc due to gravity in m/s^2
-p = [m; l; g];  % 3x1 vector parameter
+% create a structure to hold all the constants, be careful with units!
+p.m = 1.00;  % mass in kg
+p.l = 1.00;  % length in m
+p.g = 9.81;  % acc due to gravity in m/s^2
 
 % create a vector to hold all of the inputs (constant torque in this case),
 % size 1x1

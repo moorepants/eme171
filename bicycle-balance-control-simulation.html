@@ -81,13 +81,13 @@ rate inputs are set to constants.</p>
 <span class="n">delta</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c">% steer angle</span>
 
 <span class="c">% unpack parameters</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">h</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">a</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-<span class="n">b</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="n">v</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">I</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
+<span class="n">h</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">h</span><span class="p">;</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+<span class="n">b</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
+<span class="n">v</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">v</span><span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">I</span><span class="p">;</span>
 
 <span class="c">% calculate the state derivatives</span>
 <span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">theta</span> <span class="o">-</span> <span class="n">m</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="nb">beta</span> <span class="o">+</span> <span class="n">v</span>^<span class="mi">2</span><span class="o">*</span><span class="n">delta</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">h</span>^<span class="mi">2</span><span class="p">);</span>
@@ -120,13 +120,13 @@ rate inputs are calculated by an input function.</p>
 <span class="n">delta</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c">% steer angle</span>
 
 <span class="c">% unpack parameters</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">h</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">a</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-<span class="n">b</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="n">v</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">I</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
+<span class="n">h</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">h</span><span class="p">;</span>
+<span class="n">a</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+<span class="n">b</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
+<span class="n">v</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">v</span><span class="p">;</span>
+<span class="n">I</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">I</span><span class="p">;</span>
 
 <span class="c">% calculate the state derivatives</span>
 <span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">theta</span> <span class="o">-</span> <span class="n">m</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="nb">beta</span> <span class="o">+</span> <span class="n">v</span>^<span class="mi">2</span><span class="o">*</span><span class="n">delta</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">h</span>^<span class="mi">2</span><span class="p">);</span>
@@ -150,8 +150,8 @@ the steer and steer rate inputs.</p>
 <span class="n">theta</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
 <span class="c">% unpack the control gains</span>
-<span class="n">kp</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
-<span class="n">kd</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">kp</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">kp</span><span class="p">;</span>
+<span class="n">kd</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">kd</span><span class="p">;</span>
 
 <span class="c">% calculate the inputs</span>
 <span class="nb">beta</span> <span class="p">=</span> <span class="n">kp</span><span class="o">*</span><span class="n">omega</span><span class="p">;</span>
@@ -171,7 +171,13 @@ inputs from the controller.</p>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>  <span class="c">% one initial condition for each state</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>  <span class="c">% time values</span>
 <span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">;</span> <span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">];</span>  <span class="c">% using constant values for the inputs</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">87</span><span class="p">;</span> <span class="mf">9.81</span><span class="p">;</span> <span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mf">1.0</span><span class="p">;</span> <span class="mf">5.0</span><span class="p">;</span> <span class="mf">3.28</span><span class="p">];</span>  <span class="c">% pick numbers for parameters</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">87</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">h</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">v</span> <span class="p">=</span> <span class="mf">5.0</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">I</span> <span class="p">=</span> <span class="mf">3.28</span><span class="p">;</span>
 <span class="n">eval_bicycle_rhs_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_bicycle_rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 <span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">eval_bicycle_rhs_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
 <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -182,8 +188,8 @@ inputs from the controller.</p>
 <span class="c">% this is a second simulation of the same model but it has an input function</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">;</span> <span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
 <span class="c">% add two more parameters for the control input (PD controller)</span>
-<span class="n">p</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="p">=</span> <span class="mf">2.5</span><span class="p">;</span> # <span class="n">proportional</span> <span class="n">gain</span>
-<span class="n">p</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  # <span class="n">derivative</span> <span class="n">gain</span>
+<span class="n">p</span><span class="p">.</span><span class="n">kp</span> <span class="p">=</span> <span class="mf">2.5</span><span class="p">;</span> <span class="c">% proportional gain</span>
+<span class="n">p</span><span class="p">.</span><span class="n">kd</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% derivative gain</span>
 <span class="n">eval_bicycle_rhs_anon2</span> <span class="p">=</span> <span class="c">...</span>
     <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_bicycle_rhs2</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_steer_control_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 <span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">eval_bicycle_rhs_anon2</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>

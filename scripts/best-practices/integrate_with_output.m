@@ -1,7 +1,9 @@
 % same integration code as above
 x0 = [5*pi/180; 0];
 ts = linspace(0, 10, 500);
-p = [1; 1; 9.81];
+p.m = 1;
+p.l = 1;
+p.g = 9.81;
 f_anon = @(t, x) eval_rhs_with_input(t, x, @eval_input, p);
 [ts, xs] = ode45(f_anon, ts, x0);
 

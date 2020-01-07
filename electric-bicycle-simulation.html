@@ -97,20 +97,20 @@ system.</p>
 <span class="n">V</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% voltage applied to motor [V]</span>
 
 <span class="c">% unpack the constant parameters</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">R</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">Cr</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">Cd</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-<span class="n">rho</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
-<span class="n">J</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
-<span class="n">bm</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
-<span class="n">Kt</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="n">L</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
-<span class="n">Rw</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
-<span class="n">X</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
-<span class="n">H</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+<span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+<span class="n">R</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<span class="n">Cr</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Cr</span><span class="p">;</span>
+<span class="n">Cd</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Cd</span><span class="p">;</span>
+<span class="n">rho</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">rho</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">A</span><span class="p">;</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
+<span class="n">J</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">J</span><span class="p">;</span>
+<span class="n">bm</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">bm</span><span class="p">;</span>
+<span class="n">Kt</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Kt</span><span class="p">;</span>
+<span class="n">L</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">;</span>
+<span class="n">Rw</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Rw</span><span class="p">;</span>
+<span class="n">X</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">X</span><span class="p">;</span>
+<span class="n">H</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">H</span><span class="p">;</span>
 
 <span class="c">% calculate the road angle at this x location on the sine curve road</span>
 <span class="n">wr</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="nb">pi</span><span class="o">/</span><span class="n">X</span><span class="p">;</span>
@@ -149,23 +149,20 @@ system.</p>
 <span class="c">% time the wheel speed.</span>
 
 <span class="c">% define numerical constants</span>
-<span class="n">m</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>  <span class="c">% mass of bike and rider [kg]</span>
-<span class="n">R</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>  <span class="c">% wheel radius [m]</span>
-<span class="n">Cr</span> <span class="p">=</span> <span class="mf">0.005</span><span class="p">;</span>  <span class="c">% coefficient of rolling resistance [unitless]</span>
-<span class="n">Cd</span> <span class="p">=</span> <span class="mf">1.1</span><span class="p">;</span>  <span class="c">% coefficient of drag [unitless]</span>
-<span class="n">rho</span> <span class="p">=</span> <span class="mf">1.2</span><span class="p">;</span>  <span class="c">% density of air [kg/m^3]</span>
-<span class="n">A</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% frontal area [m^2]</span>
-<span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acceleration due to gravity [m/s^2]</span>
-<span class="n">J</span> <span class="p">=</span> <span class="mf">0.24</span><span class="p">;</span>  <span class="c">% wheel moment of inertia [kg m^2]</span>
-<span class="n">bm</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>  <span class="c">% hub friction coefficient [N*m*s]</span>
-<span class="n">Kt</span> <span class="p">=</span> <span class="mf">1.5</span><span class="p">;</span>  <span class="c">% motor torque constant [N*m/A]</span>
-<span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% motor inductance [H]</span>
-<span class="n">Rw</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% motor winding resistance [Ohm]</span>
-<span class="n">X</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c">% x distance for one period of sine curve road [m]</span>
-<span class="n">H</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c">% amplitude of sine curve road [m]</span>
-
-<span class="c">% pack constant parameters into a 1d vector</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="n">m</span><span class="p">;</span> <span class="n">R</span><span class="p">;</span> <span class="n">Cr</span><span class="p">;</span> <span class="n">Cd</span><span class="p">;</span> <span class="n">rho</span><span class="p">;</span> <span class="n">A</span><span class="p">;</span> <span class="n">g</span><span class="p">;</span> <span class="n">J</span><span class="p">;</span> <span class="n">bm</span><span class="p">;</span> <span class="n">Kt</span><span class="p">;</span> <span class="n">L</span><span class="p">;</span> <span class="n">Rw</span><span class="p">;</span> <span class="n">X</span><span class="p">;</span> <span class="n">H</span><span class="p">];</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>  <span class="c">% mass of bike and rider [kg]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">R</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>  <span class="c">% wheel radius [m]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">Cr</span> <span class="p">=</span> <span class="mf">0.005</span><span class="p">;</span>  <span class="c">% coefficient of rolling resistance [unitless]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">Cd</span> <span class="p">=</span> <span class="mf">1.1</span><span class="p">;</span>  <span class="c">% coefficient of drag [unitless]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">rho</span> <span class="p">=</span> <span class="mf">1.2</span><span class="p">;</span>  <span class="c">% density of air [kg/m^3]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">A</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% frontal area [m^2]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acceleration due to gravity [m/s^2]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">J</span> <span class="p">=</span> <span class="mf">0.24</span><span class="p">;</span>  <span class="c">% wheel moment of inertia [kg m^2]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">bm</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>  <span class="c">% hub friction coefficient [N*m*s]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">Kt</span> <span class="p">=</span> <span class="mf">1.5</span><span class="p">;</span>  <span class="c">% motor torque constant [N*m/A]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% motor inductance [H]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">Rw</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% motor winding resistance [Ohm]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">X</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c">% x distance for one period of sine curve road [m]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">H</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c">% amplitude of sine curve road [m]</span>
 
 <span class="c">% apply a constant voltage (throttle applies 50 volts)</span>
 <span class="n">V</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span>  <span class="c">% voltage [V]</span>

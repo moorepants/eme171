@@ -278,7 +278,9 @@ fixed-width font and (ideally) has syntax highlighting.</p>
 <div class="highlight"><pre><span></span><span class="c">% integrate the ODEs as defined above</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mf">9.81</span><span class="p">];</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">l</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>
 <span class="n">f_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 <span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
 
@@ -304,8 +306,8 @@ fixed-width font and (ideally) has syntax highlighting.</p>
     <span class="c">%   t - Scalar value of time, size 1x1.</span>
     <span class="c">%   x - State vector at time t, size mx1 where m is the number of</span>
     <span class="c">%       states.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   r - Input vector at time t, size ox1 where o is the number of</span>
     <span class="c">%       inputs.</span>
@@ -340,8 +342,8 @@ fixed-width font and (ideally) has syntax highlighting.</p>
      <span class="c">%       states.</span>
      <span class="c">%   w - Anonymous function, w(t, x, p), that returns the input vector</span>
      <span class="c">%       at time t, size ox1 were o is the number of inputs.</span>
-     <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-     <span class="c">%       parameters.</span>
+     <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+     <span class="c">%       of parameters.</span>
      <span class="c">% Outputs:</span>
      <span class="c">%   xdot - Time derivative of the states at time t, size mx1.</span>
 
@@ -357,9 +359,9 @@ fixed-width font and (ideally) has syntax highlighting.</p>
      <span class="c">% if more than one input, then tau = r(1);, ...</span>
 
      <span class="c">% unpack the parameters into useful variable names</span>
-     <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-     <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+     <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+     <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
      <span class="c">% calculate the state derivatives</span>
      <span class="n">thetadot</span> <span class="p">=</span> <span class="n">omega</span><span class="p">;</span>
@@ -384,8 +386,8 @@ fixed-width font and (ideally) has syntax highlighting.</p>
     <span class="c">%       states.</span>
     <span class="c">%   r - Input vector at time t, size ox1 where o is the number of</span>
     <span class="c">%       inputs.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   y - Output vector at time t, size qx1 where q is the number of</span>
     <span class="c">%       outputs.</span>
@@ -395,9 +397,9 @@ fixed-width font and (ideally) has syntax highlighting.</p>
     <span class="n">omega</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
     <span class="c">% unpack the parameters</span>
-    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
     <span class="c">% calculate the Cartesian position of the pendulum bob</span>
     <span class="n">x_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
@@ -428,8 +430,8 @@ fixed-width font and (ideally) has syntax highlighting.</p>
     <span class="c">%   x - State vector at time t, size mx1 where m is the number of</span>
     <span class="c">%       states.</span>
     <span class="c">%   r - Input vector at time t, size ox1 were o is the number of inputs.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   z - Output vector at time t, size qx1.</span>
 
@@ -440,9 +442,9 @@ fixed-width font and (ideally) has syntax highlighting.</p>
     <span class="n">theta</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">omega</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
-    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
     <span class="c">% calculate the radial and tangential accelerations</span>
     <span class="n">radial_acc</span> <span class="p">=</span> <span class="n">omega</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">l</span><span class="p">;</span>

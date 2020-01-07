@@ -81,7 +81,7 @@ equations are the ordinary differential equations, the &quot;ODEs&quot;. These e
 always have to be considered; other equations described below are optional.
 Your primary goal is to solve the ODEs and discover the time dependent behavior
 of the system's states. You should already have the equations in explicit first
-order form before moving forward here.  &quot;Explicit&quot; refers to the fact that
+order form before moving forward here. &quot;Explicit&quot; refers to the fact that
 there are no time derivatives on the right hand side of the equations and
 &quot;first order&quot; refers to their being <span class="math">\(m\)</span> equations, one for each of the
 <span class="math">\(m\)</span> state variables. The general form for these equations is:</p>
@@ -170,8 +170,8 @@ print this documentation at the Octave/Matlab command prompt.</p>
      <span class="c">%       states.</span>
      <span class="c">%   r - Input vector at time t, size ox1 were o is the number of</span>
      <span class="c">%       inputs.</span>
-     <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-     <span class="c">%       parameters.</span>
+     <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+     <span class="c">%       of parameters.</span>
      <span class="c">% Outputs:</span>
      <span class="c">%   xdot - Time derivative of the states at time t, size mx1.</span>
 
@@ -183,9 +183,9 @@ print this documentation at the Octave/Matlab command prompt.</p>
      <span class="n">tau</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
      <span class="c">% unpack the parameters into useful variable names</span>
-     <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-     <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+     <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+     <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
      <span class="c">% calculate the state derivatives</span>
      <span class="n">thetadot</span> <span class="p">=</span> <span class="n">omega</span><span class="p">;</span>
@@ -196,6 +196,44 @@ print this documentation at the Octave/Matlab command prompt.</p>
 
 <span class="n">end</span>
 </pre></div>
+<div class="alert alert-warning topic">
+<p class="topic-title first">A brief introduction to Matlab Structures</p>
+<p>Octave/Matlab have a data type called a &quot;structure&quot; (similar to a C
+structure). The simplest use of a structure is a key-value pair mapping. To
+create a structure with a single key value pair assign a value to the
+desired name of the structure followed by a <tt class="docutils literal">.</tt> and the key variable name.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="mi">2</span>
+<span class="go">p =</span>
+
+<span class="go">  scalar structure containing the fields:</span>
+
+<span class="go">    a =  2</span>
+</pre></div>
+<p>More key value pairs can be added to the same structure by repeating what
+the same thing with different keys and values.</p>
+<div class="highlight"><pre><span></span>  scalar structure containing the fields:
+
+    a =  2
+    b =  3
+
+&gt;&gt; p.c = 4.192
+p =
+
+  scalar structure containing the fields:
+
+    a =  2
+    b =  3
+    c =  4.1920
+</pre></div>
+<p>Now you can access these values of the structure <tt class="docutils literal">p</tt> by appending <tt class="docutils literal">.</tt>
+and the key's variable name. The values in the structure can be used in
+computations just like other variables.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">a</span>
+<span class="go">ans =  2</span>
+<span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">a</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="p">.</span><span class="n">b</span>^<span class="mi">2</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">c</span>^<span class="mi">2</span>
+<span class="go">ans = -4.5729</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="integrating-the-equations">
 <h3>Integrating the Equations</h3>
@@ -212,12 +250,10 @@ one of the available Octave/Matlab integrators or one of your own design:</p>
 <span class="n">omega0</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>  <span class="c">% angular rate in rad/s</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="n">theta0</span><span class="p">;</span> <span class="n">omega0</span><span class="p">];</span>  <span class="c">% 2x1 vector</span>
 
-<span class="c">% create a vector to hold all the constants, be careful with units!</span>
-<span class="c">% size 3x1 constant parameter vector.</span>
-<span class="n">m</span> <span class="p">=</span> <span class="mf">1.00</span><span class="p">;</span>  <span class="c">% mass in kg</span>
-<span class="n">l</span> <span class="p">=</span> <span class="mf">1.00</span><span class="p">;</span>  <span class="c">% length in m</span>
-<span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acc due to gravity in m/s^2</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="n">m</span><span class="p">;</span> <span class="n">l</span><span class="p">;</span> <span class="n">g</span><span class="p">];</span>  <span class="c">% 3x1 vector parameter</span>
+<span class="c">% create a structure to hold all the constants, be careful with units!</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mf">1.00</span><span class="p">;</span>  <span class="c">% mass in kg</span>
+<span class="n">p</span><span class="p">.</span><span class="n">l</span> <span class="p">=</span> <span class="mf">1.00</span><span class="p">;</span>  <span class="c">% length in m</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acc due to gravity in m/s^2</span>
 
 <span class="c">% create a vector to hold all of the inputs (constant torque in this case),</span>
 <span class="c">% size 1x1</span>
@@ -421,7 +457,7 @@ state, and constant parameter values. Save this as <a class="reference external"
     <span class="c">% Inputs:</span>
     <span class="c">%   t - A scalar value of time, size 1x1.</span>
     <span class="c">%   x - State vector at time t, size mx1 were m is the number of states.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 where p is the number of</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number of</span>
     <span class="c">%       parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   r - Input vector at time t, size ox1 where o is the number of</span>
@@ -429,10 +465,10 @@ state, and constant parameter values. Save this as <a class="reference external"
 
     <span class="c">% NOTE : x is not needed in this case</span>
 
-    <span class="c">% unpack the 3x1 parameter vector</span>
-    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="c">% unpack the structure</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
     <span class="c">% define a sinusoidal time varying input</span>
     <span class="n">tau</span> <span class="p">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">l</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="nb">pi</span><span class="o">/</span><span class="mi">20</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
@@ -458,8 +494,8 @@ Save this as <a class="reference external" href="https://moorepants.github.io/em
      <span class="c">%       states.</span>
      <span class="c">%   w - Anonymous function, w(t, x, p), that returns the input vector</span>
      <span class="c">%       at time t, size ox1 were o is the number of inputs.</span>
-     <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-     <span class="c">%       parameters.</span>
+     <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+     <span class="c">%       of parameters.</span>
      <span class="c">% Outputs:</span>
      <span class="c">%   xdot - Time derivative of the states at time t, size mx1.</span>
 
@@ -475,9 +511,9 @@ Save this as <a class="reference external" href="https://moorepants.github.io/em
      <span class="c">% if more than one input, then tau = r(1);, ...</span>
 
      <span class="c">% unpack the parameters into useful variable names</span>
-     <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-     <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+     <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+     <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+     <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
      <span class="c">% calculate the state derivatives</span>
      <span class="n">thetadot</span> <span class="p">=</span> <span class="n">omega</span><span class="p">;</span>
@@ -496,9 +532,9 @@ fashion as shown earlier for <tt class="docutils literal">eval_rhs()</tt>. Save 
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>  <span class="c">% [rad]</span>
       <span class="mi">0</span><span class="p">];</span>        <span class="c">% [rad/s]</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>  <span class="c">% [s]</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span>  <span class="c">% kg</span>
-     <span class="mi">1</span><span class="p">;</span>  <span class="c">% m</span>
-     <span class="mf">9.81</span><span class="p">];</span>  <span class="c">% m/s^2</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% kg</span>
+<span class="n">p</span><span class="p">.</span><span class="n">l</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% m</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% m/s^2</span>
 
 <span class="c">% check if the input function works for the initial condition</span>
 <span class="n">display</span><span class="p">(</span><span class="s">&#39;Checking if eval_input returns an expected result:&#39;</span><span class="p">)</span>
@@ -527,8 +563,8 @@ function, <a class="reference external" href="https://moorepants.github.io/eme17
     <span class="c">%   t - Scalar value of time, size 1x1.</span>
     <span class="c">%   x - State vector at time t, size mx1 where m is the number of</span>
     <span class="c">%       states.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   r - Input vector at time t, size ox1 where o is the number of</span>
     <span class="c">%       inputs.</span>
@@ -554,9 +590,9 @@ anonymous function in the main script, named here as
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>  <span class="c">% [rad]</span>
       <span class="mi">0</span><span class="p">];</span>        <span class="c">% [rad/s]</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>  <span class="c">% [s]</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span>  <span class="c">% kg</span>
-     <span class="mi">1</span><span class="p">;</span>  <span class="c">% m</span>
-     <span class="mf">9.81</span><span class="p">];</span>  <span class="c">% m/s^2</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% kg</span>
+<span class="n">p</span><span class="p">.</span><span class="n">l</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% m</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% m/s^2</span>
 
 <span class="c">% check if the input function works for the initial condition</span>
 <span class="n">display</span><span class="p">(</span><span class="s">&#39;Checking step input function:&#39;</span><span class="p">);</span>
@@ -610,8 +646,8 @@ operations.</p>
     <span class="c">%       states.</span>
     <span class="c">%   r - Input vector at time t, size ox1 where o is the number of</span>
     <span class="c">%       inputs.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   y - Output vector at time t, size qx1 where q is the number of</span>
     <span class="c">%       outputs.</span>
@@ -621,9 +657,9 @@ operations.</p>
     <span class="n">omega</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
     <span class="c">% unpack the parameters</span>
-    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
     <span class="c">% calculate the Cartesian position of the pendulum bob</span>
     <span class="n">x_pos</span> <span class="p">=</span> <span class="n">l</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
@@ -643,7 +679,9 @@ outputs. The following file, <a class="reference external" href="https://moorepa
 <div class="highlight"><pre><span></span><span class="c">% same integration code as above</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mf">9.81</span><span class="p">];</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">l</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>
 <span class="n">f_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 <span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
 
@@ -671,8 +709,8 @@ function will allow batch calculations of the outputs, as shown below in
     <span class="c">%        states or mx1 if n=1.</span>
     <span class="c">%   rs - Input vector at each time, size nxo where o is the number of</span>
     <span class="c">%        inputs or ox1 if n=1.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 where p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   ys - Output vector at each time, size nxq where q is the number of</span>
     <span class="c">%        outputs or qx1 if n=1.</span>
@@ -688,9 +726,9 @@ function will allow batch calculations of the outputs, as shown below in
     <span class="n">omega</span> <span class="p">=</span> <span class="n">xs</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">);</span>  <span class="c">% size n</span>
 
     <span class="c">% unpack the parameters</span>
-    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
     <span class="c">% NOTE : rs is not used in this case</span>
 
@@ -745,8 +783,8 @@ tangential acceleration depends on <span class="math">\(\dot{omega}\)</span>.</p
     <span class="c">%   x - State vector at time t, size mx1 where m is the number of</span>
     <span class="c">%       states.</span>
     <span class="c">%   r - Input vector at time t, size ox1 were o is the number of inputs.</span>
-    <span class="c">%   p - Constant parameter vector, size px1 were p is the number of</span>
-    <span class="c">%       parameters.</span>
+    <span class="c">%   p - Constant parameter structure with p items where p is the number</span>
+    <span class="c">%       of parameters.</span>
     <span class="c">% Outputs:</span>
     <span class="c">%   z - Output vector at time t, size qx1.</span>
 
@@ -757,9 +795,9 @@ tangential acceleration depends on <span class="math">\(\dot{omega}\)</span>.</p
     <span class="n">theta</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">omega</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
-    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">l</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+    <span class="n">g</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="p">;</span>
 
     <span class="c">% calculate the radial and tangential accelerations</span>
     <span class="n">radial_acc</span> <span class="p">=</span> <span class="n">omega</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">l</span><span class="p">;</span>
@@ -776,7 +814,9 @@ for use in you primary script, e.g. as in <a class="reference external" href="ht
 <div class="highlight"><pre><span></span><span class="c">% integrate the ODEs as defined above</span>
 <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
 <span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mf">9.81</span><span class="p">];</span>
+<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">l</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>
 <span class="n">f_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
 <span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
 

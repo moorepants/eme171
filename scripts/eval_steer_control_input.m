@@ -5,8 +5,8 @@ omega = x(1);
 theta = x(2);
 
 % unpack the control gains
-kp = p(8);
-kd = p(9);
+kp = p.kp;
+kd = p.kd;
 
 % calculate the inputs
 beta = kp*omega;
