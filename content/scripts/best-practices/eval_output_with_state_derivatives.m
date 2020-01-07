@@ -11,8 +11,8 @@ function z = eval_output_with_state_derivatives(t, xdot, x, r, p)
     %   x - State vector at time t, size mx1 where m is the number of
     %       states.
     %   r - Input vector at time t, size ox1 were o is the number of inputs.
-    %   p - Constant parameter vector, size px1 were p is the number of
-    %       parameters.
+    %   p - Constant parameter structure with p items where p is the number
+    %       of parameters.
     % Outputs:
     %   z - Output vector at time t, size qx1.
 
@@ -23,9 +23,9 @@ function z = eval_output_with_state_derivatives(t, xdot, x, r, p)
     theta = x(1);
     omega = x(2);
 
-    m = p(1);
-    l = p(2);
-    g = p(3);
+    m = p.m;
+    l = p.l;
+    g = p.g;
 
     % calculate the radial and tangential accelerations
     radial_acc = omega^2 * l;

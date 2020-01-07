@@ -2,9 +2,9 @@
 x0 = [5*pi/180;  % [rad]
       0];        % [rad/s]
 ts = linspace(0, 10, 500);  % [s]
-p = [1;  % kg
-     1;  % m
-     9.81];  % m/s^2
+p.m = 1;  % kg
+p.l = 1;  % m
+p.g = 9.81;  % m/s^2
 
 % check if the input function works for the initial condition
 display('Checking step input function:');

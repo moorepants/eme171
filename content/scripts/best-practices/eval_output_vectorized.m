@@ -9,8 +9,8 @@ function ys = eval_output_vectorized(ts, xs, rs, p)
     %        states or mx1 if n=1.
     %   rs - Input vector at each time, size nxo where o is the number of
     %        inputs or ox1 if n=1.
-    %   p - Constant parameter vector, size px1 where p is the number of
-    %       parameters.
+    %   p - Constant parameter structure with p items where p is the number
+    %       of parameters.
     % Outputs:
     %   ys - Output vector at each time, size nxq where q is the number of
     %        outputs or qx1 if n=1.
@@ -26,9 +26,9 @@ function ys = eval_output_vectorized(ts, xs, rs, p)
     omega = xs(:, 2);  % size n
 
     % unpack the parameters
-    m = p(1);
-    l = p(2);
-    g = p(3);
+    m = p.m;
+    l = p.l;
+    g = p.g;
 
     % NOTE : rs is not used in this case
 

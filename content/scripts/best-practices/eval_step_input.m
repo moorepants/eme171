@@ -7,8 +7,8 @@ function r = eval_step_input(t, x, p)
     %   t - Scalar value of time, size 1x1.
     %   x - State vector at time t, size mx1 where m is the number of
     %       states.
-    %   p - Constant parameter vector, size px1 were p is the number of
-    %       parameters.
+    %   p - Constant parameter structure with p items where p is the number
+    %       of parameters.
     % Outputs:
     %   r - Input vector at time t, size ox1 where o is the number of
     %       inputs.
