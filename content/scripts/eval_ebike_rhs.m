@@ -25,20 +25,20 @@ x = s(4);  % x distance traveled [m]
 V = r(1);  % voltage applied to motor [V]
 
 % unpack the constant parameters
-m = p(1);
-R = p(2);
-Cr = p(3);
-Cd = p(4);
-rho = p(5);
-A = p(6);
-g = p(7);
-J = p(8);
-bm = p(9);
-Kt = p(10);
-L = p(11);
-Rw = p(12);
-X = p(13);
-H = p(14);
+m = p.m;
+R = p.R;
+Cr = p.Cr;
+Cd = p.Cd;
+rho = p.rho;
+A = p.A;
+g = p.g;
+J = p.J;
+bm = p.bm;
+Kt = p.Kt;
+L = p.L;
+Rw = p.Rw;
+X = p.X;
+H = p.H;
 
 % calculate the road angle at this x location on the sine curve road
 wr = 1/2/pi/X;
