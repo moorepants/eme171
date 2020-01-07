@@ -1,7 +1,7 @@
 :title: Electric Bicycle Simulation
 :status: hidden
 
-These two Octave/Matlab files demonstrate the simulation of a model of an
+These three Octave/Matlab files demonstrate the simulation of a model of an
 electric bicycle traveling over a sinusoidal road. The format of the files
 follows the `ODE integration best practices
 <{filename}/pages/ode-integration-best-practices.rst>`_
@@ -18,6 +18,18 @@ system.
 
 .. |eval_ebike_rhs| replace:: ``eval_ebike_rhs.m``
 .. _eval_ebike_rhs: {filename}/scripts/eval_ebike_rhs.m
+
+eval_ebike_input
+================
+
+The file |eval_ebike_input|_ encodes the constant throttle voltage input and
+the state dependent road angle input.
+
+.. code-include:: ../scripts/eval_ebike_input.m
+   :lexer: matlab
+
+.. |eval_ebike_input| replace:: ``eval_ebike_input.m``
+.. _eval_ebike_input: {filename}/scripts/eval_ebike_input.m
 
 simulate_ebike.m
 ================
