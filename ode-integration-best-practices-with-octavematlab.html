@@ -196,8 +196,8 @@ print this documentation at the Octave/Matlab command prompt.</p>
 
 <span class="n">end</span>
 </pre></div>
-<div class="alert alert-warning topic">
-<p class="topic-title first">A brief introduction to Matlab Structures</p>
+<div class="alert alert-info topic">
+<p class="topic-title first">Matlab/Octave Structures</p>
 <p>Octave/Matlab have a data type called a &quot;structure&quot; (similar to a C
 structure). The simplest use of a structure is a key-value pair mapping. To
 create a structure with a single key value pair assign a value to the
@@ -233,6 +233,8 @@ computations just like other variables.</p>
 <span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">a</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="p">.</span><span class="n">b</span>^<span class="mi">2</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">c</span>^<span class="mi">2</span>
 <span class="go">ans = -4.5729</span>
 </pre></div>
+<p>A structure is a convenient way to store the constant parameters of your
+system.</p>
 </div>
 </div>
 <div class="section" id="integrating-the-equations">
@@ -417,7 +419,7 @@ the number of desired output times.</p>
 <span class="gp">&gt;&gt; </span><span class="n">solution</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">nfevals</span>
 <span class="go">ans =  217</span>
 </pre></div>
-<p>But notice that if the system is stiffened, significaanly increaasing
+<p>But notice that if the system is stiffened, significantly increaasing
 <span class="math">\(g\)</span> does this, it now takes almost twice the number of evaluations
 than the desired output times.</p>
 <div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1000</span><span class="p">];</span>
