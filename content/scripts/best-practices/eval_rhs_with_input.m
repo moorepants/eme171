@@ -11,8 +11,8 @@ function xdot = eval_rhs_with_input(t, x, w, p)
      %       states.
      %   w - Anonymous function, w(t, x, p), that returns the input vector
      %       at time t, size ox1 were o is the number of inputs.
-     %   p - Constant parameter vector, size px1 were p is the number of
-     %       parameters.
+     %   p - Constant parameter structure with p items where p is the number
+     %       of parameters.
      % Outputs:
      %   xdot - Time derivative of the states at time t, size mx1.
 
@@ -28,9 +28,9 @@ function xdot = eval_rhs_with_input(t, x, w, p)
      % if more than one input, then tau = r(1);, ...
 
      % unpack the parameters into useful variable names
-     m = p(1);
-     l = p(2);
-     g = p(3);
+     m = p.m;
+     l = p.l;
+     g = p.g;
 
      % calculate the state derivatives
      thetadot = omega;

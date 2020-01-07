@@ -7,23 +7,20 @@
 % time the wheel speed.
 
 % define numerical constants
-m = 100;  % mass of bike and rider [kg]
-R = 0.3;  % wheel radius [m]
-Cr = 0.005;  % coefficient of rolling resistance [unitless]
-Cd = 1.1;  % coefficient of drag [unitless]
-rho = 1.2;  % density of air [kg/m^3]
-A = 0.5;  % frontal area [m^2]
-g = 9.81;  % acceleration due to gravity [m/s^2]
-J = 0.24;  % wheel moment of inertia [kg m^2]
-bm = 0.2;  % hub friction coefficient [N*m*s]
-Kt = 1.5;  % motor torque constant [N*m/A]
-L = 0.5;  % motor inductance [H]
-Rw = 1;  % motor winding resistance [Ohm]
-X = 5;  % x distance for one period of sine curve road [m]
-H = 3;  % amplitude of sine curve road [m]
-
-% pack constant parameters into a 1d vector
-p = [m; R; Cr; Cd; rho; A; g; J; bm; Kt; L; Rw; X; H];
+p.m = 100;  % mass of bike and rider [kg]
+p.R = 0.3;  % wheel radius [m]
+p.Cr = 0.005;  % coefficient of rolling resistance [unitless]
+p.Cd = 1.1;  % coefficient of drag [unitless]
+p.rho = 1.2;  % density of air [kg/m^3]
+p.A = 0.5;  % frontal area [m^2]
+p.g = 9.81;  % acceleration due to gravity [m/s^2]
+p.J = 0.24;  % wheel moment of inertia [kg m^2]
+p.bm = 0.2;  % hub friction coefficient [N*m*s]
+p.Kt = 1.5;  % motor torque constant [N*m/A]
+p.L = 0.5;  % motor inductance [H]
+p.Rw = 1;  % motor winding resistance [Ohm]
+p.X = 5;  % x distance for one period of sine curve road [m]
+p.H = 3;  % amplitude of sine curve road [m]
 
 % apply a constant voltage (throttle applies 50 volts)
 V = 50;  % voltage [V]

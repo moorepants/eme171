@@ -9,8 +9,8 @@ function y = eval_output(t, x, r, p)
     %       states.
     %   r - Input vector at time t, size ox1 where o is the number of
     %       inputs.
-    %   p - Constant parameter vector, size px1 were p is the number of
-    %       parameters.
+    %   p - Constant parameter structure with p items where p is the number
+    %       of parameters.
     % Outputs:
     %   y - Output vector at time t, size qx1 where q is the number of
     %       outputs.
@@ -20,9 +20,9 @@ function y = eval_output(t, x, r, p)
     omega = x(2);
 
     % unpack the parameters
-    m = p(1);
-    l = p(2);
-    g = p(3);
+    m = p.m;
+    l = p.l;
+    g = p.g;
 
     % calculate the Cartesian position of the pendulum bob
     x_pos = l*sin(theta);
