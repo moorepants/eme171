@@ -6,7 +6,7 @@ function r = eval_ebike_input(t, s, p)
 %
 % Inputs:
 %   t - Scalar value of time, size 1x1.
-%   s - State vector at time t, size 4x1.
+%   s - State vector at time t, size 5x1: [theta, omega, i, x, e]'.
 %   p - Constant parameter structure with 14 constants: m, R, Cr, Cd, rho,
 %       A, g, J, bm, Kt, L, Rw, X, H.
 % Outputs:
