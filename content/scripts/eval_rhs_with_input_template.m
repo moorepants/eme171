@@ -1,4 +1,4 @@
-function xdot = eval_rhs_with_input(t, x, w, p)
+function xdot = eval_rhs_with_input_template(t, x, w, p)
        % EVAL_RHS_WITH_INPUT - Returns the time derivative of the states, i.e.
        % evaluates the right hand side of the explicit ordinary differential
        % equations.
