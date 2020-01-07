@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  Lab 5: The Drowning of Sacramento | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/2019f/lab-5-the-drowning-of-sacramento.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/2019f/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/2019f/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/2019f/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/2019f/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/2019f/feeds/all.atom.xml">
+  
+  <meta name="description" content="Contents Learning Objectives Introduction Model Description Constant parameters Initial Conditions Inputs Outputs Simulation Deliverables Assessment Rubric Learning Objectives After completing this lab you will be able to: translate ordinary differential equations into a computer function that evaluates the equations at any given point in time numerically integrate ordinary differential equations …">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      a.async = 1;
+      a.src = g;
+      m = s.getElementsByTagName(o)[0];
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-15966419-8', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/2019f/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/2019f/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/2019f/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/2019f/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  Lab 5: The Drowning of Sacramento
+</h1>
+      <hr>
+
+<article class="article">
+  <div class="content">
+    <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#learning-objectives" id="id1">Learning Objectives</a></li>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#model-description" id="id3">Model Description</a><ul>
+<li><a class="reference internal" href="#constant-parameters" id="id4">Constant parameters</a></li>
+<li><a class="reference internal" href="#initial-conditions" id="id5">Initial Conditions</a></li>
+<li><a class="reference internal" href="#inputs" id="id6">Inputs</a></li>
+<li><a class="reference internal" href="#outputs" id="id7">Outputs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simulation" id="id8">Simulation</a></li>
+<li><a class="reference internal" href="#deliverables" id="id9">Deliverables</a></li>
+<li><a class="reference internal" href="#assessment-rubric" id="id10">Assessment Rubric</a></li>
+</ul>
+</div>
+<div class="section" id="learning-objectives">
+<h2><a class="toc-backref" href="#id1">Learning Objectives</a></h2>
+<p>After completing this lab you will be able to:</p>
+<ul class="simple">
+<li>translate ordinary differential equations into a computer function that
+evaluates the equations at any given point in time</li>
+<li>numerically integrate ordinary differential equations with Octave/Matlab's
+<a class="reference external" href="https://www.mathworks.com/help/matlab/ref/ode45.html">ode45</a></li>
+<li>create complete and legible plots of the resulting input, state, and output
+trajectories</li>
+<li>create a report with textual explanations and plots of the simulation</li>
+<li>use a simulation to design surge tanks for a hydraulic system</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a></h2>
+<p>Sacramento has built a new hydroelectric power plant. A previous company
+designed the plant without performing a simulation before the construction.
+After the plant was completed, and the California monsoonal rains came, the
+surge tanks could not withstand the dynamics of the flow and the city flooded.
+Fortunately, the people of Sacramento are great swimmers. Later it was found
+that the company was staffed with graduates from some junior university from
+the bay area. The reputation of your fine UC Davis education has gained the
+confidence of Sacramento's city council, which has refused to pay the bad
+company, and has hired you to redesign the surge tanks so the town won't have
+to hire as many lifeguards this spring.</p>
+<p>Surge tanks act as hydraulic &quot;springs&quot;, absorbing the pressure increase
+associated with stopping the momentum of the fluid in the pipe. However,
+because of the reconstruction, our surge tanks must be drilled in stone and
+this is very expensive for large diameter holes.</p>
+</div>
+<div class="section" id="model-description">
+<h2><a class="toc-backref" href="#id3">Model Description</a></h2>
+<p>Figure 1 provides a hydraulic schematic of a reservoir that feeds a
+hydroelectric turbine. There are two surge tanks that store and release
+hydraulic energy to help provide a steady flow through the turbine.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-05-fig-01.png" style="width: 800px;" />
+<p class="caption"><strong>Figure 1</strong> Schematic of the hydroelectric dam with reservoir and surge
+tanks.</p>
+</div>
+<p>For this system assume that the tank areas <span class="math">\(A_t\)</span> will be significantly
+larger than the pipe area, <span class="math">\(A_p\)</span>, e.g. <span class="math">\(A_t &gt; 5 A_p\)</span>, so that
+there is negligible tank inertia compared to the pipe inertia. Also assume that
+the tank and reservoir inlets have negligible resistance compared to the pipe
+resistances.</p>
+<p>The bond graph for this system is shown below in figure 2.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-05-fig-02.png" style="width: 800px;" />
+<p class="caption"><strong>Figure 2</strong> Bond graph of the dam system.</p>
+</div>
+<p>The pipe resistances in this system are nonlinear and behave according to the
+constitutive law:</p>
+<div class="math">
+\begin{equation*}
+\Delta P = C_f Q \left| Q \right|
+\end{equation*}
+</div>
+<p>which is shown graphically in Figure 3.</p>
+<div class="figure">
+<img alt="" src="https://objects-us-east-1.dream.io/eme171/2019f/lab-05-fig-03.png" style="width: 400px;" />
+<p class="caption"><strong>Figure 3</strong> Non-linear resistance constitutive law.</p>
+</div>
+<p>You will need to assign causality to the bond graph, number the bonds, and
+derive the system equations. You should end up with four differential
+equations. You will have two fluid momentum state variables (one for each
+section of the pipe) and two volumetric displacement state variables (one for
+each tank).</p>
+<div class="section" id="constant-parameters">
+<h3><a class="toc-backref" href="#id4">Constant parameters</a></h3>
+<table border="1" class="table table-striped table-bordered docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Symbol</th>
+<th class="head">Description</th>
+<th class="head">Value</th>
+<th class="head">Units</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><span class="math">\(\rho\)</span></td>
+<td>Density of water</td>
+<td>1000</td>
+<td><span class="math">\(\frac{\textrm{kg}}{\textrm{m}^3}\)</span></td>
+</tr>
+<tr><td><span class="math">\(g\)</span></td>
+<td>Acceleration due to gravity</td>
+<td>9.81</td>
+<td><span class="math">\(\frac{\textrm{m}}{\textrm{s}^2}\)</span></td>
+</tr>
+<tr><td><span class="math">\(A_p\)</span></td>
+<td>Cross sectional area of the pipe from the reservoir to the turbine</td>
+<td>0.1</td>
+<td><span class="math">\(\textrm{m}^2\)</span></td>
+</tr>
+<tr><td><span class="math">\(P\)</span></td>
+<td>Hydrostatic pressure (note that the pressure heights between nodes are relative).</td>
+<td><span class="math">\(\rho g \Delta h\)</span></td>
+<td><span class="math">\(\frac{N}{m^2}\)</span></td>
+</tr>
+<tr><td><span class="math">\(C_f\)</span></td>
+<td>Fluid pipe resistance constant (see figure 3 for <span class="math">\(\Delta P\)</span> vs
+<span class="math">\(Q\)</span>)</td>
+<td>49000</td>
+<td><span class="math">\(\frac{kg}{m^7}\)</span></td>
+</tr>
+<tr><td><span class="math">\(L\)</span></td>
+<td>Pipe section lengths</td>
+<td>50</td>
+<td><span class="math">\(\textrm{m}\)</span></td>
+</tr>
+<tr><td><span class="math">\(I_p\)</span></td>
+<td>Fluid inertia of pipe sections</td>
+<td><span class="math">\(\frac{\rho L}{A_p}\)</span></td>
+<td><span class="math">\(\frac{kg}{m^4}\)</span></td>
+</tr>
+<tr><td><span class="math">\(A_t\)</span></td>
+<td>Tank areas (you will find the maximum tank area by simulating different
+values of <span class="math">\(A_t\)</span>. Use increments of 0.05 <span class="math">\(\textrm{m}^2\)</span>.</td>
+<td>To be determined</td>
+<td><span class="math">\(m^2\)</span></td>
+</tr>
+<tr><td><span class="math">\(C_t\)</span></td>
+<td>Fluid capacitance of each tank</td>
+<td><span class="math">\(\frac{A_t}{\rho g}\)</span></td>
+<td><span class="math">\(\frac{m^5}{N}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Remember that in fluid systems, we use Q for volumetric flow (not displacement)
+and V as volume (not velocity).</p>
+</div>
+<div class="section" id="initial-conditions">
+<h3><a class="toc-backref" href="#id5">Initial Conditions</a></h3>
+<p>Determine the initial conditions from the equations of motion. The system will
+begin in equilibrium (all state derivatives are equal to zero), with an initial
+turbine flow of <span class="math">\(Q_0=1.5\frac{\textrm{m}^3}{\textrm{s}}\)</span>. You will need
+to find initial conditions for every state variable. None of the initial
+conditions will be zero. Develop the initial conditions equations in terms of
+the system parameters and let Matlab calculate the exact values. Include how
+you determined the initial conditions in your lab report.</p>
+</div>
+<div class="section" id="inputs">
+<h3><a class="toc-backref" href="#id6">Inputs</a></h3>
+<p>Define all system inputs for the effort and flow sources. The effort sources
+are the pressures due to gravity and are constant with respect to time. The
+flow source is the turbine flow <span class="math">\(Q_0\)</span>. When the turbine is delivering
+power the steady state flow <span class="math">\(Q_0\)</span> out of the pipe is
+<span class="math">\(1.5\frac{m^3}{s}\)</span>. The turbine flow begins as
+<span class="math">\(Q_0=1.5\frac{m^3}{s}\)</span> at <span class="math">\(t = 0\)</span>. At some time of your choosing,
+the turbine will begin to turn off. Over the next 0.15 seconds, the turbine
+shuts down and flow <span class="math">\(Q_0\)</span> decreases linearly to zero. Define <span class="math">\(Q_0\)</span>
+before, during, and after the shut-down period in an input function file.</p>
+</div>
+<div class="section" id="outputs">
+<h3><a class="toc-backref" href="#id7">Outputs</a></h3>
+<p>You will also likely need to take turbine flow (<span class="math">\(Q_0\)</span>) as an extra
+variable. You may find it useful to define the tank heights as extra outputs as
+well.</p>
+</div>
+</div>
+<div class="section" id="simulation">
+<h2><a class="toc-backref" href="#id8">Simulation</a></h2>
+<p>Your goal is to find the minimum cross-sectional area of the surge tanks, so
+that the flow to the turbines can be shut off quickly without overflowing the
+tanks and drowning the people of Sacramento.</p>
+<p>Choose a starting tank area <span class="math">\(A_t\)</span> and simulate the system. Determine the
+height of the water in the tanks and plot the heights as a function of time.
+Plot the height of the water in the tank. Increase or decrease the tank area by
+increments of 0.05 <span class="math">\(\textrm{m}^2\)</span> until you find the smallest possible
+tank area that does not cause the tanks to overflow when the turbine is shut
+off Refer to Figure 1 to find the maximum water height in either tank.</p>
+<p>Determine your simulation time parameters. In order to gauge how long and what
+time step to use to simulate the system you will need an idea of the natural
+frequencies.  Since the system is nonlinear, a straight forward frequency
+analysis is not possible. But since the non-linearity of the system is in the
+resistance, a rough estimate can be calculated using only the compliance and
+inertial properties of the system. Here is a hint:</p>
+<div class="math">
+\begin{align*}
+T = \frac{1}{f_n} \\
+f_n = \frac{\omega_n}{2\pi} \\
+\omega_n = \sqrt{\frac{1}{\textrm{compliance} \times \textrm{inertia}}}
+\end{align*}
+</div>
+</div>
+<div class="section" id="deliverables">
+<h2><a class="toc-backref" href="#id9">Deliverables</a></h2>
+<ol class="arabic simple">
+<li>Show the bond graph with both assigned causality and numbered bonds.</li>
+<li>Show the system equations that you derive from the bond graph.</li>
+<li>Include calculations and explanations for initial conditions, natural
+frequencies, time parameters, and any other such calculations.</li>
+<li>Plots of the input and tank heights vs. time for the desired tank
+area (these do not have to be on the same plot).</li>
+<li>Discussion of results<ul>
+<li>Which tank came closer to overflowing? Why?</li>
+<li>How do the calculated natural frequencies compare to the vibration
+periods seen in your plotted results? Why is there a difference?</li>
+</ul>
+</li>
+<li>Matlab code for the main file, state derivatives, inputs, output functions.
+Code should follow the best practices form.</li>
+</ol>
+<p>The report should follow the <a class="reference external" href="https://moorepants.github.io/eme171/2019f/lab-report-guidelines-and-template.html">report template and guidelines</a>.</p>
+</div>
+<div class="section" id="assessment-rubric">
+<h2><a class="toc-backref" href="#id10">Assessment Rubric</a></h2>
+<p>Points will be added to 40 to get your score from 40-100.</p>
+<p>Functions (10 points)</p>
+<ul class="simple">
+<li>[10] All functions are present and take correct inputs and produce the
+expected outputs.</li>
+<li>[5] Most functions are present and mostly take correct inputs and produce the
+expected outputs</li>
+<li>[0] No functions are present.</li>
+</ul>
+<p>Main Script (10 points)</p>
+<ul class="simple">
+<li>[10] Constant parameters only defined once in main script(s); Integration produces
+the correct state, input, and output trajectories; Justified choices in
+number of time steps and resolution are chosen and explained</li>
+<li>[5] Parameters are defined in multiple places; Integration produces some
+correct state, input, and output trajectories; Poor choices in number of time
+steps and resolution are chosen or not explained</li>
+<li>[0] Constants defined redundantly; Integration produces incorrect
+trajectories; No clear choices in time duration and steps</li>
+</ul>
+<p>Explanations (10 points)</p>
+<ul class="simple">
+<li>[10] Explanation of dynamics are correct and well explained; Explanation of
+the vibration period and frequency is correct and well explained; Plots of
+appropriate variables are used in the explanations</li>
+<li>[5] Explanation of dynamics is somewhat correct and reasonably explained;
+Explanation of vibration period and frequency is somewhat correctly describes
+results; Plots of appropriate variables are used in the explanations, but
+some are missing</li>
+<li>[0] Explanation of damping is incorrect and poorly explained; Explanation of
+vibration and frequency behavior incorrectly describes results; Plots are not
+used.</li>
+</ul>
+<p>Report and Code Formatting (10 points)</p>
+<ul class="simple">
+<li>[10] All axes labeled with units, legible font sizes, informative captions;
+Functions are documented with docstrings which fully explain the inputs and
+outputs; Professional, very legible, quality writing; All report format
+requirements met</li>
+<li>[5] Some axes labeled with units, mostly legible font sizes,
+less-than-informative captions; Functions have docstrings but the inputs and
+outputs are not fully explained; Semi-professional, somewhat legible, writing
+needs improvement; Most report format requirements met</li>
+<li>[0] Axes do not have labels, legible font sizes, or informative captions;
+Functions do not have docstrings; Report is not professionally written and
+formatted; Report format requirements are not met</li>
+</ul>
+<p>Contributions [10 points]</p>
+<ul class="simple">
+<li>[10] Very clear that everyone in the lab group contributed equitably. (e.g.
+both need to do some coding, both work on bond graph, both should contribute
+to writing)</li>
+<li>[5] Need to improve the contributions of one or more members</li>
+<li>[0] Clear that everyone is not contributing equitably</li>
+</ul>
+</div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+</article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/2019f/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/2019f/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/2019f/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
