@@ -29,13 +29,14 @@ rhs = @(t, s) eval_ebike_rhs(t, s, @eval_ebike_input, p);
 
 % integrate the dynamic equations over 60 seconds with the initinal
 % condition at zero
-[t, res] = ode45(rhs, linspace(0, 60), [0, 0, 0, 0]);
+[t, res] = ode45(rhs, linspace(0, 60), [0, 0, 0, 0, 0]);
 
 % extract the states from the integration results
 theta = res(:, 1);
 omega = res(:, 2);
 i = res(:, 3);
 x = res(:, 4);
+e = res(:, 5);
 
 % plot the variables of interest versus time
 figure(1);
@@ -67,3 +68,8 @@ figure(6);
 plot(t, p.V*i)
 xlabel('Time [s]');
 ylabel('Power [W]')
+
+figure(7);
+plot(t, e)
+xlabel('Time [s]');
+ylabel('Energy [J]')

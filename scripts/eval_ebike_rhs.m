@@ -6,7 +6,7 @@ function sdot = eval_ebike_rhs(t, s, w, p)
 %
 % Inputs:
 %   t - Scalar value of time, size 1x1.
-%   s - State vector at time t, size 4x1: [theta, omega, i, x]'.
+%   s - State vector at time t, size 5x1: [theta, omega, i, x, e]'.
 %   w - Function that returns the road angle input.
 %   p - Constant parameter structure with 14 constants: m, R, Cr, Cd, rho,
 %       A, g, J, bm, Kt, L, Rw, X, H.
@@ -18,6 +18,7 @@ theta = s(1);  % rotation angle of the wheel [rad]
 omega = s(2);  % angular rate of the wheel [rad/s]
 i = s(3);  % motor current [A]
 x = s(4);  % x distance traveled [m]
+e = s(5);  % energy [J]
 
 % unpack the constant parameters
 m = p.m;
@@ -51,8 +52,9 @@ thetadot = omega;
 omegadot = (Kt*i - bm*omega - Fd*R - Fr*R - Fg*R) / (2*J + m*R^2);
 idot = (-Rw*i - Kt*omega + V)/L;
 xdot = v*cos(alpha);
+edot = V*i;
 
 % pack the state derivatives in a vector
-sdot = [thetadot; omegadot; idot; xdot];
+sdot = [thetadot; omegadot; idot; xdot; edot];
 
 end

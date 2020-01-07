@@ -78,7 +78,7 @@ system.</p>
 <span class="c">%</span>
 <span class="c">% Inputs:</span>
 <span class="c">%   t - Scalar value of time, size 1x1.</span>
-<span class="c">%   s - State vector at time t, size 4x1: [theta, omega, i, x]&#39;.</span>
+<span class="c">%   s - State vector at time t, size 5x1: [theta, omega, i, x, e]&#39;.</span>
 <span class="c">%   w - Function that returns the road angle input.</span>
 <span class="c">%   p - Constant parameter structure with 14 constants: m, R, Cr, Cd, rho,</span>
 <span class="c">%       A, g, J, bm, Kt, L, Rw, X, H.</span>
@@ -90,6 +90,7 @@ system.</p>
 <span class="n">omega</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="c">% angular rate of the wheel [rad/s]</span>
 <span class="nb">i</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>  <span class="c">% motor current [A]</span>
 <span class="n">x</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>  <span class="c">% x distance traveled [m]</span>
+<span class="n">e</span> <span class="p">=</span> <span class="n">s</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>  <span class="c">% energy [J]</span>
 
 <span class="c">% unpack the constant parameters</span>
 <span class="n">m</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
@@ -123,9 +124,10 @@ system.</p>
 <span class="n">omegadot</span> <span class="p">=</span> <span class="p">(</span><span class="n">Kt</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">bm</span><span class="o">*</span><span class="n">omega</span> <span class="o">-</span> <span class="n">Fd</span><span class="o">*</span><span class="n">R</span> <span class="o">-</span> <span class="n">Fr</span><span class="o">*</span><span class="n">R</span> <span class="o">-</span> <span class="n">Fg</span><span class="o">*</span><span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">J</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">R</span>^<span class="mi">2</span><span class="p">);</span>
 <span class="n">idot</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Rw</span><span class="o">*</span><span class="nb">i</span> <span class="o">-</span> <span class="n">Kt</span><span class="o">*</span><span class="n">omega</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">;</span>
 <span class="n">xdot</span> <span class="p">=</span> <span class="n">v</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
+<span class="n">edot</span> <span class="p">=</span> <span class="n">V</span><span class="o">*</span><span class="nb">i</span><span class="p">;</span>
 
 <span class="c">% pack the state derivatives in a vector</span>
-<span class="n">sdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">;</span> <span class="n">idot</span><span class="p">;</span> <span class="n">xdot</span><span class="p">];</span><span class="n"></span>
+<span class="n">sdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">;</span> <span class="n">idot</span><span class="p">;</span> <span class="n">xdot</span><span class="p">;</span> <span class="n">edot</span><span class="p">];</span><span class="n"></span>
 
 <span class="n">end</span>
 </pre></div>
@@ -142,7 +144,7 @@ the state dependent road angle input.</p>
 <span class="c">%</span>
 <span class="c">% Inputs:</span>
 <span class="c">%   t - Scalar value of time, size 1x1.</span>
-<span class="c">%   s - State vector at time t, size 4x1.</span>
+<span class="c">%   s - State vector at time t, size 5x1: [theta, omega, i, x, e]&#39;.</span>
 <span class="c">%   p - Constant parameter structure with 14 constants: m, R, Cr, Cd, rho,</span>
 <span class="c">%       A, g, J, bm, Kt, L, Rw, X, H.</span>
 <span class="c">% Outputs:</span>
@@ -202,13 +204,14 @@ the state dependent road angle input.</p>
 
 <span class="c">% integrate the dynamic equations over 60 seconds with the initinal</span>
 <span class="c">% condition at zero</span>
-<span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 
 <span class="c">% extract the states from the integration results</span>
 <span class="n">theta</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">omega</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="nb">i</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">x</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">e</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">5</span><span class="p">);</span>
 
 <span class="c">% plot the variables of interest versus time</span>
 <span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -240,6 +243,11 @@ the state dependent road angle input.</p>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">V</span><span class="o">*</span><span class="nb">i</span><span class="p">)</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Power [W]&#39;</span><span class="p">)</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Energy [J]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 
