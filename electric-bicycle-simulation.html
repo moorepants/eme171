@@ -211,32 +211,32 @@ the state dependent road angle input.</p>
 <span class="n">x</span> <span class="p">=</span> <span class="n">res</span><span class="p">(:,</span> <span class="mi">4</span><span class="p">);</span>
 
 <span class="c">% plot the variables of interest versus time</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">theta</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;\theta [deg]&#39;</span><span class="p">);</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;\omega [deg/s]&#39;</span><span class="p">);</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;i [A]&#39;</span><span class="p">);</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;x [m]&#39;</span><span class="p">);</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">omega</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;v [m/s]&#39;</span><span class="p">);</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">V</span><span class="o">*</span><span class="nb">i</span><span class="p">)</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">);</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Power [W]&#39;</span><span class="p">)</span>
