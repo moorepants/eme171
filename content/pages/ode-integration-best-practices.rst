@@ -18,7 +18,7 @@ equations are the ordinary differential equations, the "ODEs". These equations
 always have to be considered; other equations described below are optional.
 Your primary goal is to solve the ODEs and discover the time dependent behavior
 of the system's states. You should already have the equations in explicit first
-order form before moving forward here.  "Explicit" refers to the fact that
+order form before moving forward here. "Explicit" refers to the fact that
 there are no time derivatives on the right hand side of the equations and
 "first order" refers to their being :math:`m` equations, one for each of the
 :math:`m` state variables. The general form for these equations is:
@@ -108,7 +108,7 @@ print this documentation at the Octave/Matlab command prompt.
 .. |eval_rhs| replace:: ``eval_rhs.m``
 .. _eval_rhs: {filename}/scripts/best-practices/eval_rhs.m
 
-.. topic:: An alternative for passing in the constant parameters
+.. topic:: A brief introduction to Matlab Structures
    :class: alert alert-warning
 
    Octave/Matlab have a data type called a "structure" (similar to a C
