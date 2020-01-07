@@ -9,20 +9,20 @@ Course Description
 | University of California, Davis
 | Department of Mechanical and Aerospace Engineering
 | Analysis, Simulation and Design of Mechatronic Systems - EME 171
-| 2019 Fall, Lecture: MWF 3:10-4:00 PM in Chemistry 176
-| CRN: 62958
+| 2020 Winter, Lecture: TR 12:10-1:30 PM in Olson Hall 205
+| CRN: 54796, 77465, 77466
 
 Catalog Description
 -------------------
 
-   EME 171—Analysis, Simulation & Design of Mechatronic Systems (4)
-   Lecture—3 hour(s); Laboratory—3 hour(s). Prerequisite(s): ENG 100 C- or
-   better; ENG 102 C- or better. Restricted to Mechanical Engineering,
-   Aerospace Science & Engineering, Mechanical Engineering/Materials Science
-   and Engineering. Modeling of dynamic engineering systems in various energy
-   domains. Analysis and design of dynamic systems. Response of linear systems.
-   Digital computer simulation and physical experiments. GE credit: SE.
-   Effective: 2017 Fall Quarter.
+   EME 171—Analysis, Simulation & Design of Mechatronic Systems (4) Lecture—3
+   hour(s); Laboratory—3 hour(s). Prerequisite(s): ENG 100 C- or better; ENG
+   102 C- or better. Restricted to Mechanical Engineering, Aerospace Science &
+   Engineering, Mechanical Engineering/Materials Science and Engineering.
+   Modeling of dynamic engineering systems in various energy domains. Analysis
+   and design of dynamic systems. Response of linear systems. Digital computer
+   simulation and physical experiments. GE credit: SE. Effective: 2017 Fall
+   Quarter.
 
 Prerequisites
 -------------
@@ -47,18 +47,18 @@ Instructors
 | Jason K. Moore
 | Assistant Professor of Teaching
 | 2095 Bainer Hall
-| 530-752-4805
+| 530-601-9791
 | jkm@ucdavis.edu
 |
-| Kevin Mallon
+| Sergio Guillen
 | Graduate Student
-| krmallon@ucdavis.edu
+| sjguillen@ucdavis.edu
 
 Time and Location
 =================
 
-The lecture meets on Mondays, Wednesdays, and Fridays from 3:10 PM to 4:00 PM
-in Chemistry 176.
+The lecture meets on Tuesdays and Thursdays from 12:10 PM to 1:30 PM in Olson
+Hall 205. See below for labs.
 
 **If you have any conflicts with the schedule, especially for the exams, you
 must tell me in the first week of class (emergencies will be the only
@@ -70,19 +70,19 @@ Office Hours and Labs
 .. class:: table table-striped table-bordered
 
 +----------------------+--------------------------+
-| Jason's              | Kevins's                 |
+| Jason's              | Sergio's                 |
 +======================+==========================+
 | Office Hours         | Office Hours             |
 |                      |                          |
-| - Bainer 2095        | - TB 207 Room 110        |
-| - W, R 1:10-2:00 PM  | - M 1:10- 2:00PM         |
-|                      |                          |
+| - Bainer 2095        | - Location: TBA          |
+| - W 1:10-2:00 PM     | - M 1:10-2:00 PM         |
+| - R 3:10-4:00 PM     |                          |
 |                      | Labs                     |
 |                      |                          |
 |                      | - Bainer 2121A (CAE Lab) |
-|                      | - T 6:10-7:00 PM (Lab)   |
-|                      | - R 9:00-9:50 AM (Lab)   |
-|                      | - F 2:10-3:00 PM (Lab)   |
+|                      | - F 10:50-10:50 AM (Lab) |
+|                      | - F 11:00-11:50 AM (Lab) |
+|                      | - F 12:10-1:00 PM (Lab)  |
 +----------------------+--------------------------+
 
 If it is impossible to make office hours, schedule an appointment with Jason by
@@ -179,7 +179,7 @@ Canvas
 ======
 
 We will make use of Canvas for the course. Log in to canvas.ucdavis.edu_ with
-your Kerberos ID and passphrase then select **EME 171 001 FQ 2019**.
+your Kerberos ID and passphrase then select **EME 171 A01 WQ 2020**.
 
 We will be using several features in canvas:
 
@@ -221,3 +221,11 @@ through Canvas. By default, Canvas will automatically send the announcement to
 your UCD email address. You can change your Canvas settings to opt out, send it
 to a different email, or as an SMS. You are responsible for reading the
 announcements made via canvas.
+
+Accomodation
+============
+
+The primary instructor should be informed of any learning accommodations at
+least 1 full week before the desired accommodation is needed. I expect students
+to contact me to discuss any special arrangements with 1 week time to make and
+agree on the arrangements.
