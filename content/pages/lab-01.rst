@@ -342,7 +342,7 @@ Defining the Input Function
 Defining the Output Function
 ----------------------------
 
-.. code-include:: ../scripts/eval_rhs_template.m
+.. code-include:: ../scripts/eval_rhs_with_input_template.m
    :lexer: matlab
 
 Solving the Integration of ODEs
