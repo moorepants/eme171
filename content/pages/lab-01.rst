@@ -330,164 +330,23 @@ Provided below are templates to utilize in coding the first lab.  Your code shou
 Defining the State Derivative Function
 --------------------------------------
 
-.. math:: 
-
-  function xdot = eval_rhs_with_input(t, x, w, p)
-       % EVAL_RHS_WITH_INPUT - Returns the time derivative of the states, i.e.
-       % evaluates the right hand side of the explicit ordinary differential
-       % equations.
-       %
-       % Syntax: xdot = eval_rhs_with_input(t, x, w, p)
-       %
-       % Inputs:
-       %   t - Scalar value of time, size 1x1.
-       %   x - State vector at time t, size mx1 where m is the number of
-       %       states.
-       %   w - Anonymous function, w(t, x, p), that returns the input vector
-       %       at time t, size ox1 were o is the number of inputs.
-       %   p - Constant parameter structure with p items where p is the number
-       %       of parameters.
-       % Outputs:
-       %   xdot - Time derivative of the states at time t, size mx1.
-
-       % unpack the states into useful variable names
-        = x(1);
-        = x(2);
-        = x(3);
-
-       % evaluate the input function
-       r = w(t, x, p);
-
-       % unpack the inputs into useful variable names
-       tau = r;
-       % if more than one input, then tau = r(1);, ...
-
-       % unpack the parameters into useful variable names
-       m = p.m;
-       k = p.k;
-       b = p.b;
-
-       % calculate the state derivatives
-        = ;
-        = ;
-        = ;
-
-       % pack the state derivatives into an mx1 vector
-       xdot = [ ; ; ];
-
-  end
+.. code-include:: ../scripts/eval_rhs_with_input_template.m
+   :lexer: matlab
 
 Defining the Input Function
 ---------------------------
 
-.. math::
+.. code-include:: ../scripts/eval_input_template.m
+   :lexer: matlab
 
-      function r = eval_input(t, x, p)
-      % EVAL_INPUT - Returns the input vector at any given time.
-      %
-      % Syntax: r = eval_input(t, x, p)
-      %
-      % Inputs:
-      %   t - A scalar value of time, size 1x1.
-      %   x - State vector at time t, size mx1 were m is the number of states.
-      %   p - Constant parameter structure with p items where p is the number of
-      %       parameters.
-      % Outputs:
-      %   r - Input vector at time t, size ox1 where o is the number of
-      %       inputs.
-
-      % NOTE : x is not needed in this case
-      
-      % unpack structure
-      amp = p.amp;
-      
-      % define a triangular road bump input
-      if t < .5
-      vin = ;
-      elseif t>=.5 & t<1
-      vin = ;
-      elseif t>=1 & t<1.5
-      vin = ;
-      else
-      vin = ;
-      end
-  
-      % pack the inputs into an 1x1 vector
-      r = [vin];
-
-  end
-  
 Defining the Output Function
 ----------------------------
 
-.. math::
+.. code-include:: ../scripts/eval_rhs_with_input_template.m
+   :lexer: matlab
 
-  function z = eval_output_with_state_derivatives(t, xdot, x, r, p)
-      % EVAL_OUTPUT_WITH_STATE_DERIVATIVES - Returns the output vector at the
-      % specified time.
-      %
-      % Syntax: z = eval_output_with_state_derivatives(t, xdot, x, r, p)
-      %
-      % Inputs:
-      %   t - Scalar value of time, size 1x1.
-      %   xdot - State derivative vector as time t, size mx1 where m is the
-      %          number of states
-      %   x - State vector at time t, size mx1 where m is the number of
-      %       states. 
-      %   r - Input vector at time t, size ox1 were o is the number of inputs.
-      %   p - Constant parameter structure with p items where p is the number
-      %       of parameters.
-      % Outputs:
-      %   z - Output vector at time t, size qx1.
-
-      % unpack all the vectors
-       = xdot(1);
-       = xdot(2);
-       = xdot(3);
-      
-       = x(1);
-       = x(2);
-       = x(3);
-
-      % unpack the parameters
-      m = p.m;
-      k = p.k;
-      b = p.b;
-
-      % calculate the force applied to the spring
-       = ;
-
-      % calculate the force applied to the damper
-       = ;
-       
-      % calculate the vertical acceleration of the mass 
-
-      % pack the outputs into a qx1 vector
-      z = [ ; ; ];
-
-  end
-  
 Solving the Integration of ODEs
 -------------------------------
 
-.. math::
-
-  % integrate the ODEs as defined above
-  x0 = [ ; ; ];
-  ts = ;
-  p.m = ;
-  p.k = ;
-  p.b = ;
-  p.amp = ;
-  f_anon = @(t, x) eval_rhs_with_input(t, x, @eval_input, p);
-  [ts, xs] = ode45(f_anon, ts, x0);
-
-  % to compute the outputs at each time, loop through time evaluating f(t, x,
-  % r, p) and then h(t, x', x, r, p)
-  zs = zeros(length(ts), 3);  % place to store outputs
-  for i=1:length(ts)
-      % calculate x' at the given time
-      xdot = eval_rhs_with_input(ts(i), xs(i, :), @eval_input, p);
-      % calculate the outputs that depend on x' and store them
-      zs(i, :) = eval_output_with_state_derivatives(ts(i), xdot, xs(i, :), @eval_input, p);
-  end
+.. code-include:: ../scripts/main_template.m
+   :lexer: matlab
