@@ -21,7 +21,7 @@ Labs
 ====
 
 - `Lab Report Guidelines and Template <{filename}/pages/report-template.rst>`_
-- Lab 1: Introduction to simulation
+- `Lab 1: Introduction to simulation <{filename}/pages/lab-01.rst>`_
 - Lab 2: Two DoF Quarter
 - Lab 3: Motocross Model
 - Lab 4: Vibration Shaker

@@ -192,7 +192,7 @@ system is defined as:
 Use these values to determine how long your simulation should last such that at
 least five oscillations occur or the oscillation magnitude is reduced to
 approximately 1/10 maximum. Also use them to choose a time resolution (spacing
-between time steps) such that you plot at least ten time points for the
+between time steps) such that you plot at least fifty time points for the
 shortest duration oscillation.
 
 Deliverables
@@ -257,25 +257,25 @@ information.
 Defining the State Derivative Function
 --------------------------------------
 
-.. code-include:: ../scripts/eval_rhs_with_input_template.m
+.. code-include:: ../scripts/eval_quarter_car_rhs.m
    :lexer: matlab
 
 Defining the Input Function
 ---------------------------
 
-.. code-include:: ../scripts/eval_input_template.m
+.. code-include:: ../scripts/eval_triangular_bump.m
    :lexer: matlab
 
 Defining the Output Function
 ----------------------------
 
-.. code-include:: ../scripts/eval_rhs_with_input_template.m
+.. code-include:: ../scripts/eval_quarter_car_outputs.m
    :lexer: matlab
 
 Solving the Integration of ODEs
 -------------------------------
 
-.. code-include:: ../scripts/main_template.m
+.. code-include:: ../scripts/simulate_quarter_car.m
    :lexer: matlab
 
 Grading Rubric
