@@ -44,6 +44,14 @@ Note the path to the theme, e.g.::
 
    /home/my_username/pelican-alchemy
 
+Clone the pelican-plugins repository::
+
+   $ git clone git@github.com:getpelican/pelican-plugins.git
+
+Note the path to the plugins directory, e.g.::
+
+   /home/my_username/pelican-plugins
+
 Clone this repository and change into the new directory::
 
    $ git clone git@github.com:moorepants/eme171.git
@@ -52,7 +60,8 @@ Clone this repository and change into the new directory::
 Create a configuration file called ``config.yml`` and add the full path to
 where you installed the theme::
 
-   $ echo "THEME_PATH: /home/my_username/pelican-alchemy" > config.yml
+   $ echo "THEME_PATH: /home/my_username/pelican-alchemy" > local-config.yml
+   $ echo "PLUGIN_PATHS: /home/my_username/pelican-plugins" >> local-config.yml
 
 Now you can build and serve the documentation with::
 
@@ -64,7 +73,7 @@ http://localhost:8000.
 While the server is running you can change the website source files and they
 will be build automatically. Refresh your web browser to view the changes.
 
-To stop the web server press <CTRL + C>::
+To stop the web server press <CTRL + C> or type ``make stopserver``.
 
 LICENSE
 =======
