@@ -217,15 +217,15 @@ the following items:
    applied to the damper, force applied to the spring, and vertical
    acceleration. See `Outputs Other Than the States`_ and `Outputs Involving
    State Derivatives`_ for explanations.
-5. Create a script in an m-file that utilizes the above four functions to
+4. Create a script in an m-file that utilizes the above four functions to
    simulate the suspension system traversing the bump in the road. This should
    setup the constants, integrate the dynamics equations, and plot each state,
    input, and output versus time. See `Integrating the State Equations`_ for an
    explanation.
-6. Show the effects that removing the damper, i.e. setting :math:`B=0`, has on
+5. Show the effects that removing the damper, i.e. setting :math:`B=0`, has on
    traversing the bump. Use plots and written text to describe the differences
    in the motion.
-7. Choose one of the following road inputs and create an m-file that generates
+6. Choose one of the following road inputs and create an m-file that generates
    this input:
 
    1. A sinusoidal undulating road input with velocity amplitude of 0.1 meters per
