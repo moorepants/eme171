@@ -1,8 +1,8 @@
-function z = eval_output_with_state_derivatives_template(t, xdot, x, r, c)
-% EVAL_OUTPUT_WITH_STATE_DERIVATIVES_TEMPLATE - Returns the output vector at the
-% specified time.
+function z = eval_quarter_car_outputs(t, xdot, x, r, c)
+% EVAL_QUARTER_CAR_OUTPUTS - Returns the output vector at the specified
+% time.
 %
-% Syntax: z = eval_output_with_state_derivatives_template(t, xdot, x, r, c)
+% Syntax: z = eval_quarter_car_outputs(t, xdot, x, r, c)
 %
 % Inputs:
 %   t - Scalar value of time, size 1x1.

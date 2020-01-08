@@ -16,61 +16,6 @@ After completing this lab you will be able to:
 
 .. _ode45: https://www.mathworks.com/help/matlab/ref/ode45.html
 
-Grading Rubric
-==============
-
-Points will be added to 40 to get your score from 40-100.
-
-Functions (20 points)
-
-- [20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
-  and take correct inputs and produce the expected outputs.
-- [10] Most functions are present and mostly take correct inputs and produce
-  the expected outputs
-- [0] No functions are present.
-
-Main Script (10 points)
-
-- [10] Constant parameters only defined once in main script(s); Integration produces
-  the correct state, input, and output trajectories; Good choices in number of
-  time steps and resolution are chosen
-- [5] Parameters are defined in multiple places; Integration produces some
-  correct state, input, and output trajectories; Poor choices in number of time
-  steps and resolution are chosen
-- [0] Constants defined redundantly; Integration produces incorrect
-  trajectories; Poor choices in time duration and steps
-
-Explanations (10 points)
-
-- [10] Explanation of no damping is correct and well explained; Explanation of
-  second road input behavior correctly describes results; Plots of appropriate
-  variables are used in the explanations
-- [5] Explanation of no damping is somewhat correct and reasonably explained;
-  Explanation of second road input behavior somewhat correctly describes
-  results; Plots of appropriate variables are used in the explanations, but
-  some are missing
-- [0] Explanation of no damping is incorrect and poorly explained; Explanation
-  of second road input behavior incorrectly describes results
-
-Report and Code Formatting (10 points)
-
-- [10] All axes labeled with units, legible font sizes, informative captions;
-  Functions are documented with docstrings which fully explain the inputs and
-  outputs; Professional, very legible, quality writing; All report format
-  requirements met
-- [5] Some axes labeled with units, mostly legible font sizes,
-  less-than-informative captions; Functions have docstrings but the inputs and
-  outputs are not fully explained; Semi-professional, somewhat legible, writing
-  needs improvement; Most report format requirements met
-- [0] Axes do not have labels, legible font sizes, or informative captions;
-  Functions do not have docstrings; Report is not professionally written and
-  formatted; Report format requirements are not met
-
-Attendance [10 points]
-
-- [10] Attended at least one lab session in two weeks prior to due date.
-- [0] Did not Attended at least one lab session in two weeks prior to due date.
-
 Introduction
 ============
 
@@ -253,6 +198,13 @@ shortest duration oscillation.
 Deliverables
 ============
 
+In your lab report, show your work for creating and evaluating the simulation
+model. Include any calculations for initial conditions, input equations,
+maximum bump height, time parameters, and any other parameters. Additionally,
+provide the indicated plots and answer the questions below. Append a copy of
+your Matlab/Octave code to the end of the report. The report should follow the
+`report template and guidelines <{filename}/pages/report-template.rst>`_.
+
 Submit a report as a single PDF file to Canvas by the due date that addresses
 the following items:
 
@@ -286,46 +238,21 @@ the following items:
    Plot the resulting simulation and describe the motion and what you learn
    from it.
 
+**Use the templates below for developing your code and fill in the missing
+pieces.**
+
 .. _Defining the State Derivative Function: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#defining-the-state-derivative-function
 .. _Time Varying Inputs: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#time-varying-inputs
 .. _Outputs Other Than the States: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-other-than-the-states
 .. _Outputs Involving State Derivatives: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-involving-state-derivatives
 .. _Integrating the State Equations: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#integrating-the-equations
 
-Notes On Creating A Quality Submission
---------------------------------------
-
-- Include a title page with the lab assignment name & number, course, quarter,
-  year, date, your name, and student ID.
-- Use both text and plots to explain your work and findings.
-- Include your code in the report. Show each function and the main script.
-  These should be monospaced font formatting and ideally syntax highlighted.
-  You can use the publish function in Octave and Matlab to export code files to
-  nice formats. See
-  https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html
-  for more information.
-- Your code should be readable by someone else. Include comments, useful
-  variable names, and follow good style recommendations, for example see this
-  guide_. Imagine that you will come back to this in 10 years and you want to
-  be able to understand it quickly.
-- All functions should have a "help" description written in the standard style
-  describing the inputs and outputs of the function. This template_ is useful
-  (click the function tab).
-- All plots should have:
-
-  - Axes labeled with units
-  - Axes limits set to show the important aspects of the graph
-  - Fonts large enough to read (>= 8pt)
-  - A figure number, short title, and caption explaining what the figure is
-  - Legends to describe multiple lines on a single plot
-
-.. _guide: http://www.datatool.com/downloads/MatlabStyle2%20book.pdf
-.. _template: https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template
-
 Templates for Coding
 ====================
 
-Provided below are templates to utilize in coding the first lab.  Your code should be identical to the templates, but it is your job to fill in the missing information.
+Provided below are templates to utilize in coding the first lab. Your code
+should be identical to the templates, but it is your job to fill in the missing
+information.
 
 Defining the State Derivative Function
 --------------------------------------
@@ -350,3 +277,59 @@ Solving the Integration of ODEs
 
 .. code-include:: ../scripts/main_template.m
    :lexer: matlab
+
+Grading Rubric
+==============
+
+Points will be added to 40 to get your score from 40-100.
+
+Functions (20 points)
+
+- [20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
+  and take correct inputs and produce the expected outputs.
+- [10] Most functions are present and mostly take correct inputs and produce
+  the expected outputs
+- [0] No functions are present.
+
+Main Script (10 points)
+
+- [10] Constant parameters only defined once in main script(s); Integration produces
+  the correct state, input, and output trajectories; Good choices in number of
+  time steps and resolution are chosen
+- [5] Parameters are defined in multiple places; Integration produces some
+  correct state, input, and output trajectories; Poor choices in number of time
+  steps and resolution are chosen
+- [0] Constants defined redundantly; Integration produces incorrect
+  trajectories; Poor choices in time duration and steps
+
+Explanations (10 points)
+
+- [10] Explanation of no damping is correct and well explained; Explanation of
+  second road input behavior correctly describes results; Plots of appropriate
+  variables are used in the explanations
+- [5] Explanation of no damping is somewhat correct and reasonably explained;
+  Explanation of second road input behavior somewhat correctly describes
+  results; Plots of appropriate variables are used in the explanations, but
+  some are missing
+- [0] Explanation of no damping is incorrect and poorly explained; Explanation
+  of second road input behavior incorrectly describes results
+
+Report and Code Formatting (10 points)
+
+- [10] All axes labeled with units, legible font sizes, informative captions;
+  Functions are documented with docstrings which fully explain the inputs and
+  outputs; Professional, very legible, quality writing; All report format
+  requirements met
+- [5] Some axes labeled with units, mostly legible font sizes,
+  less-than-informative captions; Functions have docstrings but the inputs and
+  outputs are not fully explained; Semi-professional, somewhat legible, writing
+  needs improvement; Most report format requirements met
+- [0] Axes do not have labels, legible font sizes, or informative captions;
+  Functions do not have docstrings; Report is not professionally written and
+  formatted; Report format requirements are not met
+
+Attendance [10 points]
+
+- [10] Attended at least one lab session in two weeks prior to due date.
+- [0] Did not Attended at least one lab session in two weeks prior to due date.
+

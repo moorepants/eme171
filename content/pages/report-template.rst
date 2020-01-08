@@ -52,11 +52,15 @@ Lab reports prepared for EME 171 should meet the following guidelines:
     (Links to an external site.) for more information.
   - Your code should be readable by someone else. Include comments, useful
     variable names, and follow good style recommendations, for example see this
-    guide (Links to an external site.). Imagine that you will come back to this
-    in 10 years and you want to be able to understand it quickly.
+    guide_. Imagine that you will come back to this in 10 years and you want to
+    be able to understand it quickly.
   - All functions should have a "help" description written in the standard
-    style describing the inputs and outputs of the function. This template
-    (Links to an external site.) is useful (click the function tab).
+    style describing the inputs and outputs of the function which is customized
+    for your particular function design. This template_ is useful (click the
+    function tab).
+
+.. _guide: http://www.datatool.com/downloads/MatlabStyle2%20book.pdf
+.. _template: https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template
 
 Example Lab Report
 ==================
