@@ -213,11 +213,10 @@ the following items:
    Derivative Function`_ for an explanation.
 2. Create a function defined in an m-file that generates the bump in the
    road. See `Time Varying Inputs`_ for an explanation.
-3. Create a function defined in an m-file that calculates two outputs: force
-   applied to the damper and force applied to the spring. See `Outputs Other
-   Than the States`_ for an explanation.
-4. Create a function defined in an m-file that calculates the vertical
-   acceleration. See `Outputs Involving State Derivatives`_
+3. Create a function defined in an m-file that calculates the three outputs: force
+   applied to the damper, force applied to the spring, and vertical
+   acceleration. See `Outputs Other Than the States`_ and `Outputs Involving
+   State Derivatives`_ for explanations.
 5. Create a script in an m-file that utilizes the above four functions to
    simulate the suspension system traversing the bump in the road. This should
    setup the constants, integrate the dynamics equations, and plot each state,
@@ -285,8 +284,8 @@ Points will be added to 40 to get your score from 40-100.
 
 Functions (20 points)
 
-- [20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
-  and take correct inputs and produce the expected outputs.
+- [20] All 4 functions (1 state derivative, 2 inputs, 1 output) are present and
+  take correct inputs and produce the expected outputs.
 - [10] Most functions are present and mostly take correct inputs and produce
   the expected outputs
 - [0] No functions are present.
@@ -332,4 +331,3 @@ Attendance [10 points]
 
 - [10] Attended at least one lab session in two weeks prior to due date.
 - [0] Did not Attended at least one lab session in two weeks prior to due date.
-
