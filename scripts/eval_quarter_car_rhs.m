@@ -1,9 +1,9 @@
-function xdot = eval_rhs_with_input_template(t, x, w, c)
-% EVAL_RHS_WITH_INPUT_TEMPLATE - Returns the time derivative of the states,
-% i.e.  evaluates the right hand side of the explicit ordinary differential
+function xdot = eval_quarter_car_rhs(t, x, w, c)
+% EVAL_QUARTER_CAR_RHS - Returns the time derivative of the states, i.e.
+% evaluates the right hand side of the explicit ordinary differential
 % equations for the 1 DoF quarter car model.
 %
-% Syntax: xdot = eval_rhs_with_input_template(t, x, w, c)
+% Syntax: xdot = eval_quarter_car_rhs(t, x, w, c)
 %
 % Inputs:
 %   t - Scalar value of time, size 1x1.

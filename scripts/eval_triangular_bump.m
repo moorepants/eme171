@@ -1,7 +1,7 @@
-function r = eval_input_template(t, x, c)
-% EVAL_INPUT_TEMPLATE - Returns the road bump velocity at any given time.
+function r = eval_triangular_bump(t, x, c)
+% EVAL_TRIANGULAR_BUMP - Returns the road bump velocity at any given time.
 %
-% Syntax: r = eval_input_template(t, x, c)
+% Syntax: r = eval_triangular_bump(t, x, c)
 %
 % Inputs:
 %   t - A scalar value of time, size 1x1.
@@ -15,7 +15,7 @@ function r = eval_input_template(t, x, c)
 A = c.A
 
 % define a triangular road bump input by transcribing the input mathematical
-% equation into equivalent code
+% equation into equivalent code to calculate vin at any given time
 
 replace this line with your code lines for the bump
 

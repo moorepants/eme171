@@ -75,60 +75,6 @@ trajectories</li>
 <li>create a report with textual explanations and plots of the simulation</li>
 </ul>
 </div>
-<div class="section" id="grading-rubric">
-<h2>Grading Rubric</h2>
-<p>Points will be added to 40 to get your score from 40-100.</p>
-<p>Functions (20 points)</p>
-<ul class="simple">
-<li>[20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
-and take correct inputs and produce the expected outputs.</li>
-<li>[10] Most functions are present and mostly take correct inputs and produce
-the expected outputs</li>
-<li>[0] No functions are present.</li>
-</ul>
-<p>Main Script (10 points)</p>
-<ul class="simple">
-<li>[10] Constant parameters only defined once in main script(s); Integration produces
-the correct state, input, and output trajectories; Good choices in number of
-time steps and resolution are chosen</li>
-<li>[5] Parameters are defined in multiple places; Integration produces some
-correct state, input, and output trajectories; Poor choices in number of time
-steps and resolution are chosen</li>
-<li>[0] Constants defined redundantly; Integration produces incorrect
-trajectories; Poor choices in time duration and steps</li>
-</ul>
-<p>Explanations (10 points)</p>
-<ul class="simple">
-<li>[10] Explanation of no damping is correct and well explained; Explanation of
-second road input behavior correctly describes results; Plots of appropriate
-variables are used in the explanations</li>
-<li>[5] Explanation of no damping is somewhat correct and reasonably explained;
-Explanation of second road input behavior somewhat correctly describes
-results; Plots of appropriate variables are used in the explanations, but
-some are missing</li>
-<li>[0] Explanation of no damping is incorrect and poorly explained; Explanation
-of second road input behavior incorrectly describes results</li>
-</ul>
-<p>Report and Code Formatting (10 points)</p>
-<ul class="simple">
-<li>[10] All axes labeled with units, legible font sizes, informative captions;
-Functions are documented with docstrings which fully explain the inputs and
-outputs; Professional, very legible, quality writing; All report format
-requirements met</li>
-<li>[5] Some axes labeled with units, mostly legible font sizes,
-less-than-informative captions; Functions have docstrings but the inputs and
-outputs are not fully explained; Semi-professional, somewhat legible, writing
-needs improvement; Most report format requirements met</li>
-<li>[0] Axes do not have labels, legible font sizes, or informative captions;
-Functions do not have docstrings; Report is not professionally written and
-formatted; Report format requirements are not met</li>
-</ul>
-<p>Attendance [10 points]</p>
-<ul class="simple">
-<li>[10] Attended at least one lab session in two weeks prior to due date.</li>
-<li>[0] Did not Attended at least one lab session in two weeks prior to due date.</li>
-</ul>
-</div>
 <div class="section" id="introduction">
 <h2>Introduction</h2>
 <p>This lab assignment deals with using engineering computation to numerically
@@ -295,11 +241,17 @@ system is defined as:</p>
 <p>Use these values to determine how long your simulation should last such that at
 least five oscillations occur or the oscillation magnitude is reduced to
 approximately 1/10 maximum. Also use them to choose a time resolution (spacing
-between time steps) such that you plot at least ten time points for the
+between time steps) such that you plot at least fifty time points for the
 shortest duration oscillation.</p>
 </div>
 <div class="section" id="deliverables">
 <h2>Deliverables</h2>
+<p>In your lab report, show your work for creating and evaluating the simulation
+model. Include any calculations for initial conditions, input equations,
+maximum bump height, time parameters, and any other parameters. Additionally,
+provide the indicated plots and answer the questions below. Append a copy of
+your Matlab/Octave code to the end of the report. The report should follow the
+<a class="reference external" href="https://moorepants.github.io/eme171/lab-report-guidelines-and-template.html">report template and guidelines</a>.</p>
 <p>Submit a report as a single PDF file to Canvas by the due date that addresses
 the following items:</p>
 <ol class="arabic">
@@ -340,47 +292,22 @@ distributed between -0.1 and 0.1 meters per second.</li>
 from it.</p>
 </li>
 </ol>
-<div class="section" id="notes-on-creating-a-quality-submission">
-<h3>Notes On Creating A Quality Submission</h3>
-<ul class="simple">
-<li>Include a title page with the lab assignment name &amp; number, course, quarter,
-year, date, your name, and student ID.</li>
-<li>Use both text and plots to explain your work and findings.</li>
-<li>Include your code in the report. Show each function and the main script.
-These should be monospaced font formatting and ideally syntax highlighted.
-You can use the publish function in Octave and Matlab to export code files to
-nice formats. See
-<a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html</a>
-for more information.</li>
-<li>Your code should be readable by someone else. Include comments, useful
-variable names, and follow good style recommendations, for example see this
-<a class="reference external" href="http://www.datatool.com/downloads/MatlabStyle2%20book.pdf">guide</a>. Imagine that you will come back to this in 10 years and you want to
-be able to understand it quickly.</li>
-<li>All functions should have a &quot;help&quot; description written in the standard style
-describing the inputs and outputs of the function. This <a class="reference external" href="https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template">template</a> is useful
-(click the function tab).</li>
-<li>All plots should have:<ul>
-<li>Axes labeled with units</li>
-<li>Axes limits set to show the important aspects of the graph</li>
-<li>Fonts large enough to read (&gt;= 8pt)</li>
-<li>A figure number, short title, and caption explaining what the figure is</li>
-<li>Legends to describe multiple lines on a single plot</li>
-</ul>
-</li>
-</ul>
-</div>
+<p><strong>Use the templates below for developing your code and fill in the missing
+pieces.</strong></p>
 </div>
 <div class="section" id="templates-for-coding">
 <h2>Templates for Coding</h2>
-<p>Provided below are templates to utilize in coding the first lab.  Your code should be identical to the templates, but it is your job to fill in the missing information.</p>
+<p>Provided below are templates to utilize in coding the first lab. Your code
+should be identical to the templates, but it is your job to fill in the missing
+information.</p>
 <div class="section" id="id1">
 <h3>Defining the State Derivative Function</h3>
-<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_rhs_with_input_template</span><span class="p">(</span>t, x, w, c<span class="p">)</span><span class="w"></span>
-<span class="c">% EVAL_RHS_WITH_INPUT_TEMPLATE - Returns the time derivative of the states,</span>
-<span class="c">% i.e.  evaluates the right hand side of the explicit ordinary differential</span>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_quarter_car_rhs</span><span class="p">(</span>t, x, w, c<span class="p">)</span><span class="w"></span>
+<span class="c">% EVAL_QUARTER_CAR_RHS - Returns the time derivative of the states, i.e.</span>
+<span class="c">% evaluates the right hand side of the explicit ordinary differential</span>
 <span class="c">% equations for the 1 DoF quarter car model.</span>
 <span class="c">%</span>
-<span class="c">% Syntax: xdot = eval_rhs_with_input_template(t, x, w, c)</span>
+<span class="c">% Syntax: xdot = eval_quarter_car_rhs(t, x, w, c)</span>
 <span class="c">%</span>
 <span class="c">% Inputs:</span>
 <span class="c">%   t - Scalar value of time, size 1x1.</span>
@@ -420,10 +347,10 @@ describing the inputs and outputs of the function. This <a class="reference exte
 </div>
 <div class="section" id="defining-the-input-function">
 <h3>Defining the Input Function</h3>
-<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>r <span class="p">=</span><span class="w"> </span><span class="nf">eval_input_template</span><span class="p">(</span>t, x, c<span class="p">)</span><span class="w"></span>
-<span class="c">% EVAL_INPUT_TEMPLATE - Returns the road bump velocity at any given time.</span>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>r <span class="p">=</span><span class="w"> </span><span class="nf">eval_triangular_bump</span><span class="p">(</span>t, x, c<span class="p">)</span><span class="w"></span>
+<span class="c">% EVAL_TRIANGULAR_BUMP - Returns the road bump velocity at any given time.</span>
 <span class="c">%</span>
-<span class="c">% Syntax: r = eval_input_template(t, x, c)</span>
+<span class="c">% Syntax: r = eval_triangular_bump(t, x, c)</span>
 <span class="c">%</span>
 <span class="c">% Inputs:</span>
 <span class="c">%   t - A scalar value of time, size 1x1.</span>
@@ -437,7 +364,7 @@ describing the inputs and outputs of the function. This <a class="reference exte
 <span class="n">A</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">A</span>
 
 <span class="c">% define a triangular road bump input by transcribing the input mathematical</span>
-<span class="c">% equation into equivalent code</span>
+<span class="c">% equation into equivalent code to calculate vin at any given time</span>
 
 <span class="n">replace </span><span class="s">this line with your code lines for the bump</span><span class="p"></span>
 
@@ -449,73 +376,133 @@ describing the inputs and outputs of the function. This <a class="reference exte
 </div>
 <div class="section" id="defining-the-output-function">
 <h3>Defining the Output Function</h3>
-<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_rhs_with_input_template</span><span class="p">(</span>t, x, w, c<span class="p">)</span><span class="w"></span>
-<span class="c">% EVAL_RHS_WITH_INPUT_TEMPLATE - Returns the time derivative of the states,</span>
-<span class="c">% i.e.  evaluates the right hand side of the explicit ordinary differential</span>
-<span class="c">% equations for the 1 DoF quarter car model.</span>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>z <span class="p">=</span><span class="w"> </span><span class="nf">eval_quarter_car_outputs</span><span class="p">(</span>t, xdot, x, r, c<span class="p">)</span><span class="w"></span>
+<span class="c">% EVAL_QUARTER_CAR_OUTPUTS - Returns the output vector at the specified</span>
+<span class="c">% time.</span>
 <span class="c">%</span>
-<span class="c">% Syntax: xdot = eval_rhs_with_input_template(t, x, w, c)</span>
+<span class="c">% Syntax: z = eval_quarter_car_outputs(t, xdot, x, r, c)</span>
 <span class="c">%</span>
 <span class="c">% Inputs:</span>
 <span class="c">%   t - Scalar value of time, size 1x1.</span>
-<span class="c">%   x - State vector at time t, size 3x1, [p, q, yin]</span>
-<span class="c">%   w - Anonymous function, w(t, x, p), that returns the input vector</span>
-<span class="c">%       at time t, size 1x1.</span>
+<span class="c">%   xdot - State derivative vector as time t, size 3x1, [pdot, xdot, ydot].</span>
+<span class="c">%   x - State vector at time t, size 3x1, representing sprung mass momentum,</span>
+<span class="c">%       spring deflection and road input displacement.</span>
+<span class="c">%   r - Input vector at time t, size 1x1, [vin].</span>
 <span class="c">%   c - Constant parameter structure with 4 items: K, B, M, A.</span>
 <span class="c">% Outputs:</span>
-<span class="c">%   xdot - Time derivative of the states at time t, size 3x1.</span>
+<span class="c">%   z - Output vector at time t, size 3x1, [Fspring, Fdamper, a].</span>
 
-<span class="c">% unpack the states into useful variable names</span>
-<span class="c">% replace the question marks with useful variable names</span>
-? <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-? <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-? <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="c">% unpack xdot and x as needed</span>
 
-<span class="c">% evaluate the input function</span>
-<span class="n">r</span> <span class="p">=</span> <span class="n">w</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="n">replace </span><span class="s">this line with your lines</span><span class="p"></span>
 
-<span class="c">% unpack the inputs into useful variable names</span>
-<span class="n">vin</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="c">% unpack the parameters into useful variable names</span>
+<span class="c">% unpack the parameters</span>
 <span class="n">m</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
 <span class="n">k</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">k</span><span class="p">;</span>
 <span class="n">b</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
 
-<span class="c">% calculate the derivatives of the state variables</span>
+<span class="c">% calculate the force applied to the spring</span>
 
-<span class="n">replace </span><span class="s">this line of code with your lines of code</span><span class="p"></span>
+<span class="n">replace </span><span class="s">this line with your line(s)</span><span class="p"></span>
 
-<span class="c">% pack the state derivatives into an mx1 vector</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">pdot</span><span class="p">;</span> <span class="n">qdot</span><span class="p">;</span> <span class="n">ydot</span><span class="p">];</span><span class="n"></span>
+<span class="c">% calculate the force applied to the damper</span>
+
+<span class="n">replace </span><span class="s">this line with your line(s)</span><span class="p"></span>
+
+<span class="c">% calculate the vertical acceleration of the mass</span>
+
+<span class="n">replace </span><span class="s">this line with your line(s)</span><span class="p"></span>
+
+<span class="c">% pack the outputs into a qx1 vector</span>
+<span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="n">Fspring</span><span class="p">;</span> <span class="n">Fdamper</span><span class="p">;</span> <span class="n">a</span><span class="p">];</span><span class="n"></span>
 
 <span class="n">end</span>
 </pre></div>
 </div>
 <div class="section" id="solving-the-integration-of-odes">
 <h3>Solving the Integration of ODEs</h3>
-<div class="highlight"><pre><span></span><span class="c">% integrate the ODEs as defined above</span>
-<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span> <span class="p">;</span> <span class="p">;</span> <span class="p">];</span>
-<span class="n">ts</span> <span class="p">=</span> <span class="p">;</span>
-<span class="n">p</span><span class="p">.</span><span class="n">m</span> <span class="p">=</span> <span class="p">;</span>
-<span class="n">p</span><span class="p">.</span><span class="n">k</span> <span class="p">=</span> <span class="p">;</span>
-<span class="n">p</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="p">;</span>
-<span class="n">p</span><span class="p">.</span><span class="n">amp</span> <span class="p">=</span> <span class="p">;</span>
-<span class="n">f_anon</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f_anon</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="c">% define the initial conditions</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span>?<span class="p">;</span> ?<span class="p">;</span> ?<span class="p">];</span>
 
-<span class="c">% to compute the outputs at each time, loop through time evaluating f(t, x,</span>
-<span class="c">% r, p) and then h(t, x&#39;, x, r, p)</span>
+<span class="c">% define a set of time values</span>
+<span class="n">ts</span> <span class="p">=</span> ?<span class="p">;</span>
+
+<span class="c">% set the numerical values for the constants</span>
+<span class="n">c</span><span class="p">.</span><span class="n">M</span> <span class="p">=</span> ?<span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">K</span> <span class="p">=</span> ?<span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">B</span> <span class="p">=</span> ?<span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">A</span> <span class="p">=</span> ?<span class="p">;</span>
+
+<span class="c">% integrate the differential equations</span>
+<span class="n">rhs</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_quarter_car_rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_triangular_bump</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
+
+<span class="c">% evaluate the outputs</span>
 <span class="n">zs</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% place to store outputs</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% place to store outputs</span>
 <span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
     <span class="c">% calculate x&#39; at the given time</span>
-    <span class="n">xdot</span> <span class="p">=</span> <span class="n">eval_rhs_with_input</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+    <span class="n">xdot</span> <span class="p">=</span> <span class="n">eval_quarter_car_rhs</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_triangular_bump</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
     <span class="c">% calculate the outputs that depend on x&#39; and store them</span>
-    <span class="n">zs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_output_with_state_derivatives</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xdot</span><span class="p">,</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_input</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span><span class="n"></span>
+    <span class="n">zs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_quarter_car_outputs</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xdot</span><span class="p">,</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_triangular_bump</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span><span class="n"></span>
 <span class="n">end</span>
+
+<span class="s">% write your code to make the plots below</span><span class="p"></span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="grading-rubric">
+<h2>Grading Rubric</h2>
+<p>Points will be added to 40 to get your score from 40-100.</p>
+<p>Functions (20 points)</p>
+<ul class="simple">
+<li>[20] All 5 functions (1 state derivative, 2 inputs, 2 outputs) are present
+and take correct inputs and produce the expected outputs.</li>
+<li>[10] Most functions are present and mostly take correct inputs and produce
+the expected outputs</li>
+<li>[0] No functions are present.</li>
+</ul>
+<p>Main Script (10 points)</p>
+<ul class="simple">
+<li>[10] Constant parameters only defined once in main script(s); Integration produces
+the correct state, input, and output trajectories; Good choices in number of
+time steps and resolution are chosen</li>
+<li>[5] Parameters are defined in multiple places; Integration produces some
+correct state, input, and output trajectories; Poor choices in number of time
+steps and resolution are chosen</li>
+<li>[0] Constants defined redundantly; Integration produces incorrect
+trajectories; Poor choices in time duration and steps</li>
+</ul>
+<p>Explanations (10 points)</p>
+<ul class="simple">
+<li>[10] Explanation of no damping is correct and well explained; Explanation of
+second road input behavior correctly describes results; Plots of appropriate
+variables are used in the explanations</li>
+<li>[5] Explanation of no damping is somewhat correct and reasonably explained;
+Explanation of second road input behavior somewhat correctly describes
+results; Plots of appropriate variables are used in the explanations, but
+some are missing</li>
+<li>[0] Explanation of no damping is incorrect and poorly explained; Explanation
+of second road input behavior incorrectly describes results</li>
+</ul>
+<p>Report and Code Formatting (10 points)</p>
+<ul class="simple">
+<li>[10] All axes labeled with units, legible font sizes, informative captions;
+Functions are documented with docstrings which fully explain the inputs and
+outputs; Professional, very legible, quality writing; All report format
+requirements met</li>
+<li>[5] Some axes labeled with units, mostly legible font sizes,
+less-than-informative captions; Functions have docstrings but the inputs and
+outputs are not fully explained; Semi-professional, somewhat legible, writing
+needs improvement; Most report format requirements met</li>
+<li>[0] Axes do not have labels, legible font sizes, or informative captions;
+Functions do not have docstrings; Report is not professionally written and
+formatted; Report format requirements are not met</li>
+</ul>
+<p>Attendance [10 points]</p>
+<ul class="simple">
+<li>[10] Attended at least one lab session in two weeks prior to due date.</li>
+<li>[0] Did not Attended at least one lab session in two weeks prior to due date.</li>
+</ul>
 </div>
 <script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
