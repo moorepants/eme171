@@ -74,7 +74,7 @@ Office Hours and Labs
 +======================+==========================+
 | Office Hours         | Office Hours             |
 |                      |                          |
-| - Bainer 2095        | - Location: TBA          |
+| - Bainer 2095        | - Location: TB207 Rm 112 |
 | - W 1:10-2:00 PM     | - M 1:10-2:00 PM         |
 | - R 3:10-4:00 PM     |                          |
 |                      | Labs                     |
