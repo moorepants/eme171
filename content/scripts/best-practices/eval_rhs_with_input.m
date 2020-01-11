@@ -23,8 +23,7 @@ omega = x(2);
 r = w(t, x, p);
 
 % unpack the inputs into useful variable names
-tau = r;
-% if more than one input, then tau = r(1);, ...
+tau = r(1);
 
 % unpack the parameters into useful variable names
 m = p.m;
