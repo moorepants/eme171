@@ -88,8 +88,8 @@ Office Hours and Labs
 If it is impossible to make office hours, schedule an appointment with Jason by
 checking his `work calendar`_ and select a free time between 8:00 AM and 6:30
 PM Monday-Friday. Send him an email requesting an appointment at the suggested
-meeting times at least a day in advance. You can also email Kevin and request a
-meeting.
+meeting times at least a day in advance. You can also email the teaching
+assistant and request a meeting.
 
 .. _work calendar: http://www.moorepants.info/work-calendar.html
 
