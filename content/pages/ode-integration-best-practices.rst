@@ -416,7 +416,7 @@ describe these computations:
    x_p = l \sin(\theta) \\
    y_p = l - l \cos(\theta) \\
    E_k = ml^2\omega/2 \\
-   E_p = mghy_p
+   E_p = mgy_p
 
 Create a new function file, |eval_output|_, that encodes these mathematical
 operations.
