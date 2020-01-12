@@ -45,7 +45,7 @@ Figure 1 provides a hydraulic schematic of a reservoir that feeds a
 hydroelectric turbine. There are two surge tanks that store and release
 hydraulic energy to help provide a steady flow through the turbine.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-05-fig-01.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-05-fig-01.png
    :width: 800px
 
    **Figure 1** Schematic of the hydroelectric dam with reservoir and surge
@@ -59,7 +59,7 @@ resistances.
 
 The bond graph for this system is shown below in figure 2.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-05-fig-02.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-05-fig-02.png
    :width: 800px
 
    **Figure 2** Bond graph of the dam system.
@@ -73,7 +73,7 @@ constitutive law:
 
 which is shown graphically in Figure 3.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-05-fig-03.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-05-fig-03.png
    :width: 400px
 
    **Figure 3** Non-linear resistance constitutive law.

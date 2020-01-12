@@ -50,7 +50,7 @@ and the ground represents the stiffness of the tire. Power flowing from the
 system to the ground is considered positive (note the direction in which
 positive velocity is defined).
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-02-fig-01.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-02-fig-01.png
    :width: 600px
    :align: center
 

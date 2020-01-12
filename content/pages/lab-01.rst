@@ -59,7 +59,7 @@ course. For now, we provide it for reference but with no explanations beyond
 the fact that you can see some of the same parameters in the mechanical
 schematic that you do in the bond graph.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-01-fig-01.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-01-fig-01.png
    :width: 600px
 
    **Figure 1**: Mechanical Schematic of Quarter Car Model (left) and

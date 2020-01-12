@@ -31,7 +31,7 @@ target for analog simulation [1]_. The intent of this lab is to build and
 simulate a model that accurately portrays the electrical and mechanical
 characteristics of this machine and its interaction with a test piece.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-04-fig-01.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-04-fig-01.png
    :width: 800px
 
    **Figure 1** Picture of the LOS model V-203 electrodynamic shaker.
@@ -54,7 +54,7 @@ velocity and the magnetic constant :math:`k_1`. The shaker is driven by a
 voltage :math:`e_{\textrm{in}}` from a power amplifier. The test piece mass
 structure support springs, :math:`K_s`, have negligible damping.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-04-fig-02.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-04-fig-02.png
    :width: 800px
 
    **Figure 2** Schematic of the electrodynamic shaker (left side) connected to
@@ -68,7 +68,7 @@ reverse the direction of the half arrow on the :math:`F_r` bond. Turn in a copy
 of your bond graph including power convention and causal strokes as one of the
 deliverables.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-04-fig-03.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-04-fig-03.png
    :width: 600px
 
    **Figure 3** Schematic of the shaker showing key functional elements.

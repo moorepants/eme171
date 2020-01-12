@@ -36,7 +36,7 @@ The schematic for the model is shown in Figure 1. There is a primary mass and
 inertia that represents the rider and the motorcycle lumped as a single rigid
 body supported by front and rear suspension systems and tires.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-01.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-03-fig-01.png
    :width: 800px
 
    **Figure 1** Motocross motorcycle pitch-heave model. In this schematic, the
@@ -62,7 +62,7 @@ With a small angle assumption in the rotation, this simplification can be used:
 System Equations
 ----------------
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-02.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-03-fig-02.png
    :width: 800px
 
    **Figure 2** System equations
@@ -199,7 +199,7 @@ step size and the finish time. To determine these, you will need to estimate
 the system natural frequencies. Use Figure 3 to approximate the range of
 natural frequencies for this system.
 
-.. figure:: https://objects-us-east-1.dream.io/eme171/2019f/lab-03-fig-03.png
+.. figure:: https://objects-us-east-1.dream.io/eme171/2020w/lab-03-fig-03.png
    :width: 800px
 
    **Figure 3** Three independent systems that you can calculate natural
