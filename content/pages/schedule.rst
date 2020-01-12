@@ -13,7 +13,10 @@ after each lecture. **Check the schedule periodically for changes.**
 #  Date        Topic                                 Materials                  Assignment Due
 == ==========  ====================================  =========================  ===============
 01 T-Jan-07    Introduction                          - Read 1.1-1.6
-02 R-Jan-09    Introduction
+                                                     - `Slides 01`_
+                                                     - `Notes 01`_
+                                                     - `Script 01`_
+02 R-Jan-09    Introduction                          - `Notes 02`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-13                                                                     HW #1: 1.6, 1.7, 1.8
 03 T-Jan-14    Multiport Systems                     - Read 2.1-2.4, 3.1
@@ -63,7 +66,7 @@ NA M-Mar-16                                                                     
 NA W-Mar-18    Final Exam: 3:30 PM
 == ==========  ====================================  =========================  ===============
 
-.. _Slides 01: https://objects-us-east-1.dream.io/eme171/2020w/slides-l01.pdf
+.. _Slides 01: https://objects-us-east-1.dream.io/eme171/2020w/eme171-slides-l01.pdf
 
 .. _Notes 01: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l01.pdf
 .. _Notes 02: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l02.pdf
@@ -86,5 +89,5 @@ NA W-Mar-18    Final Exam: 3:30 PM
 .. _Notes 19: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l19.pdf
 .. _Notes 20: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l20.pdf
 
-.. _Script 02: {filename}/pages/ebike-simulation.rst
+.. _Script 01: {filename}/pages/ebike-simulation.rst
 .. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
