@@ -11,7 +11,7 @@ function r = eval_triangular_bump(t, x, c)
 % Outputs:
 %   r - Input vector at time t, size 1x1, [vin].
 
-% unpack parameter structure p
+% unpack parameter structure c
 A = c.A
 
 % define a triangular road bump input by transcribing the input mathematical
