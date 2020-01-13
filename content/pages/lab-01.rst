@@ -30,7 +30,7 @@ forward in the course you will apply this method to other problems.
 
 On the course website we have created a `guide that explains how to create a
 working simulation of a simple torque driven pendulum system
-<{filename}/pages/ode-interation-best-practices.rst>`_. Using this guide, your
+<{filename}/pages/ode-integration-best-practices.rst>`_. Using this guide, your
 goal for this lab is to apply the same methods to a different example problem
 described below.
 
