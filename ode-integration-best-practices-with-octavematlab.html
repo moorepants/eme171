@@ -195,7 +195,7 @@ print this documentation at the Octave/Matlab command prompt.</p>
 <span class="n">end</span>
 </pre></div>
 <div class="alert alert-info topic">
-<p class="topic-title first">Matlab/Octave Structures</p>
+<p class="topic-title">Matlab/Octave Structures</p>
 <p>Octave/Matlab have a data type called a &quot;structure&quot; (similar to a C
 structure). The simplest use of a structure is a key-value pair mapping. To
 create a structure with a single key value pair assign a value to the
@@ -301,7 +301,7 @@ one of the available Octave/Matlab integrators or one of your own design:</p>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">)</span>
 </pre></div>
 <div class="alert alert-warning topic">
-<p class="topic-title first">Only define numbers once!</p>
+<p class="topic-title">Only define numbers once!</p>
 <p>Note that the constant parameters are only defined in this file. This is on
 purpose. If you define numerical values redundantly in multiple files and
 functions you significantly increase your chances of having an erroroneous
@@ -372,7 +372,7 @@ function, the following code fails to compute:</p>
 <span class="go">    @&lt;anonymous&gt; at line 1 column 22</span>
 </pre></div>
 <div class="alert alert-warning topic">
-<p class="topic-title first">Why not global variables?</p>
+<p class="topic-title">Why not global variables?</p>
 <p>It is possible to use global variables to simultaneously make the constant
 parameters available to both your primary script file and the file that
 defines your state derivative function. This works, but it is best to avoid
@@ -385,7 +385,7 @@ specific note on them:</p>
 <p><a class="reference external" href="https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F">https://matlab.fandom.com/wiki/FAQ#Are_global_variables_bad.3F</a></p>
 </div>
 <div class="alert alert-info topic">
-<p class="topic-title first">Computation speed of <tt class="docutils literal">eval_rhs</tt></p>
+<p class="topic-title">Computation speed of <tt class="docutils literal">eval_rhs</tt></p>
 <p>This function will be executed many times so it is important that this
 function only calculates the state derivatives and does nothing else. A
 simple ODE solver will evaluate the function <span class="math">\(n\)</span> times, where
@@ -686,7 +686,7 @@ outputs. The following file, <a class="reference external" href="https://moorepa
 <span class="n">end</span>
 </pre></div>
 <div class="alert alert-info topic">
-<p class="topic-title first">Vectorizing functions</p>
+<p class="topic-title">Vectorizing functions</p>
 <p>It is also worth noting that Octave/Matlab code can generally be written to
 avoid loops, like in the above example. Slight adjustments to the output
 function will allow batch calculations of the outputs, as shown below in
