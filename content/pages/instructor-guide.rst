@@ -4,16 +4,20 @@
 TA Duties
 =========
 
-- Run lab sessions [4 hrs/wk]
+- Run lab sessions (prep and lab) [4 hrs/wk]
 - Grade labs [2 hr/wk]
+- Office hours [1 hr/wk]
 - Grade homeworks [1 hr/wk]
 - Co-grade exams [1 hr/wk]
-- Instructor meeting [1 hr/wk]
-- Answer questions via electronic and in-person [1 hr/wk]
+- Instructor meeting [0.5-1 hr/wk]
+- Answer questions via electronic and in-person [0.5-1 hr/wk]
 
 General Notes
 -------------
 
+- Please review the `UCD TA's Gude to Effective Teaching
+  <https://cee.ucdavis.edu/sites/g/files/dgvnsk5371/files/files/event/TAGUIDE_2018.pdf>`_.
+  This will prepare you up with many pedagogical practices we will be using.
 - Please log weekly hours in a spreadsheet in the Google Drive directory. The
   primary instructor uses this to gage TA workload and for future planning
   purposes.
@@ -21,11 +25,12 @@ General Notes
   over the upcoming week's activities. This should be arranged during the first
   meeting of the quarter.
 - If you want to meet with Jason other than the instructor meeting, check his
-  `work calendar`_ for an open weekday slot and send me a request via email.
+  `work calendar`_ for an open weekday slot and send me a request via email
+  with a proposed time.
 - Jason primarily uses the Linux operating system and strives to use open
   source and free tools for most of his work. He prefers not to have to deal
-  with any Microsoft Office Suite or other proprietary file types. Please avoid
-  these and choose LibreOffice for Google equivalents so that we can easily
+  with any Microsoft Office Suite file types, in particular. Please avoid these
+  and choose LibreOffice for Google equivalents so that we can easily
   collaborate and share.
 - You can checkout a copy of the textbook from the MAE office for loan for the
   quarter.
@@ -117,7 +122,8 @@ Grading
 
 - All assignments should have a due time of 11:59pm on the due date, unless it
   needs to be done for class prep, i.e. due time is then the start of class.
-- Assignments should be graded and returned within 1 week of their due date.
+- Assignments should be graded and returned within 1 week of their due date, in
+  general.
 - All feedback on the submitted reports and documents should be given via the
   Speedgrader tool so that a digital record is kept of the embedded PDF
   comments, rubric scores, rubric comments, and assignment comments.
@@ -172,21 +178,19 @@ the deadline (the solution comes from the solution manual and latex-typed
 solutions but has to be cut to have ONLY those specific questions asked in the
 assignment). The TA is responsible for all these tasks.
 
-HW6: This is a custom problem. Make sure everyone attempts to derive the bond
-graph on their own for full credit. (bond graph of Lab 3, motocross)
-
 Midterm reflection
 ==================
 
-Please record 5 points for every student that turned in the midterm reflection
-on time. There is an assignment in canvas for this.
+TA should record 5 points for every student that turned in the midterm
+reflection on time. There is an assignment in canvas for this. Also review the
+reflections to help improve our instruction.
 
 Academic Integrity
 ==================
 
 HWs and Labs should have unique solutions and the TA has to make sure that the
 HWs are not copied from the solution manual by comparing them side-by-side.
-Prof. Moore’s rule is that they have to turn in a "unique" solution. This means
+Prof. Moore's rule is that they have to turn in a "unique" solution. This means
 no copying from manuals and no copying from other students.
 
 In case of finding potential cheating on HW/Labs: 1. List each HW that looks
@@ -214,7 +218,8 @@ Here is how I'd like things to flow each week:
   comes up.
 - We meet and discuss the plans, making action items.
 - All action items that would happen each year should end up in the instructor
-  guide so that these are missed in the future. The Lead TA should add these.
+  guide so that these are missed in the future. The Lead TA should add these to
+  the guide as we go along.
 - All action items that need tracking, further discussion, etc, should end up
   in the Github issues page.
 - We execute that week's plan.
@@ -251,24 +256,18 @@ Week 0
 Week 1
 ------
 
-- [TA] Send out whenisgood.net poll for lab/OH times, due date Friday.
-- [TA] Select three 1 hour lab periods that are at optimal times, report how
-  many students are unlikely to make those times and discuss with Jason. Need
-  to book the CAE lab for these. This should be announced the day lab 1 is
-  released, if possible.
 - [TA] Review Lab 1 assignment, make any edits/updates.
 - [Instructor] Review Lab 1 assignment, make any edits/updates, and post by Friday.
+- [TA] Review the ODE best practices and prepare to teach it during the lab
+  sessions.
+- [TA] Hold lab sessions about Lab 1.
 
 Week 2
 ------
 
 - [TA] Post solutions to HW 1 the day after submission.
 - [TA] Grade homework 1 within a week of submission.
-- [TA] Make an announcement on Canvas with the selected lab times and update
-  the website to reflect these times (early in week as possible).
-- [TA] Review the ODE best practices and prepare to teach it during the lab
-  sessions.
-- [TA] Hold lab sessions.
+- [TA] Hold lab sessions about Lab 1.
 
 Week 3
 ------
@@ -279,7 +278,7 @@ Week 3
   lab 2 is released.
 - [TA] Review Lab 2 assignment, make any edits/updates.
 - [Instructor] Review Lab 2 assignment, make any edits/updates, and post by Friday.
-- [TA] Hold lab sessions.
+- [TA] Hold lab sessions about Lab 1 (or extra Matlab/Octave content).
 
 Week 4
 ------
@@ -304,6 +303,8 @@ Week 5
 - [TA] Grade lab 2 within a week of submission.
 - [TA] Answer questions for midterm
 - [TA] Hold lab sessions.
+- [TA] Make arrangements for proctoring exams for students with accommodating
+  needs.
 - [Instructor] Review HW 5 and adjust if needed.
 - [Instructor] Make the midterm.
 
@@ -340,9 +341,9 @@ Week 8
 Week 9
 ------
 
-- [TA] Grade Lab 4
-- [TA] Grade HW 8
 - [TA] Post solutions to HW 8
+- [TA] Grade HW 8
+- [TA] Grade Lab 4
 - [TA] Post solutions to Lab 3 and 4
 - [TA] Hold lab sessions.
 
@@ -358,3 +359,6 @@ Week 10
 
 Week 11
 -------
+
+- [Instructor] Make exam.
+- [All] Grade exam.
