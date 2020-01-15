@@ -229,3 +229,10 @@ The primary instructor should be informed of any learning accommodations at
 least 1 full week before the desired accommodation is needed. I expect students
 to contact me to discuss any special arrangements with 1 week time to make and
 agree on the arrangements.
+
+Student Campus Resources
+========================
+
+This is a helpful page for students' frequently asked questions:
+
+https://ebeler.faculty.ucdavis.edu/resources/faq-student-resources/
