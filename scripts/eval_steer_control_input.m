@@ -6,11 +6,10 @@ theta = x(2);
 
 % unpack the control gains
 kp = p.kp;
-kd = p.kd;
 
 % calculate the inputs
 beta = kp*omega;
-delta = kp*theta + kd*omega;
+delta = kp*theta;
 
 % pack up the inputs
 r = [beta; delta];
