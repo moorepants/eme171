@@ -21,7 +21,7 @@ after each lecture. **Check the schedule periodically for changes.**
 NA M-Jan-13                                                                     HW #1: 1.6, 1.7, 1.8
 03 T-Jan-14    Multiport Systems                     - Read 2.1-2.4, 3.1
                                                      - `Notes 03`_
-04 R-Jan-16    Multiport Systems
+04 R-Jan-16    Multiport Systems                     - `Notes 04`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-20    Martin Luther King Jr. Holiday
 05 T-Jan-21    Numerical Simulation                                             HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
