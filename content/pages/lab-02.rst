@@ -226,8 +226,9 @@ and why.
 Deliverables
 ============
 
-Submit a report as a single PDF file to Canvas by the due date that addresses
-the following items:
+Submit a report as a single PDF file per group to Canvas by the due date that
+addresses the following items. The report should follow the `report template
+and guidelines <{filename}/pages/report-template.rst>`_.
 
 1. Create a function defined in an m-file that evaluates the right hand side of
    the ODEs, i.e. evaluates the state derivatives. See `Defining the State
@@ -254,49 +255,6 @@ the following items:
 .. _Outputs Other Than the States: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-other-than-the-states
 .. _Outputs Involving State Derivatives: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#outputs-involving-state-derivatives
 .. _Integrating the State Equations: https://moorepants.github.io/eme171/ode-integration-best-practices-with-octavematlab.html#integrating-the-equations
-
-Report Guidelines
-=================
-
-- Submit one report per group.
-- The report must be a single PDf file.
-- Include a title page with the lab assignment name & number, course, quarter,
-  year, date, your names, and student IDs.
-- Use both text and plots to explain your work and findings. Write the report
-  such that a reader can understand the topic given only your document. All
-  results should be explained with text (complete sentences and paragraphs)
-  interwoven among the figures that you present.
-- All plots should have:
-
-   - Axes labeled with units
-   - Axes limits set to show the important aspects of the graph
-   - Fonts large enough to read (>= 8pt)
-   - A figure number, short title, and caption explaining what the figure is
-   - Legends to describe multiple lines on a single plot
-
-- Grammar, spelling, conciseness, structure, organization, and formatting will
-  also be assessed.
-- Constant parameters and time-varying variables (inputs, states, outputs)
-  should be identified with descriptive text, a variable name, and units.
-- There should be a section describing the contributions of each team member to
-  work done to complete the assignment.
-- Include your code in the report in an appendix.
-
-   - Show each function and the main script. These should be monospaced font
-     formatting and ideally syntax highlighted. You can use the publish
-     function in Octave and Matlab to export code files to nice formats. See
-     https://www.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html
-     for more information.
-   - Your code should be readable by someone else. Include comments, useful
-     variable names, and follow good style recommendations, for example see
-     this guide_. Imagine that you will come back to this in 10 years and you
-     want to be able to understand it quickly.
-   - All functions should have a "help" description written in the standard
-     style describing the inputs and outputs of the function. This template_ is
-     useful (click the function tab).
-
-.. _guide: http://www.datatool.com/downloads/MatlabStyle2%20book.pdf
-.. _template: https://www.mathworks.com/matlabcentral/fileexchange/4908-m-file-header-template
 
 Assessment Rubric
 =================
