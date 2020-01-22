@@ -22,11 +22,13 @@ NA M-Jan-13                                                                     
 03 T-Jan-14    Multiport Systems                     - Read 2.1-2.4, 3.1
                                                      - `Notes 03`_
 04 R-Jan-16    Multiport Systems                     - `Notes 04`_
+                                                     - `Script 04`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-20    Martin Luther King Jr. Holiday
-05 T-Jan-21    Numerical Simulation                                             HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
-06 R-Jan-23    - Causality of Basic Components       - Read 3.2-3.6
-               - System Models: Electrical
+05 T-Jan-21    - Numerical Simulation                - `Notes 05`_              HW #2: 2.1, 2.2, 2.4, 2.5, 2.12
+               - Causality of Basic Components       - `Script 04`_
+06 R-Jan-23    - Causality of Basic Components       - Read 3.2-3.6, 4.1
+               - System Models: Electrical           - `Notes 06`_
 NA F-Jan-24                                                                     Lab 1
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-27                                                                     HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
@@ -91,4 +93,4 @@ NA W-Mar-18    Final Exam: 3:30 PM
 .. _Notes 20: https://objects-us-east-1.dream.io/eme171/2020w/eme171-l20.pdf
 
 .. _Script 01: {filename}/pages/ebike-simulation.rst
-.. _Script 07: {filename}/pages/bicycle-balance-simulation.rst
+.. _Script 04: {filename}/pages/bicycle-balance-simulation.rst
