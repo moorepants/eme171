@@ -206,7 +206,7 @@ this form:
 
 You can figure out the time it takes to decay a particular percentage from this
 equation. Popular times to check are "time to half" or calculating the time
-constant :math:`tau`, which is the time it takes to decrease 63%. The time
+constant :math:`\tau`, which is the time it takes to decrease 63%. The time
 constant is defined as:
 
 .. math::
