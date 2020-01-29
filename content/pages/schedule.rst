@@ -33,10 +33,11 @@ NA F-Jan-24                                                                     
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Jan-27                                                                     HW #3: 3.1, 2, 4, 6, 7, 9, 15, 16, 17
 07 T-Jan-28    System Models: Electrical             - Read 4.1
-08 R-Jan-30    System Models: Mechanical
+                                                     - `Notes 07`_
+08 R-Jan-30    System Models: Mechanical             - Read 4.2
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-03                                                                     HW #4: 4.1, 4.2, 4.3, 4.4
-09 T-Feb-04    System Models: Mechanical             - Read 4.2
+09 T-Feb-04    System Models: Mechanical
 10 R-Feb-06    System Models: Mechanical
 NA F-Feb-07                                                                     Lab 2
 -- ----------  ------------------------------------  -------------------------  ---------------
