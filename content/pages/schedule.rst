@@ -35,10 +35,12 @@ NA M-Jan-27                                                                     
 07 T-Jan-28    System Models: Electrical             - Read 4.1
                                                      - `Notes 07`_
 08 R-Jan-30    System Models: Mechanical             - Read 4.2
+                                                     - `Notes 08`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-03                                                                     HW #4: 4.1, 4.2, 4.3, 4.4
 09 T-Feb-04    System Models: Mechanical
-10 R-Feb-06    System Models: Mechanical
+10 R-Feb-06    - System Models: Mechanical
+               - Midterm review
 NA F-Feb-07                                                                     Lab 2
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-10                                                                     HW #5: 4.5, 4.16
