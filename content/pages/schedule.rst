@@ -39,22 +39,22 @@ NA M-Jan-27                                                                     
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-03                                                                     HW #4: 4.1, 4.2, 4.3, 4.4
 09 T-Feb-04    System Models: Mechanical             - `Notes 09`_
-10 R-Feb-06    - System Models: Mechanical
+10 R-Feb-06    - System Models: Mechanical           - `Notes 10`_
                - Midterm review
 NA F-Feb-07                                                                     Lab 2
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA U-Feb-09                                                                     HW #5: 4.5, 4.16
 11 T-Feb-11    Midterm
-12 R-Feb-13    System Models: Hydraulic              - Read 4.3-4.4
+12 R-Feb-13    System Models: Mechanical
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-17    President's Day Holiday
-13 T-Feb-18    System Models: Hydraulic                                         HW #6: 4.22, 4.23, 4.24
-14 R-Feb-20    State Space Equations                 - Read 5.1-5.3
+13 T-Feb-18    System Models: Hydraulic              - Read 4.3-4.4             HW #6: 4.22, 4.23, 4.24
+14 R-Feb-20    System Models: Hydraulic
 NA F-Feb-21                                                                     Lab 3
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb 24                                                                     HW #7: 4.8, 4.11, 4.21, 4.30
-15 T-Feb-25    State Space Equations                 - Read 5.4-5.6
-16 R-Feb-27    State Space Equation
+15 T-Feb-25    State Space Equations                 - Read 5.1-5.3
+16 R-Feb-27    State Space Equations                 - Read 5.4-5.6
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-02                                                                     HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
 17 T-Mar-03    - State Space Equations
