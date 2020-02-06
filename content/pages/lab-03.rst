@@ -92,7 +92,7 @@ Constant Parameters
 
 ==================== ============================================= ======== =======================
 Symbol               Description                                   Value    Units
-:math:`v_c`          Cycle forward velocity                        10       m/s
+:math:`v_c`          Motorcycle forward velocity                   10       m/s
 :math:`L_{cg}`       Center of gravity distance (standard config.) 0.9      m
 :math:`L_{cg}`       Center of gravity distance (forward config.)  0.7      m
 :math:`m_{cr}`       Mass of cycle and rider                       300      kg

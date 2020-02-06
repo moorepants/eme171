@@ -23,7 +23,7 @@ Labs
 - `Lab Report Guidelines and Template <{filename}/pages/report-template.rst>`_
 - `Lab 1: Introduction to simulation <{filename}/pages/lab-01.rst>`_
 - `Lab 2: Two DoF Quarter <{filename}/pages/lab-02.rst>`_
-- Lab 3: Motocross Model
+- `Lab 3: Motocross Model <{filename}/pages/lab-03.rst>`_
 - Lab 4: Vibration Shaker
 - Lab 5: The Drowning of Sacramento
 
