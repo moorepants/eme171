@@ -45,7 +45,7 @@ NA F-Feb-07                                                                     
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA U-Feb-09                                                                     HW #5: 4.5, 4.16
 11 T-Feb-11    Midterm
-12 R-Feb-13    System Models: Mechanical
+12 R-Feb-13    System Models: Mechanical             - `Notes 12`_
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Feb-17    President's Day Holiday
 13 T-Feb-18    System Models: Hydraulic              - Read 4.3-4.4             HW #6: 4.22, 4.23, 4.24
