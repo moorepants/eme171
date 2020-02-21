@@ -116,8 +116,8 @@ know:
   voltage-velocity proportionality coefficient
 - :math:`k_2 = 0.8416 \frac{lb}{A}`: shaker force-current proportionality coefficient
 - :math:`X_{\textrm{lim}} = \pm 100 \textrm{mm}`: maximum and minimum shaker stroke
-- :math:`\ddot{X}_{\textrm{lim}}=\pm 135 \textrm{g}`: maximum shaker acceleration
-- :math:`F_{\textrm{lim}}=\pm 4.4 \textrm{lb}`: maximum shaker force (use
+- :math:`\ddot{X}_{\textrm{lim}}=\pm 135 \textrm{g}`: maximum and minimum shaker acceleration
+- :math:`F_{\textrm{lim}}=\pm 4.4 \textrm{lb}`: maximum and minimum shaker force
 
 Buy looking only at the test piece with the shaker is disconnected via the
 coupling spring, compute a spring constant for the test piece support springs
