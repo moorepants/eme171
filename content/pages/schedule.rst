@@ -58,17 +58,17 @@ NA M-Feb 24                                                                     
 15 T-Feb-25    State Space Equations                 - Read 5.1-5.3
                                                      - `Notes 15`_
 16 R-Feb-27    State Space Equations                 - Read 5.4-5.6
+                                                     - `Notes 16`_
 -- ----------  ------------------------------------  -------------------------  ---------------
-NA M-Mar-02                                                                     HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
-17 T-Mar-03    - State Space Equations
-18 R-Mar-05    - Algebraic Loops
+17 T-Mar-03    - Algebraic Loops
                - Derivative causality
+NA W-Mar-04                                                                     HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
+18 R-Mar-05    - Linear Systems                      - Read 6.1-6.3
 NA F-Mar-06                                                                     Lab 4
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-09
-19 T-Mar-10    - Linear Systems                      - Read 6.1-6.3
-20 R-Mar-12    - Linear Systems                      - Read 6.4-6.7
-               - Review
+19 T-Mar-10    - Linear Systems                      - Read 6.4-6.7
+20 R-Mar-12    - Review
 NA F-Mar-13                                                                     HW #9: 5.17, 5.18, 6.2, 6.3, 6.20
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-16                                                                     Lab 5
