@@ -104,20 +104,20 @@ some useful numerical values garnered from analyzing it extensively for the
 Electrodynamic Shaker Fundamentals article mentioned above. In particular, you
 know:
 
-- :math:`M_s = 0.7\textrm{kg}`: mass of the test piece
-- :math:`M=178.04\times10^{-6} \frac{\textrm{lb sec}^2}{\textrm{in}}`: shaker
+- :math:`M_s = 0.7\textrm{ kg}`: mass of the test piece
+- :math:`M=178.04\times10^{-6} \frac{\textrm{lb s}^2}{\textrm{in}}`: shaker
   table mass
-- :math:`K = 16.54 \textrm{lb/in}`: shaker internal stiffness
-- :math:`C = 39.09 \times 10^{-3} \frac{\textrm{lb sec}}{\textrm{in}}`: shaker
+- :math:`K = 16.54 \textrm{ lb/in}`: shaker internal stiffness
+- :math:`C = 39.09 \times 10^{-3} \frac{\textrm{lb s}}{\textrm{in}}`: shaker
   internal damping
 - :math:`R = 1.6 \Omega`: shaker coil resistance
 - :math:`L = 764 \mu\textrm{H}`: shaker coil inductance
-- :math:`k_1 = 95.10 \times 10^{-3} \frac{\textrm{Volt}}{\textrm{IPS}}`: shaker
+- :math:`k_1 = 95.10 \times 10^{-3} \frac{\textrm{V}}{ \textrm{in/s} }`: shaker
   voltage-velocity proportionality coefficient
 - :math:`k_2 = 0.8416 \frac{lb}{A}`: shaker force-current proportionality coefficient
-- :math:`X_{\textrm{lim}} = \pm 100 \textrm{mm}`: maximum and minimum shaker stroke
-- :math:`\ddot{X}_{\textrm{lim}}=\pm 135 \textrm{g}`: maximum and minimum shaker acceleration
-- :math:`F_{\textrm{lim}}=\pm 4.4 \textrm{lb}`: maximum and minimum shaker force
+- :math:`X_{\textrm{lim}} = \pm 100 \textrm{ mm}`: maximum and minimum shaker stroke
+- :math:`\ddot{X}_{\textrm{lim}}=\pm 135 \textrm{ g}`: maximum and minimum shaker acceleration
+- :math:`F_{\textrm{lim}}=\pm 4.4 \textrm{ lb}`: maximum and minimum shaker force
 
 Buy looking only at the test piece with the shaker is disconnected via the
 coupling spring, compute a spring constant for the test piece support springs
