@@ -60,7 +60,7 @@ NA M-Feb 24                                                                     
 16 R-Feb-27    State Space Equations                 - Read 5.4-5.6
                                                      - `Notes 16`_
 -- ----------  ------------------------------------  -------------------------  ---------------
-17 T-Mar-03    - Algebraic Loops
+17 T-Mar-03    - Algebraic Loops                     - `Notes 17`_
                - Derivative causality
 NA W-Mar-04                                                                     HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
 18 R-Mar-05    - Linear Systems                      - Read 6.1-6.3
