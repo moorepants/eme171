@@ -64,6 +64,7 @@ NA M-Feb 24                                                                     
                - Derivative causality
 NA W-Mar-04                                                                     HW #8: 5.1, 5.3, 5.4, 5.8, 5.11, 5.19
 18 R-Mar-05    - Linear Systems                      - Read 6.1-6.3
+                                                     - `Notes 18`_
 NA F-Mar-06                                                                     Lab 4
 -- ----------  ------------------------------------  -------------------------  ---------------
 NA M-Mar-09

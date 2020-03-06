@@ -21,17 +21,17 @@ Labs
 ====
 
 - `Lab Report Guidelines and Template <{filename}/pages/report-template.rst>`_
+- `ODE Integration Best Practices <{filename}/pages/ode-integration-best-practices.rst>`_
 - `Lab 1: Introduction to simulation <{filename}/pages/lab-01.rst>`_
 - `Lab 2: Two DoF Quarter <{filename}/pages/lab-02.rst>`_
 - `Lab 3: Motocross Model <{filename}/pages/lab-03.rst>`_
 - `Lab 4: Vibration Shaker <{filename}/pages/lab-04.rst>`_
-- Lab 5: The Drowning of Sacramento
+- `Lab 5: The Drowning of Sacramento <{filename}/pages/lab-05.rst>`_
 
 Scripts
 =======
 
 - `EBike Simulation <{filename}/pages/ebike-simulation.rst>`_
-- `ODE Integration Best Practices <{filename}/pages/ode-integration-best-practices.rst>`_
 - `Bicycle Balance Simulation <{filename}/pages/bicycle-balance-simulation.rst>`_
 
 Supplementary Materials
