@@ -335,10 +335,10 @@ information.</p>
 
 <span class="c">% calculate the derivatives of the state variables</span>
 
-<span class="n">replace </span><span class="s">this line of code with your lines of code</span><span class="p"></span>
+<span class="n">replace</span> <span class="s">this</span> <span class="s">line</span> <span class="s">of</span> <span class="s">code</span> <span class="s">with</span> <span class="s">your</span> <span class="s">lines</span> <span class="s">of</span> <span class="s">code</span>
 
 <span class="c">% pack the state derivatives into an mx1 vector</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">pdot</span><span class="p">;</span> <span class="n">qdot</span><span class="p">;</span> <span class="n">ydot</span><span class="p">];</span><span class="n"></span>
+<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">pdot</span><span class="p">;</span> <span class="n">qdot</span><span class="p">;</span> <span class="n">ydot</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -364,10 +364,10 @@ information.</p>
 <span class="c">% define a triangular road bump input by transcribing the input mathematical</span>
 <span class="c">% equation into equivalent code to calculate vin at any given time</span>
 
-<span class="n">replace </span><span class="s">this line with your code lines for the bump</span><span class="p"></span>
+<span class="n">replace</span> <span class="s">this</span> <span class="s">line</span> <span class="s">with</span> <span class="s">your</span> <span class="s">code</span> <span class="s">lines</span> <span class="s">for</span> <span class="s">the</span> <span class="s">bump</span>
 
 <span class="c">% pack the input into an 1x1 vector</span>
-<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">vin</span><span class="p">];</span><span class="n"></span>
+<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">vin</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -392,7 +392,7 @@ information.</p>
 
 <span class="c">% unpack xdot and x as needed</span>
 
-<span class="n">replace </span><span class="s">this line with your lines</span><span class="p"></span>
+<span class="n">replace</span> <span class="s">this</span> <span class="s">line</span> <span class="s">with</span> <span class="s">your</span> <span class="s">lines</span>
 
 <span class="c">% unpack the parameters</span>
 <span class="n">m</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
@@ -401,18 +401,18 @@ information.</p>
 
 <span class="c">% calculate the force applied to the spring</span>
 
-<span class="n">replace </span><span class="s">this line with your line(s)</span><span class="p"></span>
+<span class="n">replace</span> <span class="s">this</span> <span class="s">line</span> <span class="s">with</span> <span class="s">your</span> <span class="s">line(s)</span>
 
 <span class="c">% calculate the force applied to the damper</span>
 
-<span class="n">replace </span><span class="s">this line with your line(s)</span><span class="p"></span>
+<span class="n">replace</span> <span class="s">this</span> <span class="s">line</span> <span class="s">with</span> <span class="s">your</span> <span class="s">line(s)</span>
 
 <span class="c">% calculate the vertical acceleration of the mass</span>
 
-<span class="n">replace </span><span class="s">this line with your line(s)</span><span class="p"></span>
+<span class="n">replace</span> <span class="s">this</span> <span class="s">line</span> <span class="s">with</span> <span class="s">your</span> <span class="s">line(s)</span>
 
 <span class="c">% pack the outputs into a qx1 vector</span>
-<span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="n">Fspring</span><span class="p">;</span> <span class="n">Fdamper</span><span class="p">;</span> <span class="n">a</span><span class="p">];</span><span class="n"></span>
+<span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="n">Fspring</span><span class="p">;</span> <span class="n">Fdamper</span><span class="p">;</span> <span class="n">a</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -441,10 +441,10 @@ information.</p>
     <span class="c">% calculate x&#39; at the given time</span>
     <span class="n">xdot</span> <span class="p">=</span> <span class="n">eval_quarter_car_rhs</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_triangular_bump</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
     <span class="c">% calculate the outputs that depend on x&#39; and store them</span>
-    <span class="n">zs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_quarter_car_outputs</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xdot</span><span class="p">,</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_triangular_bump</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span><span class="n"></span>
+    <span class="n">zs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_quarter_car_outputs</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xdot</span><span class="p">,</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="p">@</span><span class="n">eval_triangular_bump</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
 <span class="n">end</span>
 
-<span class="s">% write your code to make the plots below</span><span class="p"></span>
+<span class="s">%</span> <span class="s">write</span> <span class="s">your</span> <span class="s">code</span> <span class="s">to</span> <span class="s">make</span> <span class="s">the</span> <span class="s">plots</span> <span class="s">below</span>
 </pre></div>
 </div>
 </div>

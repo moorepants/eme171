@@ -95,7 +95,7 @@ rate inputs are set to constants.</p>
 <span class="n">psidot</span> <span class="p">=</span> <span class="n">v</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="nb">tan</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
 
 <span class="c">% pack up the results</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span><span class="n"></span>
+<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -134,7 +134,7 @@ rate inputs are calculated by an input function.</p>
 <span class="n">psidot</span> <span class="p">=</span> <span class="n">v</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="nb">tan</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
 
 <span class="c">% pack up the results</span>
-<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span><span class="n"></span>
+<span class="n">xdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">omegadot</span><span class="p">;</span> <span class="n">thetadot</span><span class="p">;</span> <span class="n">psidot</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -157,7 +157,7 @@ the steer and steer rate inputs.</p>
 <span class="n">delta</span> <span class="p">=</span> <span class="n">kp</span><span class="o">*</span><span class="n">theta</span><span class="p">;</span>
 
 <span class="c">% pack up the inputs</span>
-<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="nb">beta</span><span class="p">;</span> <span class="n">delta</span><span class="p">];</span><span class="n"></span>
+<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="nb">beta</span><span class="p">;</span> <span class="n">delta</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -222,11 +222,11 @@ inputs from the controller.</p>
 <span class="n">legend</span><span class="p">(</span><span class="s">&#39;\omega [deg/s]&#39;</span><span class="p">,</span> <span class="s">&#39;\theta [deg]&#39;</span><span class="p">,</span> <span class="s">&#39;\psi [deg]&#39;</span><span class="p">)</span>
 
 <span class="c">% plot the input trajectories</span>
-<span class="n">rs</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span><span class="n"></span>
-<span class="n">for </span><span class="s">i = 1:length(ts)</span><span class="p"></span>
-    <span class="n">rs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_steer_control_input</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="n">p</span><span class="p">);</span><span class="n"></span>
+<span class="n">rs</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">for</span> <span class="s">i</span> <span class="s">=</span> <span class="s">1:length(ts)</span>
+    <span class="n">rs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_steer_control_input</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:),</span> <span class="n">p</span><span class="p">);</span>
 <span class="n">end</span>
-<span class="s">figure(3)</span><span class="p"></span>
+<span class="s">figure(3)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">rs</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="p">)</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [s]&#39;</span><span class="p">)</span>
 <span class="n">legend</span><span class="p">(</span><span class="s">&#39;\beta [deg/s]&#39;</span><span class="p">,</span> <span class="s">&#39;\delta [deg]&#39;</span><span class="p">)</span>

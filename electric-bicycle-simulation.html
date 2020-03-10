@@ -127,7 +127,7 @@ system.</p>
 <span class="n">edot</span> <span class="p">=</span> <span class="n">V</span><span class="o">*</span><span class="nb">i</span><span class="p">;</span>
 
 <span class="c">% pack the state derivatives in a vector</span>
-<span class="n">sdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">;</span> <span class="n">idot</span><span class="p">;</span> <span class="n">xdot</span><span class="p">;</span> <span class="n">edot</span><span class="p">];</span><span class="n"></span>
+<span class="n">sdot</span> <span class="p">=</span> <span class="p">[</span><span class="n">thetadot</span><span class="p">;</span> <span class="n">omegadot</span><span class="p">;</span> <span class="n">idot</span><span class="p">;</span> <span class="n">xdot</span><span class="p">;</span> <span class="n">edot</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
@@ -165,7 +165,7 @@ the state dependent road angle input.</p>
 <span class="n">slope</span> <span class="p">=</span> <span class="n">H</span><span class="o">*</span><span class="n">wr</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">wr</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>  <span class="c">% road slope at location x [m/m]</span>
 <span class="n">alpha</span> <span class="p">=</span> <span class="nb">atan</span><span class="p">(</span><span class="n">slope</span><span class="p">);</span>  <span class="c">% road angle at locatoin x [rad]</span>
 
-<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">voltage</span><span class="p">,</span> <span class="n">alpha</span><span class="p">];</span><span class="n"></span>
+<span class="n">r</span> <span class="p">=</span> <span class="p">[</span><span class="n">voltage</span><span class="p">,</span> <span class="n">alpha</span><span class="p">];</span>
 
 <span class="n">end</span>
 </pre></div>
