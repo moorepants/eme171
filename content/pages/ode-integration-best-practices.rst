@@ -6,6 +6,16 @@ ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
 advantages in computational efficiency [1]_.
 
+.. topic:: Warnings
+   :class: alert alert-warning
+
+   Warnings are in yellow boxes.
+
+.. topic:: Information
+   :class: alert alert-info
+
+   Extra information (asides) are in blue boxes.
+
 .. [1] Efficiency is not the primary purpose of this document. More terse
        optimized code can certainly be written to maximize computation speed if
        needed.
