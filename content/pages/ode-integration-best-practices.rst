@@ -6,15 +6,15 @@ ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
 advantages in computational efficiency [1]_.
 
-.. topic:: Warnings
-   :class: alert alert-warning
-
-   Warnings are in yellow boxes.
-
 .. topic:: Information
    :class: alert alert-info
 
    Extra information (asides) are in blue boxes.
+
+.. topic:: Warnings
+   :class: alert alert-warning
+
+   Warnings are in yellow boxes.
 
 .. [1] Efficiency is not the primary purpose of this document. More terse
        optimized code can certainly be written to maximize computation speed if
@@ -139,6 +139,7 @@ print this documentation at the Octave/Matlab command prompt.
    the same thing with different keys and values.
 
    .. code-block:: matlabsession
+
       >> p.b = 3
       p =
 
@@ -166,6 +167,20 @@ print this documentation at the Octave/Matlab command prompt.
       ans =  2
       >> p.a^2 + p.b^2 - p.c^2
       ans = -4.5729
+
+   You can change the values too:
+
+   .. code-block:: matlabsession
+
+      >> p.c = 5.1
+      >> p
+      p =
+
+        scalar structure containing the fields:
+
+          a =  2
+          b =  3
+          c =  5.1
 
    A structure is a convenient way to store the constant parameters of your
    system.
