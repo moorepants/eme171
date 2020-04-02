@@ -19,7 +19,7 @@
   <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
         href="https://moorepants.github.io/eme171/feeds/all.atom.xml">
   
-  <meta name="description" content="This document describes some recommended best practices for integrating ordinary differential equations using Octave or Matlab. Following these guidelines will result in well organized, modular, readable code and provide advantages in computational efficiency [1]. Warnings Warnings are in yellow boxes. Information Extra information (asides) are in blue boxes. [1]Efficiency …">
+  <meta name="description" content="This document describes some recommended best practices for integrating ordinary differential equations using Octave or Matlab. Following these guidelines will result in well organized, modular, readable code and provide advantages in computational efficiency [1]. Information Extra information (asides) are in blue boxes. Warnings Warnings are in yellow boxes. [1]Efficiency …">
   <script>
     (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -66,13 +66,13 @@
 ordinary differential equations using Octave or Matlab. Following these
 guidelines will result in well organized, modular, readable code and provide
 advantages in computational efficiency <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
-<div class="alert alert-warning topic">
-<p class="topic-title">Warnings</p>
-<p>Warnings are in yellow boxes.</p>
-</div>
 <div class="alert alert-info topic">
 <p class="topic-title">Information</p>
 <p>Extra information (asides) are in blue boxes.</p>
+</div>
+<div class="alert alert-warning topic">
+<p class="topic-title">Warnings</p>
+<p>Warnings are in yellow boxes.</p>
 </div>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -217,19 +217,22 @@ desired name of the structure followed by a <tt class="docutils literal">.</tt> 
 </pre></div>
 <p>More key value pairs can be added to the same structure by repeating what
 the same thing with different keys and values.</p>
-<div class="highlight"><pre><span></span>  scalar structure containing the fields:
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="mi">3</span>
+<span class="go">p =</span>
 
-    a =  2
-    b =  3
+<span class="go">  scalar structure containing the fields:</span>
 
-&gt;&gt; p.c = 4.192
-p =
+<span class="go">    a =  2</span>
+<span class="go">    b =  3</span>
 
-  scalar structure containing the fields:
+<span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="mf">4.192</span>
+<span class="go">p =</span>
 
-    a =  2
-    b =  3
-    c =  4.1920
+<span class="go">  scalar structure containing the fields:</span>
+
+<span class="go">    a =  2</span>
+<span class="go">    b =  3</span>
+<span class="go">    c =  4.1920</span>
 </pre></div>
 <p>Now you can access these values of the structure <tt class="docutils literal">p</tt> by appending <tt class="docutils literal">.</tt>
 and the key's variable name. The values in the structure can be used in
@@ -238,6 +241,17 @@ computations just like other variables.</p>
 <span class="go">ans =  2</span>
 <span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">a</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">p</span><span class="p">.</span><span class="n">b</span>^<span class="mi">2</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">c</span>^<span class="mi">2</span>
 <span class="go">ans = -4.5729</span>
+</pre></div>
+<p>You can change the values too:</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">p</span><span class="p">.</span><span class="n">c</span> <span class="p">=</span> <span class="mf">5.1</span>
+<span class="gp">&gt;&gt; </span><span class="n">p</span>
+<span class="go">p =</span>
+
+<span class="go">  scalar structure containing the fields:</span>
+
+<span class="go">    a =  2</span>
+<span class="go">    b =  3</span>
+<span class="go">    c =  5.1</span>
 </pre></div>
 <p>A structure is a convenient way to store the constant parameters of your
 system.</p>
@@ -318,16 +332,15 @@ output due to forgetting to change them all when you make edits.</p>
 <p>You may be wondering what the <tt class="docutils literal">&#64;</tt> symbol specifically means. This designates
 an <em>anonymous function</em> and is required by <tt class="docutils literal">ode45()</tt>. The following section
 explains what an anonymous function is along with why and how it can be used.</p>
-</div>
-<div class="section" id="anonymous-functions">
-<h3>Anonymous Functions</h3>
-<p>An anonymous function was used in the above script. The <tt class="docutils literal">&#64;</tt> symbol indicates
-this type of function. An anonymous function has three important features that
-a normal function (written in a unique m-file) doesn't have:</p>
+<div class="alert alert-info topic">
+<p class="topic-title">Anonymous Functions</p>
+<p>An anonymous function was used in the above script. The <tt class="docutils literal">&#64;</tt> symbol
+indicates this type of function. An anonymous function has three important
+features that a normal function (written in a unique m-file) doesn't have:</p>
 <ol class="arabic simple">
 <li>The function can be written in a single line (in fact, if your anonymous
-function is longer that a single line, 79 characters or so, you should move
-functionality into a normal function m-file).</li>
+function is longer that a single line, 79 characters or so, you should
+move functionality into a normal function m-file).</li>
 <li>The function can be stored in a variable that can be passed to other
 functions. For example, <tt class="docutils literal">ode45()</tt> requires that the right hand side
 function be passed in as a variable.</li>
@@ -339,7 +352,8 @@ available across a set of functions and scripts.</li>
 <p>Anonymous functions are declared with the following syntax:</p>
 <div class="highlight"><pre><span></span>var_name = @(arg1, arg2, arg3, ...) expression involving the args;
 </pre></div>
-<p>You can use anonymous functions to declare simple functions that fit on one line:</p>
+<p>You can use anonymous functions to declare simple functions that fit on one
+line:</p>
 <div class="highlight"><pre><span></span><span class="gp">&gt;&gt; </span><span class="n">my_func</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
 <span class="gp">&gt;&gt; </span><span class="n">my_func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">ans = 3</span>
@@ -379,6 +393,7 @@ function, the following code fails to compute:</p>
 <span class="go">error: called from</span>
 <span class="go">    @&lt;anonymous&gt; at line 1 column 22</span>
 </pre></div>
+</div>
 <div class="alert alert-warning topic">
 <p class="topic-title">Why not global variables?</p>
 <p>It is possible to use global variables to simultaneously make the constant
