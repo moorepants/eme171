@@ -206,6 +206,25 @@ system's increasing stiffness.
    **Figure 2**: Comparison of results for the nonlinear and linearized
    deflections.
 
+Contributions
+-------------
+
+It is expected that each student contributes equitably in all aspects of the
+solutions to the lab and project assignments. We expect to see that each
+student did model development, coding, writing, interpretation, etc. In this
+section, describe in several sentences what the contributions of each lab
+partner was for the assignment. Here is an example:
+
+   Laurel set up the first model for this report. Feng created the input and
+   forcing functions for the model. Following the first analysis, both team
+   members attempted to solve the free body diagrams and create equations of
+   motion to confirm the correct model. Both members coded their own individual
+   versions to compare elements that did and did not work. Each member
+   troubleshooted code for the other when they became stuck. Laurel wrote the
+   introduction and Feng wrote the conclusion. Laurel wrote the model
+   description and Feng drew the diagrams in that section. Both wrote the
+   results section.
+
 Code
 ----
 
