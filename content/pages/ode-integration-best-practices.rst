@@ -75,6 +75,11 @@ evaluates :math:`\mathbf{f}`.
 Defining the State Derivative Function
 --------------------------------------
 
+.. figure:: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Simple_gravity_pendulum.svg/256px-Simple_gravity_pendulum.svg.png
+   :align: center
+
+   Schematic of a simple pendulum.
+
 For example, the two explicit first order ordinary differential equations of a
 simple pendulum are:
 
