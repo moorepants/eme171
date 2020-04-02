@@ -207,7 +207,7 @@ Canvas Discussions
 
 Canvas discussions should be used for all questions about the class, homework,
 theory, projects, etc that is not of a private nature. This allows both the
-instructors and students to collectively answer questions for the whole classes
+instructors and students to collectively answer questions for the whole class's
 benefit.
 
 Email
