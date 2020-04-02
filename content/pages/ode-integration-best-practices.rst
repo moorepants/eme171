@@ -191,84 +191,85 @@ You may be wondering what the ``@`` symbol specifically means. This designates
 an *anonymous function* and is required by ``ode45()``. The following section
 explains what an anonymous function is along with why and how it can be used.
 
-Anonymous Functions
--------------------
+.. topic:: Anonymous Functions
+   :class: alert alert-info
 
-An anonymous function was used in the above script. The ``@`` symbol indicates
-this type of function. An anonymous function has three important features that
-a normal function (written in a unique m-file) doesn't have:
+   An anonymous function was used in the above script. The ``@`` symbol
+   indicates this type of function. An anonymous function has three important
+   features that a normal function (written in a unique m-file) doesn't have:
 
-1. The function can be written in a single line (in fact, if your anonymous
-   function is longer that a single line, 79 characters or so, you should move
-   functionality into a normal function m-file).
-2. The function can be stored in a variable that can be passed to other
-   functions. For example, ``ode45()`` requires that the right hand side
-   function be passed in as a variable.
-3. Variables declared in the same scope as and before the anonymous function
-   will be available in the anonymous function. This allows you to avoid the
-   use of global variables or other bad practices at making the values
-   available across a set of functions and scripts.
+   1. The function can be written in a single line (in fact, if your anonymous
+      function is longer that a single line, 79 characters or so, you should
+      move functionality into a normal function m-file).
+   2. The function can be stored in a variable that can be passed to other
+      functions. For example, ``ode45()`` requires that the right hand side
+      function be passed in as a variable.
+   3. Variables declared in the same scope as and before the anonymous function
+      will be available in the anonymous function. This allows you to avoid the
+      use of global variables or other bad practices at making the values
+      available across a set of functions and scripts.
 
-Anonymous functions are declared with the following syntax:
+   Anonymous functions are declared with the following syntax:
 
-.. code-block:: text
+   .. code-block:: text
 
-   var_name = @(arg1, arg2, arg3, ...) expression involving the args;
+      var_name = @(arg1, arg2, arg3, ...) expression involving the args;
 
-You can use anonymous functions to declare simple functions that fit on one line:
+   You can use anonymous functions to declare simple functions that fit on one
+   line:
 
-.. code-block:: matlabsession
+   .. code-block:: matlabsession
 
-   >> my_func = @(x, y) x + y;
-   >> my_func(1, 2)
-   ans = 3
+      >> my_func = @(x, y) x + y;
+      >> my_func(1, 2)
+      ans = 3
 
-use and alternative name for an existing function:
+   use and alternative name for an existing function:
 
-.. code-block:: matlabsession
+   .. code-block:: matlabsession
 
-   >> my_mean = @mean;
-   my_mean = @mean
-   >> my_mean([1, 2, 3])
-   ans =  2
+      >> my_mean = @mean;
+      my_mean = @mean
+      >> my_mean([1, 2, 3])
+      ans =  2
 
-use anonymous functions to customize the input to existing functions:
+   use anonymous functions to customize the input to existing functions:
 
-.. code-block:: matlabsession
+   .. code-block:: matlabsession
 
-   >> my_func = @(x, y, z) mean([x, y, z]);
-   >> my_func(1, 2, 3)
-   ans = 2
+      >> my_func = @(x, y, z) mean([x, y, z]);
+      >> my_func(1, 2, 3)
+      ans = 2
 
-and use anonymous functions to access values stored in variables in the
-script's scope:
+   and use anonymous functions to access values stored in variables in the
+   script's scope:
 
-.. code-block:: matlabsession
+   .. code-block:: matlabsession
 
-   >> b = 2;
-   >> c = 3;
-   >> my_func = @(x) mean([x, b, c]);
-   >> my_func(1)
-   ans = 2
+      >> b = 2;
+      >> c = 3;
+      >> my_func = @(x) mean([x, b, c]);
+      >> my_func(1)
+      ans = 2
 
-Note that you have to declare the variables before declaring the anonymous
-function, the following code fails to compute:
+   Note that you have to declare the variables before declaring the anonymous
+   function, the following code fails to compute:
 
-.. code-block:: matlabsession
+   .. code-block:: matlabsession
 
-   >> clear all;
-   >> a = 1;
-   >> my_func = @(x) mean([x, b, c]);
-   >> my_func(a)
-   error: 'b' undefined near line 1 column 30
-   error: called from
-       @<anonymous> at line 1 column 22
-   >> b = 2;
-   >> c = 3;
-   >> my_func(a)
-   error: 'b' undefined near line 1 column 30
-   error: called from
-       @<anonymous> at line 1 column 22
+      >> clear all;
+      >> a = 1;
+      >> my_func = @(x) mean([x, b, c]);
+      >> my_func(a)
+      error: 'b' undefined near line 1 column 30
+      error: called from
+          @<anonymous> at line 1 column 22
+      >> b = 2;
+      >> c = 3;
+      >> my_func(a)
+      error: 'b' undefined near line 1 column 30
+      error: called from
+          @<anonymous> at line 1 column 22
 
 .. topic:: Why not global variables?
    :class: alert alert-warning
