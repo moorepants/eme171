@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  Modeling, Simulation, and Control of a Segway | EME 171: Analysis, Simulation and Design of Mechatronic Systems
+</title>
+  <link rel="canonical" href="https://moorepants.github.io/eme171/test-this-thing-again/modeling-simulation-and-control-of-a-segway.html">
+
+
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/test-this-thing-again/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/test-this-thing-again/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/test-this-thing-again/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="https://moorepants.github.io/eme171/test-this-thing-again/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://moorepants.github.io/eme171/test-this-thing-again/feeds/all.atom.xml">
+  
+  <meta name="description" content="The essential states are: \(p_3 = L\dot{i}\): flux through the DC motor circuit \(p_7 = J_p \omega_p\): pitch angular momentum of the person + platform \(q_8 = \theta_p\): absolute pitch angle of the person + platform \(p_{17} = J_w \omega_w\): rolling angular momentum of the wheel and rotor assembly The inputs are: \(e …">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      a.async = 1;
+      a.src = g;
+      m = s.getElementsByTagName(o)[0];
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-15966419-8', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title"><a href="https://moorepants.github.io/eme171/test-this-thing-again/">EME 171: Analysis, Simulation and Design of Mechatronic Systems</a></h1>
+      <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/test-this-thing-again/">Syllabus</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/test-this-thing-again/schedule.html">Schedule</a></li>
+            <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/test-this-thing-again/resources.html">Resources</a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  Modeling, Simulation, and Control of a Segway
+</h1>
+      <hr>
+
+<article class="article">
+  <div class="content">
+    <p>The essential states are:</p>
+<ul class="simple">
+<li><span class="math">\(p_3 = L\dot{i}\)</span>: flux through the DC motor circuit</li>
+<li><span class="math">\(p_7 = J_p \omega_p\)</span>: pitch angular momentum of the person + platform</li>
+<li><span class="math">\(q_8 = \theta_p\)</span>: absolute pitch angle of the person + platform</li>
+<li><span class="math">\(p_{17} = J_w \omega_w\)</span>: rolling angular momentum of the wheel and rotor assembly</li>
+</ul>
+<p>The inputs are:</p>
+<ul class="simple">
+<li><span class="math">\(e(t)\)</span>: specified voltage applied to the DC motor circuit</li>
+<li><span class="math">\(F(t)\)</span>: longitudinal wind force</li>
+</ul>
+<p>The model is linear and thus can be put into state space form. The following
+function accepts a structure, <tt class="docutils literal">p</tt>, containing all of the base constant
+parameters and outputs the state matrix <tt class="docutils literal">A</tt> and input matrix <tt class="docutils literal">B</tt>. Inside
+the function, the base parameters are converted to the generalized numbered
+linear constants of each port in the Bond Graph and the linear system needed to
+convert the <span class="math">\(\dot{p}_7\)</span> and <span class="math">\(\dot{p}_{17}\)</span> into explicit form due
+to the two derivative causality inertia ports is solved numerically before
+constructing the two system matrices.</p>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[A, B] <span class="p">=</span><span class="w"> </span><span class="nf">segway_state_space</span><span class="p">(</span>p<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c">% SEGWAY_STATE_SPACE - Returns the state and input matrices of a simple</span>
+    <span class="c">% Segway longitudinal balancing model.</span>
+    <span class="c">%</span>
+    <span class="c">% Syntax: [A, B] = segway_state_space(p)</span>
+    <span class="c">%</span>
+    <span class="c">% Inputs:</span>
+    <span class="c">%   p - Structure containing the base constant parameters of the system.</span>
+    <span class="c">% Outputs:</span>
+    <span class="c">%   A - 4x4 state matrix corresponding to the state x = [p3; p7; q8; p17]</span>
+    <span class="c">%   B - 4x2 input matrix corresponding to the input u = [e(t); F(t)]</span>
+
+    <span class="c">% define all of the generalized linear constants of the bond graph</span>
+    <span class="n">R2</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+    <span class="n">I3</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">;</span>
+    <span class="n">r4_5</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">T</span><span class="p">;</span>
+    <span class="n">I7</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Jp</span><span class="p">;</span>
+    <span class="n">C8</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">p</span><span class="p">.</span><span class="n">mp</span><span class="o">/</span><span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="o">/</span><span class="n">p</span><span class="p">.</span><span class="n">lp</span><span class="p">;</span>
+    <span class="n">m9_10</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">lp</span><span class="p">;</span>
+    <span class="n">I12</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">mp</span><span class="p">;</span>
+    <span class="n">I14</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">mw</span><span class="p">;</span>
+    <span class="n">m16_15</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">I17</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Jw</span><span class="p">;</span>
+
+    <span class="c">% solve the derivative casuality system numerically</span>
+    <span class="c">% M*y = N*w + b*r</span>
+    <span class="c">% y = [p7dot; p17dot]</span>
+    <span class="c">% w = [p3; q8]</span>
+    <span class="c">% r = [F(t)]</span>
+    <span class="c">% y = M^-1*N*w + M^-1*b*r</span>
+    <span class="n">M</span> <span class="p">=</span> <span class="p">[</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">I12</span><span class="o">/</span><span class="n">I7</span><span class="o">*</span><span class="n">m9_10</span>^<span class="mi">2</span><span class="p">,</span>                   <span class="o">-</span><span class="n">I12</span><span class="o">/</span><span class="n">I17</span><span class="o">*</span><span class="n">m9_10</span><span class="o">*</span><span class="n">m16_15</span><span class="p">;</span>
+         <span class="o">-</span><span class="n">I12</span><span class="o">/</span><span class="n">I7</span><span class="o">*</span><span class="n">m9_10</span><span class="o">*</span><span class="n">m16_15</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">I14</span><span class="o">/</span><span class="n">I17</span><span class="o">*</span><span class="n">m16_15</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">I12</span><span class="o">/</span><span class="n">I17</span><span class="o">*</span><span class="n">m16_15</span>^<span class="mi">2</span><span class="p">];</span>
+
+    <span class="n">N</span> <span class="p">=</span> <span class="p">[</span><span class="n">r4_5</span><span class="o">/</span><span class="n">I3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">C8</span><span class="p">;</span>
+         <span class="n">r4_5</span><span class="o">/</span><span class="n">I3</span><span class="p">,</span>    <span class="mi">0</span><span class="p">];</span>
+
+    <span class="n">b</span> <span class="p">=</span> <span class="p">[</span>  <span class="n">m9_10</span><span class="p">;</span>
+         <span class="o">-</span><span class="n">m16_15</span><span class="p">];</span>
+
+    <span class="n">invM</span> <span class="p">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
+
+    <span class="c">% M^-1 * N</span>
+    <span class="n">MN</span> <span class="p">=</span> <span class="n">invM</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
+    <span class="c">% M^-1 * b</span>
+    <span class="n">Mb</span> <span class="p">=</span> <span class="n">invM</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+
+    <span class="c">% y = MN * w + Mb * r</span>
+
+    <span class="c">% define the state and input matrices</span>
+    <span class="n">A</span> <span class="p">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">R2</span><span class="o">/</span><span class="n">I3</span><span class="p">,</span> <span class="o">-</span><span class="n">r4_5</span><span class="o">/</span><span class="n">I7</span><span class="p">,</span>       <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">r4_5</span><span class="o">/</span><span class="n">I17</span><span class="p">;</span>
+         <span class="n">MN</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>        <span class="mi">0</span><span class="p">,</span> <span class="n">MN</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>         <span class="mi">0</span><span class="p">;</span>
+               <span class="mi">0</span><span class="p">,</span>     <span class="mi">1</span><span class="o">/</span><span class="n">I7</span><span class="p">,</span>       <span class="mi">0</span><span class="p">,</span>         <span class="mi">0</span><span class="p">;</span>
+         <span class="n">MN</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>        <span class="mi">0</span><span class="p">,</span> <span class="n">MN</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>         <span class="mi">0</span><span class="p">];</span>
+
+    <span class="n">B</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="mi">0</span><span class="p">,</span> <span class="n">Mb</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+         <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="mi">0</span><span class="p">,</span> <span class="n">Mb</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+
+<span class="n">end</span>
+</pre></div>
+<p>The following m-file computes the two inputs. The wind force is specified as a
+step function that provides a constant wind force between a start and stop
+time. The voltage is specified as a linear function of the four states. Each
+state is multiplied by a gain value and summed together to provide &quot;full state
+feedback&quot; control. The gain values are chosen using the <a class="reference external" href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">LQR method</a> in the
+primary script further below. These gain values are supplied to the function.
+Note that this assumes it is possible to measure each state directly (which is
+an slightly unrealistic assumption, but used for the purposes of this
+demonstration).</p>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>u <span class="p">=</span><span class="w"> </span><span class="nf">eval_segway_input</span><span class="p">(</span>t, x, p, G<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c">% EVAL_SEGWAY_INPUT - Returns the input vector, motor voltage and wind</span>
+    <span class="c">% force, at any given time. The voltage is computed as a full state</span>
+    <span class="c">% feedback controller adn the gust of wind is a step function with a 1</span>
+    <span class="c">% second duration.</span>
+    <span class="c">%</span>
+    <span class="c">% Syntax: u = eval_segway_input(t, x, p, G)</span>
+    <span class="c">%</span>
+    <span class="c">% Inputs:</span>
+    <span class="c">%   t - A scalar value of time, size 1x1.</span>
+    <span class="c">%   x - State vector [p3; p7; q8; p17, xw] at time t, size 5x1.</span>
+    <span class="c">%   p - Constant parameter structure.</span>
+    <span class="c">%   G - Full state feedback gain matrix, size 1x4.</span>
+    <span class="c">% Outputs:</span>
+    <span class="c">%   u - Input vector [e(t); F(t)] at time t, size 2x1.</span>
+
+    <span class="c">% compute the full state feedback controller base on first four</span>
+    <span class="c">% essential states</span>
+    <span class="c">% 1x1 = 1x4 * 4x1</span>
+    <span class="n">e</span> <span class="p">=</span> <span class="o">-</span><span class="n">G</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">);</span>
+
+    <span class="c">% define a gust of wind applied between 1 and 2 seconds</span>
+    <span class="n">if</span> <span class="s">t</span> <span class="s">&gt;</span> <span class="s">1.0</span> <span class="s">&amp;&amp;</span> <span class="s">t</span> <span class="s">&lt;</span> <span class="s">2.0</span>
+        <span class="c">% magnitude of force from a gust of wind hitting a human at speed v</span>
+        <span class="n">rho</span> <span class="p">=</span> <span class="mf">1.2</span><span class="p">;</span>  <span class="c">% air density [kg/m^3]</span>
+        <span class="n">CdA</span> <span class="p">=</span> <span class="mf">0.84</span><span class="p">;</span>  <span class="c">% drag coeff times frontal area [m^2]</span>
+        <span class="n">v</span> <span class="p">=</span> <span class="mi">18</span><span class="p">;</span> <span class="c">% wind speed [m/s]</span>
+        <span class="n">F</span> <span class="p">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">CdA</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">else</span>
+        <span class="s">F</span> <span class="s">=</span> <span class="s">0.0</span><span class="p">;</span>
+    <span class="n">end</span>
+
+    <span class="s">%</span> <span class="s">pack</span> <span class="s">input</span> <span class="s">into</span> <span class="s">a</span> <span class="s">2x1</span> <span class="s">vector</span>
+    <span class="n">u</span> <span class="p">=</span> <span class="p">[</span><span class="n">e</span><span class="p">;</span> <span class="n">F</span><span class="p">];</span>
+
+<span class="n">end</span>
+</pre></div>
+<p>The function that computes the derivative of the states then becomes fairly
+simple because we have defined the linear system as a state space. I do add an
+additional state equation that is necessary if we desire to know the
+longitudinal position of the wheel center. This state is called an &quot;ignorable&quot;
+coordinate because the dynamics only depend on the velocity of the wheel center
+not its position, but it is necessary to integrate the velocity to know this
+value.</p>
+<ul class="simple">
+<li><span class="math">\(\dot{x}_w = \frac{p_{14}}{I_{14}} = \frac{_{16}r_{15}}{I_{17}}p_{17}\)</span>:
+longitudinal momentum of the wheel assembly</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>xdot <span class="p">=</span><span class="w"> </span><span class="nf">eval_segway_rhs</span><span class="p">(</span>t, x, g, p, A, B, G<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c">% EVAL_SEGWAY_RHS - Returns the time derivative of the states, i.e.</span>
+    <span class="c">% evaluates the right hand side of the explicit ordinary differential</span>
+    <span class="c">% equations.</span>
+    <span class="c">%</span>
+    <span class="c">% Syntax: xdot = eval_segway_rhs(t, x, r, p)</span>
+    <span class="c">%</span>
+    <span class="c">% Inputs:</span>
+    <span class="c">%   t - Scalar value of time, size 1x1.</span>
+    <span class="c">%   x - State vector [p3; p7; q8; p17; xw], size 5x1.</span>
+    <span class="c">%   g - Anonymous function of form g(t, x, p, G) which computes the</span>
+    <span class="c">%       input at time t.</span>
+    <span class="c">%   p - Constant parameter structure.</span>
+    <span class="c">%   A - State matrix for first four states, size 4x4.</span>
+    <span class="c">%   B - Input matrix, size 4x2.</span>
+    <span class="c">%   G - Full state feedback gain matrix, size 1x4.</span>
+    <span class="c">% Outputs:</span>
+    <span class="c">%   xdot - Time derivative of the states at time t, size 5x1.</span>
+
+    <span class="c">% evaluate the input</span>
+    <span class="n">u</span> <span class="p">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
+
+    <span class="n">xdot</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">B</span> <span class="o">*</span> <span class="n">u</span><span class="p">;</span>
+
+    <span class="c">% add an extra non-essential ODE so we can get wheel position</span>
+    <span class="n">omega_w</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span><span class="p">.</span><span class="n">Jw</span><span class="p">;</span>
+    <span class="n">vw</span> <span class="p">=</span> <span class="n">omega_w</span> <span class="o">*</span> <span class="n">p</span><span class="p">.</span><span class="n">d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">xdot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">vw</span><span class="p">;</span>
+
+<span class="n">end</span>
+</pre></div>
+<p>The next m-file computes several useful outputs. The power draw from the
+battery is computed and the Cartesian location of the mass center of the wheel
+assembly and the mass center of the person are computed for use in animating
+the motion.</p>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>y <span class="p">=</span><span class="w"> </span><span class="nf">eval_segway_output</span><span class="p">(</span>t, x, g, p, G<span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c">% EVAL_SEGWAY_INPUT - Returns the input vector, motor voltage and wind</span>
+    <span class="c">% force, at any given time. The voltage is computed as a full state</span>
+    <span class="c">% feedback controller adn the gust of wind is a step function with a 1</span>
+    <span class="c">% second duration.</span>
+    <span class="c">%</span>
+    <span class="c">% Syntax: u = eval_segway_input(t, x, p, G)</span>
+    <span class="c">%</span>
+    <span class="c">% Inputs:</span>
+    <span class="c">%   t - A scalar value of time, size 1x1.</span>
+    <span class="c">%   x - State vector [p3; p7; q8; p17, xw] at time t, size 5x1.</span>
+    <span class="c">%   g - Anonymous function of form g(t, x, p, G) which computes the</span>
+    <span class="c">%       input at time t.</span>
+    <span class="c">%   p - Constant parameter structure.</span>
+    <span class="c">%   G - Full state feedback gain matrix, size 1x4.</span>
+    <span class="c">% Outputs:</span>
+    <span class="c">%   y - Output vector [xw; yw; xp; yp; P] at time t, size 5x1.</span>
+
+    <span class="c">% motor current drawn from source</span>
+    <span class="nb">i</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">;</span>
+
+    <span class="n">r</span> <span class="p">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
+    <span class="n">e</span> <span class="p">=</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="c">% electrical power</span>
+    <span class="n">power</span> <span class="p">=</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">i</span><span class="p">;</span>
+
+    <span class="c">% plotting</span>
+    <span class="n">thetap</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">xw</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">yw</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="n">xp</span> <span class="p">=</span> <span class="n">xw</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">lp</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">thetap</span><span class="p">);</span>
+    <span class="n">yp</span> <span class="p">=</span> <span class="n">yw</span> <span class="o">+</span> <span class="n">p</span><span class="p">.</span><span class="n">lp</span> <span class="o">*</span> <span class="nb">cos</span><span class="p">(</span><span class="n">thetap</span><span class="p">);</span>
+
+    <span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="n">xw</span><span class="p">;</span> <span class="n">xp</span><span class="p">;</span> <span class="n">yw</span><span class="p">;</span> <span class="n">yp</span><span class="p">;</span> <span class="n">power</span><span class="p">];</span>
+
+<span class="n">end</span>
+</pre></div>
+<p>Finally, the main script file is shown below. There are these main steps:</p>
+<ol class="arabic simple">
+<li>Define the constant parameters.</li>
+<li>Calculate the state and input matrices.</li>
+<li>Calculate the eigenvalues and eigenvectors of the state matrix.</li>
+<li>Try a simple proportional feedback controller.</li>
+<li>Try a simple PID feedback controller.</li>
+<li>Calculate the gains for a full state feedback controller based on LQR.</li>
+<li>Simulate the motion and save data to a file.</li>
+<li>Plot the trajectories of the states, inputs, and outputs.</li>
+</ol>
+<p>Type <tt class="docutils literal">simulate_segway</tt> in Octave or Matlab to run the script.</p>
+<div class="highlight"><pre><span></span><span class="c">%% define all constant parameters and store in a structure</span>
+<span class="n">p</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="mf">9.81</span><span class="p">;</span>  <span class="c">% acceleration due to gravity [m/s^2]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">mp</span> <span class="p">=</span> <span class="mf">75.0</span><span class="p">;</span>  <span class="c">% person + platform mass [kg]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">Jp</span> <span class="p">=</span> <span class="mf">14.0</span><span class="p">;</span>  <span class="c">% person + platform inertia [kg m^2]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">lp</span> <span class="p">=</span> <span class="mf">0.9</span><span class="p">;</span>  <span class="c">% center of mass [m]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">d</span> <span class="p">=</span> <span class="mf">0.4</span><span class="p">;</span>  <span class="c">% wheel diameter [m]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">mw</span> <span class="p">=</span> <span class="mi">6</span><span class="p">;</span>  <span class="c">% wheel mass [kg]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">Jw</span> <span class="p">=</span> <span class="n">p</span><span class="p">.</span><span class="n">mw</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>^<span class="mi">2</span><span class="p">;</span>  <span class="c">% wheel inertia [kg m^2]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">T</span> <span class="p">=</span> <span class="mi">12</span><span class="p">;</span>  <span class="c">% dc motor constant [Nm/A]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">R</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>  <span class="c">% dc motor winding resistance [O]</span>
+<span class="n">p</span><span class="p">.</span><span class="n">L</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% dc motor wiinding inductance, [H]</span>
+
+<span class="c">%% calculate the state and input matrices</span>
+<span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">]</span> <span class="p">=</span> <span class="n">segway_state_space</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+
+<span class="c">%% calculate the eigenvalues and eigenvectors of the state matrix</span>
+<span class="p">[</span><span class="n">evecs</span><span class="p">,</span> <span class="n">evals</span><span class="p">]</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvalues&#39;</span><span class="p">);</span>
+<span class="n">evals</span>
+<span class="s">display(&#39;Eigenvectors&#39;)</span><span class="p">;</span>
+<span class="n">evecs</span>
+
+<span class="s">%%</span> <span class="s">check</span> <span class="s">to</span> <span class="s">see</span> <span class="s">if</span> <span class="s">a</span> <span class="s">simple</span> <span class="s">proportional</span> <span class="s">feedback</span> <span class="s">of</span> <span class="s">q8</span> <span class="s">will</span> <span class="s">stabilize</span> <span class="s">the</span>
+<span class="c">%% system</span>
+<span class="c">% create a SISO plant input: e, output: q8 and control: e=-k*q8.</span>
+<span class="n">C</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>  <span class="c">% i.e. y = q8</span>
+<span class="n">sys</span> <span class="p">=</span> <span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">C</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">[</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">]</span> <span class="p">=</span> <span class="n">ss2tf</span><span class="p">(</span><span class="n">sys</span><span class="p">);</span>
+<span class="n">q8_e</span> <span class="p">=</span> <span class="n">tf</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>
+<span class="c">% see if proportional feedback can stabilize using root locus graph</span>
+<span class="n">figure</span><span class="p">;</span>
+<span class="n">rlocus</span><span class="p">(</span><span class="n">q8_e</span><span class="p">)</span>
+
+<span class="c">%% try a PID controller (manually selected gains)</span>
+<span class="n">pid_controller</span> <span class="p">=</span> <span class="n">pid</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">feedback</span><span class="p">(</span><span class="n">q8_e</span><span class="p">,</span> <span class="n">pid_controller</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvalues of PID controlled system&#39;</span><span class="p">)</span>
+<span class="n">eig</span><span class="p">(</span><span class="n">feedback</span><span class="p">(</span><span class="n">q8_e</span><span class="p">,</span> <span class="n">pid_controller</span><span class="p">))</span>
+
+
+<span class="c">%% try a linear quadratic regulator controller</span>
+<span class="k">if</span> <span class="n">rank</span><span class="p">(</span><span class="n">ctrb</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">==</span> <span class="nb">length</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">&#39;System is controllable with full state feedback&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">Q</span> <span class="p">=</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">R</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">[</span><span class="n">G</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span> <span class="p">=</span> <span class="n">lqr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">);</span>
+<span class="n">display</span><span class="p">(</span><span class="s">&#39;Eigenvalues of PID controlled system&#39;</span><span class="p">)</span>
+<span class="n">L</span>
+
+<span class="s">%%</span> <span class="s">simulate</span> <span class="s">the</span> <span class="s">system</span> <span class="s">with</span> <span class="s">the</span> <span class="s">LQR</span> <span class="s">controller</span>
+<span class="n">final_time</span> <span class="p">=</span> <span class="mf">6.0</span><span class="p">;</span>
+<span class="n">ts</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">final_time</span><span class="p">,</span> <span class="n">num</span><span class="p">=</span><span class="n">final_time</span><span class="o">*</span><span class="mi">60</span><span class="p">);</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">eval_segway_rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_segway_input</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
+
+<span class="c">% set the initial forward lean angle to 20 degrees</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">;</span> <span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">x0</span><span class="p">);</span>
+
+<span class="c">% calculate the inputs and outputs of the simulation</span>
+<span class="n">us</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">ys</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">for</span> <span class="s">i</span> <span class="s">=</span> <span class="s">1:length(ts)</span>
+    <span class="n">us</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_segway_input</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
+    <span class="n">ys</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">eval_segway_output</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="p">:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="p">@</span><span class="n">eval_segway_input</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
+<span class="n">end</span>
+
+<span class="s">%</span> <span class="s">save</span> <span class="s">all</span> <span class="s">simulation</span> <span class="s">input</span> <span class="s">and</span> <span class="s">output</span> <span class="s">data</span> <span class="s">to</span> <span class="s">a</span> <span class="s">file</span>
+<span class="n">save</span><span class="p">(</span><span class="s">&#39;-v6&#39;</span><span class="p">,</span> <span class="s">&#39;segway-sim-data.mat&#39;</span><span class="p">,</span> <span class="s">&#39;ts&#39;</span><span class="p">,</span> <span class="s">&#39;xs&#39;</span><span class="p">,</span> <span class="s">&#39;ys&#39;</span><span class="p">,</span> <span class="s">&#39;us&#39;</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">);</span>
+
+<span class="c">%% plot the simulation results</span>
+<span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">xs</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;p3&#39;</span><span class="p">,</span> <span class="s">&#39;p7&#39;</span><span class="p">,</span> <span class="s">&#39;q8&#39;</span><span class="p">,</span> <span class="s">&#39;p17&#39;</span><span class="p">,</span> <span class="s">&#39;xw&#39;</span><span class="p">);</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ys</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;xw&#39;</span><span class="p">,</span> <span class="s">&#39;yw&#39;</span><span class="p">,</span> <span class="s">&#39;xp&#39;</span><span class="p">,</span> <span class="s">&#39;yp&#39;</span><span class="p">,</span> <span class="s">&#39;P&#39;</span><span class="p">);</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">611</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">us</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Wind force [N]&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">612</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">us</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">));</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Applied Voltage [V]&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">613</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">xs</span><span class="p">(:,</span> <span class="mi">3</span><span class="p">));</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Angle [deg]&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">614</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ys</span><span class="p">(:,</span> <span class="mi">1</span><span class="p">));</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Wheel Location [m]&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">615</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="n">xs</span><span class="p">(:,</span> <span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">.</span><span class="n">Jw</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Wheel Speed [deg/s]&#39;</span><span class="p">);</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">616</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ys</span><span class="p">(:,</span> <span class="mi">5</span><span class="p">));</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Power [Watts]&#39;</span><span class="p">);</span>
+</pre></div>
+<p>The above script generate a <tt class="docutils literal">.mat</tt> file which stores all of the trajectories
+generated from the simulation. The following Python file loads this data and
+animates the simulation. The animation can be done in Octave/Matlab but I was
+having trouble getting a nice result with Octave, so I just wrote it in Python.
+You'll need to install Python, NumPy, SciPy, and matplotlib for this to run. I
+recommend installing <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> to get them all.</p>
+<p>Type <tt class="docutils literal">python animate_segway.py</tt> to run the script from a terminal or command
+prompt.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
+
+<span class="c1"># load the data and extract necessary variables</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;segway-sim-data.mat&#39;</span><span class="p">,</span> <span class="n">squeeze_me</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">][</span><span class="s1">&#39;d&#39;</span><span class="p">])</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span>
+<span class="n">us</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;us&#39;</span><span class="p">]</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;xs&#39;</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;ys&#39;</span><span class="p">]</span>
+
+<span class="n">max_force</span> <span class="o">=</span> <span class="n">us</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># create intial plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">wheel</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+               <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">wheel</span><span class="p">)</span>
+
+<span class="n">person</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">wind</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">us</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">max_force</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ys</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x [m]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y [m]&#39;</span><span class="p">)</span>
+
+<span class="c1"># define a function to update the plot</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span> <span class="n">wheel</span><span class="p">,</span> <span class="n">wind</span><span class="p">):</span>
+    <span class="n">wheel</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">wheel</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                    <span class="p">[</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+    <span class="n">wind</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">us</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">max_force</span><span class="p">],</span>
+                  <span class="p">[</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">person</span><span class="p">,</span> <span class="n">wheel</span><span class="p">,</span> <span class="n">wind</span>
+
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">),</span>
+                               <span class="n">fargs</span><span class="o">=</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">wheel</span><span class="p">,</span> <span class="n">wind</span><span class="p">),</span>
+                               <span class="n">interval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># uncomment to save animation to file</span>
+<span class="c1">#anim.save(&#39;segway.mp4&#39;, writer=&#39;ffmpeg&#39;, fps=60)</span>
+<span class="c1">#anim.save(&#39;segway.gif&#39;, writer=&#39;imagemagick&#39;, fps=30)</span>
+</pre></div>
+<p>The final resulting animation of the simulation is shown in the GIF below:</p>
+<img alt="" class="align-center" src="https://objects-us-east-1.dream.io/eme171/assets/2019/segway.gif" />
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+</article>
+
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/test-this-thing-again/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/test-this-thing-again/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://moorepants.github.io/eme171/test-this-thing-again/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-sm-4 mx-auto text-center text-muted" >
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+    </a>
+    <br />
+    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  </div>
+</div>    </div>
+  </footer>
+</body>
+
+</html>
