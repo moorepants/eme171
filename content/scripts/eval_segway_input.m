@@ -25,7 +25,7 @@ function u = eval_segway_input(t, x, p, G)
         rho = 1.2;  % air density [kg/m^3]
         CdA = 0.84;  % drag coeff times frontal area [m^2]
         v = 18; % wind speed [m/s]
-        F = rho*CdA*v**2/2;
+        F = rho*CdA*v^2/2;
     else
         F = 0.0;
     end
